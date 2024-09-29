@@ -17,7 +17,3 @@ Route::get('/pengajuanpusat', function () {
 Route::get('/pengajuanukm', function () {
     return view('pengajuanukm');
 });
-
-Route::get('/home', function () {
-    return view('home');
-});
