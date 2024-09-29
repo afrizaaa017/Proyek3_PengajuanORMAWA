@@ -17,3 +17,8 @@ Route::get('/pengajuanpusat', function () {
 Route::get('/pengajuanukm', function () {
     return view('pengajuanukm');
 });
+
+// Rute untuk halaman upload berkas
+Route::get('/pengajuanberkas', function () {
+    return view('pengajuanberkas');
+});
