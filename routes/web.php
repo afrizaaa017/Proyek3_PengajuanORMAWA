@@ -27,3 +27,11 @@ Route::get('/pengajuanberkas', function () {
 Route::get('/menu', function () {
     return view('menu');
 });
+
+Route::get('/listtable', function () {
+    return view('listtable');
+});
+
+Route::get('/progrestabel', function () {
+    return view('progrestabel');
+});
