@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabel Pengajuan</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-
         .container {
             width: 80%;
             margin: 0 auto;
@@ -56,16 +50,6 @@
         .btn-status.processing {
             background-color: #6c757d; /* Warna abu-abu */
         }
-
-        /* Optional styling for SK (Surat Keterangan) column */
-        .btn-sk {
-            padding: 5px 10px;
-            background-color: yellow;
-            color: #333;
-            border-radius: 5px;
-            border: none;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
@@ -90,8 +74,6 @@
                     <td>Organisasi Mahasiswa</td>
                     <td><button class="btn-status processing">Diproses</button></td>
                     <td>Waktu Verifikasi</td>
-                    <td>Keterangan Verifikasi</td>
-                    <td><button class="btn-sk">Surat SK</button></td>
                 </tr>
             </tbody>
         </table>
