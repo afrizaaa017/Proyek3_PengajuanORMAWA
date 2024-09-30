@@ -6,15 +6,24 @@
     <title>Tabel Pengajuan</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            color: #000;
+            font-weight: bold;
         }
 
         .container {
             width: 80%;
-            margin: 20px auto;
-            border: 2px solid #000;
+            margin: 0 auto;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
         .header {
@@ -25,7 +34,9 @@
         }
 
         .header h2 {
-            margin: 0;
+            color: #0056b3;
+            font-size: 24px;
+            font-weight: bold;
         }
 
         .dropdown {
@@ -33,9 +44,16 @@
             align-items: center;
         }
 
+        .dropdown label {
+            font-weight: bold;
+        }
+
         .dropdown select {
-            padding: 5px;
             margin-left: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
         }
 
         table {
@@ -44,12 +62,19 @@
         }
 
         table, th, td {
-            border: 1px solid black;
+            border: 1px solid #ddd;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #0056b3;
+            font-weight: bold;
         }
 
         .btn-status {
@@ -58,6 +83,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .btn-ditolak {
@@ -68,8 +94,16 @@
             background-color: orange;
         }
 
+        .btn-disetujui {
+            background-color: green;
+        }
+
         .btn-aksi {
             background-color: yellow;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
         .icon-eye {
@@ -79,6 +113,7 @@
 </head>
 <body>
 
+    <h1>Tabel</h1>
     <div class="container">
         <!-- Header untuk judul tabel dan dropdown periode -->
         <div class="header">
@@ -110,32 +145,44 @@
                 <!-- Baris pertama dengan isi data -->
                 <tr>
                     <td>231511072</td>
-                    <td>30/09/2024</td>
+                    <td>18/09/2024</td>
                     <td>HIMAKOM</td>
                     <td><button class="btn-status btn-ditolak">Ditolak</button></td>
-                    <td>13:45 30/09/2024</td>
-                    <td><button class="btn-status btn-revisi">Revisi</button></td>
-                    <td><button class="btn-status btn-aksi"><span class="icon-eye">&#128065;</span></button></td>
+                    <td>15:14 18/09/2024</td>
+                    <td><button class="btn-status btn-revisi">REVISI</button></td>
+                    <td><button class="btn-aksi"><span class="icon-eye">&#128065;</span></button></td>
                 </tr>
 
-                <!-- Baris kosong kedua hingga ketujuh -->
+                <!-- Baris kedua hingga ketujuh dengan status "Disetujui" -->
                 <tr>
-                    <td colspan="7">&nbsp;</td>
+                    <td colspan="3"></td>
+                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
+                    <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="7">&nbsp;</td>
+                    <td colspan="3"></td>
+                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
+                    <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="7">&nbsp;</td>
+                    <td colspan="3"></td>
+                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
+                    <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="7">&nbsp;</td>
+                    <td colspan="3"></td>
+                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
+                    <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="7">&nbsp;</td>
+                    <td colspan="3"></td>
+                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
+                    <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="7">&nbsp;</td>
+                    <td colspan="3"></td>
+                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
+                    <td colspan="3"></td>
                 </tr>
             </tbody>
         </table>
