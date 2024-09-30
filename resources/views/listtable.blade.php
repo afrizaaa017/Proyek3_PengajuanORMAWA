@@ -1,50 +1,145 @@
-<div class="container mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Tabel</h2>
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <div class="p-4">
-            <h3 class="text-xl font-semibold mb-4">Tabel Pengajuan</h3>
-            <div class="flex justify-end mb-4">
-                <select class="border rounded-md px-3 py-1">
-                    <option>Periode</option>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Pengajuan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            border: 2px solid #000;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .dropdown {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown select {
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .btn-status {
+            padding: 5px 10px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-ditolak {
+            background-color: red;
+        }
+
+        .btn-revisi {
+            background-color: orange;
+        }
+
+        .btn-aksi {
+            background-color: yellow;
+        }
+
+        .icon-eye {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header untuk judul tabel dan dropdown periode -->
+        <div class="header">
+            <h2>Tabel Pengajuan</h2>
+            <div class="dropdown">
+                <label for="periode">Periode:</label>
+                <select id="periode">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
                 </select>
             </div>
-            <div class="overflow-x-auto">
-                <table class="min-w-full">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="px-4 py-2 text-left">Nomor Pengajuan</th>
-                            <th class="px-4 py-2 text-left">Tanggal Pengajuan</th>
-                            <th class="px-4 py-2 text-left">Organisasi Mahasiswa</th>
-                            <th class="px-4 py-2 text-left">Status Verifikasi</th>
-                            <th class="px-4 py-2 text-left">Waktu Verifikasi</th>
-                            <th class="px-4 py-2 text-left">Keterangan Verifikasi</th>
-                            <th class="px-4 py-2 text-left">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="px-4 py-2">2300902</td>
-                            <td class="px-4 py-2">10-09-2023</td>
-                            <td class="px-4 py-2">HIMATIKA</td>
-                            <td class="px-4 py-2">
-                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Ditolak</span>
-                            </td>
-                            <td class="px-4 py-2">12-09-2023</td>
-                            <td class="px-4 py-2">
-                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Selesai</span>
-                            </td>
-                            <td class="px-4 py-2">
-                                <button class="bg-yellow-500 text-white px-2 py-1 rounded-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
+
+        <!-- Tabel Pengajuan -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nomor Pengajuan</th>
+                    <th>Tanggal Pengajuan</th>
+                    <th>Organisasi Mahasiswa</th>
+                    <th>Status Verifikasi</th>
+                    <th>Waktu Verifikasi</th>
+                    <th>Keterangan Verifikasi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Baris pertama dengan isi data -->
+                <tr>
+                    <td>231511072</td>
+                    <td>30/09/2024</td>
+                    <td>HIMAKOM</td>
+                    <td><button class="btn-status btn-ditolak">Ditolak</button></td>
+                    <td>13:45 30/09/2024</td>
+                    <td><button class="btn-status btn-revisi">Revisi</button></td>
+                    <td><button class="btn-status btn-aksi"><span class="icon-eye">&#128065;</span></button></td>
+                </tr>
+
+                <!-- Baris kosong kedua hingga ketujuh -->
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
+
+</body>
+</html>
