@@ -22,3 +22,8 @@ Route::get('/pengajuanukm', function () {
 Route::get('/pengajuanberkas', function () {
     return view('pengajuanberkas');
 });
+
+// Rute untuk halaman upload berkas
+Route::get('/menu', function () {
+    return view('menu');
+});
