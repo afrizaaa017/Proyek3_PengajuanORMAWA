@@ -39,7 +39,7 @@
         </div>
 
         <!-- Konten Upload Berkas -->
-        <form action="{{ route('documents.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container mx-auto mt-10 flex-1">
                 <div class="grid grid-cols-2 gap-8">
