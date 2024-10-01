@@ -15,7 +15,8 @@
     <section class="bg-blue dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-4xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-blue-800 dark:text-white">Pengajuan Ketua Himpunan</h2>
-            <form action="#">
+            <form action="/simpanPengajuan" method="post" enctype="multipart/form-data">
+                @csrf
                 <!-- Mengatur Grid Layout 2 kolom -->
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
                     <!-- Nama -->
@@ -25,14 +26,14 @@
                     </div>
 
                     <div class="col-span-2">
-                        <label for="NIM" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
-                        <input type="text" name="NIM" id="NIM" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NIM Lengkap" required="">
+                        <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
+                        <input type="text" name="nim" id="nim" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NIM Lengkap" required="">
                     </div>
 
                     <!-- Jurusan -->
                     <div>
-                        <label for="Jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Jurusan</label>
-                        <select id="Jurusan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Jurusan</label>
+                        <select name="jurusan" id="jurusan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option selected="">Pilih Jurusan</option>
                             <option value="Teknik Informatika">Teknik Informatika</option>
                             <option value="Teknik Kimia">Teknik Kimia</option>
@@ -42,8 +43,8 @@
     
                     <!-- Program Studi -->
                     <div>
-                        <label for="Prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Program Studi</label>
-                        <select id="Prodi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Program Studi</label>
+                        <select name="prodi" id="prodi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option selected="">Pilih Program Studi</option>
                             <option value="D3 Informatika">D3 Informatika</option>
                             <option value="D4 Informatika">D4 Informatika</option>
@@ -52,8 +53,8 @@
     
                     <!-- Organisasi Mahasiswa -->
                     <div>
-                        <label for="Ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                        <select id="Ormawa" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
+                        <select name="ormawa" id="ormawa" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option selected="">Pilih Ormawa</option>
                             <option value="HIMAKOM">HIMAKOM</option>
                             <option value="HIMATEL">HIMATEL</option>
@@ -63,7 +64,7 @@
                     <!-- Periode -->
                     <div>
                         <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
-                        <select id="periode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="periode" id="periode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option selected="">Pilih Periode</option>
                             <option value="2020">2020-2021</option>
                             <option value="2021">2021-2022</option>
@@ -73,8 +74,8 @@
     
                     <!-- No.Telepon -->
                     <div>
-                        <label for="notelepon" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
-                        <input type="text" name="notelepon" id="notelepon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nomor Telepon Anda" required="">
+                        <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
+                        <input type="text" name="telp" id="telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nomor Telepon Anda" required="">
                     </div>
     
                     <!-- Email -->
