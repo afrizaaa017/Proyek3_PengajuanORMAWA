@@ -6,20 +6,29 @@
     <title>Pengajuan Ketua Ormawa</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="text-center">
-        <!-- Judul -->
-        <h1 class="text-2xl font-semibold text-gray-600 mb-6">Pengajuan Ketua Ormawa</h1>
+<body class="bg-white flex">
+
+    @include('components.navbar')
+    @include('components.sidebar')
+
+      <!-- Main Content Area -->
+      <div class="flex-grow flex flex-col items-center justify-content-center mt-10 p-4">
+        <!-- Spacer to prevent overlap with navbar -->
+        <div class="h-20 ">
+        </div> <!-- Adjust height as needed -->
+
+        <!-- Title -->
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8">Pengajuan Ketua Ormawa</h1>
         
-        <!-- Tombol -->
-        <div class="space-y-4">
-            <a href="#" class="block w-64 py-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
+        <!-- Buttons Container -->
+        <div class="w-full max-w-lg space-y-4">
+            <a href="pengajuanpusat" class="block w-full text-center py-6 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
                 MPM DAN BEM
             </a>
-            <a href="#" class="block w-64 py-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
+            <a href="pengajuanhimpunan" class="block w-full text-center py-6 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
                 HIMPUNAN MAHASISWA
             </a>
-            <a href="#" class="block w-64 py-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
+            <a href="pengajuanukm" class="block w-full text-center py-6 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
                 UNIT KEGIATAN MAHASISWA
             </a>
         </div>
