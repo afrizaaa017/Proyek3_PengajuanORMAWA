@@ -14,7 +14,9 @@
 <body>
     @include('components.navbar')
     @include('components.sidebar')
+<div class="mt-10">
 
+</div>
     <section class="bg-blue dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-4xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-blue-800 dark:text-white">Pengajuan Ketua Himpunan</h2>
@@ -88,13 +90,9 @@
                     </div>
                 </div>
 
-                <div class="flex justify-end mt-4">
-                    <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-blue-800 border border-blue-800 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2 text-blue-800">
-                            <path stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        Next
-                    </button>
+                <div class="flex justify-between mt-4">
+                    <button type="button" class="btn-gradient text-white py-2 px-4 rounded-lg shadow-lg">Previous</button>
+                    <button type="submit" class="btn-gradient text-white py-2 px-4 rounded-lg shadow-lg">Send</button>
                 </div>
 
             </form>
