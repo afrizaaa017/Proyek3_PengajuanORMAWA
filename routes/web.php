@@ -35,3 +35,7 @@ Route::get('/listtable', function () {
 Route::get('/progrestabel', function () {
     return view('progrestabel');
 });
+
+Route::get('/progressbar', function () {
+    return view('progressbar');
+});
