@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengajuan Ketua Ormawa</title>
     <script src="https://cdn.tailwindcss.com"></script> <!-- Menggunakan CDN TailwindCSS -->
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <style>
         /* Import Font Gilroy */
         @font-face {
@@ -113,6 +115,8 @@
 
 <body class="bg-white flex">
 
+    @include('components.navbar')
+    @include('components.sidebar')
     <!-- Sidebar (Kosong) -->
     <div class="w-1/4 bg-gray-200 p-4 h-screen">
         <!-- Konten Sidebar (kosong) -->

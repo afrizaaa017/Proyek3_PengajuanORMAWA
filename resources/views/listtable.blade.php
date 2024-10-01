@@ -1,193 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabel Pengajuan</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-
-        h1 {
-            font-family: 'Arial', sans-serif;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header h2 {
-            color: #0056b3;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .dropdown {
-            display: flex;
-            align-items: center;
-        }
-
-        .dropdown label {
-            font-weight: bold;
-        }
-
-        .dropdown select {
-            margin-left: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: #f8f9fa;
-            color: #0056b3;
-            font-weight: bold;
-        }
-
-        .btn-status {
-            padding: 5px 10px;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .btn-ditolak {
-            background-color: red;
-        }
-
-        .btn-revisi {
-            background-color: orange;
-        }
-
-        .btn-disetujui {
-            background-color: green;
-        }
-
-        .btn-aksi {
-            background-color: yellow;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .icon-eye {
-            font-size: 18px;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 <body>
-
-    <h1>Tabel</h1>
-    <div class="container">
-        <!-- Header untuk judul tabel dan dropdown periode -->
-        <div class="header">
-            <h2>Tabel Pengajuan</h2>
-            <div class="dropdown">
-                <label for="periode">Periode:</label>
-                <select id="periode">
-                    <option value="2024">2024-2025</option>
-                    <option value="2023">2023-2024</option>
-                    <option value="2022">2022-2023</option>
-                    <option value="2022">2021-2022</option>
-                </select>
+    <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+        <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+            <!-- Start coding here -->
+            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden pb-10">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">Nomor Pengajuan</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">Tanggal Pengajuan</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">ORganisasi Mahasiswa</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">Status Verifikasi</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">Waktu Verifikasi</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">Keterangan Verifikasi</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b dark:border-gray-700">
+                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">001</th>
+                                <td class="px-4 py-3">30 September 2024</td>
+                                <td class="px-4 py-3">HIMAKOM</td>
+                                <td class="px-4 w-10 bg-gray-400 text-white font-bold  px-4 rounded-lg shadow-md active:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Perlu Diproses</td>
+                                <td class="px-4 py-3"> - </td>
+                                <td class="px-4 py-3"> - </td>
+                                <td class="px-4 py-3"><a href="/review" class=" bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition duration-300">
+                                    Aksi
+                                  </a></td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-700">
+                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">001</th>
+                                <td class="px-4 py-3">30 September 2024</td>
+                                <td class="px-4 py-3">HIMAKOM</td>
+                                <td class="px-4 w-10 bg-red-400 text-white font-bold  px-4 rounded-lg shadow-md active:bg-red-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Diproses</td>
+                                <td class="px-4 py-3">2 Oktober 2024</td>
+                                <td class="px-4 w-8 bg-orange-600 text-white font-bold  px-4 rounded-lg shadow-md active:bg-red-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Revisi</td>
+                                <td class="px-4 py-3"><text class="w-8 bg-gray-500 text-white font-bold py-2 px-4 rounded-lg shadow-md ">Aksi</text></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <!-- Tabel Pengajuan -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Nomor Pengajuan</th>
-                    <th>Tanggal Pengajuan</th>
-                    <th>Organisasi Mahasiswa</th>
-                    <th>Status Verifikasi</th>
-                    <th>Waktu Verifikasi</th>
-                    <th>Keterangan Verifikasi</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Baris pertama dengan isi data -->
-                <tr>
-                    <td>231511072</td>
-                    <td>18/09/2024</td>
-                    <td>HIMAKOM</td>
-                    <td><button class="btn-status btn-ditolak">Ditolak</button></td>
-                    <td>15:14 18/09/2024</td>
-                    <td><button class="btn-status btn-revisi">REVISI</button></td>
-                    <td><button class="btn-aksi"><span class="icon-eye">&#128065;</span></button></td>
-                </tr>
-
-                <!-- Baris kedua hingga ketujuh dengan status "Disetujui" -->
-                <tr>
-                    <td colspan="3"></td>
-                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td><button class="btn-status btn-disetujui">Disetujui</button></td>
-                    <td colspan="3"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
+        </section>
 </body>
 </html>
+
+
