@@ -1,22 +1,42 @@
 <?php
 
+use App\Http\Controllers\BerkasController;
+use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PengajuanController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pengajuanhimpunan', function () {
-    return view('pengajuanhimpunan');
+Route::get('/detailPengajuan', function () {
+    return view('detailPengajuan');
 });
 
-Route::get('/pengajuanpusat', function () {
-    return view('pengajuanpusat');
-});
+Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
+Route::get('/pengajuanukm', [PengajuanController::class, 'pengajuanUKM']);
+Route::get('/pengajuanpusat', [PengajuanController::class, 'pengajuanPusat']);
 
-Route::get('/pengajuanukm', function () {
-    return view('pengajuanukm');
-});
+Route::post('/simpanPengajuan', [PengajuanController::class, 'simpanPengajuan']);
+Route::get('/detailPengajuan', [PengajuanController::class, 'detailPengajuan']);
+
+Route::get('/upload', [BerkasController::class, 'index']);
+Route::post('/upload', [BerkasController::class, 'store'])->name('file.upload');
+
+Route::get('/detailupload', [BerkasController::class, 'read'])->name('file.index');
+
+
+// Route::get('/pengajuanhimpunan', function () {
+//     return view('pengajuanhimpunan');
+// });
+
+// Route::get('/pengajuanpusat', function () {
+//     return view('pengajuanpusat');
+// });
+
+// Route::get('/pengajuanukm', function () {
+//     return view('pengajuanukm');
+// });
 
 // Rute untuk halaman upload berkas
 Route::get('/pengajuanberkas', function () {
