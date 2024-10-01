@@ -14,7 +14,7 @@
         <!-- Tombol -->
         <div class="space-y-4">
             <a href="#" class="block w-64 py-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
-                PUSAT
+                MPM DAN BEM
             </a>
             <a href="#" class="block w-64 py-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-md hover:bg-blue-700 transition">
                 HIMPUNAN MAHASISWA
