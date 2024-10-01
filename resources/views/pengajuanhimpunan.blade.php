@@ -7,13 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
-</head>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
-    @include('components.navbar')
-    @include('components.sidebar')
-
-<div class="container my-4">
     <style>
         input[type="file"]::-webkit-file-upload-button {
             background-color: #FF9A36; 
@@ -24,111 +17,123 @@
             cursor: pointer; 
             font-family: 'Gilroy Light', sans-serif; 
         }
+
         .btn-gradient-blue {
-        background-color: #FF9A36; 
-        background: linear-gradient(to right, white, #0000ff); /* Gradien dari putih ke biru */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 20px; /* Atur sudut tombol */
-        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Bayangan tombol */
-        font-weight: Gilroy Light;
-        text-transform: uppercase;
-        width: 120px; /* Atur lebar tombol di sini */
-        text-align: center; /
-        cursor: pointer; 
-        font-family: 'Gilroy Light', sans-serif; 
-        
-    }
+            background: linear-gradient(to right, white, #0000ff); /* Gradien dari putih ke biru */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px; /* Atur sudut tombol */
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Bayangan tombol */
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer; 
+            font-family: 'Gilroy Light', sans-serif; 
+        }
 
-    .btn-gradient-blue:hover {
-        background: linear-gradient(to right, white, #000099); /* Gradien sedikit lebih gelap saat hover */
-    }
+        .btn-gradient-blue:hover {
+            background: linear-gradient(to right, white, #000099); /* Gradien sedikit lebih gelap saat hover */
+        }
+
+        .form-control {
+            width: 100%; /* Ensure form controls are 100% width */
+        }
+
+        section {
+            margin-top: 10%
+            width: 100%; /* Make section width responsive */
+            max-width: 600px; /* Maximum width for larger screens */
+            margin: auto; /* Center the section */
+        }
     </style>
+</head>
+<body class="d-flex justify-content-center align-items-center min-vh-100">
+    @include('components.navbar')
+    @include('components.sidebar')
 
-    <section class="bg-blue dark:bg-gray-900">
-        <div class="py-8 px-4 mx-auto max-w-4xl lg:py-16">
-            <h2 class="mb-4 text-xl font-Gilroy Light text-blue-800 dark:text-white">Pengajuan Ketua Himpunan</h2>
-            <form action="/simpanPengajuan" method="post" enctype="multipart/form-data">
-                @csrf
-                <!-- Mengatur Grid Layout 2 kolom -->
-                <div class="row g-4">
-                    <!-- Nama -->
-                    <div class="col-12">
-                        <label for="nama" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Nama</label>
-                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="">
+    <div class="container my-4">
+        <section class="bg-blue dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto">
+                <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center"> </h2>
+                <form action="/simpanPengajuan" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <!-- Mengatur Grid Layout 2 kolom -->
+                    <div class="row g-4">
+                        <!-- Nama -->
+                        <div class="col-12">
+                            <label for="nama" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="">
+                        </div>
+
+                        <!-- NIM -->
+                        <div class="col-12">
+                            <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
+                            <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="">
+                        </div>
+
+                        <!-- Jurusan -->
+                        <div class="col-sm-6">
+                            <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Jurusan</label>
+                            <select name="jurusan" id="jurusan" class="form-select">
+                                <option selected="">Pilih Jurusan</option>
+                                <option value="Teknik Informatika">Teknik Informatika</option>
+                                <option value="Teknik Kimia">Teknik Kimia</option>
+                                <option value="Teknik Sipil">Teknik Sipil</option>
+                            </select>
+                        </div>
+
+                        <!-- Program Studi -->
+                        <div class="col-sm-6">
+                            <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Program Studi</label>
+                            <select name="prodi" id="prodi" class="form-select">
+                                <option selected="">Pilih Program Studi</option>
+                                <option value="D3 Informatika">D3 Informatika</option>
+                                <option value="D4 Informatika">D4 Informatika</option>
+                            </select>
+                        </div>
+
+                        <!-- Ormawa -->
+                        <div class="col-sm-6">
+                            <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
+                            <select name="ormawa" id="ormawa" class="form-select">
+                                <option selected="">Pilih Ormawa</option>
+                                <option value="HIMAKOM">HIMAKOM</option>
+                                <option value="HIMATEL">HIMATEL</option>
+                            </select>
+                        </div>
+
+                        <!-- Periode -->
+                        <div class="col-sm-6">
+                            <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
+                            <select name="periode" id="periode" class="form-select">
+                                <option selected="">Pilih Periode</option>
+                                <option value="2020">2020-2021</option>
+                                <option value="2021">2021-2022</option>
+                                <option value="2022">2022-2023</option>
+                            </select>
+                        </div>
+
+                        <!-- No. Telepon -->
+                        <div class="col-sm-6">
+                            <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
+                            <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-sm-6">
+                            <label for="email" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="">
+                        </div>
                     </div>
 
-                    <!-- NIM -->
-                    <div class="col-12">
-                        <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
-                        <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="">
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="submit" class="btn btn-gradient-blue">Next</button>
                     </div>
+                </form>
+            </div>
+        </section>
+    </div>
 
-                    <!-- Jurusan -->
-                    <div class="col-sm-6">
-                        <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Jurusan</label>
-                        <select name="jurusan" id="jurusan" class="form-select">
-                            <option selected="">Pilih Jurusan</option>
-                            <option value="Teknik Informatika">Teknik Informatika</option>
-                            <option value="Teknik Kimia">Teknik Kimia</option>
-                            <option value="Teknik Sipil">Teknik Sipil</option>
-                        </select>
-                    </div>
-
-                    <!-- Program Studi -->
-                    <div class="col-sm-6">
-                        <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Program Studi</label>
-                        <select name="prodi" id="prodi" class="form-select">
-                            <option selected="">Pilih Program Studi</option>
-                            <option value="D3 Informatika">D3 Informatika</option>
-                            <option value="D4 Informatika">D4 Informatika</option>
-                        </select>
-                    </div>
-
-                    <!-- Ormawa -->
-                    <div class="col-sm-6">
-                        <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                        <select name="ormawa" id="ormawa" class="form-select">
-                            <option selected="">Pilih Ormawa</option>
-                            <option value="HIMAKOM">HIMAKOM</option>
-                            <option value="HIMATEL">HIMATEL</option>
-                        </select>
-                    </div>
-
-                    <!-- Periode -->
-                    <div class="col-sm-6">
-                        <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
-                        <select name="periode" id="periode" class="form-select">
-                            <option selected="">Pilih Periode</option>
-                            <option value="2020">2020-2021</option>
-                            <option value="2021">2021-2022</option>
-                            <option value="2022">2022-2023</option>
-                        </select>
-                    </div>
-
-                    <!-- No. Telepon -->
-                    <div class="col-sm-6">
-                        <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
-                        <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="">
-                    </div>
-
-                    <!-- Email -->
-                    <div class="col-sm-6">
-                        <label for="email" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="">
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: flex-end; margin-top: 50px;">
-                    <button type="submit" class="btn btn-gradient-blue">Next</button>
-                </div>
-
-            </form>
-        </div>
-    </section>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
