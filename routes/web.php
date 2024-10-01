@@ -20,8 +20,8 @@ Route::get('/pengajuanpusat', [PengajuanController::class, 'pengajuanPusat']);
 Route::post('/simpanPengajuan', [PengajuanController::class, 'simpanPengajuan']);
 Route::get('/detailPengajuan', [PengajuanController::class, 'detailPengajuan']);
 
-Route::get('/upload', [BerkasController::class, 'index']);
-Route::post('/upload', [BerkasController::class, 'store'])->name('file.upload');
+Route::get('/pengajuanberkas', [BerkasController::class, 'index']);
+Route::post('/pengajuanberkas', [BerkasController::class, 'store'])->name('file.upload');
 
 Route::get('/detailupload', [BerkasController::class, 'read'])->name('file.index');
 

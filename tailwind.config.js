@@ -42,7 +42,8 @@ export default {
           'Apple Color Emoji', 
           'Segoe UI Emoji', 
           'Segoe UI Symbol', 
-          'Noto Color Emoji'
+          'Noto Color Emoji',
+          'Gilroy Light'
         ],
         'sans': [
           'Inter', 

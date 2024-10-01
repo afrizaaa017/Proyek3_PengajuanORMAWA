@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,36 +8,67 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 </head>
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<body>
+<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
     @include('components.navbar')
     @include('components.sidebar')
-<div class="mt-10">
 
-</div>
+<div class="container my-4">
+    <style>
+        input[type="file"]::-webkit-file-upload-button {
+            background-color: #FF9A36; 
+            color: white; 
+            border: none; 
+            border-radius: 0.375rem; 
+            padding: 0.5rem 1rem; 
+            cursor: pointer; 
+            font-family: 'Gilroy Light', sans-serif; 
+        }
+        .btn-gradient-blue {
+        background-color: #FF9A36; 
+        background: linear-gradient(to right, white, #0000ff); /* Gradien dari putih ke biru */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px; /* Atur sudut tombol */
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Bayangan tombol */
+        font-weight: Gilroy Light;
+        text-transform: uppercase;
+        width: 120px; /* Atur lebar tombol di sini */
+        text-align: center; /
+        cursor: pointer; 
+        font-family: 'Gilroy Light', sans-serif; 
+        
+    }
+
+    .btn-gradient-blue:hover {
+        background: linear-gradient(to right, white, #000099); /* Gradien sedikit lebih gelap saat hover */
+    }
+    </style>
+
     <section class="bg-blue dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-4xl lg:py-16">
-            <h2 class="mb-4 text-xl font-bold text-blue-800 dark:text-white">Pengajuan Ketua Himpunan</h2>
+            <h2 class="mb-4 text-xl font-Gilroy Light text-blue-800 dark:text-white">Pengajuan Ketua Himpunan</h2>
             <form action="/simpanPengajuan" method="post" enctype="multipart/form-data">
                 @csrf
                 <!-- Mengatur Grid Layout 2 kolom -->
-                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+                <div class="row g-4">
                     <!-- Nama -->
-                    <div class="col-span-2">
+                    <div class="col-12">
                         <label for="nama" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Nama</label>
-                        <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" required="">
+                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="">
                     </div>
 
-                    <div class="col-span-2">
+                    <!-- NIM -->
+                    <div class="col-12">
                         <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
-                        <input type="text" name="nim" id="nim" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NIM Lengkap" required="">
+                        <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="">
                     </div>
 
                     <!-- Jurusan -->
-                    <div>
+                    <div class="col-sm-6">
                         <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Jurusan</label>
-                        <select name="jurusan" id="jurusan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="jurusan" id="jurusan" class="form-select">
                             <option selected="">Pilih Jurusan</option>
                             <option value="Teknik Informatika">Teknik Informatika</option>
                             <option value="Teknik Kimia">Teknik Kimia</option>
@@ -47,19 +77,19 @@
                     </div>
 
                     <!-- Program Studi -->
-                    <div>
+                    <div class="col-sm-6">
                         <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Program Studi</label>
-                        <select name="prodi" id="prodi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="prodi" id="prodi" class="form-select">
                             <option selected="">Pilih Program Studi</option>
                             <option value="D3 Informatika">D3 Informatika</option>
                             <option value="D4 Informatika">D4 Informatika</option>
                         </select>
                     </div>
 
-                    <!-- Organisasi Mahasiswa -->
-                    <div>
+                    <!-- Ormawa -->
+                    <div class="col-sm-6">
                         <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                        <select name="ormawa" id="ormawa" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="ormawa" id="ormawa" class="form-select">
                             <option selected="">Pilih Ormawa</option>
                             <option value="HIMAKOM">HIMAKOM</option>
                             <option value="HIMATEL">HIMATEL</option>
@@ -67,9 +97,9 @@
                     </div>
 
                     <!-- Periode -->
-                    <div>
+                    <div class="col-sm-6">
                         <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
-                        <select name="periode" id="periode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select name="periode" id="periode" class="form-select">
                             <option selected="">Pilih Periode</option>
                             <option value="2020">2020-2021</option>
                             <option value="2021">2021-2022</option>
@@ -77,28 +107,28 @@
                         </select>
                     </div>
 
-                    <!-- No.Telepon -->
-                    <div>
+                    <!-- No. Telepon -->
+                    <div class="col-sm-6">
                         <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
-                        <input type="text" name="telp" id="telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nomor Telepon Anda" required="">
+                        <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="">
                     </div>
 
                     <!-- Email -->
-                    <div>
+                    <div class="col-sm-6">
                         <label for="email" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Email</label>
-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Email Anda" required="">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="">
                     </div>
                 </div>
 
-                <div class="flex justify-between mt-4">
-                    <button type="button" class="btn-gradient text-white py-2 px-4 rounded-lg shadow-lg">Previous</button>
-                    <button type="submit" class="btn-gradient text-white py-2 px-4 rounded-lg shadow-lg">Send</button>
+                <div style="display: flex; justify-content: flex-end; margin-top: 50px;">
+                    <button type="submit" class="btn btn-gradient-blue">Next</button>
                 </div>
 
             </form>
         </div>
     </section>
+</div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
