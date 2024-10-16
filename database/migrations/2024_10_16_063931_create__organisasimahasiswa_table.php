@@ -22,13 +22,13 @@ return new class extends Migration
         Schema::create('UKM', function (Blueprint $table) {
             $table->uuid('id_ukm')->primary();
             $table->string('Nama_UKM');
-            
-            // Foreign key to Ormawa
-            $table->uuid('id_ormawa');
-            $table->foreign('id_ormawa')->references('id_ormawa')->on('Ormawa')->onDelete('cascade');
-            
+            $table->uuid('id_ormawa'); // Menambahkan kolom foreign key
             $table->timestamps();
+        
+            // Menambahkan foreign key constraint
+            $table->foreign('id_ormawa')->references('id_ormawa')->on('Ormawa')->onDelete('cascade');
         });
+        
 
         // Tabel BEM&MPM (Many)
         Schema::create('BEM&MPM', function (Blueprint $table) {

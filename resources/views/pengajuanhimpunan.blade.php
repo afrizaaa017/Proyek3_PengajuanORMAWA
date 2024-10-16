@@ -103,17 +103,17 @@
                                 </select>
                             </div>
 
-                            <!-- Ormawa -->
-                            <div class="col-sm-6">
+                               <!-- Ormawa -->
+                               <div class="col-sm-6">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                                <select name="ormawa" id="ormawa" class="form-control">
+                                <select name="ormawa" id="ormawa" class="form-select" required="">
                                     <option value="">--Pilih Ormawa--</option>
                                     @foreach ($Ormawa as $data)
-                                    <option value="{{$data->id}}">{{$data->nama}}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
+                            
                             <div class="col-sm-6"> 
                                 <select id="BEM&MPM-drowdown" class="form-control"> </select>
                             </div>
@@ -162,47 +162,25 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-
         $('#ormawa').on('change', function () {
+            var idOrmawa = this.value;
+            $("#BEM&MPM-drowdown").html('');
 
-        var idOrmawa = this.value;
-
-        $("#BEM&MPM-drowdown").html('');
-
-        $.ajax({
-
-            url: "{{url('api/BEM_UKM')}}",
-
-            type: "POST",
-
-            data: {
-
-                id_ormawa: idOrmawa,
-
-                _token: '{{csrf_token()}}'
-
-            },
-
-            dataType: 'json',
-
-            success: function (result) {
-
-                $('#BEM&MPM-drowdown').html('<option value="">-- Select State --</option>');
-
-                $.each(result.states, function (key, value) {
-
-                    $("#BEM&MPM-drowdown").append('<option value="' + value
-
-                        .id + '">' + value.name + '</option>');
-
-                });
-
-                $('#BEM&MPM-drowdown').html('<option value="">-- Select City --</option>');
-
-            }
-
-        });
-
+            $.ajax({
+                url: "{{ url('api/BEM_UKM') }}",
+                type: "POST",
+                data: {
+                    id_ormawa: idOrmawa,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $('#BEM&MPM-drowdown').html('<option value="">-- Select BEM/MPM --</option>');
+                    $.each(result.states, function (key, value) {
+                        $("#BEM&MPM-drowdown").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
         });
     </script>
 </body>

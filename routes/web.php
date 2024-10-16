@@ -14,7 +14,7 @@ Route::get('/detailPengajuan', function () {
 });
 
 Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
-Route::post('api/BEM_UKM', [PengajuanController::class, 'BEM_UKM']);
+Route::post('api/BEM_MPM', [PengajuanController::class, 'BEM_MPM']);
 Route::post('api/Himpunan', [PengajuanController::class, 'Himpunan']);
 Route::post('api/UKM', [PengajuanController::class, 'UKM']);
 Route::post('api/Ormawa', [PengajuanController::class, 'Ormawas']);

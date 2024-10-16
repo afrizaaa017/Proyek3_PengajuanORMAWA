@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Himpunan extends Model
+class BEM_MPM extends Model
 {
-    protected $table = 'Himpunan'; // Nama tabel di database
-    protected $primaryKey = 'id_himpunan'; // Primary key dari tabel Himpunan
+    protected $table = 'BEM&MPM'; // Nama tabel di database
+    protected $primaryKey = 'id_bem&MPM'; // Primary key dari tabel BEM&MPM
 
     // Relasi Many to One dengan tabel Ormawa
     public function ormawa()
