@@ -14,6 +14,11 @@ Route::get('/detailPengajuan', function () {
 });
 
 Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
+Route::post('api/BEM_UKM', [PengajuanController::class, 'BEM_UKM']);
+Route::post('api/Himpunan', [PengajuanController::class, 'Himpunan']);
+Route::post('api/UKM', [PengajuanController::class, 'UKM']);
+Route::post('api/Ormawa', [PengajuanController::class, 'Ormawas']);
+
 Route::get('/pengajuanukm', [PengajuanController::class, 'pengajuanUKM']);
 Route::get('/pengajuanpusat', [PengajuanController::class, 'pengajuanPusat']);
 
@@ -63,3 +68,5 @@ Route::get('/progressbar', function () {
 Route::get('/index', function () {
     return view('index');
 });
+
+
