@@ -59,3 +59,7 @@ Route::get('/progrestabel', function () {
 Route::get('/progressbar', function () {
     return view('progressbar');
 });
+
+Route::get('/index', function () {
+    return view('index');
+});
