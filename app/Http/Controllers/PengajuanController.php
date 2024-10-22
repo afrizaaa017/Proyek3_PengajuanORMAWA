@@ -7,48 +7,27 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use App\Models\Himpunan;
 use App\Models\UKM;
-use App\Models\BEM_UKM
+use App\Models\BEM_MPM
 ;
 class PengajuanController extends Controller
 {
     public function pengajuanHimpunan()
     {
         // Mengambil semua data dari model Ormawas
-        $data['Ormawa'] = Ormawa::get(["id_ormawa","Nama_UKM"]);
+        $data['Ormawa'] = Ormawa::get(["id_ormawa","nama_ormawa"]);
         return view('pengajuanhimpunan', $data);
         // Mengembalikan data ke view 'pengajuanhimpunan'
         
     }
 
-    public function BEM_UKM(Request $request)
+    public function index(){
     {
-        $data['BEM_UKM'] = BEM_UKM::where("id_ormawa",$request->id_ormawa)->get(["id_bem&ukm","Bem&ukm"]);
+        $ormawas = Ormawa::all(); // Fetch all Ormawa data
+        return view('form', compact('ormawas')); // Pass data to view
     }
+}
+    
 
-    public function Himpunan(Request $request)
-    {
-        $data['Himpunan'] = Himpunan::where("id_ormawa",$request->id_ormawa)->get(["id_himpunan","Nama_himpunan"]);
-    }
-
-    public function UKM(Request $request)
-    {
-        $data['UKM'] = UKM::where("id_ormawa",$request->id_ormawa)->get(["id_UKM","Nama_UKM"]);
-    }
-  
-
-    public function pengajuanUKM()
-    {
-        return view('pengajuanukm', [       
-        ]);
-        
-    }
-
-    public function pengajuanPusat()
-    {
-        return view('pengajuanpusat', [       
-        ]);
-        
-    }
 
     public function simpanPengajuan(Request $request)
     {

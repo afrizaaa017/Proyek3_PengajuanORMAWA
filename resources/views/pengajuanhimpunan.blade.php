@@ -103,17 +103,17 @@
                                 </select>
                             </div>
 
-                            <!-- Ormawa -->
-                            <div class="col-sm-6">
+                               <!-- Ormawa -->
+                               <div class="col-sm-6">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                                <select name="ormawa" id="ormawa" class="form-control">
+                                <select name="ormawa" id="ormawa" class="form-select" required="">
                                     <option value="">--Pilih Ormawa--</option>
-                                    @foreach ($Ormawa as $data)
-                                    <option value="{{$data->id}}">{{$data->nama}}</option>
+                                    @foreach ($ormawas as $data)
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
+                            
                             <div class="col-sm-6"> 
                                 <select id="BEM&MPM-drowdown" class="form-control"> </select>
                             </div>
@@ -137,7 +137,70 @@
                                     <option value="2022">2022-2023</option>
                                 </select>
                             </div>
-
+                                <!-- Dropdown Ormawa -->
+                                <label for="ormawa">Pilih Ormawa:</label>
+                                <select id="ormawa" name="ormawa">
+                                    <option value="">--Pilih Ormawa--</option>
+                                    @foreach($ormawas as $ormawa)
+                                        <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
+                                    @endforeach
+                                </select>
+                        
+                        <!-- Tabel UKM -->
+                        <div id="ukm-table" style="display: none;">
+                            <h3>Tabel UKM</h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td id="ukm-id"></td>
+                                        <td id="ukm-nama"></td>
+                                        <td>
+                                            <select id="ukm-dropdown">
+                                                <option value="">Pilih UKM</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Tabel Himpunan -->
+                        <div id="himpunan-table" style="display: none;">
+                            <h3>Tabel Himpunan</h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td id="himpunan-id"></td>
+                                        <td id="himpunan-nama"></td>
+                                        <td>
+                                            <select id="himpunan-dropdown">
+                                                <option value="">--Pilih Himpunan--</option>
+                                                <!-- Dropdown Himpunan akan diisi di sini -->
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Tabel BEM/MPM -->
+                        <div id="bemmpm-table" style="display: none;">
+                            <h3>Tabel BEM/MPM</h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td id="bemmpm-id"></td>
+                                        <td id="bemmpm-nama"></td>
+                                        <td>
+                                            <select id="bemmpm-dropdown">
+                                                <option value="">--Pilih BEM/MPM--</option>
+                                                <!-- Dropdown BEM/MPM akan diisi di sini -->
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                             <!-- No. Telepon -->
                             <div class="col-sm-6">
                                 <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
@@ -161,49 +224,84 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+      $(document).ready(function() {
+    $('#ormawa').on('change', function() {
+        var ormawaID = $(this).val();
+        
+        // Menyembunyikan semua tabel terlebih dahulu
+        $('#ukm-table').hide();
+        $('#bemmpm-table').hide();
+        $('#himpunan-table').hide();
 
-        $('#ormawa').on('change', function () {
-
-        var idOrmawa = this.value;
-
-        $("#BEM&MPM-drowdown").html('');
-
-        $.ajax({
-
-            url: "{{url('api/BEM_UKM')}}",
-
-            type: "POST",
-
-            data: {
-
-                id_ormawa: idOrmawa,
-
-                _token: '{{csrf_token()}}'
-
-            },
-
-            dataType: 'json',
-
-            success: function (result) {
-
-                $('#BEM&MPM-drowdown').html('<option value="">-- Select State --</option>');
-
-                $.each(result.states, function (key, value) {
-
-                    $("#BEM&MPM-drowdown").append('<option value="' + value
-
-                        .id + '">' + value.name + '</option>');
-
-                });
-
-                $('#BEM&MPM-drowdown').html('<option value="">-- Select City --</option>');
-
+        if (ormawaID) {
+            // Menampilkan tabel sesuai ormawaID
+            if (ormawaID == 1) {
+                $('#ukm-table').show();
+            } else if (ormawaID == 2) {
+                $('#bemmpm-table').show();
+            } else if (ormawaID == 3) {
+                $('#himpunan-table').show();
             }
 
-        });
+            // AJAX request untuk mengisi dropdown UKM
+            $(document).ready(function() {
+    $('#ormawa-dropdown').change(function() {
+        var ormawa_id = $(this).val();
+        if (ormawa_id) {
+            $.ajax({
+                url: '/get-ukm/' + ormawa_id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#ukm-dropdown').empty(); // Mengosongkan dropdown sebelumnya
+                    $('#ukm-dropdown').append('<option value="">Pilih KONTL</option>'); // Menambahkan opsi default
+                    $.each(data, function(key, value) {
+                        $('#ukm-dropdown').append('<option value="'+ value.id_ukm +'">'+ value.nama_ukm +'</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr);
+                }
+            });
+        } else {
+            $('#ukm-dropdown').empty(); // Kosongkan dropdown jika tidak ada ormawa_id
+        }
+    });
+});
 
-        });
-    </script>
+
+            // AJAX request untuk mengisi dropdown Himpunan
+            $.ajax({
+                url: '/get-himpunan/' + ormawaID,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#himpunan-dropdown').empty().append('<option value="">--Pilih Himpunan--</option>');
+                    $.each(data, function(key, value) {
+                        $('#himpunan-dropdown').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+
+            // AJAX request untuk mengisi dropdown BEM/MPM
+            $.ajax({
+                url: '/get-bemmpm/' + ormawaID,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#bemmpm-dropdown').empty().append('<option value="">--Pilih BEM/MPM--</option>');
+                    $.each(data, function(key, value) {
+                        $('#bemmpm-dropdown').append('<option value="'+ key +'">'+ (key ? 'BEM' : 'MPM') +'</option>');
+                    });
+                }
+            });
+        }
+    });
+});
+
+        </script>
+        
 </body>
 </html>
