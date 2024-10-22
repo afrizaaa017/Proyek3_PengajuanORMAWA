@@ -1,35 +1,28 @@
-<?php
-
+<?php  
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory; // Jika Anda menggunakan factories
-use Illuminate\Support\Str; // Untuk UUID
 
 class Ormawa extends Model
 {
-    use HasFactory; // Gunakan trait ini jika Anda ingin menggunakan factories
+    use HasFactory;
 
-    protected $table = 'Ormawa'; // Nama tabel di database
-    protected $primaryKey = 'id_ormawa'; // Primary key dari tabel Ormawa
-    public $incrementing = false; // Non-incrementing untuk UUID
-    protected $keyType = 'string'; // Tipe kunci sebagai string untuk UUID
+    protected $table = 'ormawa';
+    protected $primaryKey = 'id_ormawa';
 
-    // Relasi One to Many dengan tabel UKM
     public function ukms()
     {
-        return $this->hasMany(UKM::class, 'id_ormawa');
+        return $this->hasMany(Ukm::class, 'ormawa_id');
     }
 
-    // Relasi One to Many dengan tabel BEM&MPM
-    public function bems()
-    {
-        return $this->hasMany(BEM_MPM::class, 'id_ormawa');
-    }
-
-    // Relasi One to Many dengan tabel Himpunan
     public function himpunans()
     {
-        return $this->hasMany(Himpunan::class, 'id_ormawa');
+        return $this->hasMany(Himpunan::class, 'ormawa_id');
+    }
+
+    public function bemmpms()
+    {
+        return $this->hasMany(BemMpm::class, 'ormawa_id');
     }
 }

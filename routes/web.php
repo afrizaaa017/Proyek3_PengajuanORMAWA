@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\DropdownController;
+use App\Http\Controllers\FormContoller;
 use App\Http\Controllers\BerkasController;
 use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\FormController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,11 +17,14 @@ Route::get('/detailPengajuan', function () {
     return view('detailPengajuan');
 });
 
+Route::get('/form', [PengajuanController::class, 'index']);
+Route::get('/get-ukm/{ormawa_id}', [DropdownController::class, 'getUkm']);
+Route::get('/get-himpunan/{ormawa_id}', [DropdownController::class, 'getHimpunan']);
+Route::get('/get-bemmpm/{ormawa_id}', [DropdownController::class, 'getBemMpm']);
+
+
+
 Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
-Route::post('api/BEM_MPM', [PengajuanController::class, 'BEM_MPM']);
-Route::post('api/Himpunan', [PengajuanController::class, 'Himpunan']);
-Route::post('api/UKM', [PengajuanController::class, 'UKM']);
-Route::post('api/Ormawa', [PengajuanController::class, 'Ormawas']);
 
 Route::get('/pengajuanukm', [PengajuanController::class, 'pengajuanUKM']);
 Route::get('/pengajuanpusat', [PengajuanController::class, 'pengajuanPusat']);
