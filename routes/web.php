@@ -85,12 +85,6 @@ Route::get('/index', function () {
     return view('layouts.index');
 });
 
-Route::get('/notifikasi', function () {
-    return view('notifikasi');
-});
-
 Route::get('/menukemahasiswaan', function () {
     return view('menukemahasiswaan');
 });
-
-

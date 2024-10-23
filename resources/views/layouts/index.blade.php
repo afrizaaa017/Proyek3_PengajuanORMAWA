@@ -8,12 +8,12 @@
 
   <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
     <!-- sidenav  -->
-    @include('component.sidebar2')
+    @include('components.sidebar')
     <!-- end sidenav -->
 
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
       <!-- Navbar -->
-      @include('component.navbar2')
+      @include('components.navbar')
       <!-- end Navbar -->
 
       <!-- cards -->
@@ -662,5 +662,5 @@
   </body>
   <!-- plugin for charts  -->
 
-  @include('component.script')
+  @include('components.script')
 </html>
