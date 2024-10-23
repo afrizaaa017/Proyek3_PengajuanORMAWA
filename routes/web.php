@@ -85,4 +85,8 @@ Route::get('/index', function () {
     return view('index');
 });
 
+Route::get('/menukemahasiswaan', function () {
+    return view('menukemahasiswaan');
+});
+
 
