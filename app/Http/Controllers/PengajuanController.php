@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ormawa;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
-
+use App\Models\Himpunan;
+use App\Models\UKM;
+use App\Models\BEM_MPM
+;
 class PengajuanController extends Controller
 {
     public function pengajuanHimpunan()
     {
-        return view('pengajuanhimpunan', [       
-        ]);
+        // Mengambil semua data dari model Ormawas
+        $data['Ormawa'] = Ormawa::get(["id_ormawa","nama_ormawa"]);
+        return view('pengajuanhimpunan', $data);
+        // Mengembalikan data ke view 'pengajuanhimpunan'
         
     }
 
-    public function pengajuanUKM()
+    public function index(){
     {
-        return view('pengajuanukm', [       
-        ]);
-        
+        $ormawas = Ormawa::all(); // Fetch all Ormawa data
+        return view('form', compact('ormawas')); // Pass data to view
     }
+}
+    
 
-    public function pengajuanPusat()
-    {
-        return view('pengajuanpusat', [       
-        ]);
-        
-    }
 
     public function simpanPengajuan(Request $request)
     {
@@ -50,7 +51,15 @@ class PengajuanController extends Controller
         $pengajuans = Pengajuan::all();
         return view('detailPengajuan', compact('pengajuans'));
     }
+    // public function index()
 
+    // {
+
+    //     $data['countries'] = Country::get(["name", "id"]);
+
+    //     return view('dropdown', $data);
+
+    // }
 
 
 
