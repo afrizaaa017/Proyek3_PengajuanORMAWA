@@ -61,5 +61,9 @@ Route::get('/progressbar', function () {
 });
 
 Route::get('/index', function () {
-    return view('index');
+    return view('layouts.index');
+});
+
+Route::get('/notifikasi', function () {
+    return view('notifikasi');
 });
