@@ -19,11 +19,10 @@ class PengajuanController extends Controller
         // Mengembalikan data ke view 'pengajuanhimpunan'
         
     }
-
-    public function index(){
+    public function dropdown(){
     {
         $ormawas = Ormawa::all(); // Fetch all Ormawa data
-        return view('form', compact('ormawas')); // Pass data to view
+        return view('pengajuanhimpunan', compact('ormawas')); // Pass data to view
     }
 }
     
@@ -42,7 +41,6 @@ class PengajuanController extends Controller
             'telp'    => $request->telp,
             'email'    => $request->email,
         ]);
-
         return redirect('/pengajuanberkas');
     }
 

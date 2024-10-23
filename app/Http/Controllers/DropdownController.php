@@ -17,7 +17,7 @@ class DropdownController extends Controller
 
     public function getHimpunan($ormawa_id)
     {
-        $himpunans = Himpunan::where('ormawa_id', $ormawa_id)->pluck('nama_himpunan', 'id');
+        $himpunans = Himpunan::where('ormawa_id', $ormawa_id)->get();
         return response()->json($himpunans);
     }
 
