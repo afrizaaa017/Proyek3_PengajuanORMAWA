@@ -213,7 +213,6 @@
                 }
             });
         });
-<<<<<<< HEAD
         $(document).ready(function() {
     // Sembunyikan dropdown UKM, BEM, dan Himpunan saat halaman diload
     $('#ukm-dropdown').closest('.col-xl-12').hide();
@@ -222,20 +221,6 @@
 
     $('#ormawa').on('change', function() {
         var ormawaID = $(this).val();
-=======
-        $('#ormawa').on('change', function() {
-    var ormawaID = $(this).val();
-
-    // Menyembunyikan semua tabel terlebih dahulu
-    $('#ukm-table').hide();
-    $('#bemmpm-table').hide();
-    $('#himpunan-table').hide();
-
-    // Menghapus isi dropdown UKM, Himpunan, dan BEM/MPM
-    $('#ukm-dropdown').empty().append('<option value="">Pilih KONTL</option>');
-    $('#himpunan-dropdown').empty().append('<option value="">--Pilih Himpunan--</option>');
-    $('#bemmpm-dropdown').empty().append('<option value="">--Pilih BEM/MPM--</option>');
->>>>>>> 38a1e8a838b9f36851ce000874b48f72c1c874cf
 
         // Sembunyikan semua dropdown terlebih dahulu
         $('#ukm-dropdown').closest('.col-xl-12').hide();
