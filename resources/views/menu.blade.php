@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengajuan Ketua Ormawa</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white flex">
+<html>
 
-    @include('components.navbar')
-    @include('components.sidebar')
+    <head>
+        @include('layouts.head')
+        <title>Pengajuan Ketua ORMAWA</title>
+    </head>
 
-      <!-- Main Content Area -->
-      <div class="flex-grow flex flex-col items-center justify-content-center mt-10 p-4">
+  <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+    <!-- sidenav  -->
+    @include('component.sidebar2')
+    <!-- end sidenav -->
+
+    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+      <!-- Navbar -->
+      @include('component.navbar2')
+      <!-- end Navbar -->
+
+    <!-- Main Content Area -->
+    <div class="flex-grow flex flex-col items-center justify-content-center mt-10 p-4">
         <!-- Spacer to prevent overlap with navbar -->
         <div class="h-20 ">
         </div> <!-- Adjust height as needed -->
@@ -32,6 +37,10 @@
                 UNIT KEGIATAN MAHASISWA
             </a>
         </div>
+        {{-- @include('component.footer') --}}
     </div>
-</body>
+    </main>
+{{-- @include('layouts.fixedplugin') --}}
+  </body>
+  @include('component.script')
 </html>

@@ -9,13 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <style>
         input[type="file"]::-webkit-file-upload-button {
-            background-color: #FF9A36; 
-            color: white; 
-            border: none; 
-            border-radius: 0.375rem; 
-            padding: 0.5rem 1rem; 
-            cursor: pointer; 
-            font-family: 'Gilroy Light', sans-serif; 
+            background-color: #FF9A36;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: 'Gilroy Light', sans-serif;
         }
 
         .btn-gradient-blue {
@@ -27,8 +27,8 @@
             box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); /* Bayangan tombol */
             font-weight: bold;
             text-transform: uppercase;
-            cursor: pointer; 
-            font-family: 'Gilroy Light', sans-serif; 
+            cursor: pointer;
+            font-family: 'Gilroy Light', sans-serif;
         }
 
         .btn-gradient-blue:hover {
@@ -48,8 +48,8 @@
     </style>
 </head>
 <body class="d-flex justify-content-center align-items-center min-vh-100">
-    @include('components.navbar')
-    @include('components.sidebar')
+    @include('components.navbar-lama')
+    @include('components.sidebar-lama')
 
     <div class="w-1/4 p-4 h-screen">
         <!-- Konten Sidebar (kosong) -->
@@ -92,13 +92,13 @@
                                 </select>
                             </div>
                             <!-- Prodi -->
-                            <div class="col-xl-12"> 
+                            <div class="col-xl-12">
                                 <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Prodi:</label>
                                 <select id="prodi" name="prodi" class="form-select">
                                     <option value="">--Pilih Prodi--</option>
                                 </select>
                             </div>
-                            
+
                             <!-- Periode -->
                             <div class="col-xl-12">
                                 <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
@@ -109,6 +109,7 @@
                                     <option value="2022">2022-2023</option>
                                 </select>
                             </div>
+<<<<<<< HEAD
                             
                             <div class="col-xl-12">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
@@ -121,6 +122,10 @@
                             </div>
                             
                             {{-- <div class="col-xl-12"> 
+=======
+
+                            <div class="col-xl-12">
+>>>>>>> 38a1e8a838b9f36851ce000874b48f72c1c874cf
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
                                 <select id="ormawa" name="ormawa" class="form-select">
                                     <option value="">--Pilih Ormawa--</option>
@@ -128,8 +133,13 @@
                                         <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
                                     @endforeach
                                 </select>
+<<<<<<< HEAD
                             </div> --}}
                             
+=======
+                            </div>
+
+>>>>>>> 38a1e8a838b9f36851ce000874b48f72c1c874cf
                             <!-- Tabel UKM -->
                             <div class="col-xl-12">
                                 <label for="ukm-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">UKM</label>
@@ -138,7 +148,7 @@
                                     <!-- Dropdown UKM akan diisi di sini -->
                                 </select>
                             </div>
-                            
+
                             <!-- Tabel Himpunan -->
                             <div class="col-xl-12">
                                 <label for="himpunan-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Himpunan</label>
@@ -147,7 +157,7 @@
                                     <!-- Dropdown Himpunan akan diisi di sini -->
                                 </select>
                             </div>
-                            
+
                             <!-- Tabel BEM/MPM -->
                             <div class="col-xl-12">
                                 <label for="bemmpm-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">BEM/MPM</label>
@@ -203,6 +213,7 @@
                 }
             });
         });
+<<<<<<< HEAD
         $(document).ready(function() {
     // Sembunyikan dropdown UKM, BEM, dan Himpunan saat halaman diload
     $('#ukm-dropdown').closest('.col-xl-12').hide();
@@ -211,6 +222,20 @@
 
     $('#ormawa').on('change', function() {
         var ormawaID = $(this).val();
+=======
+        $('#ormawa').on('change', function() {
+    var ormawaID = $(this).val();
+
+    // Menyembunyikan semua tabel terlebih dahulu
+    $('#ukm-table').hide();
+    $('#bemmpm-table').hide();
+    $('#himpunan-table').hide();
+
+    // Menghapus isi dropdown UKM, Himpunan, dan BEM/MPM
+    $('#ukm-dropdown').empty().append('<option value="">Pilih KONTL</option>');
+    $('#himpunan-dropdown').empty().append('<option value="">--Pilih Himpunan--</option>');
+    $('#bemmpm-dropdown').empty().append('<option value="">--Pilih BEM/MPM--</option>');
+>>>>>>> 38a1e8a838b9f36851ce000874b48f72c1c874cf
 
         // Sembunyikan semua dropdown terlebih dahulu
         $('#ukm-dropdown').closest('.col-xl-12').hide();
@@ -290,6 +315,6 @@
 
 
         </script>
-        
+
 </body>
 </html>

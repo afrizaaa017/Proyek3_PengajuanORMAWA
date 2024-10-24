@@ -82,11 +82,9 @@ Route::get('/progressbar', function () {
 });
 
 Route::get('/index', function () {
-    return view('index');
+    return view('layouts.index');
 });
 
 Route::get('/menukemahasiswaan', function () {
     return view('menukemahasiswaan');
 });
-
-
