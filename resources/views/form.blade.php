@@ -87,7 +87,7 @@
                                 <select id="jurusan" name="jurusan" class="form-select">
                                     <option value="">--Pilih Jurusan--</option>
                                     @foreach($jurusans as $jurusan)
-                                        <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
+                                        <option value="{{ $jurusan->nama_jurusan }}" data-id="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -110,7 +110,17 @@
                                 </select>
                             </div>
                             
-                            <div class="col-xl-12"> 
+                            <div class="col-xl-12">
+                                <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
+                                <select id="ormawa" name="ormawa" class="form-select">
+                                    <option value="">--Pilih Ormawa--</option>
+                                    @foreach($ormawas as $ormawa)
+                                        <option value="{{ $ormawa->id_ormawa }}" data-nama="{{ $ormawa->nama_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            {{-- <div class="col-xl-12"> 
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
                                 <select id="ormawa" name="ormawa" class="form-select">
                                     <option value="">--Pilih Ormawa--</option>
@@ -118,7 +128,7 @@
                                         <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             
                             <!-- Tabel UKM -->
                             <div class="col-xl-12">
@@ -173,7 +183,7 @@
     <script>
      $(document).ready(function () {
             $('#jurusan').on('change', function () {
-                var jurusan_id = $(this).val();
+                var jurusan_id = $(this).find(':selected').data('id'); 
                 if (jurusan_id) {
                     $.ajax({
                         url: '/getProdi/' + jurusan_id,
@@ -193,87 +203,90 @@
                 }
             });
         });
-        $('#ormawa').on('change', function() {
-    var ormawaID = $(this).val();
-    
-    // Menyembunyikan semua tabel terlebih dahulu
-    $('#ukm-table').hide();
-    $('#bemmpm-table').hide();
-    $('#himpunan-table').hide();
+        $(document).ready(function() {
+    // Sembunyikan dropdown UKM, BEM, dan Himpunan saat halaman diload
+    $('#ukm-dropdown').closest('.col-xl-12').hide();
+    $('#himpunan-dropdown').closest('.col-xl-12').hide();
+    $('#bemmpm-dropdown').closest('.col-xl-12').hide();
 
-    // Menghapus isi dropdown UKM, Himpunan, dan BEM/MPM
-    $('#ukm-dropdown').empty().append('<option value="">Pilih KONTL</option>'); 
-    $('#himpunan-dropdown').empty().append('<option value="">--Pilih Himpunan--</option>');
-    $('#bemmpm-dropdown').empty().append('<option value="">--Pilih BEM/MPM--</option>');
+    $('#ormawa').on('change', function() {
+        var ormawaID = $(this).val();
 
-    if (ormawaID) {
-        // Menampilkan tabel sesuai ormawaID
-        if (ormawaID == 1) {
-            $('#ukm-table').show();
-            $('#bemmpm-table').hide();
-            $('#himpunan-table').hide();
-        } else if (ormawaID == 2) {
-            $('#bemmpm-table').show();
-            $('#ukm-table').hide();
-            $('#himpunan-table').hide();
-        } else if (ormawaID == 3) {
-            $('#himpunan-table').show();
-            $('#ukm-table').hide();
-            $('#bemmpm-table').hide();
+        // Sembunyikan semua dropdown terlebih dahulu
+        $('#ukm-dropdown').closest('.col-xl-12').hide();
+        $('#himpunan-dropdown').closest('.col-xl-12').hide();
+        $('#bemmpm-dropdown').closest('.col-xl-12').hide();
 
+        // Hapus isi dropdown UKM, Himpunan, dan BEM/MPM
+        $('#ukm-dropdown').empty().append('<option value="">--Pilih UKM--</option>');
+        $('#himpunan-dropdown').empty().append('<option value="">--Pilih Himpunan--</option>');
+        $('#bemmpm-dropdown').empty().append('<option value="">--Pilih BEM/MPM--</option>');
+
+        if (ormawaID) {
+            // Menampilkan dropdown yang sesuai dengan ormawaID
+            if (ormawaID == 1) {
+                // Jika memilih UKM
+                $('#ukm-dropdown').closest('.col-xl-12').show();
+            } else if (ormawaID == 2) {
+                // Jika memilih BEM/MPM
+                $('#bemmpm-dropdown').closest('.col-xl-12').show();
+            } else if (ormawaID == 3) {
+                // Jika memilih Himpunan
+                $('#himpunan-dropdown').closest('.col-xl-12').show();
+            }
+
+            // AJAX untuk mengisi dropdown berdasarkan ormawaID
+            if (ormawaID == 1) {
+                // Request data untuk UKM
+                $.ajax({
+                    url: '/get-ukm/' + ormawaID,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            $('#ukm-dropdown').append('<option value="'+ value.id_ukm +'">'+ value.nama_ukm +'</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            } else if (ormawaID == 2) {
+                // Request data untuk BEM/MPM
+                $.ajax({
+                    url: '/get-bemmpm/' + ormawaID,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            $('#bemmpm-dropdown').append('<option value="'+ value.id_bemmpm +'">'+ (value.nama ? 'BEM' : 'MPM') +'</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            } else if (ormawaID == 3) {
+                // Request data untuk Himpunan
+                $.ajax({
+                    url: '/get-himpunan/' + ormawaID,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            $('#himpunan-dropdown').append('<option value="'+ value.id_himpunan +'">'+ value.nama_himpunan +'</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            }
         }
-
-        // AJAX request untuk mengisi dropdown UKM
-        $.ajax({
-            url: '/get-ukm/' + ormawaID,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#ukm-dropdown').empty(); // Mengosongkan dropdown sebelumnya
-                $('#ukm-dropdown').append('<option value="">--Pilih UKM--</option>'); // Menambahkan opsi default
-                $.each(data, function(key, value) {
-                    $('#ukm-dropdown').append('<option value="'+ value.id_ukm +'">'+ value.nama_ukm +'</option>');
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr);
-            }
-        });
-        // AJAX request untuk mengisi dropdown Himpunan
-        $.ajax({
-            url: '/get-himpunan/' + ormawaID,
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-                $('#himpunan-dropdown').empty(); // Mengosongkan dropdown sebelumnya
-                $('#himpunan-dropdown').append('<option value="">--Pilih Himpunan--</option>'); // Menambahkan opsi default
-                $.each(data, function(key, value) {
-                    $('#himpunan-dropdown').append('<option value="'+ value.id_himpunan +'">'+ value.nama_himpunan +'</option>');
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr);
-            }
-        });
-
-        // AJAX request untuk mengisi dropdown BEM/MPM
-        $.ajax({
-            url: '/get-bemmpm/' + ormawaID,
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-                $('#bemmpm-dropdown').empty(); // Mengosongkan dropdown sebelumnya
-                $('#bemmpm-dropdown').append('<option value="">--Pilih BEM/MPM--</option>'); // Menambahkan opsi default
-                $.each(data, function(key, value) {
-                    $('#bemmpm-dropdown').append('<option value="'+ value.id_bemmpm +'">'+ (value.nama ? 'BEM' : 'MPM') +'</option>');
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr);
-            }
-        });
-    }
+    });
 });
+
+
 
 
         </script>

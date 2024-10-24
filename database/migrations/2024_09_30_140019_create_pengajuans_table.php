@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('jurusan');
             $table->string('prodi');
             $table->text('ormawa');
+            $table->text('Ketua_Ormawa');            
             $table->text('periode');
             $table->text('telp');
             $table->text('email');
