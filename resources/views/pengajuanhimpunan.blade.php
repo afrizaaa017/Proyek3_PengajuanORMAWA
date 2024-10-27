@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,51 +81,21 @@
                                 <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
                                 <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="">
                             </div>
-
                             <!-- Jurusan -->
-                            <div class="col-sm-6">
-                                <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Jurusan</label>
-                                <select name="jurusan" id="jurusan" class="form-select">
-                                    <option selected="">Pilih Jurusan</option>
-                                    <option value="Teknik Informatika">Teknik Informatika</option>
-                                    <option value="Teknik Kimia">Teknik Kimia</option>
-                                    <option value="Teknik Sipil">Teknik Sipil</option>
-                                </select>
-                            </div>
-
-                            <!-- Program Studi -->
-                            <div class="col-sm-6">
-                                <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Program Studi</label>
-                                <select name="prodi" id="prodi" class="form-select">
-                                    <option selected="">Pilih Program Studi</option>
-                                    <option value="D3 Informatika">D3 Informatika</option>
-                                    <option value="D4 Informatika">D4 Informatika</option>
-                                </select>
-                            </div>
-
-                               <!-- Ormawa -->
-                               <div class="col-sm-6">
-                                <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                                <select name="ormawa" id="ormawa" class="form-select" required="">
-                                    <option value="">--Pilih Ormawa--</option>
-                                    @foreach ($ormawas as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                            <div class="col-12" >
+                                <label for="jurusan">Pilih Jurusan:</label>
+                                <select id="jurusan" name="jurusan">
+                                    <option value="">--Pilih Jurusan--</option>
+                                    @foreach($jurusans as $jurusan)
+                                        <option value="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            
-                            <div class="col-sm-6"> 
-                                <select id="BEM&MPM-drowdown" class="form-control"> </select>
-                            </div>
-                            
-                            <div class="col-sm-6"> 
-                                <select id="UKM-drowdown" class="form-control"> </select>
-                            </div>
-
-                            <div class="col-sm-6"> 
-                                <select id="Himpunan-drowdown" class="form-control"> </select>
-                            </div>
-
+                            <!-- Prodi -->
+                            <label for="prodi">Pilih Prodi:</label>
+                            <select id="prodi" name="prodi">
+                                <option value="">--Pilih Prodi--</option>
+                            </select>
                             
                             <!-- Periode -->
                             <div class="col-sm-6">
@@ -137,26 +107,32 @@
                                     <option value="2022">2022-2023</option>
                                 </select>
                             </div>
-                                <!-- Dropdown Ormawa -->
-                                <label for="ormawa">Pilih Ormawa:</label>
-                                <select id="ormawa" name="ormawa">
-                                    <option value="">--Pilih Ormawa--</option>
-                                    @foreach($ormawas as $ormawa)
-                                        <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
-                                    @endforeach
-                                </select>
+                            
+                            <!-- Dropdown Ormawa -->
+                            <div class="col-xl-12"> 
+                            <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
+                            <select id="ormawa" name="ormawa"  class="form-select">
+                                <option value="">--Pilih Ormawa--</option>
+                                @foreach($ormawas as $ormawa)
+                                    <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
+                                @endforeach
+                            </select>
+                            </div>
+
+                                
                         
                         <!-- Tabel UKM -->
-                        <div id="ukm-table" style="display: none;">
-                            <h3>Tabel UKM</h3>
+                        <div class="col-xl-12" id="ukm-table" style="display: none;">
+                            <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">UKM</label>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td id="ukm-id"></td>
                                         <td id="ukm-nama"></td>
                                         <td>
-                                            <select id="ukm-dropdown">
-                                                <option value="">Pilih UKM</option>
+                                            <select id="ukm-dropdown" class="form-select">
+                                                <option value="">--Pilih UKM--</option>
+                                                <!-- Dropdown Himpunan akan diisi di sini -->
                                             </select>
                                         </td>
                                     </tr>
@@ -165,15 +141,15 @@
                         </div>
                         
                         <!-- Tabel Himpunan -->
-                        <div id="himpunan-table" style="display: none;">
-                            <h3>Tabel Himpunan</h3>
+                        <div class="col-xl-12" id="himpunan-table" style="display: none;">
+                            <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Himpunan</label>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td id="himpunan-id"></td>
                                         <td id="himpunan-nama"></td>
                                         <td>
-                                            <select id="himpunan-dropdown">
+                                            <select id="himpunan-dropdown" class="form-select">
                                                 <option value="">--Pilih Himpunan--</option>
                                                 <!-- Dropdown Himpunan akan diisi di sini -->
                                             </select>
@@ -185,14 +161,14 @@
                         
                         <!-- Tabel BEM/MPM -->
                         <div id="bemmpm-table" style="display: none;">
-                            <h3>Tabel BEM/MPM</h3>
+                            <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">BEM&MPM</label>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td id="bemmpm-id"></td>
                                         <td id="bemmpm-nama"></td>
                                         <td>
-                                            <select id="bemmpm-dropdown">
+                                            <select id="bemmpm-dropdown" class="form-select">
                                                 <option value="">--Pilih BEM/MPM--</option>
                                                 <!-- Dropdown BEM/MPM akan diisi di sini -->
                                             </select>
@@ -226,6 +202,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+     $(document).ready(function () {
+            $('#jurusan').on('change', function () {
+                var jurusan_id = $(this).val();
+                if (jurusan_id) {
+                    $.ajax({
+                        url: '/getProdi/' + jurusan_id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            $('#prodi').empty();
+                            $('#prodi').append('<option value="">--Pilih Prodi--</option>');
+                            $.each(data, function (key, value) {
+                                $('#prodi').append('<option value="' + value.id_prodi + '">' + value.nama_prodi + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#prodi').empty();
+                    $('#prodi').append('<option value="">--Pilih Prodi--</option>');
+                }
+            });
+        });
       $(document).ready(function() {
     $('#ormawa').on('change', function() {
         var ormawaID = $(this).val();
@@ -304,4 +302,4 @@
         </script>
         
 </body>
-</html>
+</html> --}}

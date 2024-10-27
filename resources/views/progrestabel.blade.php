@@ -26,7 +26,7 @@
                                 <th scope="col" class="px-4 py-3 text-[#295F98]">Status Verifikasi</th>
                                 <th scope="col" class="px-4 py-3 text-[#295F98]">Waktu Verifikasi</th>
                                 <th scope="col" class="px-4 py-3 text-[#295F98]">Keterangan Verifikasi</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Surat SK</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98]">Surat SK</th> 
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">Actions</span>
                                 </th>

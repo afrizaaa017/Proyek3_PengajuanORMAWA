@@ -7,6 +7,7 @@ use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\SubmissionController;
 
 
@@ -18,17 +19,26 @@ Route::get('/detailPengajuan', function () {
     return view('detailPengajuan');
 });
 
-Route::get('/form', [PengajuanController::class, 'index']);
+
+//untuk Dropdown Chain (Penting)
 Route::get('/get-ukm/{ormawa_id}', [DropdownController::class, 'getUkm']);
 Route::get('/get-himpunan/{ormawa_id}', [DropdownController::class, 'getHimpunan']);
 Route::get('/get-bemmpm/{ormawa_id}', [DropdownController::class, 'getBemMpm']);
+Route::get('/getProdi/{jurusan_id}', [FormController::class, 'getProdi']);
+
+
+//untuk View Form (Penting)
+Route::get('/form', [FormController::class, 'index']);
+Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan']);
+Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
 
 
 
-Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
+// Route::get('/pengajuanhimpunan', [PengajuanController::class, 'dropdown']);
+// Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
 
-Route::get('/pengajuanukm', [PengajuanController::class, 'pengajuanUKM']);
-Route::get('/pengajuanpusat', [PengajuanController::class, 'pengajuanPusat']);
+// Route::get('/pengajuanukm', [PengajuanController::class, 'pengajuanUKM']);
+// Route::get('/pengajuanpusat', [PengajuanController::class, 'pengajuanPusat']);
 
 Route::post('/simpanPengajuan', [PengajuanController::class, 'simpanPengajuan']);
 Route::get('/detailPengajuan', [PengajuanController::class, 'detailPengajuan']);
@@ -74,13 +84,13 @@ Route::get('/progressbar', function () {
 });
 
 Route::get('/index', function () {
-    return view('index');
+    return view('layouts.index');
 });
 
 Route::get('/menukemahasiswaan', function () {
     return view('menukemahasiswaan');
 });
 
-
 Route::get('/dashboard', [SubmissionController::class, 'index']);
 Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
+
