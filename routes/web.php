@@ -7,6 +7,7 @@ use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\SubmissionController;
 
 
 Route::get('/', function () {
@@ -81,3 +82,5 @@ Route::get('/menukemahasiswaan', function () {
 });
 
 
+Route::get('/dashboard', [SubmissionController::class, 'index']);
+Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
