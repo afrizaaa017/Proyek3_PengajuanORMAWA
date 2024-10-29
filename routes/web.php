@@ -9,6 +9,8 @@ use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\SubmissionController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -93,3 +95,5 @@ Route::get('send', [HomeController::class, "sendnotification"]);
 
 // Route::get('/notifications', [PengajuanController::class, 'getNotifications'])->name('notifications');
 // Route::get('/markAsRead/{id}', [PengajuanController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::get('/dashboard', [SubmissionController::class, 'index']);
+Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
