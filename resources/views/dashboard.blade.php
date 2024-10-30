@@ -8,6 +8,9 @@
 </head>
 <body class="relative bg-gray-100">
 
+    @include('components.sidenav');
+    @include('components.nav');
+
     <!-- Mengubah kotak hijau menjadi warna gradasi dengan angka di kiri bawah -->
     <div class="absolute text-white p-6 rounded-lg flex flex-col justify-between" 
          style="background: linear-gradient(to right, #29B147, #8BE52E); width: 195px; height: 200px; left: 382px; top: 237px;">
