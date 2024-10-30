@@ -8,12 +8,12 @@
 
   <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
     <!-- sidenav  -->
-    @include('components.sidebar')
+    @include('components.sidenav')
     <!-- end sidenav -->
 
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
       <!-- Navbar -->
-      @include('components.navbar')
+      @include('components.nav')
       <!-- end Navbar -->
 
       <!-- cards -->
