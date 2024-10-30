@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
             $table->text('nama');
-            $table->text('nim');
+            $table->text('nim')->unique();
             $table->text('jurusan');
             $table->string('prodi');
             $table->text('ormawa');
-            $table->text('Ketua_Ormawa');            
+            // $table->text('Ketua_Ormawa');
             $table->text('periode');
             $table->text('telp');
             $table->text('email');

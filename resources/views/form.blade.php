@@ -66,7 +66,7 @@
             <section class="bg-blue dark:bg-gray-900">
                 <div class="py-8 px-4 mx-auto">
                     <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">  </h2>
-                    <form action="/simpanPengajuan" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('form.simpanPengajuan') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Mengatur Grid Layout 2 kolom -->
                         <div class="row g-4">
@@ -157,7 +157,7 @@
     <script>
         $(document).ready(function () {
             $('#jurusan').on('change', function () {
-                var jurusan_id = $(this).find(':selected').data('id'); 
+                var jurusan_id = $(this).find(':selected').data('id');
                 if (jurusan_id) {
                     $.ajax({
                         url: '/getProdi/' + jurusan_id,
@@ -167,7 +167,7 @@
                             $('#prodi').empty();
                             $('#prodi').append('<option value="">--Pilih Prodi--</option>');
                             $.each(data, function (key, value) {
-                                $('#prodi').append('<option value="' + value.id_prodi + '">' + value.nama_prodi + '</option>');
+                                $('#prodi').append('<option value="' + value.nama_prodi + '">' + value.nama_prodi + '</option>');
                             });
                         }
                     });
@@ -208,4 +208,5 @@
         </script>
 
 </body>
+
 </html>

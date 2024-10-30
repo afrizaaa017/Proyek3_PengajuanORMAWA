@@ -8,35 +8,38 @@
 </head>
 <body class="relative bg-gray-100">
 
+    @include('components.sidenav');
+    @include('components.nav');
+
     <!-- Mengubah kotak hijau menjadi warna gradasi dengan angka di kiri bawah -->
     <div class="absolute text-white p-6 rounded-lg flex flex-col justify-between" 
-         style="background: linear-gradient(to right, #29B147, #8BE52E); width: 195px; height: 215px; left: 382px; top: 237px;">
+         style="background: linear-gradient(to right, #29B147, #8BE52E); width: 195px; height: 200px; left: 382px; top: 237px;">
         <h2 class="text-2xl font-bold">Sudah <br> Mengajukan</h2>
         <p class="text-7xl font-bold text-left">{{ $sudahMengajukan }}</p>
     </div>
 
     <!-- Kotak Merah dengan Gradasi -->
     <div class="absolute text-white p-6 rounded-lg flex flex-col justify-between" 
-         style="background: linear-gradient(to right, #C20000, #FF0000); width: 195px; height: 215px; left: 590px; top: 237px;">
+         style="background: linear-gradient(to right, #C20000, #FF0000); width: 195px; height: 200px; left: 590px; top: 237px;">
         <h2 class="text-2xl font-bold">Belum <br> Mengajukan</h2>
         <p class="text-7xl font-bold text-left">{{ $belumMengajukan }}</p>
     </div>
 
     <!-- Pastikan warna gradasi oranye diterapkan -->
     <div class="absolute text-white py-4 rounded-lg flex items-center pl-8" 
-         style="background: linear-gradient(to right, #F24E1E, #FF9A36); width: 750px; height: 215px; left: 800px; top: 237px;">
+         style="background: linear-gradient(to right, #F24E1E, #FF9A36); width: 715px; height: 200px; left: 800px; top: 237px;">
         <a href="{{ url('/semua-pengajuan') }}" class="block text-5xl font-bold text-left">
             Lihat Semua Pengajuan <br> ORMAWA
         </a>
     </div>
 
     <!-- Tempat untuk Foto Gedung Polban -->
-    <div class="absolute" style="width: 750px; height: 330px; left: 800px; top: 480px;">
+    <div class="absolute" style="width: 715px; height: 330px; left: 800px; top: 450px;">
         <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="w-full h-full object-cover rounded-lg">
     </div>
 
     <!-- Dalam Antrean -->
-    <div class="absolute" style="left: 380px; top: 480px; margin-top: 10px;">
+    <div class="absolute" style="left: 380px; top: 450px; margin-top: 10px;">
         <h2 class="text-xl font-bold mb-2">Dalam Antrean</h2>
         <div class="bg-gray-300 p-6 rounded-lg flex items-center" style="width: 405px; height: 100px; margin-bottom: 40px;">
             <div class="flex space-x-2">
@@ -51,7 +54,7 @@
     </div>
 
     <!-- Sudah Berhasil -->
-    <div class="absolute" style="left: 380px; top: 630px; margin-top: 20px;">
+    <div class="absolute" style="left: 380px; top: 600px; margin-top: 20px;">
         <h2 class="text-xl font-bold mb-2">Sudah Berhasil</h2>
         <div class="bg-gray-300 p-6 rounded-lg flex items-center" style="width: 405px; height: 100px;">
             <div class="flex space-x-2">
