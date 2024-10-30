@@ -179,3 +179,130 @@ section {
     border-radius: 7px;
     border-width: 1px;
 }
+
+/* Grid dengan Kolom Kustom */
+.custom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr; /* Kotak hijau dan merah sama, kotak oranye lebih besar */
+    gap: 1rem; /* Sesuaikan jarak antar kotak */
+}
+
+/* Kotak Hijau */
+.kotak-hijau {
+    background: linear-gradient(to right, #29B147, #8BE52E);
+    color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+/* Kotak Merah */
+.kotak-merah {
+    background: linear-gradient(to right, #C20000, #FF0000);
+    color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+/* Kotak Oranye */
+.kotak-oranye {
+    background: linear-gradient(to right, #F24E1E, #FF9A36);
+    color: #ffffff;
+    border-radius: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Gaya gambar gedung */
+.gambar-gedung {
+    width: 100%;
+    height: 16rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Gaya untuk elemen profil */
+.profil-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #A0AEC0; /* Tailwind Gray-400 */
+    border-radius: 9999px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex container untuk elemen dalam antrean dan sudah berhasil */
+.flex-container {
+    background-color: #E2E8F0; /* Tailwind Gray-300 */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+/* Grid dengan Kolom Kustom */
+.custom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr; /* Kotak hijau dan merah sama, kotak oranye lebih besar */
+    gap: 1rem; /* Sesuaikan jarak antar kotak */
+}
+
+/* Kotak Hijau */
+.kotak-hijau {
+    background: linear-gradient(to right, #29B147, #8BE52E);
+    color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+/* Kotak Merah */
+.kotak-merah {
+    background: linear-gradient(to right, #C20000, #FF0000);
+    color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+/* Kotak Oranye */
+.kotak-oranye {
+    background: linear-gradient(to right, #F24E1E, #FF9A36);
+    color: #ffffff;
+    border-radius: 0.5rem;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Gaya gambar gedung */
+.gambar-gedung {
+    width: 100%;
+    height: 16rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Gaya untuk elemen profil */
+.profil-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #A0AEC0; /* Tailwind Gray-400 */
+    border-radius: 9999px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex container untuk elemen dalam antrean dan sudah berhasil */
+.flex-container {
+    background-color: #E2E8F0; /* Tailwind Gray-300 */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
