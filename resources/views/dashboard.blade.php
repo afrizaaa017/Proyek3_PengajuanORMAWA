@@ -1,72 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Pengajuan Ketua Ormawa</title>
+    @include('layouts.head')
+    <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
-<body class="relative bg-gray-100">
 
-    @include('components.sidenav');
-    @include('components.nav');
+<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+    <!-- sidenav -->
+    @include('components.sidenav')
+    <!-- end sidenav -->
 
-    <!-- Mengubah kotak hijau menjadi warna gradasi dengan angka di kiri bawah -->
-    <div class="absolute text-white p-6 rounded-lg flex flex-col justify-between" 
-         style="background: linear-gradient(to right, #29B147, #8BE52E); width: 195px; height: 200px; left: 382px; top: 237px;">
-        <h2 class="text-2xl font-bold">Sudah <br> Mengajukan</h2>
-        <p class="text-7xl font-bold text-left">{{ $sudahMengajukan }}</p>
-    </div>
+    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+        <!-- Navbar -->
+        @include('components.nav')
+        <!-- end Navbar -->
 
-    <!-- Kotak Merah dengan Gradasi -->
-    <div class="absolute text-white p-6 rounded-lg flex flex-col justify-between" 
-         style="background: linear-gradient(to right, #C20000, #FF0000); width: 195px; height: 200px; left: 590px; top: 237px;">
-        <h2 class="text-2xl font-bold">Belum <br> Mengajukan</h2>
-        <p class="text-7xl font-bold text-left">{{ $belumMengajukan }}</p>
-    </div>
+        <!-- Main Content -->
+        <div class="w-full px-4 py-6 mx-auto" id="content">
+            <!-- Grid dengan Kolom Khusus -->
+            <div class="custom-grid">
+                
+                <!-- Kotak Hijau -->
+                <div class="kotak-hijau relative flex flex-col justify-between h-48">
+                    <h2 class="text-2xl font-bold text-white">Sudah <br> Mengajukan</h2>
+                    <p class="text-7xl font-bold text-left">{{ $sudahMengajukan }}</p>
+                </div>
 
-    <!-- Pastikan warna gradasi oranye diterapkan -->
-    <div class="absolute text-white py-4 rounded-lg flex items-center pl-8" 
-         style="background: linear-gradient(to right, #F24E1E, #FF9A36); width: 715px; height: 200px; left: 800px; top: 237px;">
-        <a href="{{ url('/semua-pengajuan') }}" class="block text-5xl font-bold text-left">
-            Lihat Semua Pengajuan <br> ORMAWA
-        </a>
-    </div>
+                <!-- Kotak Merah -->
+                <div class="kotak-merah relative flex flex-col justify-between h-48">
+                    <h2 class="text-2xl font-bold text-white">Belum <br> Mengajukan</h2>
+                    <p class="text-7xl font-bold text-left">{{ $belumMengajukan }}</p>
+                </div>
 
-    <!-- Tempat untuk Foto Gedung Polban -->
-    <div class="absolute" style="width: 715px; height: 330px; left: 800px; top: 450px;">
-        <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="w-full h-full object-cover rounded-lg">
-    </div>
-
-    <!-- Dalam Antrean -->
-    <div class="absolute" style="left: 380px; top: 450px; margin-top: 10px;">
-        <h2 class="text-xl font-bold mb-2">Dalam Antrean</h2>
-        <div class="bg-gray-300 p-6 rounded-lg flex items-center" style="width: 405px; height: 100px; margin-bottom: 40px;">
-            <div class="flex space-x-2">
-                @foreach (array_slice($profilAntrean, 0, 4) as $profil)
-                    <div class="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center text-white">
-                        {{ strtoupper(substr($profil, 0, 1)) }}
-                    </div>
-                @endforeach
+                <!-- Kotak Oranye (Lebih Lebar) -->
+                <div class="kotak-oranye h-48">
+                    <a href="{{ url('/semua-pengajuan') }}" class="block text-2xl md:text-4xl font-bold text-left">
+                        Lihat Semua Pengajuan <br> ORMAWA
+                    </a>
+                </div>
             </div>
-            <p class="ml-4">+{{ count($profilAntrean) }}</p>
-        </div>
-    </div>
 
-    <!-- Sudah Berhasil -->
-    <div class="absolute" style="left: 380px; top: 600px; margin-top: 20px;">
-        <h2 class="text-xl font-bold mb-2">Sudah Berhasil</h2>
-        <div class="bg-gray-300 p-6 rounded-lg flex items-center" style="width: 405px; height: 100px;">
-            <div class="flex space-x-2">
-                @foreach (array_slice($profilBerhasil, 0, 4) as $profil)
-                    <div class="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center text-white">
-                        {{ strtoupper(substr($profil, 0, 1)) }}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                
+                <!-- Dalam Antrean dan Sudah Berhasil (Pindah ke Kiri) -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold">Dalam Antrean</h2>
+                    <div class="flex-container">
+                        @foreach (array_slice($profilAntrean, 0, 4) as $profil)
+                        <div class="profil-circle">
+                            {{ strtoupper(substr($profil, 0, 1)) }}
+                        </div>
+                        @endforeach
+                        <p class="ml-4">+{{ count($profilAntrean) }}</p>
                     </div>
-                @endforeach
-            </div>
-            <p class="ml-4">+{{ count($profilBerhasil) }}</p>
-        </div>
-    </div>
 
+                    <h2 class="text-xl font-bold mt-4">Sudah Berhasil</h2>
+                    <div class="flex-container">
+                        @foreach (array_slice($profilBerhasil, 0, 4) as $profil)
+                        <div class="profil-circle">
+                            {{ strtoupper(substr($profil, 0, 1)) }}
+                        </div>
+                        @endforeach
+                        <p class="ml-4">+{{ count($profilBerhasil) }}</p>
+                    </div>
+                </div>
+
+                <!-- Foto Gedung Polban (Pindah ke Kanan) -->
+                <div class="w-full rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="gambar-gedung">
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
