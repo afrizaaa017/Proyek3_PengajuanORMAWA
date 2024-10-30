@@ -12,6 +12,6 @@ class NotificationController extends Controller
         // $unreadNotifications = Auth::user()->unreadNotifications;
 
         // // Kirim data ke view
-        // return view('notifications.index', compact('unreadNotifications'));
+        return view('notifikasi');
     }
 }
