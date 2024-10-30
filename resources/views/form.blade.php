@@ -109,7 +109,7 @@
                                     <option value="2022">2022-2023</option>
                                 </select>
                             </div>
-
+                            
                             <div class="col-xl-12">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
                                 <select id="ormawa" name="ormawa" class="form-select">
@@ -120,42 +120,16 @@
                                 </select>
                             </div>
 
-                            {{-- <div class="col-xl-12">
-                                <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                                <select id="ormawa" name="ormawa" class="form-select">
-                                    <option value="">--Pilih Ormawa--</option>
-                                    @foreach($ormawas as $ormawa)
-                                        <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
-
-                            <!-- Tabel UKM -->
+                            <!-- Ketua_ormawa -->
                             <div class="col-xl-12">
-                                <label for="ukm-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">UKM</label>
-                                <select id="ukm-dropdown" class="form-select">
-                                    <option value="">--Pilih UKM--</option>
-                                    <!-- Dropdown UKM akan diisi di sini -->
-                                </select>
+                                <div class="col-xl-12">
+                                    <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
+                                    <select id="ketua_ormawa" name="ketua_ormawa" class="form-select"> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
+                                        <option value="">--Pilih Ketua Ormawa--</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <!-- Tabel Himpunan -->
-                            <div class="col-xl-12">
-                                <label for="himpunan-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Himpunan</label>
-                                <select id="himpunan-dropdown" class="form-select">
-                                    <option value="">--Pilih Himpunan--</option>
-                                    <!-- Dropdown Himpunan akan diisi di sini -->
-                                </select>
-                            </div>
-
-                            <!-- Tabel BEM/MPM -->
-                            <div class="col-xl-12">
-                                <label for="bemmpm-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">BEM/MPM</label>
-                                <select id="bemmpm-dropdown" class="form-select">
-                                    <option value="">--Pilih BEM/MPM--</option>
-                                    <!-- Dropdown BEM/MPM akan diisi di sini -->
-                                </select>
-                            </div>
                             <!-- No. Telepon -->
                             <div class="col-sm-6">
                                 <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
@@ -181,7 +155,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-     $(document).ready(function () {
+        $(document).ready(function () {
             $('#jurusan').on('change', function () {
                 var jurusan_id = $(this).find(':selected').data('id');
                 if (jurusan_id) {
@@ -203,89 +177,31 @@
                 }
             });
         });
-        $(document).ready(function() {
-    // Sembunyikan dropdown UKM, BEM, dan Himpunan saat halaman diload
-    $('#ukm-dropdown').closest('.col-xl-12').hide();
-    $('#himpunan-dropdown').closest('.col-xl-12').hide();
-    $('#bemmpm-dropdown').closest('.col-xl-12').hide();
-
-    $('#ormawa').on('change', function() {
-        var ormawaID = $(this).val();
-
-        // Sembunyikan semua dropdown terlebih dahulu
-        $('#ukm-dropdown').closest('.col-xl-12').hide();
-        $('#himpunan-dropdown').closest('.col-xl-12').hide();
-        $('#bemmpm-dropdown').closest('.col-xl-12').hide();
-
-        // Hapus isi dropdown UKM, Himpunan, dan BEM/MPM
-        $('#ukm-dropdown').empty().append('<option value="">--Pilih UKM--</option>');
-        $('#himpunan-dropdown').empty().append('<option value="">--Pilih Himpunan--</option>');
-        $('#bemmpm-dropdown').empty().append('<option value="">--Pilih BEM/MPM--</option>');
-
-        if (ormawaID) {
-            // Menampilkan dropdown yang sesuai dengan ormawaID
-            if (ormawaID == 1) {
-                // Jika memilih UKM
-                $('#ukm-dropdown').closest('.col-xl-12').show();
-            } else if (ormawaID == 2) {
-                // Jika memilih BEM/MPM
-                $('#bemmpm-dropdown').closest('.col-xl-12').show();
-            } else if (ormawaID == 3) {
-                // Jika memilih Himpunan
-                $('#himpunan-dropdown').closest('.col-xl-12').show();
-            }
-
-            // AJAX untuk mengisi dropdown berdasarkan ormawaID
-            if (ormawaID == 1) {
-                // Request data untuk UKM
-                $.ajax({
-                    url: '/get-ukm/' + ormawaID,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $.each(data, function(key, value) {
-                            $('#ukm-dropdown').append('<option value="'+ value.id_ukm +'">'+ value.nama_ukm +'</option>');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr);
-                    }
-                });
-            } else if (ormawaID == 2) {
-                // Request data untuk BEM/MPM
-                $.ajax({
-                    url: '/get-bemmpm/' + ormawaID,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $.each(data, function(key, value) {
-                            $('#bemmpm-dropdown').append('<option value="'+ value.id_bemmpm +'">'+ (value.nama ? 'BEM' : 'MPM') +'</option>');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr);
-                    }
-                });
-            } else if (ormawaID == 3) {
-                // Request data untuk Himpunan
-                $.ajax({
-                    url: '/get-himpunan/' + ormawaID,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $.each(data, function(key, value) {
-                            $('#himpunan-dropdown').append('<option value="'+ value.id_himpunan +'">'+ value.nama_himpunan +'</option>');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr);
-                    }
-                });
-            }
+        $(document).ready(function () {
+    $('#ormawa').on('change', function () {
+        var ormawa_id = $(this).val(); // Get the selected Ormawa ID
+        if (ormawa_id) {
+            $.ajax({
+                url: '/getKetuaOrmawa/' + ormawa_id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#ketua_ormawa').empty();
+                    $('#ketua_ormawa').append('<option value="">--Pilih ketua ormawa--</option>');
+                    $.each(data, function (key, value) {
+                        $('#ketua_ormawa').append('<option value="' + value.id_ketua_ormawa + '">' + value.nama_ketua + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching ketua ormawa:', xhr.responseText);
+                }
+            });
+        } else {
+            $('#ketua_ormawa').empty();
+            $('#ketua_ormawa').append('<option value="">--Pilih ketua ormawa--</option>');
         }
     });
 });
-
 
 
 

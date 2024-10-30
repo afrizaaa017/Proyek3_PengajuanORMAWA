@@ -26,4 +26,13 @@ class DropdownController extends Controller
         $bemmpms = BemMpm::where('ormawa_id', $ormawa_id)->pluck('is_bem', 'is_mpm');
         return response()->json($bemmpms);
     }
+    public function storeSelectedValue(Request $request)
+    {
+        $selectedValue = $request->input('selectedValue');
+        $selectedDropdown = $request->input('selectedDropdown');
+    
+        // Lakukan penyimpanan atau pengolahan data sesuai kebutuhan
+        return response()->json(['success' => true, 'message' => 'Data berhasil disimpan']);
+    }
+    
 }
