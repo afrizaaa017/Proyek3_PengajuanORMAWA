@@ -48,8 +48,8 @@
     </style>
 </head>
 <body class="d-flex justify-content-center align-items-center min-vh-100">
-    @include('components.navbar-lama')
-    @include('components.sidebar-lama')
+    @include('components.navbar')
+    @include('components.sidebar')
 
     <div class="w-1/4 p-4 h-screen">
         <!-- Konten Sidebar (kosong) -->
@@ -66,7 +66,7 @@
             <section class="bg-blue dark:bg-gray-900">
                 <div class="py-8 px-4 mx-auto">
                     <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">  </h2>
-                    <form action="/simpanPengajuan" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('form.simpanPengajuan') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Mengatur Grid Layout 2 kolom -->
                         <div class="row g-4">
@@ -109,8 +109,7 @@
                                     <option value="2022">2022-2023</option>
                                 </select>
                             </div>
-<<<<<<< HEAD
-                            
+
                             <div class="col-xl-12">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
                                 <select id="ormawa" name="ormawa" class="form-select">
@@ -120,12 +119,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
-                            {{-- <div class="col-xl-12"> 
-=======
 
-                            <div class="col-xl-12">
->>>>>>> 38a1e8a838b9f36851ce000874b48f72c1c874cf
+                            {{-- <div class="col-xl-12">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
                                 <select id="ormawa" name="ormawa" class="form-select">
                                     <option value="">--Pilih Ormawa--</option>
@@ -133,13 +128,8 @@
                                         <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
                                     @endforeach
                                 </select>
-<<<<<<< HEAD
                             </div> --}}
-                            
-=======
-                            </div>
 
->>>>>>> 38a1e8a838b9f36851ce000874b48f72c1c874cf
                             <!-- Tabel UKM -->
                             <div class="col-xl-12">
                                 <label for="ukm-dropdown" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">UKM</label>
@@ -193,7 +183,7 @@
     <script>
      $(document).ready(function () {
             $('#jurusan').on('change', function () {
-                var jurusan_id = $(this).find(':selected').data('id'); 
+                var jurusan_id = $(this).find(':selected').data('id');
                 if (jurusan_id) {
                     $.ajax({
                         url: '/getProdi/' + jurusan_id,
@@ -203,7 +193,7 @@
                             $('#prodi').empty();
                             $('#prodi').append('<option value="">--Pilih Prodi--</option>');
                             $.each(data, function (key, value) {
-                                $('#prodi').append('<option value="' + value.id_prodi + '">' + value.nama_prodi + '</option>');
+                                $('#prodi').append('<option value="' + value.nama_prodi + '">' + value.nama_prodi + '</option>');
                             });
                         }
                     });
@@ -302,4 +292,5 @@
         </script>
 
 </body>
+
 </html>

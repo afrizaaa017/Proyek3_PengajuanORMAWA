@@ -7,6 +7,7 @@ use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\SubmissionController;
 
@@ -28,11 +29,10 @@ Route::get('/getProdi/{jurusan_id}', [FormController::class, 'getProdi']);
 
 
 //untuk View Form (Penting)
-Route::get('/form', [FormController::class, 'index']);
-Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan']);
+Route::get('/form', [FormController::class, 'index'])->name('form.index');
+Route::post('/form', [FormController::class, 'simpanPengajuan'])->name('form.simpanPengajuan');
+// Route::post('/simpanPengajuan', [FormContoller::class, 'sendnotification']);
 Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
-
-
 
 // Route::get('/pengajuanhimpunan', [PengajuanController::class, 'dropdown']);
 // Route::get('/pengajuanhimpunan', [PengajuanController::class, 'pengajuanHimpunan']);
@@ -91,6 +91,9 @@ Route::get('/menukemahasiswaan', function () {
     return view('menukemahasiswaan');
 });
 
+Route::get('send', [HomeController::class, "sendnotification"]);
+
+// Route::get('/notifications', [PengajuanController::class, 'getNotifications'])->name('notifications');
+// Route::get('/markAsRead/{id}', [PengajuanController::class, 'markAsRead'])->name('notifications.markAsRead');
 Route::get('/dashboard', [SubmissionController::class, 'index']);
 Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
-

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pengajuan extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['nama', 'nim', 'jurusan', 'prodi', 'ormawa', 'periode', 'telp','email'];
-}
 
+    protected $fillable = ['nama', 'nim', 'jurusan', 'prodi', 'ormawa', 'periode', 'telp', 'email'];
+}
