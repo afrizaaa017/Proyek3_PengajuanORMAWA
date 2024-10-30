@@ -40,7 +40,19 @@ return new class extends Migration
         // Tabel BEM & MPM
         Schema::create('bem_mpm', function (Blueprint $table) {
             $table->id('id_bem_mpm');
-            $table->boolean('is_bem'); // true untuk BEM, false untuk MPM
+            $table->string('bem_mpm'); // true untuk BEM, false untuk MPM
+            $table->unsignedBigInteger('ormawa_id'); // Foreign key to Ormawa
+            $table->timestamps();
+
+            // Menambahkan foreign key constraint
+            $table->foreign('ormawa_id')->references('id_ormawa')->on('ormawa')->onDelete('cascade');
+              
+        });
+
+        // Tabel Ketua Ormawa
+        Schema::create('ketua_ormawa', function (Blueprint $table) {
+            $table->id('id_ketua_ormawa');
+            $table->string('nama_ketua');
             $table->unsignedBigInteger('ormawa_id'); // Foreign key to Ormawa
             $table->timestamps();
 
@@ -49,8 +61,9 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down()  
     {
+        Schema::dropIfExists('ketua_ormawa');
         Schema::dropIfExists('bem_mpm');
         Schema::dropIfExists('himpunan');
         Schema::dropIfExists('ukm');
