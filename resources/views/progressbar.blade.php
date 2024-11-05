@@ -9,49 +9,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tambahkan link ke ikon FontAwesome untuk ceklis -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <style>
-        /* Definisikan gradasi warna oranye untuk step yang complete */
-        .bg-gradient-orange {
-            background: linear-gradient(90deg, #FF7F00, #FF9A36); /* Gradasi oranye */
-        }
-
-        /* Tambahkan gradasi biru pada garis penghubung */
-        .line-gradient-blue {
-            background: linear-gradient(90deg, #00008B 0%, #295F98 100%); /* Gradasi biru untuk garis */
-        }
-
-        /* Definisikan gradasi pada teks untuk step yang complete */
-        .text-gradient-orange {
-            background: linear-gradient(90deg, #FF7F00, #FF9A36); /* Gradasi oranye pada teks */
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent; /* Ini akan menghilangkan warna teks default */
-        }
-
-        /* Warna teks abu-abu untuk step yang belum complete */
-        .text-gray-pending {
-            color: #A0AEC0; /* Warna abu-abu untuk teks pending */
-        }
-    </style>
+    <!-- Link ke file CSS eksternal di assets/css/style.css -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-gray-50 flex justify-center items-center h-screen">
+<body class="bg-gray-50 flex justify-center items-start h-screen">
 
 <!-- Stepper Container -->
-<div class="flex items-start max-w-screen-xl mx-auto">
+<div class="flex items-start max-w-4xl mx-auto mt-32">
   <!-- Step 1 (Completed) -->
   <div class="w-full">
     <div class="flex items-center w-full">
       <!-- Lingkaran dengan warna gradasi oranye -->
-      <div class="w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full bg-gradient-orange">
+      <div class="w-6 h-6 shrink-0 mx-[-1px] p-1 flex items-center justify-center rounded-full bg-gradient-orange">
         <!-- Gunakan ikon ceklis -->
-        <i class="fas fa-check text-white"></i>
+        <i class="fas fa-check text-white text-xs"></i>
       </div>
       <!-- Garis penghubung dengan warna gradasi biru -->
-      <div class="w-[200px] h-1 mx-4 rounded-lg line-gradient-blue"></div>
+      <div class="w-56 h-1 mx-2 rounded-lg line-gradient-blue"></div>
     </div>
-    <div class="mt-2 mr-4">
+    <div class="mt-1">
       <!-- Teks dengan warna gradasi oranye -->
-      <h6 class="text-base font-bold text-gradient-orange">Pengisian Form</h6>
+      <h6 class="text-sm font-bold text-gradient-orange">Pengisian Form</h6>
       <p class="text-xs text-gradient-orange">Completed</p>
     </div>
   </div>
@@ -60,16 +38,16 @@
   <div class="w-full">
     <div class="flex items-center w-full">
       <!-- Lingkaran dengan warna gradasi oranye -->
-      <div class="w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full bg-gradient-orange">
+      <div class="w-6 h-6 shrink-0 mx-[-1px] p-1 flex items-center justify-center rounded-full bg-gradient-orange">
         <!-- Gunakan ikon ceklis -->
-        <i class="fas fa-check text-white"></i>
+        <i class="fas fa-check text-white text-xs"></i>
       </div>
       <!-- Garis penghubung dengan warna gradasi biru -->
-      <div class="w-[200px] h-1 mx-4 rounded-lg line-gradient-blue"></div>
+      <div class="w-56 h-1 mx-2 rounded-lg line-gradient-blue"></div>
     </div>
-    <div class="mt-2 mr-4">
+    <div class="mt-1">
       <!-- Teks dengan warna gradasi oranye -->
-      <h6 class="text-base font-bold text-gradient-orange">Pengajuan Berkas</h6>
+      <h6 class="text-sm font-bold text-gradient-orange">Pengajuan Berkas</h6>
       <p class="text-xs text-gradient-orange">Completed</p>
     </div>
   </div>
@@ -77,13 +55,13 @@
   <!-- Step 3 (Pending) -->
   <div>
     <div class="flex items-center">
-      <div class="w-8 h-8 shrink-0 mx-[-1px] p-1.5 flex items-center justify-center rounded-full bg-gray-300">
-        <span class="text-base text-white font-bold">3</span>
+      <div class="w-6 h-6 shrink-0 mx-[-1px] p-1 flex items-center justify-center rounded-full bg-gray-300">
+        <span class="text-xs text-white font-bold">3</span>
       </div>
     </div>
-    <div class="mt-2">
+    <div class="mt-1">
       <!-- Ubah teks menjadi abu-abu jika step pending -->
-      <h6 class="text-base font-bold text-gray-pending">Verifikasi Berkas</h6>
+      <h6 class="text-sm font-bold text-gray-pending">Verifikasi Berkas</h6>
       <p class="text-xs text-gray-pending">Pending</p>
     </div>
   </div>
