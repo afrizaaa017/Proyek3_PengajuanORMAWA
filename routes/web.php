@@ -12,6 +12,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\selectedValue;
+use App\Http\Controllers\OrmawaController;
 
 
 Route::get('/', function () {
@@ -65,8 +66,8 @@ Route::get('/pengajuanberkas', function () {
 });
 
 // Rute untuk halaman upload berkas
-Route::get('/menu', function () {
-    return view('menu');
+Route::get('/dashboardmahasiswa', function () {
+    return view('dashboardmahasiswa');
 });
 
 Route::get('/listtable', function () {
@@ -97,3 +98,5 @@ Route::get('/notifikasi', [NotificationController::class, 'index'])->name('notif
 
 Route::get('/dashboard', [SubmissionController::class, 'index']);
 Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
+
+Route::get('/dashboardmahasiswa', [OrmawaController::class, 'index'])->name('dashboardmahasiswa');
