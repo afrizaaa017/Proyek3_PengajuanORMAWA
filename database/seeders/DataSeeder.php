@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\BemMpm;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Ormawa;
-use App\Models\Ukm;
-use App\Models\Himpunan;
 use App\Models\Prodi;
 use App\Models\Jurusan;
 
@@ -49,36 +46,5 @@ class DataSeeder extends Seeder
         foreach ($ormawaData as $data) {
             Ormawa::create($data);
         }
-    // Data UKM
-    // $ukmData = [
-    //     ['nama_ukm' => 'UKM Teknologi Informasi', 'ormawa_id' => 1],
-    //     ['nama_ukm' => 'UKM Olahraga', 'ormawa_id' => 1],
-    //     ['nama_ukm' => 'UKM Seni dan Budaya', 'ormawa_id' => 1],
-    //     ['nama_ukm' => 'UKM Kewirausahaan', 'ormawa_id' => 1],
-    //     ['nama_ukm' => 'UKM Bahasa', 'ormawa_id' => 1],
-    // ];
-
-    // foreach ($ukmData as $data) {
-    //     Ukm::create($data); // Menggunakan Eloquent untuk menyimpan data
-    // }
-
-    // $Bem_mpm = [
-    //     ['bem_mpm' => 'BEM', 'ormawa_id' => 2],
-    //     ['bem_mpm' => 'MPM', 'ormawa_id' => 2],
-    // ];
-
-    // foreach ($Bem_mpm as $data) {
-    //     BemMpm::create($data); // Menggunakan Eloquent untuk menyimpan data
-    // }
-    // Data Himpunan
-    // $himpunanData = [
-    //     ['nama_himpunan' => 'Himpunan Mahasiswa Teknik', 'ormawa_id' => 3],
-    //     ['nama_himpunan' => 'Himpunan Mahasiswa Ekonomi', 'ormawa_id' => 3],
-    //     ['nama_himpunan' => 'Himpunan Mahasiswa Sastra', 'ormawa_id' => 3],
-    // ];
-
-    // foreach ($himpunanData as $data) {
-    //     himpunan::create($data); // Menggunakan Eloquent untuk menyimpan data
-    // }
     }
 }

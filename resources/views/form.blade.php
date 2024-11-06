@@ -115,7 +115,7 @@
                                 <select id="ormawa" name="ormawa" class="form-select">
                                     <option value="">--Pilih Ormawa--</option>
                                     @foreach($ormawas as $ormawa)
-                                        <option value="{{ $ormawa->id_ormawa }}" data-nama="{{ $ormawa->nama_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
+                                        <option value="{{ $ormawa->nama_ormawa }}" data-id="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -178,34 +178,31 @@
             });
         });
         $(document).ready(function () {
-    $('#ormawa').on('change', function () {
-        var ormawa_id = $(this).val(); // Get the selected Ormawa ID
-        if (ormawa_id) {
-            $.ajax({
-                url: '/getKetuaOrmawa/' + ormawa_id,
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
+            $('#ormawa').on('change', function () {
+                var ormawa_id = $(this).find(':selected').data('id');
+                if (ormawa_id) {
+                    $.ajax({
+                        url: '/getKetuaOrmawa/' + ormawa_id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            $('#ketua_ormawa').empty();
+                            $('#ketua_ormawa').append('<option value="">--Pilih ketua ormawa--</option>');
+                            $.each(data, function (key, value) {
+                                $('#ketua_ormawa').append('<option value="' + value.nama_ketua + '">' + value.nama_ketua + '</option>');
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching ketua ormawa:', xhr.responseText);
+                        }
+                    });
+                } else {
                     $('#ketua_ormawa').empty();
                     $('#ketua_ormawa').append('<option value="">--Pilih ketua ormawa--</option>');
-                    $.each(data, function (key, value) {
-                        $('#ketua_ormawa').append('<option value="' + value.id_ketua_ormawa + '">' + value.nama_ketua + '</option>');
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error fetching ketua ormawa:', xhr.responseText);
                 }
             });
-        } else {
-            $('#ketua_ormawa').empty();
-            $('#ketua_ormawa').append('<option value="">--Pilih ketua ormawa--</option>');
-        }
-    });
-});
-
-
-
-        </script>
+        });
+    </script>
 
 </body>
 

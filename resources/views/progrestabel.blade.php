@@ -17,6 +17,7 @@
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden pb-10">
                 <div class="overflow-x-auto">
+                    @foreach ($pengajuans as $pengajuan)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -34,13 +35,18 @@
                         </thead>
                         <tbody>
                             <tr class="border-b dark:border-gray-700">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">001</th>
-                                <td class="px-4 py-3">30 September 2024</td>
-                                <td class="px-4 py-3">HIMAKOM</td>
+                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ str_pad($pengajuan->id, 3, '0', STR_PAD_LEFT) }}</th>
+                                <td class="px-4 py-3">{{ $pengajuan['created_at']->format('d F Y') }}</td>
+                                <td class="px-4 py-3">{{ $pengajuan['jurusan'] }}</td>
                                 <td class="px-4 w-10 bg-gray-400 text-white font-bold  px-4 rounded-lg shadow-md active:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Diproses</td>
-                                <td class="px-4 py-3"></td>
-                                <td class="px-4 py-3"></td>
-                                <td class="px-4 py-3"></td>
+                                <td class="px-4 py-3">{{ $pengajuan['created_at']->format('d F Y') }}</td>
+                                <td class="px-4 py-3">{{ $pengajuan['status'] }}</td>
+                                <td class="px-4 py-3">
+                                    {{-- {{ dd($pengajuan->status === "diterima") }}
+                                    @if($pengajuan->status === 1 )
+                                        <p>Download SK</p>
+                                    @endif --}}
+                                </td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -64,6 +70,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    @endforeach
                 </div>
             </div>
         </div>

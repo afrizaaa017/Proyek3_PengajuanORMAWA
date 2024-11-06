@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Berkas extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'pengajuan_id',
         'scan_ktp',
         'surat_sehat',
         'surat_rekomendasi_jurusan',
@@ -27,4 +29,9 @@ class Berkas extends Model
         'sertifikat_berorganisasi',
         'berita_acara_pemilihan'
     ];
+
+    public function pengajuan(): BelongsTo
+    {
+        return $this->belongsTo(Pengajuan::class);
+    }
 }

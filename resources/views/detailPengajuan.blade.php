@@ -41,6 +41,11 @@
                             {{ $pengajuan['ormawa'] }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">KETUA</dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            {{ $pengajuan['ketua_ormawa'] }}</dd>
+                    </div>
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">PERIODE</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                             {{ $pengajuan['periode'] }}</dd>
@@ -58,6 +63,41 @@
 
                 </dl>
             </div>
+            <h4 class="text-center font-semibold leading-7 text-gray-900">SCAN KTP</h4>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'scan_ktp.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_sehat.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_rekomendasi_jurusan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'transkip_rekomendasi_jurusan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_lkmm.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_pelatihan_kepemimpinan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_bahasa_asing.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'scan_ktm.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_keterangan_berkelakuan_baik.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_penyataan_mandiri.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_pkkmb.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_bela_negara.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_agent_of_change.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_berorganisasi.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'berita_acara_pemilihan.pdf') }}" width="1000px" height="600px"></iframe>
+
+            <div class="flex justify-between items-center mt-4">
+                <!-- Form untuk menolak pengajuan -->
+                <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'ditolak']) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Tolak</button>
+                </form>
+                
+                <!-- Form untuk menerima pengajuan -->
+                <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'diterima']) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-success bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Terima</button>
+                </form>
+            
+            </div>
+
         @endforeach
     </div>
 

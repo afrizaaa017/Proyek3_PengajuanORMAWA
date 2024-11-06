@@ -18,10 +18,11 @@ return new class extends Migration
             $table->text('jurusan');
             $table->string('prodi');
             $table->text('ormawa');
-            // $table->text('Ketua_Ormawa');
+            $table->text('ketua_ormawa');
             $table->text('periode');
             $table->text('telp');
             $table->text('email');
+            $table->enum('status', ['sedang diproses', 'diterima', 'ditolak'])->default('sedang diproses');
             $table->timestamps();
         });
     }

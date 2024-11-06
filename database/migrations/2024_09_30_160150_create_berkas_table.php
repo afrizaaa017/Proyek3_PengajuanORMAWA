@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('berkas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pengajuan_id')->constrained(
+                table : 'pengajuans',
+                indexName: 'berkas_pengajuan_id'
+            );
             $table->string('scan_ktp');
             $table->string('surat_sehat');
             $table->string('surat_rekomendasi_jurusan');

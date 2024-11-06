@@ -11,23 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Migration Jurusan
-        Schema::create('jurusans', function (Blueprint $table) {
-            $table->id('id_jurusan');
-            $table->string('nama_jurusan');
-            $table->timestamps();
-        });
-
-        // Migration Prodi
         Schema::create('prodis', function (Blueprint $table) {
-            $table->id('id_prodi'); // Primary Key
-            $table->string('nama_prodi'); // Nama Prodi
-            // Menggunakan jurusan_id dan merujuk ke id_jurusan
+            $table->id('id_prodi');
+            $table->string('nama_prodi');
             $table->foreignId('jurusan_id')->constrained('jurusans', 'id_jurusan')->onDelete('cascade'); 
             $table->timestamps();
-        });
-
-            
+        });            
     }
 
     /**
@@ -36,7 +25,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('jurusans');
         Schema::dropIfExists('prodis');
     }
 };

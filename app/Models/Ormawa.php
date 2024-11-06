@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ormawa extends Model
 {
@@ -10,24 +11,10 @@ class Ormawa extends Model
 
     protected $table = 'ormawa';
     protected $primaryKey = 'id_ormawa';
+    protected $fillable = ['nama_ormawa'];
 
-    // public function ukms()
-    // {
-    //     return $this->hasMany(Ukm::class, 'ormawa_id');
-    // }
-
-    // public function himpunans()
-    // {
-    //     return $this->hasMany(Himpunan::class, 'ormawa_id');
-    // }
-
-    // public function bemmpms()
-    // {
-    //     return $this->hasMany(BemMpm::class, 'ormawa_id');
-    // }
-
-    public function prodis()
+    public function ketua_ormawa():HasMany
     {
-        return $this->hasMany(ketua_ormawa::class, 'jurusan_id');
+        return $this->hasMany(KetuaOrmawa::class, 'ormawa_id', 'id_ormawa');
     }
 }

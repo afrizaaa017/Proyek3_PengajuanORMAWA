@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ketua_ormawa;
+use App\Models\KetuaOrmawa;
 
 
 class Dataketuaormawa extends Seeder
@@ -17,7 +17,7 @@ class Dataketuaormawa extends Seeder
         $ketuas = [
             ['nama_ketua' => 'UKM Assalam', 'ormawa_id' => 1],
             ['nama_ketua' => 'UKM Robotika', 'ormawa_id' => 1],
-            ['nama_ketua' => 'UKM MEMEK', 'ormawa_id' => 1],
+            ['nama_ketua' => 'UKM Futsal', 'ormawa_id' => 1],
             ['nama_ketua' => 'BEM', 'ormawa_id' => 2],
             ['nama_ketua' => 'MPM', 'ormawa_id' => 2],
             ['nama_ketua' => 'HImpunan Komputer', 'ormawa_id' => 3],
@@ -25,6 +25,6 @@ class Dataketuaormawa extends Seeder
             ['nama_ketua' => 'HImpunan Komputer', 'ormawa_id' => 3],
         ];
 
-        ketua_ormawa::insert($ketuas);
+        KetuaOrmawa::insert($ketuas);
     }
 }

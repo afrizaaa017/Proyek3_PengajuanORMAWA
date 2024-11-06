@@ -9,7 +9,7 @@ class Prodi extends Model
 {
     use HasFactory;
 
-    protected $table = 'prodis'; // Menggunakan huruf kecil
+    protected $table = 'prodis';
     protected $primaryKey = 'id_prodi';
     protected $fillable = ['nama_prodi', 'jurusan_id'];
 
