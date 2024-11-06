@@ -306,3 +306,26 @@ section {
     align-items: center;
     gap: 1rem;
 }
+
+/* Definisikan gradasi warna oranye untuk step yang complete */
+.bg-gradient-orange {
+    background: linear-gradient(90deg, #FF7F00, #FF9A36); /* Gradasi oranye */
+}
+
+/* Tambahkan gradasi biru pada garis penghubung */
+.line-gradient-blue {
+    background: linear-gradient(90deg, #00008B 0%, #295F98 100%); /* Gradasi biru untuk garis */
+}
+
+/* Definisikan gradasi pada teks untuk step yang complete */
+.text-gradient-orange {
+    background: linear-gradient(90deg, #FF7F00, #FF9A36); /* Gradasi oranye pada teks */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent; /* Ini akan menghilangkan warna teks default */
+}
+
+/* Warna teks abu-abu untuk step yang belum complete */
+.text-gray-pending {
+    color: #A0AEC0; /* Warna abu-abu untuk teks pending */
+}

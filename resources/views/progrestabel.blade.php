@@ -1,72 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<body>
-    <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
-        <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-            <!-- Start coding here -->
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden pb-10">
+<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+    <!-- sidenav  -->
+   
+    <!-- end sidenav -->
+
+    <main class="ease-soft-in-out flex justify-center items-center h-screen rounded-xl transition-all duration-200 p-6">
+      <!-- Navbar -->
+      
+      <!-- end Navbar -->
+    <!-- Main Content Section -->
+    <!-- <section class="pt-30 p-3 sm:p-60 min-h-screen flex justify-start bg-white">
+        <div class="w-full lg:w-[85%] ml-50 mt-10">  -->
+            <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white m-6">
                 <div class="overflow-x-auto">
-                    @foreach ($pengajuans as $pengajuan)
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <table class="w-full text-xs text-left text-gray-700">
+                        <thead class="text-xs uppercase border-b-2 border-gray-200">
                             <tr>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Nomor Pengajuan</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Tanggal Pengajuan</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">ORganisasi Mahasiswa</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Status Verifikasi</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Waktu Verifikasi</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Keterangan Verifikasi</th>
-                                <th scope="col" class="px-4 py-3 text-[#295F98]">Surat SK</th> 
-                                <th scope="col" class="px-4 py-3">
-                                    <span class="sr-only">Actions</span>
-                                </th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Nomor Pengajuan</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Organisasi Mahasiswa</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Waktu Verifikasi</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Keterangan Verifikasi</th>
+                                <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Surat SK</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b dark:border-gray-700">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ str_pad($pengajuan->id, 3, '0', STR_PAD_LEFT) }}</th>
-                                <td class="px-4 py-3">{{ $pengajuan['created_at']->format('d F Y') }}</td>
-                                <td class="px-4 py-3">{{ $pengajuan['jurusan'] }}</td>
-                                <td class="px-4 w-10 bg-gray-400 text-white font-bold  px-4 rounded-lg shadow-md active:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Diproses</td>
-                                <td class="px-4 py-3">{{ $pengajuan['created_at']->format('d F Y') }}</td>
-                                <td class="px-4 py-3">{{ $pengajuan['status'] }}</td>
+                            <tr class="border-b">
+                                <td class="px-4 py-3 text-[#295F98]">Nomor Pengajuan</td>
+                                <td class="px-4 py-3 text-[#295F98]">DD/MM/YYYY</td>
+                                <td class="px-4 py-3 text-[#295F98]">HIMAKOM</td>
                                 <td class="px-4 py-3">
-                                    {{-- {{ dd($pengajuan->status === "diterima") }}
-                                    @if($pengajuan->status === 1 )
-                                        <p>Download SK</p>
-                                    @endif --}}
+                                    <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">Ditolak</span>
                                 </td>
-                                <td class="px-4 py-3 flex items-center justify-end">
-                                    <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                        </svg>
-                                    </button>
-                                    <div id="apple-imac-27-dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
-                                            <li>
-                                                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                            </li>
-                                        </ul>
-                                        <div class="py-1">
-                                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                                        </div>
-                                    </div>
+                                <td class="px-4 py-3 text-[#295F98]">HH:MM</td>
+                                <td class="px-4 py-3">
+                                    <button class="px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold">Revisi</button>
                                 </td>
+                                <td class="px-4 py-3"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -74,8 +55,6 @@
                 </div>
             </div>
         </div>
-        </section>
+    </section>
 </body>
 </html>
-
-
