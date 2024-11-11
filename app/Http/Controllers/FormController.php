@@ -60,6 +60,32 @@ class FormController extends Controller
         return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui.');
     }
 
+    // public function edit($id)
+    // {
+    //     // Find the existing record by ID
+    //     $revisi = Pengajuan::findOrFail($id);
+    
+    //     // Return the edit view with the record data
+    //     return view('detailPengajuan.edit', compact('revisi'));
+    // }
+    
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'revisi' => 'required',
+    //     ]);
+    
+    //     $revisi = Pengajuan::findOrFail($id);
+    //     $revisi->revisi = $request->input('revisi');
+    //     $revisi->save();
+    
+    //     return redirect('/detailPengajuans')->with('success', 'Revisi berhasil diperbarui');
+    // }
+    
+
     public function progrestabel()
     {
         $pengajuans = Pengajuan::with('berkas')->get();
