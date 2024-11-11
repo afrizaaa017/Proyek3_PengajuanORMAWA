@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\KetuaOrmawa;
 use App\Models\Ormawa;
 use App\Models\Jurusan;
 use App\Models\Pengajuan;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
 
@@ -39,8 +41,10 @@ class FormController extends Controller
     {
         $ormawas = Ormawa::all(); 
         $jurusans = Jurusan::all(); 
+        $prodis = Prodi::all(); 
+        $ketuaOrmawas = KetuaOrmawa::all(); 
 
-        return view('form', compact('ormawas', 'jurusans')); 
+        return view('form', compact('ormawas', 'jurusans','prodis','ketuaOrmawas')); 
     }
 
     public function updateStatus($id, $status)

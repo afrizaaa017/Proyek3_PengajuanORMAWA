@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         input[type="file"]::-webkit-file-upload-button {
             background-color: #FF9A36;
@@ -63,10 +66,58 @@
 
     <section class="bg-blue dark:bg-gray-900">
         <div class="container my-4">
+                        
+            <!-- Stepper Container -->
+            <div class="flex items-start max-w-4xl mx-auto mt-32">
+                <!-- Step 1 (Completed or Active) -->
+                <div id="step1" class="w-full">
+                    <div class="flex items-center w-full">
+                        <div id="circle1" class="w-6 h-6 shrink-0 p-1 flex items-center justify-center rounded-full bg-gray-300">
+                            <i class="fas fa-check text-white text-xs hidden"></i>
+                        </div>
+                        <div id="progressStep1" class="w-56 h-1 mx-2 rounded-lg bg-gray-300"></div>
+                    </div>
+                    <div class="mt-1">
+                        <h6 class="text-sm font-bold text-gray-500" id="textStep1">Pengisian Form</h6>
+                        <p class="text-xs text-gradient-orange" id="status1">Completed</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 (Completed or Active) -->
+                <div id="step2" class="w-full">
+                    <div class="flex items-center w-full">
+                        <div id="circle2" class="w-6 h-6 shrink-0 p-1 flex items-center justify-center rounded-full bg-gray-300">
+                            <i class="fas fa-check text-white text-xs hidden"></i>
+                        </div>
+                        <div class="w-56 h-1 mx-2 rounded-lg bg-gray-300" id="line2"></div>
+                    </div>
+                    <div class="mt-1">
+                        <h6 class="text-sm font-bold text-gray-500">Pengajuan Berkas</h6>
+                        <p class="text-xs text-gray-500" id="status2">Pending</p>
+                    </div>
+                </div>
+            
+                <!-- Step 3 (Pending) -->
+                <div id="step3" class="w-full">
+                    <div class="flex items-center">
+                        <div id="circle3" class="w-6 h-6 shrink-0 p-1 flex items-center justify-center rounded-full bg-gray-300">
+                                <i class="fas fa-check text-white text-xs hidden"></i>
+                        </div>
+                        <span class="text-xs text-white font-bold" id="line3"></span>
+                    </div>
+                    <div class="mt-1">
+                        <h6 class="text-sm font-bold text-gray-500">Verifikasi Berkas</h6>
+                        <p class="text-xs text-gray-500" id="status3">Pending</p>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Stepper Container -->
+            
+
             <section class="bg-blue dark:bg-gray-900">
                 <div class="py-8 px-4 mx-auto">
                     <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">  </h2>
-                    <form action="{{ route('form.simpanPengajuan') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('form.simpanPengajuan') }}" method="post" enctype="multipart/form-data" id="applicationForm">
                         @csrf
                         <!-- Mengatur Grid Layout 2 kolom -->
                         <div class="row g-4">
@@ -96,6 +147,9 @@
                                 <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Prodi:</label>
                                 <select id="prodi" name="prodi" class="form-select">
                                     <option value="">--Pilih Prodi--</option>
+                                    @foreach($prodis as $prodi)
+                                    <option value="{{ $prodi->nama_prodi }}" data-id="{{ $prodi->id_prodi }}">{{ $prodi->nama_prodi }}</option>
+                                @endforeach
                                 </select>
                             </div>
 
@@ -126,6 +180,9 @@
                                     <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
                                     <select id="ketua_ormawa" name="ketua_ormawa" class="form-select"> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
                                         <option value="">--Pilih Ketua Ormawa--</option>
+                                        @foreach($ketuaOrmawas as $kt)
+                                            <option value="{{ $kt->nama_ormawa }}" data-id="{{ $kt->id_ketua_ormawa }}">{{ $kt->ketua_ormawa }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -201,6 +258,53 @@
                     $('#ketua_ormawa').append('<option value="">--Pilih ketua ormawa--</option>');
                 }
             });
+        });
+    </script>
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+            const step1Circle = document.getElementById("circle1");
+            const step1StatusText = document.getElementById("status1");
+            const step1TitleText = document.getElementById("textStep1");
+            const progressStep = document.getElementById("progressStep1");
+            const form = document.getElementById("applicationForm");
+            const formFields = form.querySelectorAll("input, select, textarea");  // Select all input, select, and textarea elements
+
+            function checkStep1Completion() {
+                let isCompleted = true;
+                
+                formFields.forEach(field => {
+                    if (field.type !== "submit" && field.value.trim() === "") {
+                        isCompleted = false;
+                    }
+                });
+                
+                if (isCompleted) {
+                    // Update Step 1 as completed
+                    step1Circle.classList.replace("bg-gray-300", "bg-gradient-orange");
+                    step1Circle.querySelector("i").classList.remove("hidden");
+                    step1StatusText.textContent = "Completed";
+                    step1TitleText.classList.replace("text-gray-500", "text-gradient-orange");
+                    step1StatusText.classList.replace("text-gray-500", "text-gradient-orange");
+                    progressStep.classList.replace('bg-gray-300','line-gradient-blue')
+                } else {
+                    // Revert Step 1 to pending
+                    step1Circle.classList.replace("bg-gradient-orange", "bg-gray-300");
+                    step1Circle.querySelector("i").classList.add("hidden");
+                    step1StatusText.textContent = "Pending";
+                    step1TitleText.classList.replace("text-gradient-orange", "text-gray-500");
+                    step1StatusText.classList.replace("text-gradient-orange", "text-gray-500");
+                    progressStep.classList.replace('line-gradient-blue','bg-gray-300')
+                }
+            }
+
+            // Attach event listeners to all form fields for real-time status updates
+            formFields.forEach(field => {
+                field.addEventListener("input", checkStep1Completion);
+                field.addEventListener("change", checkStep1Completion); // for select fields
+            });
+
+            // Initial check on load
+            checkStep1Completion();
         });
     </script>
 

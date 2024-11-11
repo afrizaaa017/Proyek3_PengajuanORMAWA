@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
@@ -9,10 +10,11 @@ class SubmissionController extends Controller
     public function index()
     {
         // Definisikan variabel
-        $sudahMengajukan = 10;
-        $belumMengajukan = 9;
-        $profilAntrean = ['Ormawa A', 'Ormawa B', 'Ormawa C', 'Ormawa D'];
-        $profilBerhasil = ['Ormawa E', 'Ormawa F', 'Ormawa G', 'Ormawa H'];
+        $pengajuan = new Pengajuan();
+        $sudahMengajukan = $pengajuan->where('created_at','like','%2024%')->get()->count();
+        $belumMengajukan = 35 - $sudahMengajukan;
+        $profilAntrean = $pengajuan->where('status','sedang diproses')->latest()->get();
+        $profilBerhasil = $pengajuan->where('status','diterima')->latest()->get();
 
         // Kirim data ke view menggunakan fungsi compact
         return view('dashboard', compact('sudahMengajukan', 'belumMengajukan', 'profilAntrean', 'profilBerhasil'));
