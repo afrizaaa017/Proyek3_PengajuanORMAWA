@@ -62,11 +62,24 @@ Route::get('/listtable', function () {
     return view('listtable');
 });
 
+Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
+Route::post('/TambahOrmawa', [KetuaOrmawaController::class, 'store'])->name('ketuaOrmawa.store');
+Route::delete('/ketuaOrmawa/{id}', [KetuaOrmawaController::class, 'destroy'])->name('ketuaOrmawa.destroy');
+
+Route::get('/TambahProdi', [ProdiController::class, 'index'])->name('prodi.index');
+Route::post('/TambahProdi', [ProdiController::class, 'store'])->name('prodi.store');
+Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
+
+Route::get('/TambahJurusan', [ProdiController::class, 'index'])->name('prodi.index');
+Route::post('/TambahJurusan', [ProdiController::class, 'storeJurusan'])->name('jurusan.store');
+Route::delete('/jurusan/{id}', [ProdiController::class, 'destroyJurusan'])->name('jurusan.destroy');
+
 //Detail Pengajuan
 Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
 Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
 // //Revisi
-// Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
-// Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
+Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
+Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
+Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
 
