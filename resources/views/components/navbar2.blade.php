@@ -201,7 +201,7 @@
         </li>
         <!-- Logout Button -->
         <li class="mt-0.5 w-full">
-            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit"
                     class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gray-200 rounded-lg">
@@ -211,7 +211,7 @@
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Logout</span>
                 </button>
-            </form>
+            </form> --}}
         </li>
 
 
@@ -234,10 +234,10 @@
                     <li class="text-sm leading-normal">
                         <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
                     </li>
-                    <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
-                        aria-current="page">{{ $path }}</li>
+                    {{-- <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']" --}}
+                        {{-- aria-current="page">{{ $path }}</li> --}}
                 </ol>
-                <h6 class="mb-0 font-bold capitalize">{{ $path . ($id ? '/' . $id : null) }} </h6>
+                {{-- <h6 class="mb-0 font-bold capitalize">{{ $path . ($id ? '/' . $id : null) }} </h6> --}}
             </nav>
 
             <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
