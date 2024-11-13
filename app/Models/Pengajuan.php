@@ -23,6 +23,7 @@ class Pengajuan extends Model
         'telp',
         'email',
         'status',
+        'keterangan',
     ];
 
     protected $casts = [
