@@ -83,44 +83,52 @@
 
             <div class="flex justify-between items-center mt-4">
                 <!-- Form untuk menolak pengajuan -->
-                <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'ditolak']) }}" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Tolak</button>
-                </form>
-                {{-- Form untuk melakukan revisi
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                <div x-data="{ openModal: false }">
+                    <!-- Revisi Button -->
+                    <button @click="openModal = true" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                        Revisi
+                    </button>
+                
+                    <!-- Modal -->
+                    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" 
+                         x-show="openModal" 
+                         x-cloak>
+                        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-auto">
+                            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                                <h5 class="text-lg font-semibold" id="exampleModalLabel">Revisi Pengajuan</h5>
+                                <button type="button" @click="openModal = false" class="text-gray-500 hover:text-gray-700">
+                                    &times;
+                                </button>
+                            </div>
+                            <form action="{{ isset($pengajuan) ? route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'ditolak']) : route('pengajuan.updateStatus') }}" method="POST">
+                                @csrf
+                                @if (isset($pengajuan))
+                                    @method('PATCH')
+                                @endif
+                            
+                                <!-- Hidden input to set the rejection status -->
+                                <input type="hidden" name="status" value="ditolak">
+                            
+                                <div class="p-4">
+                                    <div class="mb-4">
+                                        <label for="revisi" class="block text-sm font-medium text-gray-700">Revisi Pengajuan</label>
+                                        <textarea class="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" name="revisi" rows="3"> </textarea>
+                                    </div>
+                                </div>
+                            
+                                <div class="flex justify-end px-4 py-3 border-t border-gray-200">
+                                    <button type="button" @click="openModal = false" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
+                                        Close
+                                    </button>
+                                    <button type="submit" class="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
+                                        Tolak dan Revisi
+                                    </button>
+                                </div>
+                            </form>                            
                         </div>
-                        <form action="{{ isset($revisi) ? route('revisi.update', $revisi->id) : route('revisi.store') }}" method="POST">
-                          @csrf
-                          @if (isset($revisi))
-                              @method('PUT')
-                          @endif
-                      
-                          <div class="modal-body">
-                              <div class="form-group">
-                                  <label for="revisi">Revisi</label>
-                                  <textarea class="form-control" name="revisi" rows="3">{{ $revisi->revisi ?? '' }}</textarea>
-                              </div>
-                          </div>
-                      
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary">{{ isset($revisi) ? 'Update' : 'Save' }}</button>
-                          </div>
-                      </form>
-                      </div>
                     </div>
-                </div> --}}
-
+                </div>
+                
                 <!-- Form untuk menerima pengajuan -->
                 <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'diterima']) }}" method="POST">
                     @csrf
@@ -137,9 +145,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- Script to handle modal toggle (using Alpine.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0/dist/alpine.min.js" defer></script>
+    <script>
+        function modal() {
+            return {
+                openModal: false
+            };
+        }
+    </script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+
 </body>
 
 </html>

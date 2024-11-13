@@ -78,6 +78,12 @@ Route::delete('/jurusan/{id}', [ProdiController::class, 'destroyJurusan'])->name
 Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
 Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
+//Kemahasiswaan Dashboard
+Route::get('/dashboardmahasiswa', function () {
+    return view('dashboardmahasiswa'); 
+});
+
+
 // //Revisi
 Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
 Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');

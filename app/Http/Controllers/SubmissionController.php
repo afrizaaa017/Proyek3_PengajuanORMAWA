@@ -13,7 +13,7 @@ class SubmissionController extends Controller
         $pengajuan = new Pengajuan();
         $sudahMengajukan = $pengajuan->where('created_at','like','%2024%')->get()->count();
         $belumMengajukan = 35 - $sudahMengajukan;
-        $profilAntrean = $pengajuan->where('status','sedang diproses')->latest()->get();
+        $profilAntrean = $pengajuan->whereIn('status',['sedang diproses', 'ditolak'])->latest()->get();
         $profilBerhasil = $pengajuan->where('status','diterima')->latest()->get();
 
         // Kirim data ke view menggunakan fungsi compact

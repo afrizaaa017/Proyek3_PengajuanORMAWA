@@ -27,6 +27,7 @@ class FormController extends Controller
             'email'    => $request->email,
 
 
+
         ]);
         return redirect()->route('pengajuanberkas')->with('success', 'Data has been saved successfully.');
     }
@@ -47,18 +48,27 @@ class FormController extends Controller
         return view('form', compact('ormawas', 'jurusans','prodis','ketuaOrmawas')); 
     }
 
-    public function updateStatus($id, $status)
+    public function updateStatus(Request $request, $id, $status)
     {
         $pengajuan = Pengajuan::findOrFail($id);
-
-        // Validasi agar hanya menerima status yang valid
-        if ($status === 'diterima' || $status === 'ditolak') {
-            $pengajuan->status = PengajuanStatus::from($status);
-            $pengajuan->save();
+    
+        // Validasi input
+        $request->validate([
+            'revisi' => 'required|string',
+        ]);
+    
+        // Ubah status jika sesuai
+        if (in_array($status, ['diterima', 'ditolak'])) {
+            $pengajuan->status = $status;
         }
-
-        return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui.');
+    
+        // Simpan keterangan dari revisi
+        $pengajuan->keterangan = $request->input('revisi');
+        $pengajuan->save();
+    
+        return redirect('/detailPengajuans')->with('success', 'Revisi berhasil diperbarui');
     }
+    
 
     // public function edit($id)
     // {
@@ -69,9 +79,9 @@ class FormController extends Controller
     //     return view('detailPengajuan.edit', compact('revisi'));
     // }
     
-    // /**
-    //  * Update the specified resource in storage.
-    //  */
+    /**
+     * Update the specified resource in storage.
+     */
     // public function update(Request $request, $id)
     // {
     //     $request->validate([
