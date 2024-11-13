@@ -66,6 +66,11 @@ Route::get('/listtable', function () {
 Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
 Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
+//Kemahasiswaan Dashboard
+Route::get('/dashboardmahasiswa', function () {
+    return view('dashboardmahasiswa'); 
+});
+
 
 // //Revisi
 // Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
