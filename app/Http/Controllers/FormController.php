@@ -102,4 +102,13 @@ class FormController extends Controller
         return view('progrestabel', compact('pengajuans'));
     }
 
+    public function listtable(){
+    {
+        // Ambil semua data dari tabel pengajuan
+        $pengajuans = Pengajuan::all();
+
+        // Kirim data ke view
+        return view('listtable', compact('pengajuans'));
+    }
+}
 }

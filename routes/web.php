@@ -71,3 +71,4 @@ Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateS
 // Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
 // Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
 
+Route::get('/listtable', [FormController::class, 'listtable']);
