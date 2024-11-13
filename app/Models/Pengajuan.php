@@ -6,10 +6,11 @@ use App\Enums\PengajuanStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class Pengajuan extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'pengajuans';
     protected $fillable = [

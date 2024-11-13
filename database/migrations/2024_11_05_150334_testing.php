@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entries', function (Blueprint $table) {
-            $table->id();
-            $table->enum('status', array_column(EntryType::cases(), 'value'))->default(EntryType::Event->value);
-            $table->timestamps();
-        });
+        // Schema::create('entries', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->enum('status', array_column(EntryType::cases(), 'value'))->default(EntryType::Event->value);
+        //     $table->timestamps();
+        // });
     }
-   
+
 
     /**
      * Reverse the migrations.
