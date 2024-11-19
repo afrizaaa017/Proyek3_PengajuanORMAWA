@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class timeline extends Model
 {
     use HasFactory;
-    protected $table = 'timeline';
+
+    protected $table = 'timelines';
+
     protected $fillable = [
-    'tanggal_pembukaan',
-    'keterangan_pembukaan',
-    'tanggal_revisi',
-    'keterangan_revisi',
-    'tanggal_penutupan ',
-    'keterangan_penutupan',
+        'judul_timeline',
+        'keterangan',
+        'tanggal_timeline_awal',
+        'tanggal_timeline_akhir',
     ];
 }
+

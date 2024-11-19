@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\timeline;
+use App\Models\Timeline;
 use Illuminate\Http\Request;
 
 class timelinecontroller extends Controller
@@ -12,7 +12,8 @@ class timelinecontroller extends Controller
      */
     public function index()
     {
-        //
+        $timelines = Timeline::all(); // Get all timelines
+        return view('admin', compact('timelines'));
     }
 
     /**
@@ -20,7 +21,7 @@ class timelinecontroller extends Controller
      */
     public function create()
     {
-
+        return view('timeline.create'); // Create view
     }
 
     /**
@@ -28,71 +29,65 @@ class timelinecontroller extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate([
-            "tanggal_pembukaan"=> "required",
-            "keterangan_pembukaan"=> "required",
-            "tanggal_revisi"=> "required",
-            "keterangan_revisi"=> "required",
-            "tanggal_penutupan"=> "required",
-            "keterangan_penutupan"=> "required",
-        ]) ;
-        
-        $timeline = new timeline();
-        $timeline -> tanggal_pembukaan = $request ->input("tanggal_pembukaan");
-        $timeline -> keterangan_pembukaan = $request -> input("keterangan_pembukaan");
-        $timeline -> tanggal_revisi = $request -> input("tanggal_revisi");
-        $timeline -> keterangan_revisi = $request -> input("keterangan_revisi");
-        $timeline -> tanggal_penutupan = $request -> input("tanggal_penutupan");
-        $timeline -> keterangan_pembukaan = $request -> input("keterangan_penutupan");
-        $timeline -> save();
-
-        return redirect("/dashboard") -> with('succes','timeline dibuat');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $request->validate([
+            'judul_timeline' => 'required|string|max:255',
+            'tanggal_timeline_awal' => 'required|date',
+            'tanggal_timeline_akhir' => 'required|date',
+            'keterangan' => 'required|string',
+        ]);
+    
+        $timeline = new Timeline();
+        $timeline->judul_timeline = $request->judul_timeline;
+        $timeline->tanggal_timeline_awal = $request->tanggal_timeline_awal;
+        $timeline->tanggal_timeline_akhir = $request->tanggal_timeline_akhir;
+        $timeline->keterangan = $request->keterangan;
+        $timeline->save();
+    
+        return redirect()->route('timelines.index')->with('success', 'Timeline added successfully');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $timeline = timeline::findOrFail($id);
-
+        $timeline = Timeline::findOrFail($id);
         return view('timeline.edit', compact('timeline'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'timeline' => 'required',
+            'judul_timeline' => 'required|string|max:255',
+            'tanggal_timeline_awal' => 'required|date',
+            'tanggal_timeline_akhir' => 'required|date',
+            'keterangan' => 'required|string',
         ]);
     
-        $timeline = timeline::findOrFail($id);
-        $timeline -> tanggal_pembukaan = $request ->input("tanggal_pembukaan");
-        $timeline -> keterangan_pembukaan = $request -> input("keterangan_pembukaan");
-        $timeline -> tanggal_revisi = $request -> input("tanggal_revisi");
-        $timeline -> keterangan_revisi = $request -> input("keterangan_revisi");
-        $timeline -> tanggal_penutupan = $request -> input("tanggal_penutupan");
-        $timeline -> keterangan_pembukaan = $request -> input("keterangan_penutupan");
-        $timeline -> save();
+        $timeline = Timeline::findOrFail($id);
+        $timeline->judul_timeline = $request->judul_timeline;
+        $timeline->tanggal_timeline_awal = $request->tanggal_timeline_awal;
+        $timeline->tanggal_timeline_akhir = $request->tanggal_timeline_akhir;
+        $timeline->keterangan = $request->keterangan;
+        $timeline->save();
     
-        return redirect('/timeline')->with('success', 'Revisi berhasil diperbarui');
+        return redirect()->route('timelines.index')->with('success', 'Timeline updated successfully');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find the timeline by ID
+        $timeline = Timeline::findOrFail($id);
+    
+        // Delete the timeline
+        $timeline->delete();
+    
+        // Redirect back to the timeline list with a success message
+        return redirect()->route('timelines.index')->with('success', 'Timeline deleted successfully.');
     }
+    
 }
