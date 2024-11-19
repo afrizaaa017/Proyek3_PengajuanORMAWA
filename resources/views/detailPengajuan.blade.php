@@ -2,17 +2,21 @@
 <html lang="en">
 
 <head>
+    @include('layouts.head')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <title>Pengajuan Ketua ORMAWA</title>
 </head>
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<body>
+
+@extends('components.main')
+@include('components.navbar2')
+
+@section('content')
+<div class="w-full px-4 py-6 mx-auto" id="content">
     <div>
         <div class="px-4 sm:px-0">
             <h3 class="text-center font-semibold leading-7 text-gray-900">DATA PENGAJUAN</h3>
@@ -153,9 +157,5 @@
                 openModal: false
             };
         }
-    </script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-
-</body>
-
+</script>
 </html>

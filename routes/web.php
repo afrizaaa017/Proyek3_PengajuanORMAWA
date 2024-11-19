@@ -92,3 +92,4 @@ Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.s
 Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
 
+Route::get('/listtable', [FormController::class, 'listtable']);
