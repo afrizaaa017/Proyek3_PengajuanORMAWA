@@ -38,6 +38,7 @@
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">NO</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nama</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Organisasi Mahasiswa</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Periode</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Waktu Verifikasi</th>
@@ -50,6 +51,7 @@
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
                         <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nama }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ormawa }}</td>
+                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td> <!-- Kolom periode -->
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td>
                             @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
