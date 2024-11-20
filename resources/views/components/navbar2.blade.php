@@ -18,6 +18,7 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 </style>
+
 <aside
     class="max-w-62.5 h-screen ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent">
     <div class="h-19.5">
@@ -30,7 +31,7 @@
         </a>
     </div>
 
-    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-t<<<<<<< HEAD
+    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40">
        <div class="items-center
         block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
     <ul class="flex flex-col pl-0 mb-0">
@@ -279,7 +280,7 @@
                         <ul dropdown-menu
                             class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease-soft lg:shadow-soft-3xl duration-250 min-w-44 before:sm:right-7.5 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
                             <!-- add show class on dropdown open js -->
-                            <li class="relative mb-2">
+                            {{-- <li class="relative mb-2">
                                 <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors"
                                     href="javascript:;">
                                     <div class="flex py-1">
@@ -297,9 +298,9 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
 
-                            <li class="relative mb-2">
+                            {{-- <li class="relative mb-2">
                                 <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700"
                                     href="javascript:;">
                                     <div class="flex py-1">
@@ -317,9 +318,43 @@
                                         </div>
                                     </div>
                                 </a>
+                            </li> --}}
+
+
+                            @foreach ($notifications as $notification)
+                            <li class="relative mb-2">
+                                <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700"
+                                    href="javascript:;">
+                                    <div class="flex py-1">
+                                        <div class="flex flex-col justify-center">
+                                            <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">{{ $notification->data['data']['nama'] ?? 'Nama tidak tersedia' }}</span></h6>
+                                            <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                <i class="mr-1 fa fa-clock"></i>
+                                                {{-- {{ $notification->data['data']['created_at']->diffForHumans() }} --}}
+                                                {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            @endforeach
+
+                            <li class="relative mb-2">
+                                <hr class="h-px mt-0 mb-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent">
+                                <a class="ease-soft py-1 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="/notifikasi">
+                                    <div class="flex justify-center items-center py-1">
+                                    <div class="flex flex-col justify-center">
+                                      <h6 class="mb-1 text-sm font-normal leading-normal text-center">See All</h6>
+                                      {{-- <p class="mb-0 text-xs leading-tight text-slate-400">
+                                        <i class="mr-1 fa fa-clock"></i>
+                                        2 days
+                                      </p> --}}
+                                    </div>
+                                  </div>
+                                </a>
                             </li>
 
-                            <li class="relative">
+                            {{-- <li class="relative">
                                 <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700"
                                     href="javascript:;">
                                     <div class="flex py-1">
@@ -357,7 +392,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                 </ul>
