@@ -10,6 +10,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\Mahasiswacontroller;
 
 
 Route::get('/', function () {
@@ -32,6 +33,8 @@ Route::get('/notifikasi', [NotificationController::class, 'index'])->name('notif
 
 Route::get('/dashboard', [SubmissionController::class, 'index']);
 Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
+Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
+Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
 
 
 // MAHASISWA
@@ -62,6 +65,9 @@ Route::get('/menukemahasiswaan', function () {
 Route::get('/listtable', function () {
     return view('listtable');
 });
+// Route::get('/dashboardmahasiswa', function () {
+//     return view('dashboardmahasiswa');
+// });
 
 Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
 Route::post('/TambahOrmawa', [KetuaOrmawaController::class, 'store'])->name('ketuaOrmawa.store');
@@ -85,11 +91,19 @@ Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.
 Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
 Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
 
-//Timeline 
+//Timelinee
 Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
 Route::resource('timelines', TimelineController::class);
 Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
 Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
 
+
+
+
+
+
+
 Route::get('/listtable', [FormController::class, 'listtable']);
+
+

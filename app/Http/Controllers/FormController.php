@@ -13,6 +13,7 @@ use App\Enums\PengajuanStatus;
 
 class FormController extends Controller
 {
+    
     public function simpanPengajuan(Request $request)
     {
         $request->session()->put('pengajuan', [
@@ -44,9 +45,10 @@ class FormController extends Controller
         $jurusans = Jurusan::all(); 
         $prodis = Prodi::all(); 
         $ketuaOrmawas = KetuaOrmawa::all(); 
-
-        return view('form', compact('ormawas', 'jurusans','prodis','ketuaOrmawas')); 
+    
+        return view('form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas')); 
     }
+    
 
     public function updateStatus(Request $request, $id, $status)
     {
