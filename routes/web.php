@@ -6,7 +6,7 @@ use App\Http\Controllers\BerkasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KetuaOrmawaController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\NotifsController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SubmissionController;
 
@@ -25,9 +25,9 @@ Route::get('/progressbar', function () {
 
 Route::get('send', [HomeController::class, "sendnotification"]);
 
-Route::get('/notifikasi', [NotificationController::class, 'index'])->name('notifikasi');
-// Route::get('/notifications', [PengajuanController::class, 'getNotifications'])->name('notifications');
-// Route::get('/markAsRead/{id}', [PengajuanController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::get('/notifikasi', [NotifsController::class, 'index'])->name('notifikasi');
+Route::get('/notifications', [NotifsController::class, 'getNotifications'])->name('notifications');
+Route::post('/markAsRead/{id}', [NotifsController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 Route::get('/dashboard', [SubmissionController::class, 'index']);
 Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
@@ -39,7 +39,7 @@ Route::get('/menu', function () {
 });
 
 Route::get('/progrestabel', [FormController::class, 'progrestabel']);
-    
+
 //Pengajuan Form
 Route::get('/form', [FormController::class, 'index']);
 Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan'])->name('form.simpanPengajuan');
@@ -80,7 +80,7 @@ Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateS
 
 //Kemahasiswaan Dashboard
 Route::get('/dashboardmahasiswa', function () {
-    return view('dashboardmahasiswa'); 
+    return view('dashboardmahasiswa');
 });
 
 
@@ -90,3 +90,7 @@ Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name(
 Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
 
 Route::get('/listtable', [FormController::class, 'listtable']);
+
+Route::get('/coba', function () {
+    return view('components.coba');
+});
