@@ -5,6 +5,7 @@
     @include('layouts.head')
     <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
@@ -33,8 +34,8 @@
                     <tr>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">NO</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nama</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Organisasi Mahasiswa</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Waktu Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Aksi</th>
@@ -45,17 +46,27 @@
                     <tr class="border-b text-center">
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
                         <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nama }}</td>
-                        <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ormawa }}</td>
-                        <td class="px-4 py-3">
-                            @if($pengajuan->status == 'sedang diproses')
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">Diproses</span>
-                            @elseif($pengajuan->status == 'diterima')
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">Diterima</span>
-                            @elseif($pengajuan->status == 'ditolak')
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">Ditolak</span>
+                        <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
+                        <td>
+                            @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
+                                    Diproses
+                                </span>
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
+                                    Diterima
+                                </span>
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
+                                    Ditolak
+                                </span>
+                            @else
+                                <span class="w-24 h-8 px-3 py-1 bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md">
+                                    Tidak Diketahui
+                                </span>
                             @endif
-                        </td>
+                        </td>                        
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->updated_at)->translatedFormat('j F Y') }}</td>
                         <td class="px-4 py-3">
                             <a href="detailPengajuan" class="text-blue-500 hover:text-blue-700">
