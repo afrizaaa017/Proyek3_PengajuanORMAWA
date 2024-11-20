@@ -9,6 +9,7 @@ use App\Http\Controllers\KetuaOrmawaController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\TimelineController;
 
 
 Route::get('/', function () {
@@ -78,15 +79,17 @@ Route::delete('/jurusan/{id}', [ProdiController::class, 'destroyJurusan'])->name
 Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
 Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
-//Kemahasiswaan Dashboard
-Route::get('/dashboardmahasiswa', function () {
-    return view('dashboardmahasiswa'); 
-});
-
 
 // //Revisi
 Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
 Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
 Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
+
+//Timeline 
+Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
+Route::resource('timelines', TimelineController::class);
+Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
+Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
+Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
 
 Route::get('/listtable', [FormController::class, 'listtable']);
