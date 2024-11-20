@@ -22,14 +22,16 @@
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>
                 <div>
                     <label for="periode" class="text-sm mr-2">Periode</label>
-                    <select id="periode" class="border border-gray-300 rounded-md p-1 w-32">
-                        <option>2020-2021</option>
-                        <option>2021-2022</option>
-                        <option>2022-2023</option>
-                        <option>2023-2024</option>
+                    <select id="periode" class="border border-gray-300 rounded-md p-1 w-32 text-xs">
+                        <option value="">Semua Periode</option>
+                        @foreach ($periodes as $periode)
+                            <option value="{{ $periode }}" {{ $selectedPeriode === $periode ? 'selected' : '' }}>
+                                {{ $periode }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
-            </div>
+            </div>            
             <table class="w-full text-xs text-center text-gray-700">
                 <thead class="text-xs uppercase border-b-2 border-gray-200">
                     <tr>
@@ -81,5 +83,17 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('periode').addEventListener('change', function () {
+        const selectedPeriode = this.value;
+        const url = new URL(window.location.href);
+        if (selectedPeriode) {
+            url.searchParams.set('periode', selectedPeriode);
+        } else {
+            url.searchParams.delete('periode');
+        }
+        window.location.href = url.toString();
+    });
+</script>
 @endsection
 </html>

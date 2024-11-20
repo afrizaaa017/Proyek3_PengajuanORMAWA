@@ -7,16 +7,33 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Definisikan variabel
-        $pengajuan = new Pengajuan();
-        $sudahMengajukan = $pengajuan->where('created_at','like','%2024%')->get()->count();
-        $belumMengajukan = 35 - $sudahMengajukan;
-        $profilAntrean = $pengajuan->whereIn('status',['sedang diproses', 'ditolak'])->latest()->get();
-        $profilBerhasil = $pengajuan->where('status','diterima')->latest()->get();
+    // Tentukan periode saat ini berdasarkan tanggal
+    $currentYear = date('Y');
+    $currentMonth = date('n');
+    $defaultPeriode = $currentMonth >= 7 ? "$currentYear-" . ($currentYear + 1) : ($currentYear - 1) . "-$currentYear";
 
-        // Kirim data ke view menggunakan fungsi compact
-        return view('dashboard', compact('sudahMengajukan', 'belumMengajukan', 'profilAntrean', 'profilBerhasil'));
+    // Ambil periode dari query string atau gunakan default periode
+    $periode = $request->input('periode', $defaultPeriode);
+
+    // Filter data berdasarkan periode
+    $pengajuan = new Pengajuan();
+    $sudahMengajukan = $pengajuan->where('periode', $periode)->count();
+    $belumMengajukan = 35 - $sudahMengajukan;
+    $profilAntrean = $pengajuan->where('periode', $periode)
+                               ->whereIn('status', ['sedang diproses', 'ditolak'])
+                               ->latest()
+                               ->get();
+    $profilBerhasil = $pengajuan->where('periode', $periode)
+                                ->where('status', 'diterima')
+                                ->latest()
+                                ->get();
+
+    // Ambil daftar periode unik untuk dropdown filter
+    $periodes = $pengajuan->select('periode')->distinct()->pluck('periode');
+
+    // Kirim data ke view menggunakan fungsi compact
+    return view('dashboard', compact('sudahMengajukan', 'belumMengajukan', 'profilAntrean', 'profilBerhasil', 'periode', 'periodes'));
     }
 }
