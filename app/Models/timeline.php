@@ -13,7 +13,6 @@ class timeline extends Model
 
     protected $fillable = [
         'judul_timeline',
-        'keterangan',
         'tanggal_timeline_awal',
         'tanggal_timeline_akhir',
     ];

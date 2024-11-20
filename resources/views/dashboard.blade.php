@@ -31,7 +31,7 @@
             <!-- Kotak Merah -->
             <div class="kotak-merah relative flex flex-col justify-between h-48">
                 <h2 class="text-2xl font-bold text-white">Belum <br> Mengajukan</h2>
-                <p class="text-7xl font-bold text-left">{{ $belumMengajukan }}</p>
+                <p class="text-7xl font-bold text-left">{{ $sudahMengajukan }}</p>
             </div>
 
             <!-- Kotak Oranye (Lebih Lebar) -->
@@ -87,19 +87,3 @@
             <div class="w-full rounded-lg shadow-lg overflow-hidden">
                 <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="gambar-gedung">
             </div>
-        </div>       
-    </div>
-    @endsection
-
-    {{-- <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200"> --}}
-        <!-- Navbar -->
-        {{-- @include('components.nav') --}}
-
-        <!-- end Navbar -->
-
-        <!-- Main Content -->
-
-    {{-- </main> --}}
-{{-- </body>
-
-</html> --}}

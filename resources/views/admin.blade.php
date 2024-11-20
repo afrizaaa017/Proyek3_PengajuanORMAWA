@@ -21,9 +21,6 @@
                     <div class="mt-3 sm:pe-8">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $timeline->judul_timeline }}&nbsp;&nbsp;&nbsp;</h3>
                         <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $timeline->tanggal_timeline_awal }} - {{ $timeline->tanggal_timeline_akhir }} &nbsp;&nbsp;&nbsp;</time>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap">
-                            {{ $timeline->keterangan }}
-                        </p>                        
                     </div>
                 </li>
             @endforeach
@@ -53,6 +50,7 @@
                     <td class="border px-4 py-2">
                         <!-- Delete Button -->
                         <form action="{{ route('admin.destroy', $timeline->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this timeline?')">
+                            
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500 hover:underline ml-2">Delete</button>
@@ -79,12 +77,6 @@
                         <label for="judul_timeline" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul Timeline</label>
                         <input type="text" id="judul_timeline" name="judul_timeline"
                             class="w-full sm:w-[700px] block p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required>
-                    </div>
-                    <div class="sm:col-span-5">
-                        <label for="keterangan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                        <textarea
-                            class="form-control w-full sm:w-[700px] block p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            id="keterangan" name="keterangan" rows="8" placeholder="Your description here" required></textarea>
                     </div>
                     <div class="w-full">
                         <label for="tanggal_timeline_awal" class="form-label">Tanggal Awal</label>
@@ -119,12 +111,6 @@
                         <input type="text" id="judul_timeline" name="judul_timeline" value=" "
                             class="w-full sm:w-[700px] block p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Type product name" required>
-                    </div>
-                    <div class="sm:col-span-5">
-                        <label for="keterangan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                        <textarea
-                            class="form-control w-full sm:w-[700px] block p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            id="keterangan" name="keterangan" required></textarea>
                     </div>
                     <div class="w-full">
                         <label for="tanggal_timeline_awal" class="form-label">Tanggal Awal</label>

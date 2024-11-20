@@ -14,7 +14,6 @@ return new class extends Migration
     Schema::create('timelines', function (Blueprint $table) {
         $table->id();
         $table->string('judul_timeline');
-        $table->string('keterangan');
         $table->date('tanggal_timeline_awal');
         $table->date('tanggal_timeline_akhir');
         $table->timestamps();
