@@ -13,6 +13,7 @@ use App\Enums\PengajuanStatus;
 
 class FormController extends Controller
 {
+    
     public function simpanPengajuan(Request $request)
     {
         $request->session()->put('pengajuan', [
@@ -44,9 +45,10 @@ class FormController extends Controller
         $jurusans = Jurusan::all(); 
         $prodis = Prodi::all(); 
         $ketuaOrmawas = KetuaOrmawa::all(); 
-
-        return view('form', compact('ormawas', 'jurusans','prodis','ketuaOrmawas')); 
+    
+        return view('form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas')); 
     }
+    
 
     public function updateStatus(Request $request, $id, $status)
     {
@@ -102,13 +104,21 @@ class FormController extends Controller
         return view('progrestabel', compact('pengajuans'));
     }
 
-    public function listtable(){
+    public function listtable(Request $request)
     {
-        // Ambil semua data dari tabel pengajuan
-        $pengajuans = Pengajuan::all();
+        // Ambil nilai periode yang dipilih dari query string
+        $selectedPeriode = $request->input('periode');
+
+        // Ambil daftar periode unik dari database untuk dropdown
+        $periodes = Pengajuan::select('periode')->distinct()->pluck('periode');
+
+        // Ambil data pengajuan, filter berdasarkan periode jika ada
+        $pengajuans = Pengajuan::when($selectedPeriode, function ($query) use ($selectedPeriode) {
+            return $query->where('periode', $selectedPeriode);
+        })->get();
 
         // Kirim data ke view
-        return view('listtable', compact('pengajuans'));
+        return view('listtable', compact('pengajuans', 'periodes', 'selectedPeriode'));
     }
 }
-}
+

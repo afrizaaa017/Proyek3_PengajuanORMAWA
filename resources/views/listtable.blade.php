@@ -5,6 +5,8 @@
     @include('layouts.head')
     <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
@@ -20,21 +22,24 @@
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>
                 <div>
                     <label for="periode" class="text-sm mr-2">Periode</label>
-                    <select id="periode" class="border border-gray-300 rounded-md p-1 w-32">
-                        <option>2020-2021</option>
-                        <option>2021-2022</option>
-                        <option>2022-2023</option>
-                        <option>2023-2024</option>
+                    <select id="periode" class="border border-gray-300 rounded-md p-1 w-32 text-xs">
+                        <option value="">Semua Periode</option>
+                        @foreach ($periodes as $periode)
+                            <option value="{{ $periode }}" {{ $selectedPeriode === $periode ? 'selected' : '' }}>
+                                {{ $periode }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
-            </div>
+            </div>            
             <table class="w-full text-xs text-center text-gray-700">
                 <thead class="text-xs uppercase border-b-2 border-gray-200">
                     <tr>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">NO</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nama</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Organisasi Mahasiswa</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Periode</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Waktu Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Aksi</th>
@@ -45,17 +50,28 @@
                     <tr class="border-b text-center">
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
                         <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nama }}</td>
-                        <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ormawa }}</td>
-                        <td class="px-4 py-3">
-                            @if($pengajuan->status == 'sedang diproses')
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">Diproses</span>
-                            @elseif($pengajuan->status == 'diterima')
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">Diterima</span>
-                            @elseif($pengajuan->status == 'ditolak')
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">Ditolak</span>
+                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td> <!-- Kolom periode -->
+                        <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
+                        <td>
+                            @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
+                                    Diproses
+                                </span>
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
+                                    Diterima
+                                </span>
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
+                                    Ditolak
+                                </span>
+                            @else
+                                <span class="w-24 h-8 px-3 py-1 bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md">
+                                    Tidak Diketahui
+                                </span>
                             @endif
-                        </td>
+                        </td>                        
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->updated_at)->translatedFormat('j F Y') }}</td>
                         <td class="px-4 py-3">
                             <a href="detailPengajuan" class="text-blue-500 hover:text-blue-700">
@@ -69,5 +85,17 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('periode').addEventListener('change', function () {
+        const selectedPeriode = this.value;
+        const url = new URL(window.location.href);
+        if (selectedPeriode) {
+            url.searchParams.set('periode', selectedPeriode);
+        } else {
+            url.searchParams.delete('periode');
+        }
+        window.location.href = url.toString();
+    });
+</script>
 @endsection
 </html>

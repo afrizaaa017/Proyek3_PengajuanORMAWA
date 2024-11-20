@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pengajuan Ketua ORMAWA</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<!-- <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
     <!-- sidenav  -->
    
@@ -41,11 +41,11 @@
                                 <td class="px-4 py-3 text-[#295F98]">DD/MM/YYYY</td>
                                 <td class="px-4 py-3 text-[#295F98]">HIMAKOM</td>
                                 <td class="px-4 py-3">
-                                <span class="w-24 h-8 px-3 py-1 text-white rounded-lg font-semibold" style="background: linear-gradient(to right, #6C7F9E, #A3B3D3); color: white;">Diproses</span>
+                                    <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">Ditolak</span>
                                 </td>
                                 <td class="px-4 py-3 text-[#295F98]">HH:MM</td>
                                 <td class="px-4 py-3">
-                                <button class="text-blue-500 hover:text-blue-700">
+                                    <button class="px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold">Revisi</button>
                                 </td>
                                 <td class="px-4 py-3"></td>
                             </tr>
@@ -53,7 +53,7 @@
                     </table>
                 </div>
             </div>
-        <!-- </div>
-    </section> -->
+        </div>
+    </section>
 </body>
 </html>
