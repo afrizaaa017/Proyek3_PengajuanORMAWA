@@ -104,13 +104,21 @@ class FormController extends Controller
         return view('progrestabel', compact('pengajuans'));
     }
 
-    public function listtable(){
+    public function listtable(Request $request)
     {
-        // Ambil semua data dari tabel pengajuan
-        $pengajuans = Pengajuan::all();
+        // Ambil nilai periode yang dipilih dari query string
+        $selectedPeriode = $request->input('periode');
+
+        // Ambil daftar periode unik dari database untuk dropdown
+        $periodes = Pengajuan::select('periode')->distinct()->pluck('periode');
+
+        // Ambil data pengajuan, filter berdasarkan periode jika ada
+        $pengajuans = Pengajuan::when($selectedPeriode, function ($query) use ($selectedPeriode) {
+            return $query->where('periode', $selectedPeriode);
+        })->get();
 
         // Kirim data ke view
-        return view('listtable', compact('pengajuans'));
+        return view('listtable', compact('pengajuans', 'periodes', 'selectedPeriode'));
     }
 }
-}
+

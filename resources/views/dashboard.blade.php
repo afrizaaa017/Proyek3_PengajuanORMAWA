@@ -87,21 +87,3 @@
             <div class="w-full rounded-lg shadow-lg overflow-hidden">
                 <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="gambar-gedung">
             </div>
-        </div>
-
-       
-    </div>
-    @endsection
-
-    {{-- <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200"> --}}
-        <!-- Navbar -->
-        {{-- @include('components.nav') --}}
-
-        <!-- end Navbar -->
-
-        <!-- Main Content -->
-
-    {{-- </main> --}}
-{{-- </body>
-
-</html> --}}
