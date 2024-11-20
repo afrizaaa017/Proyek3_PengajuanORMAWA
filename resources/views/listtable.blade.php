@@ -5,7 +5,6 @@
     @include('layouts.head')
     <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
@@ -37,7 +36,7 @@
                     <tr>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">NO</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nama</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Organisasi Mahasiswa</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">ORMAWA</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Periode</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
@@ -51,7 +50,7 @@
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
                         <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nama }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ormawa }}</td>
-                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td> <!-- Kolom periode -->
+                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td>
                             @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
@@ -82,6 +81,12 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <!-- Tombol Back to Dashboard -->
+        <div class="mt-4">
+            <a href="/dashboard" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+            </a>
         </div>
     </div>
 </div>
