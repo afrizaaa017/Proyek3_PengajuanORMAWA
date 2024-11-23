@@ -13,6 +13,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -97,6 +98,11 @@ Route::resource('timelines', TimelineController::class);
 Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
 Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
+
+//setting deadline
+Route::middleware(['check.access'])->group(function () {
+    Route::get('/form', [FormController::class, 'index'])->name('form.index');
+});
 
 
 

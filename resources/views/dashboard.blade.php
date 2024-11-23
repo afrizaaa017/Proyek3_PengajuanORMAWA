@@ -98,14 +98,20 @@
                                     &times;
                                 </button>
                             </div>
-                            <form action="" method="POST">
+                            <form action="{{ route('update.access.time') }}" method="POST">
+                                @csrf
                                 <!-- Hidden input to set the rejection status -->
                                 <input type="hidden" name="status" value="ditolak">
                                 <div class="w-full px-4 py-3">
-                                    <label for="tanggal_timeline_awal" class="form-label">Tanggal Awal</label>
+                                    <label for="tanggal_deadline" class="form-label">Penutupan Pengajuan</label>
                                     <input type="date"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                        id="tanggal_timeline_awal" name="tanggal_timeline_awal"
+                                        id="tanggal_deadline" name="tanggal_deadline"
+                                        value="" required>
+                                    <label for="tanggal_dibuka" class="form-label">Buka Pengajuan</label>
+                                    <input type="date"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        id="tanggal_dibuka" name="tanggal_dibuka"
                                         value="" required>
                                 </div>
                                 <div class="flex justify-end px-4 py-3 border-t border-gray-200">
@@ -113,7 +119,7 @@
                                         Close
                                     </button>
                                     <button type="submit" class="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
-                                        Tolak dan Revisi
+                                        Set Deadline
                                     </button>
                                 </div>
                             </form>                            
