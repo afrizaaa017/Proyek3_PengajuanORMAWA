@@ -97,7 +97,9 @@ Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
 Route::resource('timelines', TimelineController::class);
 Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
 Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
-Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
+Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timeline.destroy');
+Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timeline.edit');
+Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 
 //setting deadline
 Route::middleware(['check.access'])->group(function () {

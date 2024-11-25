@@ -48,18 +48,21 @@
                     <td class="border px-4 py-2">{{ $timeline->tanggal_timeline_awal }}</td>
                     <td class="border px-4 py-2">{{ $timeline->tanggal_timeline_akhir }}</td>
                     <td class="border px-4 py-2">
+                        <!-- Edit Button -->
+                        <button onclick="showEditForm({{ $timeline->id }}, '{{ $timeline->judul_timeline }}', '{{ $timeline->tanggal_timeline_awal }}', '{{ $timeline->tanggal_timeline_akhir }}')"
+                                class="text-blue-500 hover:underline">Edit</button>
                         <!-- Delete Button -->
-                        <form action="{{ route('admin.destroy', $timeline->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this timeline?')">
-                            
+                        <form action="{{ route('timeline.destroy', $timeline->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this timeline?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:underline ml-2">Delete</button>
+                            <button type="submit" class="text-red-500 hover:underline">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    
 </div>
     {{--  modal 2--}}
 
@@ -99,40 +102,51 @@
 
     <!-- Edit Timeline Form -->
     <section class="flex-1 bg-white dark:bg-gray-900 p-4">
-        <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Timeline</h2>
-            <form method="POST" action="{{ route('timeline.update', $timeline->id) }}">
-                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                    @csrf
-                    @method('PUT')
-                    <div class="sm:col-span-2">
-                        <label for="judul_timeline"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul Timeline</label>
-                        <input type="text" id="judul_timeline" name="judul_timeline" value=" "
-                            class="w-full sm:w-[700px] block p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type product name" required>
-                    </div>
-                    <div class="w-full">
-                        <label for="tanggal_timeline_awal" class="form-label">Tanggal Awal</label>
-                        <input type="date"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            id="tanggal_timeline_awal" name="tanggal_timeline_awal"
-                            value="{{ $timeline->tanggal_timeline_awal }}" required>
-                    </div>
-                    <div class="w-full">
-                        <label for="tanggal_timeline_akhir" class="form-label">Tanggal Akhir</label>
-                        <input type="date"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            id="tanggal_timeline_akhir" name="tanggal_timeline_akhir"
-                            value="{{ $timeline->tanggal_timeline_akhir }}" required>
-                    </div>
-                    <button type="submit"
-                        class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">Update Timeline</button>
+        <div id="editFormContainer" class="hidden mt-5 bg-gray-100 p-5 rounded-lg">
+            <h2 class="text-xl font-bold mb-4">Edit Timeline</h2>
+            <form method="POST" action="" id="editForm">
+                @csrf
+                @method('PUT')
+                <input type="hidden" id="editTimelineId" name="id">
+                <div class="mb-4">
+                    <label for="editJudulTimeline" class="block text-sm font-medium">Judul Timeline</label>
+                    <input type="text" id="editJudulTimeline" name="judul_timeline" class="block w-full p-2 border rounded" required>
                 </div>
+                <div class="mb-4">
+                    <label for="editTanggalAwal" class="block text-sm font-medium">Tanggal Awal</label>
+                    <input type="date" id="editTanggalAwal" name="tanggal_timeline_awal" class="block w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editTanggalAkhir" class="block text-sm font-medium">Tanggal Akhir</label>
+                    <input type="date" id="editTanggalAkhir" name="tanggal_timeline_akhir" class="block w-full p-2 border rounded" required>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Timeline</button>
+                <button type="button" onclick="hideEditForm()" class="ml-2 bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
             </form>
         </div>
+        
     </section>
 </div>
+<script>
+    function showEditForm(id, judul, tanggalAwal, tanggalAkhir) {
+        // Set action URL for form
+        const form = document.getElementById('editForm');
+        form.action = `/timelines/${id}`;
+
+        // Fill the form fields with the timeline data
+        document.getElementById('editTimelineId').value = id;
+        document.getElementById('editJudulTimeline').value = judul;
+        document.getElementById('editTanggalAwal').value = tanggalAwal;
+        document.getElementById('editTanggalAkhir').value = tanggalAkhir;
+
+        // Show the form
+        document.getElementById('editFormContainer').classList.remove('hidden');
+    }
+
+    function hideEditForm() {
+        document.getElementById('editFormContainer').classList.add('hidden');
+    }
+</script>
 
     </body>
 </html>
