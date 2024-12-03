@@ -12,8 +12,8 @@
     <title>Pengajuan Ketua ORMAWA</title>
 </head>
 
-@extends('components.main')
-@include('components.navbar2')
+{{-- @extends('components.main')
+@include('components.navbar2') --}}
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -21,128 +21,130 @@
         <div class="px-4 sm:px-0">
             <h3 class="text-center font-semibold leading-7 text-gray-900">DATA PENGAJUAN</h3>
         </div>
-        @foreach ($pengajuans as $pengajuan)
             <div class="mt-6 border-t border-gray-100">
                 <dl class="divide-y divide-gray-100">
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">NAMA</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuan['nama'] }}
-                        </dd>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuans->nama }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">JURUSAN</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ $pengajuan['jurusan'] }}</dd>
+                            {{ $pengajuans['jurusan'] }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">PRODI</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuan['prodi'] }}
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuans['prodi'] }}
                         </dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">ORMAWA</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ $pengajuan['ormawa'] }}</dd>
+                            {{ $pengajuans['ormawa'] }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">KETUA</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ $pengajuan['ketua_ormawa'] }}</dd>
+                            {{ $pengajuans['ketua_ormawa'] }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">PERIODE</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ $pengajuan['periode'] }}</dd>
+                            {{ $pengajuans['periode'] }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">NO.TELEPON</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuan['telp'] }}
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuans['telp'] }}
                         </dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">EMAIL</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuan['email'] }}
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $pengajuans['email'] }}
                         </dd>
                     </div>
 
                 </dl>
             </div>
             <h4 class="text-center font-semibold leading-7 text-gray-900">SCAN KTP</h4>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'scan_ktp.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_sehat.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_rekomendasi_jurusan.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'transkip_rekomendasi_jurusan.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_lkmm.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_pelatihan_kepemimpinan.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_bahasa_asing.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'scan_ktm.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_keterangan_berkelakuan_baik.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'surat_penyataan_mandiri.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_pkkmb.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_bela_negara.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_agent_of_change.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'sertifikat_berorganisasi.pdf') }}" width="1000px" height="600px"></iframe>
-            <iframe src="{{ asset('laraview/' . $pengajuan->id . '/' .$pengajuan->nim . '_' . $pengajuan->nama . '_' . 'berita_acara_pemilihan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_scan_ktp.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_sehat.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_rekomendasi_jurusan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_transkip_rekomendasi_jurusan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_lkmm.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_pelatihan_kepemimpinan.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_bahasa_asing.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_scan_ktm.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_keterangan_berkelakuan_baik.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_penyataan_mandiri.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_pkkmb.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_bela_negara.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_agent_of_change.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_berorganisasi.pdf') }}" width="1000px" height="600px"></iframe>
+            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_berita_acara_pemilihan.pdf') }}" width="1000px" height="600px"></iframe>
 
+           
             <div class="flex justify-between items-center mt-4">
-                <!-- Form untuk menolak pengajuan -->
-                <div x-data="{ openModal: false }">
-                    <!-- Revisi Button -->
-                    <button @click="openModal = true" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                        Revisi
-                    </button>
-                
-                    <!-- Modal -->
-                    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" 
-                         x-show="openModal" 
-                         x-cloak>
-                        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-auto">
-                            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
-                                <h5 class="text-lg font-semibold" id="exampleModalLabel">Revisi Pengajuan</h5>
-                                <button type="button" @click="openModal = false" class="text-gray-500 hover:text-gray-700">
-                                    &times;
-                                </button>
-                            </div>
-                            <form action="{{ isset($pengajuan) ? route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'ditolak']) : route('pengajuan.updateStatus') }}" method="POST">
-                                @csrf
-                                @if (isset($pengajuan))
-                                    @method('PATCH')
-                                @endif
-                            
-                                <!-- Hidden input to set the rejection status -->
-                                <input type="hidden" name="status" value="ditolak">
-                            
-                                <div class="p-4">
-                                    <div class="mb-4">
-                                        <label for="revisi" class="block text-sm font-medium text-gray-700">Revisi Pengajuan</label>
-                                        <textarea class="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" name="revisi" rows="3"> </textarea>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex justify-end px-4 py-3 border-t border-gray-200">
-                                    <button type="button" @click="openModal = false" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
-                                        Close
-                                    </button>
-                                    <button type="submit" class="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
-                                        Tolak dan Revisi
-                                    </button>
-                                </div>
-                            </form>                            
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form untuk menerima pengajuan -->
-                <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuan->id, 'status' => 'diterima']) }}" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <button type="submit" class="btn btn-success bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Terima</button>
-                </form>
+                <!-- Tombol Revisi -->
+                <button id="btnRevisi" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                    Revisi
+                </button>
             
+                <!-- Script SweetAlert untuk Revisi -->
+                <script>
+                    document.getElementById('btnRevisi').addEventListener('click', function () {
+                        Swal.fire({
+                            title: 'Revisi Pengajuan',
+                            input: 'textarea',
+                            inputLabel: 'Masukkan Revisi Pengajuan',
+                            inputPlaceholder: 'Tuliskan revisi di sini...',
+                            inputAttributes: {
+                                'aria-label': 'Tuliskan revisi di sini'
+                            },
+                            showCancelButton: true,
+                            confirmButtonText: 'Tolak dan Revisi',
+                            cancelButtonText: 'Batal',
+                            preConfirm: (revisi) => {
+                                if (!revisi) {
+                                    Swal.showValidationMessage('Revisi tidak boleh kosong!');
+                                }
+                                return revisi;
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Kirim revisi ke server
+                                fetch("{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Ditolak']) }}", {
+                                    method: 'PATCH',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                         'Accept': 'application/json'
+                                    },
+                                    body: JSON.stringify({ revisi: result.value })
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        Swal.fire('Berhasil!', 'Revisi telah disimpan.', 'success').then(() => {
+                                            window.location.href = '/listtable'; // Ganti dengan URL yang sesuai
+                                        });
+                                    })
+                                    .catch(error => {
+                                        Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan revisi.', 'error');
+                                    });
+                            }
+                        });
+                    });
+                </script>
+                <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Diterima']) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="btn btn-success bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">
+                        Terima
+                    </button>
+                </form>
+                
             </div>
 
-        @endforeach
     </div>
 
 
@@ -151,11 +153,5 @@
     </script>
   <!-- Script to handle modal toggle (using Alpine.js) -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0/dist/alpine.min.js" defer></script>
-    <script>
-        function modal() {
-            return {
-                openModal: false
-            };
-        }
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

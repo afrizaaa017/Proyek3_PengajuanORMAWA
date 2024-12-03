@@ -100,7 +100,7 @@
                             </div>
                             <form action="" method="POST">
                                 <!-- Hidden input to set the rejection status -->
-                                <input type="hidden" name="status" value="ditolak">
+                                <input type="hidden" name="status" value="Ditolak">
                                 <div class="w-full px-4 py-3">
                                     <label for="tanggal_timeline_awal" class="form-label">Tanggal Awal</label>
                                     <input type="date"

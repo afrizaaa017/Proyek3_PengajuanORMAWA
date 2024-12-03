@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\KetuaOrmawa;
+use App\Status;
+use App\Models\Prodi;
 use App\Models\Ormawa;
 use App\Models\Jurusan;
 use App\Models\Pengajuan;
-use App\Models\Prodi;
+use App\Models\KetuaOrmawa;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
+use Illuminate\Support\Facades\Log;
 
 class FormController extends Controller
 {
     
     public function simpanPengajuan(Request $request)
     {
+        if (session()->has('pengajuan')) {
+            return redirect()->route('pengajuanberkas')->with('success', 'Harap lengkapi data biodata terlebih dahulu.');
+        }
+
         $request->session()->put('pengajuan', [
             'nama' => $request->nama,
             'nim' => $request->nim,
@@ -33,9 +39,17 @@ class FormController extends Controller
         return redirect()->route('pengajuanberkas')->with('success', 'Data has been saved successfully.');
     }
     
-    public function detailPengajuan()
+    public function detailPengajuan($id)
     {
-        $pengajuans = Pengajuan::with('berkas')->get();
+        // Ambil data pengajuan berdasarkan id beserta relasi 'berkas'
+        $pengajuans = Pengajuan::with('berkas')->find($id);
+
+        // Jika data tidak ditemukan, kembalikan pesan error
+        if (!$pengajuans) {
+            return redirect()->back()->with('error', 'Data pengajuan tidak ditemukan.');
+        }
+
+        // Kirimkan data ke view
         return view('detailPengajuan', compact('pengajuans'));
     }
 
@@ -48,27 +62,27 @@ class FormController extends Controller
     
         return view('form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas')); 
     }
-    
 
     public function updateStatus(Request $request, $id, $status)
     {
         $pengajuan = Pengajuan::findOrFail($id);
-    
-        // Validasi input
-        $request->validate([
-            'revisi' => 'required|string',
-        ]);
-    
-        // Ubah status jika sesuai
-        if (in_array($status, ['diterima', 'ditolak'])) {
-            $pengajuan->status = $status;
+        $pengajuan->status = $status;
+
+        if ($status === 'Diterima') {
+            $pengajuan->keterangan = 'Tidak ada revisi';
+        } else if ($status === 'Ditolak') {
+            $request->validate([
+                'revisi' => 'required|string',
+            ]);
+            $pengajuan->keterangan = $request->input('revisi');
         }
-    
-        // Simpan keterangan dari revisi
-        $pengajuan->keterangan = $request->input('revisi');
+        else{
+            return redirect()->back()->with('error', 'Status tidak valid.');
+        }
+
         $pengajuan->save();
-    
-        return redirect('/detailPengajuans')->with('success', 'Revisi berhasil diperbarui');
+
+        return redirect('/listtable')->with('success', 'Status pengajuan berhasil diperbarui.');
     }
     
 
