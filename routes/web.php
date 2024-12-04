@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\NotifsController;
+use App\Http\Controllers\updateAccesstime;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
 use App\Http\Controllers\SubmissionController;
@@ -48,7 +49,7 @@ Route::get('/notifications', [NotifsController::class, 'getNotifications'])->nam
 Route::post('/markAsRead/{id}', [NotifsController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
-Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
+// Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
 Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
 Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
 
@@ -75,9 +76,9 @@ Route::post('/pengajuanberkas', [BerkasController::class, 'store'])->name('file.
 
 
 // KEMAHASISWAAN
-Route::get('/menukemahasiswaan', function () {
-    return view('menukemahasiswaan');
-});
+// Route::get('/menukemahasiswaan', function () {
+//     return view('menukemahasiswaan');
+// });
 
 
 // Route::get('/dashboardmahasiswa', function () {
@@ -112,12 +113,17 @@ Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
 Route::resource('timelines', TimelineController::class);
 Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
 Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
-Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
+Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timeline.destroy');
+Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timeline.edit');
+Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 
 //setting deadline
-// Route::middleware(['check.access'])->group(function () {
-//     Route::get('/form', [FormController::class, 'index'])->name('form.index');
-// });
+
+
+Route::middleware(['check.access'])->group(function () {
+    Route::get('/form', [FormController::class, 'index'])->name('form.index');
+    Route::post('/update-access-time', [updateAccesstime::class, 'updateAccessTime'])->name('update.access.time');
+});
 
 
 

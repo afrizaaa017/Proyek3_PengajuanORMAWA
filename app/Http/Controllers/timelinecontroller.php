@@ -12,14 +12,12 @@ class timelinecontroller extends Controller
      */
     public function index()
     {
-        // Mengambil semua data timeline dari database
-        $timelines = Timeline::all(); 
-    
-        // Mengirim data 'timelines' ke view 'admin'
+        $timelines = Timeline::all();
         return view('admin', compact('timelines'));
     }
     
     
+
     
     public function show($id)
 {
@@ -62,11 +60,12 @@ class timelinecontroller extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        $timeline = Timeline::findOrFail($id);
-        return view('timeline.edit', compact('timeline'));
-    }
+
+     public function edit($id)
+     {
+         $timeline = Timeline::findOrFail($id);
+         return view('timeline.edit', compact('timeline'));
+     }
 
     public function update(Request $request, $id)
     {
