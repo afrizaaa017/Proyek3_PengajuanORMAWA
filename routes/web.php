@@ -11,6 +11,7 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
+use App\Http\Controllers\updateAccesstime;
 
 
 
@@ -102,8 +103,11 @@ Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('t
 Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 
 //setting deadline
-Route::middleware(['check.access'])->group(function () {
+
+
+Route::middleware(['check.access'])->group(function () { 
     Route::get('/form', [FormController::class, 'index'])->name('form.index');
+    Route::post('/update-access-time', [updateAccesstime::class, 'updateAccessTime'])->name('update.access.time');
 });
 
 
