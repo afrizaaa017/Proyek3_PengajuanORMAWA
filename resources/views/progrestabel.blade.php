@@ -19,8 +19,8 @@
       
       <!-- end Navbar -->
     <!-- Main Content Section -->
-    <!-- <section class="pt-30 p-3 sm:p-60 min-h-screen flex justify-start bg-white">
-        <div class="w-full lg:w-[85%] ml-50 mt-10">  -->
+    <section class="pt-30 p-3 sm:p-60 min-h-screen flex justify-start bg-white">
+        <div class="w-full ml-50 mt-10">
             <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white m-6">
                 <div class="overflow-x-auto">
                     <table class="w-full text-xs text-left text-gray-700">
@@ -36,24 +36,62 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($pengajuans as $pengajuan)
                             <tr class="border-b">
-                                <td class="px-4 py-3 text-[#295F98]">Nomor Pengajuan</td>
-                                <td class="px-4 py-3 text-[#295F98]">DD/MM/YYYY</td>
-                                <td class="px-4 py-3 text-[#295F98]">HIMAKOM</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
                                 <td class="px-4 py-3">
-                                    <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">Ditolak</span>
+                                    <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::Ditolak ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
+                                        {{ $pengajuan->status }}
+                                    </span>
                                 </td>
                                 <td class="px-4 py-3 text-[#295F98]">HH:MM</td>
                                 <td class="px-4 py-3">
-                                    <button class="px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold">Revisi</button>
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                                    <button 
+                                        class="btn-revisi-pengaju px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold" 
+                                        data-id="{{ $pengajuan->nama }}" 
+                                        data-alasan="{{ $pengajuan->keterangan }}"
+                                        data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
+                                        Revisi
+                                    </button>
+                                    @endif
                                 </td>
                                 <td class="px-4 py-3"></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        document.querySelectorAll('.btn-revisi-pengaju').forEach(button => {
+            button.addEventListener('click', function () {
+                const pengajuanId = this.getAttribute('data-id'); 
+                const alasanRevisi = this.getAttribute('data-alasan'); 
+                const editUrl = this.getAttribute('data-edit-url');
+        
+                Swal.fire({
+                    title: `Pesan Revisi Untuk Pengajuan Dengan Nama ${pengajuanId}`,
+                    text: alasanRevisi ? `Revisi: ${alasanRevisi}` : 'Tidak ada revisi, hubungi pihak staff.',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tutup',
+                    cancelButtonText: 'Lakukan Revisi',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = editUrl;
+                    }
+                });
+            });
+        });
+    </script>
+    
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

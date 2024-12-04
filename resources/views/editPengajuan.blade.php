@@ -65,6 +65,7 @@
         </div>
 
     <section class="bg-blue dark:bg-gray-900">
+        <h1>INI PROSES REVISI</h1>
         <div class="container my-4">
                         
             <!-- Stepper Container -->
@@ -116,113 +117,116 @@
 
             <section class="bg-blue dark:bg-gray-900">
                 <div class="py-8 px-4 mx-auto">
-                    <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">  </h2>
-                    <form action="{{ route('form.simpanPengajuan') }}" method="post" enctype="multipart/form-data" id="applicationForm">
+                    <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">Edit Pengajuan</h3>
+                    <form action="{{ route('pengajuan.update', ['id' => $pengajuan->id]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
                         @csrf
+                        @method('PUT') <!-- Method spoofing for PUT -->
+                        
                         <!-- Mengatur Grid Layout 2 kolom -->
                         <div class="row g-4">
                             <!-- Nama -->
-                            <div class="col-12" >
+                            <div class="col-12">
                                 <label for="nama" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="" value="{{ old('nama', session('pengajuan')['nama'] ?? '') }}">
+                                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required value="{{ $pengajuan->nama }}">
                             </div>
-
+            
                             <!-- NIM -->
-                            <div class="col-12" >
+                            <div class="col-12">
                                 <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
-                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}">
+                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required value="{{ $pengajuan->nim }}">
                                 @if ($errors->has('nim'))
                                     <div class="text-red-500">
                                         {{ $errors->first('nim') }}
                                     </div>
                                 @endif
                             </div>
+            
                             <!-- Jurusan -->
-                            <div class="col-xl-12" >
+                            <div class="col-xl-12">
                                 <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Jurusan:</label>
-                                <select id="jurusan" name="jurusan" class="form-select">
+                                <select id="jurusan" name="jurusan" class="form-select" required>
                                     <option value="">--Pilih Jurusan--</option>
                                     @foreach($jurusans as $jurusan)
-                                        <option value="{{ $jurusan->nama_jurusan }}"
-                                            {{ old('jurusan', session('pengajuan')['jurusan'] ?? '') == $jurusan->nama_jurusan ? 'selected' : '' }}
-                                            data-id="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}
+                                        <option value="{{ $jurusan->nama_jurusan }}" 
+                                                {{ $pengajuan->jurusan == $jurusan->nama_jurusan ? 'selected' : '' }}
+                                                data-id="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+            
                             <!-- Prodi -->
                             <div class="col-xl-12">
                                 <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Prodi:</label>
-                                <select id="prodi" name="prodi" class="form-select">
+                                <select id="prodi" name="prodi" class="form-select" required>
                                     <option value="">--Pilih Prodi--</option>
                                     @foreach($prodis as $prodi)
                                         <option value="{{ $prodi->nama_prodi }}" 
-                                            {{ old('prodi', session('pengajuan')['prodi'] ?? '') == $prodi->nama_prodi ? 'selected' : '' }}
-                                            data-id="{{ $prodi->id_prodi }}">{{ $prodi->nama_prodi }}
+                                                {{ $pengajuan->prodi == $prodi->nama_prodi ? 'selected' : '' }}
+                                                data-id="{{ $prodi->id_prodi }}">{{ $prodi->nama_prodi }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-
+            
                             <!-- Periode -->
                             <div class="col-xl-12">
                                 <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
-                                <select name="periode" id="periode" class="form-select">
-                                    <option value="" disabled selected>Pilih Periode</option>
-                                    <option value="2020" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2020' ? 'selected' : '' }}>2020-2021</option>
-                                    <option value="2021" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2021' ? 'selected' : '' }}>2021-2022</option>
-                                    <option value="2022" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2022' ? 'selected' : '' }}>2022-2023</option>
+                                <select name="periode" id="periode" class="form-select" required>
+                                    <option value="2020" {{ $pengajuan->periode == '2020' ? 'selected' : '' }}>2020-2021</option>
+                                    <option value="2021" {{ $pengajuan->periode == '2021' ? 'selected' : '' }}>2021-2022</option>
+                                    <option value="2022" {{ $pengajuan->periode == '2022' ? 'selected' : '' }}>2022-2023</option>
                                 </select>
                             </div>
-                            
+            
                             <div class="col-xl-12">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                                <select id="ormawa" name="ormawa" class="form-select">
+                                <select id="ormawa" name="ormawa" class="form-select" required>
                                     <option value="">--Pilih Ormawa--</option>
                                     @foreach($ormawas as $ormawa)
                                         <option value="{{ $ormawa->nama_ormawa }}" 
-                                            {{ old('ormawa', session('pengajuan')['ormawa'] ?? '') == $ormawa->nama_ormawa ? 'selected' : '' }}
-                                            data-id="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}
+                                                {{ $pengajuan->ormawa == $ormawa->nama_ormawa ? 'selected' : '' }}
+                                                data-id="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-
-                            <!-- Ketua_ormawa -->
+            
+                            <!-- Ketua Ormawa -->
                             <div class="col-xl-12">
-                                <div class="col-xl-12">
-                                    <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
-                                    <select id="ketua_ormawa" name="ketua_ormawa" class="form-select"> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
-                                        <option value="">--Pilih Ketua Ormawa--</option>
-                                        @foreach($ketuaOrmawas as $kt)
-                                            <option value="{{ $kt->nama_ketua }}" 
-                                                {{ old('ketua_ormawa', session('pengajuan')['ketua_ormawa'] ?? '') == $kt->nama_ketua ? 'selected' : '' }}
+                                <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
+                                <select id="ketua_ormawa" name="ketua_ormawa" class="form-select" required>
+                                    <option value="">--Pilih Ketua Ormawa--</option>
+                                    @foreach($ketuaOrmawas as $kt)
+                                        <option value="{{ $kt->nama_ketua }}" 
+                                                {{ $pengajuan->ketua_ormawa == $kt->nama_ketua ? 'selected' : '' }}
                                                 data-id="{{ $kt->id_ketua_ormawa }}">{{ $kt->nama_ketua }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-
+            
                             <!-- No. Telepon -->
                             <div class="col-sm-6">
-                                <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
-                                <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="" value="{{ old('telp', session('pengajuan')['telp'] ?? '') }}">
+                                <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No. Telepon</label>
+                                <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required value="{{ $pengajuan->telp }}">
                             </div>
-
+            
                             <!-- Email -->
                             <div class="col-sm-6">
                                 <label for="email" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="" value="{{ old('email', session('pengajuan')['email'] ?? '') }}">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required value="{{ $pengajuan->email }}">
                             </div>
                         </div>
-
+            
                         <div class="d-flex justify-content-end mt-4">
-                            <button type="submit" class="btn btn-gradient-blue">Next</button>
+                            <button type="submit" class="btn btn-gradient-blue">Update</button>
                         </div>
                     </form>
                 </div>
             </section>
+            
+            
         </div>
     </section>
 

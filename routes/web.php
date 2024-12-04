@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\NotifsController;
-use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
 use App\Http\Controllers\SubmissionController;
@@ -59,7 +58,8 @@ Route::get('/menu', function () {
     return view('menu');
 });
 
-Route::get('/progrestabel', [FormController::class, 'progrestabel'])->name('progrestabel');
+
+Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
 
 //Pengajuan Form
 Route::get('/form', [FormController::class, 'index'])->name('form');
@@ -79,9 +79,7 @@ Route::get('/menukemahasiswaan', function () {
     return view('menukemahasiswaan');
 });
 
-Route::get('/listtable', function () {
-    return view('listtable');
-});
+
 // Route::get('/dashboardmahasiswa', function () {
 //     return view('dashboardmahasiswa');
 // });
@@ -117,14 +115,22 @@ Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timel
 Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.destroy');
 
 //setting deadline
-Route::middleware(['check.access'])->group(function () {
-    Route::get('/form', [FormController::class, 'index'])->name('form.index');
+// Route::middleware(['check.access'])->group(function () {
+//     Route::get('/form', [FormController::class, 'index'])->name('form.index');
+// });
+
+
+
+
+Route::get('/tes', function () {
+    return view('editPengajuBerkas');
 });
 
+Route::get('pengajuan/{id}/edit', [FormController::class, 'edit'])->name('pengajuan.edit');
+Route::put('/pengajuan/{id}', [FormController::class, 'update'])->name('pengajuan.update');
 
-
-
-
+Route::get('pengajuan/{id}/berkas/edit', [BerkasController::class, 'edit'])->name('berkas.edit');
+Route::put('pengajuan/{id}/berkas', [BerkasController::class, 'update'])->name('berkas.update');
 
 
 Route::get('/listtable', [FormController::class, 'listtable']);
