@@ -101,7 +101,7 @@
                             <form action="{{ route('update.access.time') }}" method="POST">
                                 @csrf
                                 <!-- Hidden input to set the rejection status -->
-                                <input type="hidden" name="status" value="ditolak">
+                                <input type="hidden" name="status" value="Ditolak">
                                 <div class="w-full px-4 py-3">
                                     <label for="tanggal_deadline" class="form-label">Penutupan Pengajuan</label>
                                     <input type="date"

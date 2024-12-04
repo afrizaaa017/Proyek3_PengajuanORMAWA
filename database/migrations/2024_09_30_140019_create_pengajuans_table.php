@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('periode');
             $table->text('telp');
             $table->text('email');
-            $table->enum('status', ['sedang diproses', 'diterima', 'ditolak'])->default('sedang diproses');
+            $table->enum('status', ['Sedang Diproses', 'Diterima', 'Ditolak'])->default('Sedang Diproses');
             $table->text('keterangan')->default('Kosong');
             $table->timestamps();
         });

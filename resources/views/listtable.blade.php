@@ -73,7 +73,7 @@
                         </td>                        
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->updated_at)->translatedFormat('j F Y') }}</td>
                         <td class="px-4 py-3">
-                            <a href="detailPengajuan" class="text-blue-500 hover:text-blue-700">
+                            <a href="{{ route('pengajuan.detail', ['id' => $pengajuan->id]) }}" class="text-blue-500 hover:text-blue-700">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

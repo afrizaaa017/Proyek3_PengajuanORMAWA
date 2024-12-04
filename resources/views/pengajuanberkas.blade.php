@@ -38,13 +38,6 @@
             <!-- Konten Navbar (kosong) -->
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <strong>{{ $message }}</strong>
-            </div>
-            <a href="{{ Storage::url(Session::get('file')) }}" target="_blank">Lihat File</a>
-        @endif
-
         <!-- Konten Upload Berkas -->
         <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data">
             @csrf

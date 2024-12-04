@@ -13,6 +13,10 @@ class BerkasController extends Controller
 {
     public function index()
     {
+        if (!session()->has('pengajuan')) {
+            return redirect()->route('form')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
+        }
+
         $pengajuanData = session('pengajuan');
         return view('pengajuanberkas', ['pengajuanData' => $pengajuanData]);
     }

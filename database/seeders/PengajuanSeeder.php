@@ -41,7 +41,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'test2@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'ditolak',
+                'status' => 'Ditolak',
             ],
             [
                 'nama' => "Rina Nana",
@@ -55,7 +55,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'test@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'diterima'
+                'status' => 'Diterima'
             ],
             // Data tambahan
             [
@@ -84,7 +84,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'budi@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'ditolak'
+                'status' => 'Ditolak'
             ],
             [
                 'nama' => "Citra Asih",
@@ -98,7 +98,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'citra@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'diterima'
+                'status' => 'Diterima'
             ],
             [
                 'nama' => "Dedi Suardi",
@@ -126,7 +126,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'elisa@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'ditolak'
+                'status' => 'Ditolak'
             ],
             [
                 'nama' => "Isyana Putri",
@@ -140,7 +140,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'fahmi@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'diterima'
+                'status' => 'Diterima'
             ],
             [
                 'nama' => "Gina Ami",
@@ -168,7 +168,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'hana@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'ditolak'
+                'status' => 'Ditolak'
             ]
         ]);
     }

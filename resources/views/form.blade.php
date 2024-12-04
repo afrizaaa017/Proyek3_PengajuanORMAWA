@@ -124,13 +124,13 @@
                             <!-- Nama -->
                             <div class="col-12" >
                                 <label for="nama" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="">
+                                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="" value="{{ old('nama', session('pengajuan')['nama'] ?? '') }}">
                             </div>
 
                             <!-- NIM -->
                             <div class="col-12" >
                                 <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
-                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="">
+                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}">
                             </div>
                             <!-- Jurusan -->
                             <div class="col-xl-12" >
@@ -190,13 +190,13 @@
                             <!-- No. Telepon -->
                             <div class="col-sm-6">
                                 <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No.Telepon</label>
-                                <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="">
+                                <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="" value="{{ old('telp', session('pengajuan')['telp'] ?? '') }}">
                             </div>
 
                             <!-- Email -->
                             <div class="col-sm-6">
                                 <label for="email" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="" value="{{ old('email', session('pengajuan')['email'] ?? '') }}">
                             </div>
                         </div>
 
