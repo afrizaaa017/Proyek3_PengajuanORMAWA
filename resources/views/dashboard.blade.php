@@ -15,7 +15,7 @@
 <div class="w-full px-4 py-6 mx-auto" id="content">
     <!-- Grid dengan Kolom Khusus -->
     <div class="custom-grid">
-        
+
         <!-- Kotak Hijau -->
         <div class="kotak-hijau relative flex flex-col justify-between h-48">
             <h2 class="text-2xl font-bold text-white">Sudah <br> Mengajukan</h2>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        
+
         <!-- Dalam Antrean dan Sudah Berhasil -->
         <div class="space-y-4">
             <h2 class="text-xl font-bold">Dalam Antrean</h2>
@@ -48,7 +48,7 @@
                     <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center cursor-pointer">
                         {{ strtoupper(substr($profil->nama, 0, 2)) }}
                     </div>
-                    
+
                     <!-- Tooltip -->
                     <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-xs text-white bg-gray-800 rounded-lg py-1 px-2 shadow-lg">
                         {{ $profil->nama }}
@@ -65,7 +65,7 @@
                     <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center cursor-pointer">
                         {{ strtoupper(substr($profil->nama, 0, 2)) }}
                     </div>
-                    
+
                     <!-- Tooltip -->
                     <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-xs text-white bg-gray-800 rounded-lg py-1 px-2 shadow-lg">
                         {{ $profil->nama }}
@@ -84,10 +84,10 @@
                     <button @click="openModal = true" class="block text-center bg-gradient-to-r from-[#2E7BCE] to-[#173E68] text-white text-lg font-bold py-3 rounded-lg hover:opacity-90 transition w-full">
                         Setting Akhir Pengajuan
                     </button>
-    
+
                     <!-- Modal -->
-                    <div class="fixed inset-0 z-50 flex items-center justify-center" 
-                        x-show="openModal" 
+                    <div class="fixed inset-0 z-50 flex items-center justify-center"
+                        x-show="openModal"
                         x-cloak
                         @click.self="openModal = false">
                         <!-- Modal Content -->
@@ -122,7 +122,7 @@
                                         Set Deadline
                                     </button>
                                 </div>
-                            </form>                            
+                            </form>
                         </div>
                     </div>
                 </div>
