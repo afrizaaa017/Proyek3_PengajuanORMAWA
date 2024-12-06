@@ -69,65 +69,82 @@
                                     <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="" value="{{ old('nama', session('pengajuan')['nama'] ?? '') }}">
                                 </div>
 
-                                <!-- NIM -->
-                                <div class="col-12" >
-                                    <label for="nim" class="block mb-2 text-sm font-medium text-blue-800">NIM</label>
-                                    <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}">
-                                </div>
-                                <!-- Jurusan -->
-                                <div class="col-xl-12" >
-                                    <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800">Pilih Jurusan:</label>
-                                    <select id="jurusan" name="jurusan" class="form-select">
-                                        <option value="">--Pilih Jurusan--</option>
-                                        @foreach($jurusans as $jurusan)
-                                            <option value="{{ $jurusan->nama_jurusan }}" data-id="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <!-- Prodi -->
-                                <div class="col-xl-12">
-                                    <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800">Pilih Prodi:</label>
-                                    <select id="prodi" name="prodi" class="form-select">
-                                        <option value="">--Pilih Prodi--</option>
-                                        @foreach($prodis as $prodi)
-                                            <option value="{{ $prodi->nama_prodi }}" data-id="{{ $prodi->id_prodi }}">{{ $prodi->nama_prodi }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Periode -->
-                                <div class="col-xl-12">
-                                    <label for="periode" class="block mb-2 text-sm font-medium text-blue-800">Periode</label>
-                                    <select name="periode" id="periode" class="form-select">
-                                        <option selected="">Pilih Periode</option>
-                                        <option value="2020">2020-2021</option>
-                                        <option value="2021">2021-2022</option>
-                                        <option value="2022">2022-2023</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-xl-12">
-                                    <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800">Ormawa</label>
-                                    <select id="ormawa" name="ormawa" class="form-select">
-                                        <option value="">--Pilih Ormawa--</option>
-                                        @foreach($ormawas as $ormawa)
-                                            <option value="{{ $ormawa->nama_ormawa }}" data-id="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Ketua_ormawa -->
-                                <div class="col-xl-12">
-                                    <div class="col-xl-12">
-                                        <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800">Pilih ketua ormawa:</label>
-                                        <select id="ketua_ormawa" name="ketua_ormawa" class="form-select"> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
-                                            <option value="">--Pilih Ketua Ormawa--</option>
-                                            @foreach($ketuaOrmawas as $kt)
-                                                <option value="{{ $kt->nama_ormawa }}" data-id="{{ $kt->id_ketua_ormawa }}">{{ $kt->ketua_ormawa }}</option>
-                                            @endforeach
-                                        </select>
+                            <!-- NIM -->
+                            <div class="col-12" >
+                                <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
+                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}">
+                                @if ($errors->has('nim'))
+                                    <div class="text-red-500">
+                                        {{ $errors->first('nim') }}
                                     </div>
+                                @endif
+                            </div>
+                            <!-- Jurusan -->
+                            <div class="col-xl-12" >
+                                <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Jurusan:</label>
+                                <select id="jurusan" name="jurusan" class="form-select">
+                                    <option value="">--Pilih Jurusan--</option>
+                                    @foreach($jurusans as $jurusan)
+                                        <option value="{{ $jurusan->nama_jurusan }}"
+                                            {{ old('jurusan', session('pengajuan')['jurusan'] ?? '') == $jurusan->nama_jurusan ? 'selected' : '' }}
+                                            data-id="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- Prodi -->
+                            <div class="col-xl-12">
+                                <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Prodi:</label>
+                                <select id="prodi" name="prodi" class="form-select">
+                                    <option value="">--Pilih Prodi--</option>
+                                    @foreach($prodis as $prodi)
+                                        <option value="{{ $prodi->nama_prodi }}"
+                                            {{ old('prodi', session('pengajuan')['prodi'] ?? '') == $prodi->nama_prodi ? 'selected' : '' }}
+                                            data-id="{{ $prodi->id_prodi }}">{{ $prodi->nama_prodi }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Periode -->
+                            <div class="col-xl-12">
+                                <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
+                                <select name="periode" id="periode" class="form-select">
+                                    <option value="" disabled selected>Pilih Periode</option>
+                                    <option value="2020" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2020' ? 'selected' : '' }}>2020-2021</option>
+                                    <option value="2021" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2021' ? 'selected' : '' }}>2021-2022</option>
+                                    <option value="2022" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2022' ? 'selected' : '' }}>2022-2023</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
+                                <select id="ormawa" name="ormawa" class="form-select">
+                                    <option value="">--Pilih Ormawa--</option>
+                                    @foreach($ormawas as $ormawa)
+                                        <option value="{{ $ormawa->nama_ormawa }}"
+                                            {{ old('ormawa', session('pengajuan')['ormawa'] ?? '') == $ormawa->nama_ormawa ? 'selected' : '' }}
+                                            data-id="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Ketua_ormawa -->
+                            <div class="col-xl-12">
+                                <div class="col-xl-12">
+                                    <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
+                                    <select id="ketua_ormawa" name="ketua_ormawa" class="form-select"> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
+                                        <option value="">--Pilih Ketua Ormawa--</option>
+                                        @foreach($ketuaOrmawas as $kt)
+                                            <option value="{{ $kt->nama_ketua }}"
+                                                {{ old('ketua_ormawa', session('pengajuan')['ketua_ormawa'] ?? '') == $kt->nama_ketua ? 'selected' : '' }}
+                                                data-id="{{ $kt->id_ketua_ormawa }}">{{ $kt->nama_ketua }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                            </div>
 
                                 <!-- No. Telepon -->
                                 <div class="col-sm-6">

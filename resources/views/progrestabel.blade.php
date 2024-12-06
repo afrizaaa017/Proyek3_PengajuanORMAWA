@@ -19,24 +19,62 @@
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Surat SK</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="border-b">
-                        <td class="px-4 py-3 text-[#295F98]">Nomor Pengajuan</td>
-                        <td class="px-4 py-3 text-[#295F98]">DD/MM/YYYY</td>
-                        <td class="px-4 py-3 text-[#295F98]">HIMAKOM</td>
-                        <td class="px-4 py-3">
-                            <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">Ditolak</span>
-                        </td>
-                        <td class="px-4 py-3 text-[#295F98]">HH:MM</td>
-                        <td class="px-4 py-3">
-                            <button class="px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold">Revisi</button>
-                        </td>
-                        <td class="px-4 py-3"></td>
-                    </tr>
-                </tbody>
-            </table>
+                        <tbody>
+                            @foreach ($pengajuans as $pengajuan)
+                            <tr class="border-b">
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
+                                <td class="px-4 py-3">
+                                    <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::Ditolak ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
+                                        {{ $pengajuan->status }}
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3 text-[#295F98]">HH:MM</td>
+                                <td class="px-4 py-3">
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                                    <button 
+                                        class="btn-revisi-pengaju px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold" 
+                                        data-id="{{ $pengajuan->nama }}" 
+                                        data-alasan="{{ $pengajuan->keterangan }}"
+                                        data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
+                                        Revisi
+                                    </button>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-3"></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</div>
-@endsection
+        <script>
+            document.querySelectorAll('.btn-revisi-pengaju').forEach(button => {
+                button.addEventListener('click', function () {
+                    const pengajuanId = this.getAttribute('data-id'); 
+                    const alasanRevisi = this.getAttribute('data-alasan'); 
+                    const editUrl = this.getAttribute('data-edit-url');
+            
+                    Swal.fire({
+                        title: `Pesan Revisi Untuk Pengajuan Dengan Nama ${pengajuanId}`,
+                        text: alasanRevisi ? `Revisi: ${alasanRevisi}` : 'Tidak ada revisi, hubungi pihak staff.',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Tutup',
+                        cancelButtonText: 'Lakukan Revisi',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.cancel) {
+                            window.location.href = editUrl;
+                        }
+                    });
+                });
+            });
+        </script>
+        
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        </div>
+        @endsection
