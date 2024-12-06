@@ -329,3 +329,44 @@ section {
 .text-gray-pending {
     color: #A0AEC0; /* Warna abu-abu untuk teks pending */
 }
+
+/* sweet alert style */
+/* CSS untuk tombol konfirmasi */
+.swal-confirm-button, .swal2-confirm {
+    background-color: #4CAF50 !important;  /* Warna latar belakang tombol */
+    color: white !important;  /* Teks awal terlihat */
+    font-size: 16px;  /* Ukuran font */
+    text-align: center;  /* Teks di tengah */
+    padding: 12px 24px;  /* Ukuran tombol */
+    border-radius: 8px;  /* Sudut tombol melengkung */
+    cursor: pointer;  /* Menunjukkan bahwa tombol dapat diklik */
+    opacity: 1;  /* Tombol terlihat */
+    transition: color 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+/* Efek hover pada tombol konfirmasi */
+.swal-confirm-button:hover {
+    color: white !important;  /* Warna teks saat hover */
+    background-color: #45a049 !important;  /* Warna latar belakang saat hover */
+    transform: scale(1.05);  /* Efek memperbesar tombol sedikit saat hover */
+}
+
+/* CSS untuk tombol batal */
+.swal-cancel-button {
+    background-color: #f44336 !important;  /* Latar belakang transparan */
+    color: white !important;  /* Teks merah yang terlihat */
+    font-size: 16px;
+    text-align: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 1;
+    transition: color 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+/* Efek hover pada tombol batal */
+.swal-cancel-button:hover {
+    color: white !important;  /* Warna teks saat hover */
+    background-color: #f44336 !important;  /* Warna latar belakang saat hover */
+    transform: scale(1.05);  /* Efek memperbesar tombol sedikit saat hover */
+}

@@ -1,21 +1,11 @@
-{{-- <!DOCTYPE html> --}}
-<html lang="id">
-
-<head>
-    @include('layouts.head')
-    <title>Pengajuan Ketua ORMAWA</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-</head>
-
 @extends('components.main')
+@include('layouts.head')
 @include('components.navbar2')
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">
     <!-- Tabel Pengajuan -->
-    <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white">
+    <div class="relative shadow-md rounded-lg overflow-auto pb-10 p-5 border border-gray-200 bg-white">
         <div class="w-full">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>

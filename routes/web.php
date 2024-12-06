@@ -54,7 +54,6 @@ Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboar
 Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
 Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
 
-
 // MAHASISWA
 // Route::get('/menu', function () {
 //     return view('menu');
@@ -95,7 +94,7 @@ Route::get('/TambahProdi', [ProdiController::class, 'index'])->name('prodi.index
 Route::post('/TambahProdi', [ProdiController::class, 'store'])->name('prodi.store');
 Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
 
-Route::get('/TambahJurusan', [ProdiController::class, 'index'])->name('prodi.index');
+Route::get('/TambahJurusan', [ProdiController::class, 'index'])->name('jurusan.index');
 Route::post('/TambahJurusan', [ProdiController::class, 'storeJurusan'])->name('jurusan.store');
 Route::delete('/jurusan/{id}', [ProdiController::class, 'destroyJurusan'])->name('jurusan.destroy');
 
@@ -114,7 +113,7 @@ Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('re
 Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
 Route::resource('timelines', TimelineController::class);
 Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
-Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
+Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.put');
 Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timeline.destroy');
 Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timeline.edit');
 Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');

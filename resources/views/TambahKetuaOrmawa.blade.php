@@ -1,46 +1,74 @@
-<h1>Daftar Ketua Ormawa</h1>
+@extends('components.main')
+@include('layouts.head')
+@include('components.navbar2')
 
-<h1>Tambah Ketua Ormawa</h1>
-<form action="{{ route('ketuaOrmawa.store') }}" method="POST">
-    @csrf
-    <label for="nama_ketua">Nama Ketua:</label>
-    <input type="text" name="nama_ketua" required>
-    
-    <label for="ormawa_id">Pilih Ormawa:</label>
-    <select name="ormawa_id" required>
-        @foreach($ormawas as $ormawa)
-            <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
-        @endforeach
-    </select>
+@section('content')
+<div class="w-full px-4 py-6 mx-auto min-h-screen" id="content">
+    <div class="w-full">
+        <!-- Judul Halaman -->
+        <div class="w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold mb-4">Daftar Jurusan dan Prodi</h2>
+            </div>
+        </div>
 
-    <button type="submit">Simpan</button>
-</form>
+        <!-- Form Tambah Ketua Ormawa -->
+        <div class="relative shadow-md rounded-lg overflow-hidden mb-5 p-5 border border-gray-200 bg-white">
+            <h2 class="text-xl font-bold pb-2">Tambah Ketua Ormawa</h2>
+            <form action="{{ route('ketuaOrmawa.store') }}" method="POST" class="flex flex-col items-center">
+                @csrf
+                <div class="mb-4 w-full max-w-lg">
+                    <label for="nama_ketua" class="block font-bold text-[#295F98] mb-2">Nama Ketua</label>
+                    <input type="text" name="nama_ketua" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                </div>
 
+                <div class="mb-4 w-full max-w-lg">
+                    <label for="ormawa_id" class="block font-bold text-[#295F98] mb-2">Pilih Ormawa</label>
+                    <select name="ormawa_id" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        @foreach($ormawas as $ormawa)
+                        <option value="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nama Ketua</th>
-            <th>Ormawa</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($ketuaOrmawas as $ketua)
-            <tr>
-                <td>{{ $ketua->nama_ketua }}</td>
-                <td>{{ $ketua->ormawa->nama_ormawa }}</td>
-                <td>
-                    <form action="{{ route('ketuaOrmawa.destroy', $ketua->id_ketua_ormawa) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+                <button type="submit" class="bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1 mt-4">Simpan</button>
+            </form>
+        </div>
 
+        <!-- Tabel Daftar Ketua Ormawa -->
+        <div class="relative shadow-md rounded-lg overflow-hidden p-5 border border-gray-200 bg-white w-full">
 
+            <h2 class="text-xl font-bold pb-2">Data Ormawa</h2>
 
+            <div class="w-full overflow-x-auto">
+                <table class="w-full text-left table-auto">
+                    <thead>
+                        <tr class="text-[#344767]">
+                            <th class="px-4 py-2 border-b">Nama Ketua</th>
+                            <th class="px-4 py-2 border-b">Ormawa</th>
+                            <th class="px-4 py-2 border-b">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($ketuaOrmawas as $ketua)
+                        <tr class="text-[#295F98] font-bold">
+                            <td class="px-4 py-2 border-b">{{ $ketua->nama_ketua }}</td>
+                            <td class="px-4 py-2 border-b">{{ $ketua->ormawa->nama_ormawa }}</td>
+                            <td class="px-4 py-2 border-b">
+                                <form action="{{ route('ketuaOrmawa.destroy', $ketua->id_ketua_ormawa) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-5 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white font-bold">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
