@@ -23,14 +23,20 @@
                             @foreach ($pengajuans as $pengajuan)
                             <tr class="border-b">
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
-                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at->format('Y-m-d') }}</td>
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
                                 <td class="px-4 py-3">
                                     <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::Ditolak ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
                                         {{ $pengajuan->status }}
                                     </span>
                                 </td>
-                                <td class="px-4 py-3 text-[#295F98]">HH:MM</td>
+                                <td class="px-4 py-3 text-[#295F98]">
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
+                                        <p class="text-center text-xl font-extrabold">-</p>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                        <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
+                                    @endif
+                                </td>
                                 <td class="px-4 py-3">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
                                     <button 
@@ -40,6 +46,8 @@
                                         data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
                                         Revisi
                                     </button>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
+                                        <p class="text-center text-xl font-extrabold">-</p>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">
@@ -56,7 +64,7 @@
                                         </div>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && !file_exists($filePath))
                                         <div class="mt-2 text-sm text-gray-500">
-                                            Tunggu Semua Pengajuan Ormawa Diterima. 
+                                            Tunggu Semua Pengajuan Diterima. 
                                         </div>
                                     @endif
                                 </td>

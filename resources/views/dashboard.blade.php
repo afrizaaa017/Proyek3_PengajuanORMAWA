@@ -5,7 +5,7 @@
         display: none !important;
     }
 </style>
-@include('components.navbar2')
+@include('components.navbar2staff')
 
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -94,7 +94,7 @@
                                         &times;
                                     </button>
                                 </div>
-                                <form action="{{ route('update.access.time') }}" method="POST">
+                                {{-- <form action="{{ route('update.access.time') }}" method="POST"> --}}
                                     @csrf
                                     <!-- Hidden input to set the rejection status -->
                                     <input type="hidden" name="status" value="Ditolak">

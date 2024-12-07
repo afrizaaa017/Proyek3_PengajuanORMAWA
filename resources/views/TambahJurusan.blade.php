@@ -1,6 +1,6 @@
 @extends('components.main')
 @include('layouts.head')
-@include('components.navbar2')
+@include('components.navbar2staff')
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">

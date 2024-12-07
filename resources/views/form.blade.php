@@ -111,9 +111,9 @@
                                 <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
                                 <select name="periode" id="periode" class="form-select">
                                     <option value="" disabled selected>Pilih Periode</option>
-                                    <option value="2020-2021" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2020-2021' ? 'selected' : '' }}>2020-2021</option>
-                                    <option value="2021-2022" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2021-2022' ? 'selected' : '' }}>2021-2022</option>
-                                    <option value="2022-2023" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2022-2023' ? 'selected' : '' }}>2022-2023</option>
+                                    {{-- <option value="2020-2021" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2020-2021' ? 'selected' : '' }}>2020-2021</option>
+                                    <option value="2021-2022" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2021-2022' ? 'selected' : '' }}>2021-2022</option> --}}
+                                    <option value="2024-2025" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2024-2025' ? 'selected' : '' }}>2024-2025</option>
                                 </select>
                             </div>
 

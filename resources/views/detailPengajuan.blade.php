@@ -1,11 +1,11 @@
 @extends('components.main')
 @include('layouts.head')
-@include('components.navbar2')
+@include('components.navbar2staff')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-8">
     <div class="bg-white shadow-lg rounded-lg p-6">
-        <h3 class="text-2xl font-bold text-center text-[#344767]">Data Pengajuan</h3>
+        <h3 class="text-2xl font-bold text-center text-[#344767]">DATA PENGAJUAN</h3>
         <div class="mt-6 border-t border-gray-200">
             <dl class="divide-y divide-gray-200 text-center">
                 <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -44,71 +44,71 @@
             </div>
     </div>
 
-    <div class="bg-white shadow-lg rounded-lg p-6 mt-8">
-        <h2 class="text-2xl font-bold text-center text-[#344767]">Scan Dokumen</h2>
-        <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Scan KTP</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_scan_ktp.pdf') }}" width="100%" height="600px"></iframe>
+    <div class="bg-white shadow-lg rounded-lg p-6 my-8">
+        <h2 class="text-2xl font-bold text-center text-[#344767]">BERKAS - BERKAS</h2>
+        <div class="mb-10 mt-10">
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">Scan KTP</h3>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktp.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Sehat</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_sehat.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_sehat.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Rekomendasi Jurusan</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_rekomendasi_jurusan.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_rekomendasi_jurusan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Transkrip Rekomendasi Jurusan</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_transkip_rekomendasi_jurusan.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_transkip_rekomendasi_jurusan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat LKMM</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_lkmm.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_lkmm.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Pelatihan Kepemimpinan</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_pelatihan_kepemimpinan.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pelatihan_kepemimpinan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Pelatihan Emosional</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Bahasa Asing</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_bahasa_asing.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_bahasa_asing.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Scan KTM</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_scan_ktm.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktm.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Keterangan Berkelakuan Baik</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_keterangan_berkelakuan_baik.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_keterangan_berkelakuan_baik.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Pernyataan Mandiri</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_surat_penyataan_mandiri.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_penyataan_mandiri.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat PKKMB</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_pkkmb.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pkkmb.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Bela Negara</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_bela_negara.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_bela_negara.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Agent of Change</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_agent_of_change.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_agent_of_change.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Berorganisasi</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_sertifikat_berorganisasi.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_berorganisasi.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Berita Acara Pemilihan</h3>
-            <iframe src="{{ asset('laraview/' . $pengajuans->id . '/' .$pengajuans->nim . '_' . $pengajuans->nama . '_berita_acara_pemilihan.pdf') }}" width="100%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_berita_acara_pemilihan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
 
     </div>

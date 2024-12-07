@@ -72,7 +72,7 @@ class BerkasController extends Controller
             $berkas->berita_acara_pemilihan = $request->file('berita_acara_pemilihan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf') ? 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf' : 'data gagal terupload';
 
             $request->session()->put('berkas', [
-                'scan_ktp' => 'valid'
+                'scan_ktp' => Auth::id()
             ]);
 
             $berkas->pengajuan_id = $pengajuan->id;
@@ -86,11 +86,14 @@ class BerkasController extends Controller
 
     public function progrestabel(Request $request)
     {
-        // if (!session()->has('berkas')) {
-        //     return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
-        // }
+        $userId = Auth::id();
+        $exists = Pengajuan::where('user_id', $userId)->exists();
+
+        if (!session()->has('berkas') && !$exists) {
+            return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
+        }
+
         $request->session()->forget('berkas');
-        // $pengajuans = Pengajuan::with('berkas')->get();
         $pengajuans = Pengajuan::with('berkas')->where('user_id', Auth::id())->get();
  
         return view('progrestabel', compact('pengajuans'));

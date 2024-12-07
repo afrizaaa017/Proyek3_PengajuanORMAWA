@@ -6,24 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->timestamp('akses_start')->nullable();
-            $table->timestamp('akses_end')->nullable();
-        });
-    }
+    // /**
+    //  * Run the migrations.
+    //  */
+    // public function up(): void
+    // {
+    //     Schema::table('settings', function (Blueprint $table) {
+    //         $table->timestamp('akses_start')->nullable();
+    //         $table->timestamp('akses_end')->nullable();
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn(['akes_start','akses_end']);
-        });
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  */
+    // public function down(): void
+    // {
+    //     Schema::table('settings', function (Blueprint $table) {
+    //         $table->dropColumn(['akes_start','akses_end']);
+    //     });
+    // }
 };

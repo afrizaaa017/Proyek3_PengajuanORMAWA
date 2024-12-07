@@ -31,16 +31,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout');
 });
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 // MAHASISWA
 Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
-    Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
+    // Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
     Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
 
     //Pengajuan Form
@@ -54,6 +48,12 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     //Pengajuan Berkas
     Route::get('/pengajuanberkas', [BerkasController::class, 'index'])->name('pengajuanberkas');
     Route::post('/pengajuanberkas', [BerkasController::class, 'store'])->name('file.upload');
+
+    //Revisi
+    Route::get('pengajuan/{id}/edit', [FormController::class, 'edit'])->name('pengajuan.edit');
+    Route::put('/pengajuan/{id}', [FormController::class, 'update'])->name('pengajuan.update');
+    Route::get('pengajuan/{id}/berkas/edit', [BerkasController::class, 'edit'])->name('berkas.edit');
+    Route::put('pengajuan/{id}/berkas', [BerkasController::class, 'update'])->name('berkas.update');
 });
 
 // KEMAHASISWAAN
@@ -77,10 +77,10 @@ Route::middleware(['auth', IsStaff::class])->group(function () {
     Route::get('/detail-pengajuan/{id}', [FormController::class, 'detailPengajuan'])->name('pengajuan.detail');
     Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
-    //Revisi
-    Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
-    Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
-    Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
+    // //Revisi
+    // Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
+    // Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
+    // Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
 
     //Timelinee
     Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
@@ -92,6 +92,9 @@ Route::middleware(['auth', IsStaff::class])->group(function () {
     Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 
     Route::get('/listtable', [FormController::class, 'listtable']);
+    Route::post('/upload-sk', [BerkasController::class, 'uploadSK'])->name('upload-sk');
+    Route::post('/delete-sk', [BerkasController::class, 'deleteSK'])->name('delete-sk');
+
 });
 
 
@@ -115,25 +118,20 @@ Route::get('/menu', function () {
     return view('menu');
 });
 
-//setting deadline
-Route::middleware(['check.access'])->group(function () {
-    Route::get('/form', [FormController::class, 'index'])->name('form.index');
-    Route::post('/update-access-time', [updateAccesstime::class, 'updateAccessTime'])->name('update.access.time');
+Route::get('/', function () {
+    return view('login');
 });
 
+//setting deadline
+// Route::middleware(['check.access'])->group(function () {
+//     Route::get('/form', [FormController::class, 'index'])->name('form.index');
+//     Route::post('/update-access-time', [updateAccesstime::class, 'updateAccessTime'])->name('update.access.time');
+// });
 
 
 
-Route::post('/upload-sk', [BerkasController::class, 'uploadSK'])->name('upload-sk');
-Route::post('/delete-sk', [BerkasController::class, 'deleteSK'])->name('delete-sk');
-
-Route::get('pengajuan/{id}/edit', [FormController::class, 'edit'])->name('pengajuan.edit');
-Route::put('/pengajuan/{id}', [FormController::class, 'update'])->name('pengajuan.update');
-
-Route::get('pengajuan/{id}/berkas/edit', [BerkasController::class, 'edit'])->name('berkas.edit');
-Route::put('pengajuan/{id}/berkas', [BerkasController::class, 'update'])->name('berkas.update');
 
 
-Route::get('/listtable', [FormController::class, 'listtable']);
+
 Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
 Route::get('/users', [FormController::class, 'user'])->name('users.index');

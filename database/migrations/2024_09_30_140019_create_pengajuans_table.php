@@ -28,6 +28,7 @@ return new class extends Migration
             ->nullable() // Penting agar kolom bisa diset null
             ->constrained('users')
             ->onDelete('set null');
+            $table->unique('user_id');
             $table->timestamps();
         });
     }

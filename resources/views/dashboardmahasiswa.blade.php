@@ -47,7 +47,7 @@
 
         <!-- Tombol Lakukan Pengajuan -->
         <div class="flex my-auto mx-auto py-5">
-            <a href="{{ route('pengajuan.create') }}" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center py-3 rounded-lg block h-18">
+            <a href="{{ route('form') }}" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center py-3 rounded-lg block h-18">
                 Lakukan Pengajuan
             </a>
         </div>

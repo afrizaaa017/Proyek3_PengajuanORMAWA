@@ -73,6 +73,13 @@ class FormController extends Controller
 
     public function index()
     {
+        $userId = Auth::id();
+        $exists = Pengajuan::where('user_id', $userId)->exists();
+    
+        if ($exists) {
+            return redirect()->route('progrestabel')->with('error', 'Anda sudah memiliki pengajuan.');
+        }
+
         if (session()->has('berkas')) {
             return redirect()->route('progrestabel')->with('success', 'Lengkapi berkas anda.');
         }
