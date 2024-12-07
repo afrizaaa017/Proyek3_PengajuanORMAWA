@@ -292,31 +292,31 @@
     </div>
 
     <script>
-    document.querySelectorAll('.preview-btn').forEach(button => {
-        button.replaceWith(button.cloneNode(true));
-    });
+        document.querySelectorAll('.preview-btn').forEach(button => {
+            button.replaceWith(button.cloneNode(true));
+        });
 
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('preview-btn')) {
-            event.preventDefault(); 
-            
-            const fileUrl = event.target.getAttribute('data-file');
-            Swal.fire({
-                title: 'Preview PDF',
-                html: `
-                    <div style="height: 500px; overflow: auto;">
-                        <iframe src="${fileUrl}" width="100%" height="500px"></iframe>
-                    </div>
-                `,
-                showCloseButton: true,
-                showConfirmButton: false,
-                width: '80%',
-                animation: false
-            });
-        }
-    });
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('preview-btn')) {
+                event.preventDefault(); 
+                
+                const fileUrl = event.target.getAttribute('data-file');
+                Swal.fire({
+                    title: 'Preview PDF',
+                    html: `
+                        <div style="height: 500px; overflow: auto;">
+                            <iframe src="${fileUrl}" width="100%" height="500px"></iframe>
+                        </div>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: false,,
+                    width: '80%',
+                    animation: false
+                });
+            }
+        });
 
- </script>
+    </script>
 
     
 </body>

@@ -7,6 +7,8 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class BerkasController extends Controller
@@ -16,7 +18,6 @@ class BerkasController extends Controller
         if (!session()->has('pengajuan')) {
             return redirect()->route('form')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
         }
-
         $pengajuanData = session('pengajuan');
         return view('pengajuanberkas', ['pengajuanData' => $pengajuanData]);
     }
@@ -89,7 +90,9 @@ class BerkasController extends Controller
         //     return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
         // }
         $request->session()->forget('berkas');
-        $pengajuans = Pengajuan::with('berkas')->get();
+        // $pengajuans = Pengajuan::with('berkas')->get();
+        $pengajuans = Pengajuan::with('berkas')->where('user_id', Auth::id())->get();
+ 
         return view('progrestabel', compact('pengajuans'));
     }
 
@@ -187,5 +190,51 @@ class BerkasController extends Controller
         $berkas->save();
 
         return redirect()->route('progrestabel')->with('success', 'Data updated successfully');
+    }
+
+    public function uploadSK(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:pdf|max:2048', 
+        ]);
+        
+        $currentYear = date('Y');
+        $folderPath = 'laraview/SK';
+        $publicPath = public_path($folderPath);
+        Storage::makeDirectory($folderPath);
+
+        $filePath = $request->file('file')->move($publicPath,  $currentYear . '_SK.pdf') ? $currentYear . '_SK.pdf' : 'data gagal terupload';
+
+        return response()->json([
+            'message' => 'File berhasil diunggah!',
+            'path' => $filePath,
+            'year' => $currentYear,
+        ]);
+    }
+
+    public function deleteSK(Request $request)
+    {
+        $fileUrl = $request->fileUrl;
+
+        // Dapatkan path file relatif terhadap public_path
+        $relativePath = str_replace(asset(''), '', $fileUrl);
+
+        // Path lengkap ke file
+        $filePath = public_path($relativePath);
+
+        // Hapus file jika ada
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'File berhasil dihapus.'
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'File tidak ditemukan.'
+        ], 404);
     }
 }

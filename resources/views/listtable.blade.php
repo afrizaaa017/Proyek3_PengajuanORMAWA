@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 @extends('components.main')
@@ -17,6 +18,17 @@
     <!-- Tabel Pengajuan -->
     <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white">
         <div class="w-full">
+            <div class="my-5 text-sm flex space-x-4 ">
+                <button 
+                    class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    Luncurkan SK Tahun {{ date('Y') }} 
+                </button>
+                <button
+                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"  
+                    class="uploadSuccess-btn w-1/2 h-14 px-3 py-1 bg-[#32BB35] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    SK Belum Diluncurkan
+                </button>
+            </div>
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>
                 <div>
@@ -101,5 +113,128 @@
         }
         window.location.href = url.toString();
     });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('upload-btn')) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Upload SK',
+                html: `
+                    <form id="file-upload-form">
+                        <input id="fileInput" type="file" name="file" accept="application/pdf" 
+                            class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
+                        
+                        <div id="filePreview" style="margin-top: 15px; display: none;">
+                            <h5>Preview SK:</h5>
+                            <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>
+                        </div>
+                    </form>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Upload',
+                width: '50%',
+                animation: false,
+                preConfirm: () => {
+                    const fileInput = document.getElementById('fileInput');
+                    if (!fileInput.files.length) {
+                        Swal.showValidationMessage('Harap pilih file terlebih dahulu!');
+                        return false;
+                    }
+                    return fileInput.files[0]; 
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const file = result.value;
+
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    fetch('/upload-sk', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                        },
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Gagal mengunggah file.');
+                        return response.json();
+                    })
+                    .then(data => {
+                        Swal.fire('Sukses!', 'File berhasil diunggah dan disimpan di server!', 'success');
+
+                        sessionStorage.setItem('uploadedYears', data.year);
+                        const buttonSecond = document.querySelector('.uploadSuccess-btn');
+                        if (buttonSecond) {
+                            buttonSecond.textContent = `SK Tahun ${data.year} Telah Diluncurkan. Klik Untuk Info Lebih Lanjut`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Error!', 'Gagal mengunggah file.', 'error');
+                    });
+                }
+            });
+
+            // Menampilkan preview file
+            document.getElementById('fileInput').addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file && file.type === 'application/pdf') {
+                    const previewFrame = document.getElementById('previewFrame');
+                    previewFrame.src = URL.createObjectURL(file); 
+                    document.getElementById('filePreview').style.display = 'block';
+                } else {
+                    Swal.fire('Error!', 'Hanya file PDF yang diperbolehkan!', 'error');
+                    e.target.value = ''; 
+                }
+            });
+        }
+    });
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('uploadSuccess-btn')) {
+            event.preventDefault();
+
+            const fileUrl = event.target.getAttribute('data-file');
+
+            Swal.fire({
+                title: 'Preview SK',
+                html: `
+                    <div style="height: 500px; overflow: auto;">
+                        <iframe src="${fileUrl}" width="100%" height="500px"></iframe>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                width: '50%',
+                animation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/delete-sk', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ fileUrl: fileUrl })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire('Deleted!', 'File berhasil dihapus.', 'success');
+                        } else {
+                            Swal.fire('Error!', 'Gagal menghapus file.', 'error');
+                        }
+                    })
+                    .catch(() => {
+                        Swal.fire('Error!', 'Terjadi kesalahan saat menghapus file.', 'error');
+                    });
+                }
+            });
+        }
+    });
+
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection

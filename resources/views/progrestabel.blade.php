@@ -49,7 +49,24 @@
                                     </button>
                                     @endif
                                 </td>
-                                <td class="px-4 py-3"></td>
+                                <td class="px-4 py-3">
+                                    @php
+                                        $filePath = public_path('laraview/SK/' . date('Y') . '_SK.pdf');
+                                    @endphp
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && file_exists($filePath))
+                                        <div class="mt-2 text-sm">
+                                            <button 
+                                                data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}" 
+                                                class="preview-btn text-blue-600">
+                                                Download SK
+                                            </button>
+                                        </div>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && !file_exists($filePath))
+                                        <div class="mt-2 text-sm text-gray-500">
+                                            Tunggu Semua Pengajuan Ormawa Diterima. 
+                                        </div>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -79,6 +96,31 @@
                     });
                 });
             });
+
+            document.querySelectorAll('.preview-btn').forEach(button => {
+                button.replaceWith(button.cloneNode(true));
+            });
+
+            document.addEventListener('click', function (event) {
+                if (event.target.classList.contains('preview-btn')) {
+                    event.preventDefault(); 
+                    
+                    const fileUrl = event.target.getAttribute('data-file');
+                    Swal.fire({
+                        title: 'Preview PDF',
+                        html: `
+                            <div style="height: 500px; overflow: auto;">
+                                <iframe src="${fileUrl}" width="100%" height="500px"></iframe>
+                            </div>
+                        `,
+                        showCancelButton: true,
+                        confirmButtonText: false,
+                        width: '80%',
+                        animation: false
+                    });
+                }
+            });
+
         </script>
         
     

@@ -128,9 +128,8 @@ Route::middleware(['check.access'])->group(function () {
 
 
 
-Route::get('/tes', function () {
-    return view('editPengajuBerkas');
-});
+Route::post('/upload-sk', [BerkasController::class, 'uploadSK'])->name('upload-sk');
+Route::post('/delete-sk', [BerkasController::class, 'deleteSK'])->name('delete-sk');
 
 Route::get('pengajuan/{id}/edit', [FormController::class, 'edit'])->name('pengajuan.edit');
 Route::put('/pengajuan/{id}', [FormController::class, 'update'])->name('pengajuan.update');
@@ -140,3 +139,7 @@ Route::put('pengajuan/{id}/berkas', [BerkasController::class, 'update'])->name('
 
 
 Route::get('/listtable', [FormController::class, 'listtable']);
+
+
+Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
+Route::get('/users', [FormController::class, 'user'])->name('users.index');

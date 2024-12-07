@@ -24,7 +24,25 @@ return new class extends Migration
             $table->text('email');
             $table->enum('status', ['Sedang Diproses', 'Diterima', 'Ditolak'])->default('Sedang Diproses');
             $table->text('keterangan')->default('Kosong');
+            $table->foreignId('user_id')
+            ->nullable() // Penting agar kolom bisa diset null
+            ->constrained('users')
+            ->onDelete('set null');
             $table->timestamps();
+        });
+    }
+
+    public function constraint(): void
+    {
+        Schema::table('pengajuans', function (Blueprint $table) {
+            // Hapus foreign key yang ada
+            $table->dropForeign('pengajuan_user_id');
+
+            // Tambahkan foreign key baru dengan aturan SET NULL
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->nullOnDelete();
         });
     }
 

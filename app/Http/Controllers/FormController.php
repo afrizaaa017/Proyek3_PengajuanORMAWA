@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use App\Models\Prodi;
 use App\Models\Ormawa;
 use App\Models\Jurusan;
@@ -10,10 +11,26 @@ use App\Models\Pengajuan;
 use App\Models\KetuaOrmawa;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
+use Illuminate\Support\Facades\Auth;
 
 class FormController extends Controller
 {
-    
+    // public function user()
+    // {
+    //     $users = User::all(); // Ambil semua user
+    //     return view('tesDeleteUser', compact('users'));
+    // }
+
+    // public function deleteUser($id)
+    // {
+    //     $user = User::findOrFail($id);
+
+    //     // Hapus user tanpa menghapus pengajuan
+    //     $user->delete();
+
+    //     return redirect()->back()->with('message', 'Akun user berhasil dihapus, pengajuan tetap tersimpan.');
+    // }
+
     public function simpanPengajuan(Request $request)
     {
         $request->validate([
@@ -38,6 +55,7 @@ class FormController extends Controller
             'periode'    => $request->periode,
             'telp'    => $request->telp,
             'email'    => $request->email,
+            'user_id' => Auth::id(),
         ]);
         return redirect()->route('pengajuanberkas')->with('success', 'Data has been saved successfully.');
     }

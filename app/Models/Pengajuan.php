@@ -24,6 +24,7 @@ class Pengajuan extends Model
         'email',
         'status',
         'keterangan',
+        'user_id'
     ];
 
     protected $casts = [
@@ -33,5 +34,10 @@ class Pengajuan extends Model
     public function berkas(): HasOne
     {
         return $this->hasOne(Berkas::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault();
     }
 }
