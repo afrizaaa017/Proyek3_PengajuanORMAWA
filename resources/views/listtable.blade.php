@@ -11,12 +11,13 @@
 </head>
 
 @extends('components.main')
+@include('layouts.head')
 @include('components.navbar2')
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">
     <!-- Tabel Pengajuan -->
-    <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white">
+    <div class="relative shadow-md rounded-lg overflow-auto pb-10 p-5 border border-gray-200 bg-white">
         <div class="w-full">
             <div class="my-5 text-sm flex space-x-4 ">
                 <button 

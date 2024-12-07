@@ -202,7 +202,7 @@
         </li>
         <!-- Logout Button -->
         <li class="mt-0.5 w-full">
-            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit"
                     class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gray-200 rounded-lg">
@@ -212,7 +212,7 @@
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Logout</span>
                 </button>
-            </form> --}}
+            </form>
         </li>
 
 

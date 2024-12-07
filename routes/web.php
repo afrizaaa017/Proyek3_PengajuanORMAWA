@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsMahasiswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\KetuaOrmawaController;
+use App\Http\Middleware\IsStaff;
 
 // ========================================================================================
 // AUTHENTICATION ROUTES ==================================================================
@@ -34,6 +36,65 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// MAHASISWA
+Route::middleware(['auth', IsMahasiswa::class])->group(function () {
+    Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
+    Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
+    Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
+
+    //Pengajuan Form
+    Route::get('/form', [FormController::class, 'index'])->name('form');
+    Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan'])->name('form.simpanPengajuan');
+
+    //Mengambil Data Dropdown
+    Route::get('/getProdi/{jurusan_id}', [ProdiController::class, 'getProdi']);
+    Route::get('/getKetuaOrmawa/{ormawa_id}', [KetuaOrmawaController::class, 'getKetuaOrmawa']);
+
+    //Pengajuan Berkas
+    Route::get('/pengajuanberkas', [BerkasController::class, 'index'])->name('pengajuanberkas');
+    Route::post('/pengajuanberkas', [BerkasController::class, 'store'])->name('file.upload');
+});
+
+// KEMAHASISWAAN
+Route::middleware(['auth', IsStaff::class])->group(function () {
+    Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
+
+    Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
+    Route::post('/TambahOrmawa', [KetuaOrmawaController::class, 'store'])->name('ketuaOrmawa.store');
+    Route::delete('/ketuaOrmawa/{id}', [KetuaOrmawaController::class, 'destroy'])->name('ketuaOrmawa.destroy');
+
+    Route::get('/TambahProdi', [ProdiController::class, 'index'])->name('prodi.index');
+    Route::post('/TambahProdi', [ProdiController::class, 'store'])->name('prodi.store');
+    Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
+
+    Route::get('/TambahJurusan', [ProdiController::class, 'index'])->name('jurusan.index');
+    Route::post('/TambahJurusan', [ProdiController::class, 'storeJurusan'])->name('jurusan.store');
+    Route::delete('/jurusan/{id}', [ProdiController::class, 'destroyJurusan'])->name('jurusan.destroy');
+
+    //Detail Pengajuan
+    // Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
+    Route::get('/detail-pengajuan/{id}', [FormController::class, 'detailPengajuan'])->name('pengajuan.detail');
+    Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
+
+    //Revisi
+    Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
+    Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
+    Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
+
+    //Timelinee
+    Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
+    Route::resource('timelines', TimelineController::class);
+    Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
+    Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.put');
+    Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timeline.destroy');
+    Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timeline.edit');
+    Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
+
+    Route::get('/listtable', [FormController::class, 'listtable']);
+});
+
+
 Route::get('/index', function () {
     return view('layouts.index');
 });
@@ -48,78 +109,13 @@ Route::get('/notifikasi', [NotifsController::class, 'index'])->name('notifikasi'
 Route::get('/notifications', [NotifsController::class, 'getNotifications'])->name('notifications');
 Route::post('/markAsRead/{id}', [NotifsController::class, 'markAsRead'])->name('notifications.markAsRead');
 
-Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
 // Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
-Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
-Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
 
-
-// MAHASISWA
 Route::get('/menu', function () {
     return view('menu');
 });
 
-
-Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
-
-//Pengajuan Form
-Route::get('/form', [FormController::class, 'index'])->name('form');
-Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan'])->name('form.simpanPengajuan');
-
-//Mengambil Data Dropdown
-Route::get('/getProdi/{jurusan_id}', [ProdiController::class, 'getProdi']);
-Route::get('/getKetuaOrmawa/{ormawa_id}', [KetuaOrmawaController::class, 'getKetuaOrmawa']);
-
-//Pengajuan Berkas
-Route::get('/pengajuanberkas', [BerkasController::class, 'index'])->name('pengajuanberkas');
-Route::post('/pengajuanberkas', [BerkasController::class, 'store'])->name('file.upload');
-
-
-// KEMAHASISWAAN
-// Route::get('/menukemahasiswaan', function () {
-//     return view('menukemahasiswaan');
-// });
-
-
-// Route::get('/dashboardmahasiswa', function () {
-//     return view('dashboardmahasiswa');
-// });
-
-Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
-Route::post('/TambahOrmawa', [KetuaOrmawaController::class, 'store'])->name('ketuaOrmawa.store');
-Route::delete('/ketuaOrmawa/{id}', [KetuaOrmawaController::class, 'destroy'])->name('ketuaOrmawa.destroy');
-
-Route::get('/TambahProdi', [ProdiController::class, 'index'])->name('prodi.index');
-Route::post('/TambahProdi', [ProdiController::class, 'store'])->name('prodi.store');
-Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
-
-Route::get('/TambahJurusan', [ProdiController::class, 'index'])->name('prodi.index');
-Route::post('/TambahJurusan', [ProdiController::class, 'storeJurusan'])->name('jurusan.store');
-Route::delete('/jurusan/{id}', [ProdiController::class, 'destroyJurusan'])->name('jurusan.destroy');
-
-//Detail Pengajuan
-// Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
-Route::get('/detail-pengajuan/{id}', [FormController::class, 'detailPengajuan'])->name('pengajuan.detail');
-Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
-
-
-// //Revisi
-Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
-Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
-Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
-
-//Timelinee
-Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');
-Route::resource('timelines', TimelineController::class);
-Route::post('/timeline', [TimelineController::class, 'store'])->name('timeline.store');
-Route::put('/timeline/{id}', [TimelineController::class, 'update'])->name('timeline.update');
-Route::delete('timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timeline.destroy');
-Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timeline.edit');
-Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
-
 //setting deadline
-
-
 Route::middleware(['check.access'])->group(function () {
     Route::get('/form', [FormController::class, 'index'])->name('form.index');
     Route::post('/update-access-time', [updateAccesstime::class, 'updateAccessTime'])->name('update.access.time');
@@ -139,7 +135,5 @@ Route::put('pengajuan/{id}/berkas', [BerkasController::class, 'update'])->name('
 
 
 Route::get('/listtable', [FormController::class, 'listtable']);
-
-
 Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
 Route::get('/users', [FormController::class, 'user'])->name('users.index');

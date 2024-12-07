@@ -19,14 +19,14 @@ class AuthController extends Controller
             $user = Auth::user();
 
             if ($user->role_id == 'mahasiswa') {
-                return redirect()->route('form'); 
+                return redirect()->route('mahasiswa.index');
             } elseif ($user->role_id == 'staff_kemahasiswaan') {
-                return redirect()->route('dashboard'); 
-            }else {
+                return redirect()->route('dashboard');
+            } else {
                 return redirect()->route('login')->withErrors(['error' => 'Role tidak terdaftar.']);
             }
         }
-        
+
         return view('pages.Auth.login');
     }
 
@@ -51,23 +51,23 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
-            
+
             if (!in_array($user->role_id, ['mahasiswa', 'staff_kemahasiswaan'])) {
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-    
+
                 return redirect()->route('login')->withErrors([
                     'email' => 'Hanya mahasiswa dan staff yang diizinkan login.',
                 ]);
             }
 
             if ($user->role_id == 'mahasiswa') {
-                return redirect()->route('form');  // Halaman untuk mahasiswa
+                return redirect()->route('mahasiswa.index');  // Halaman untuk mahasiswa
             } elseif ($user->role_id == 'staff_kemahasiswaan') {
                 return redirect()->route('dashboard');  // Halaman untuk staff
             }
-    
+
             // Default redirect jika role tidak ditemukan
             return redirect()->intended('/login');
         }
