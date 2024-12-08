@@ -27,7 +27,7 @@
                 <li class="cursor-pointer p-4 bg-white shadow-lg rounded-lg hover:bg-gray-200 transition"
                     onclick="showNotification('{{ $notification->id }}')">
                     <h2 class="text-lg font-medium text-gray-800">
-                        {{ $notification->data['data']['nama'] ?? 'Nama tidak tersedia' }}
+                        {{ $notification->data['pengajuan']['nama'] ?? 'Nama tidak tersedia' }}
                     </h2>
                     <p class="text-sm text-gray-600 mt-1">
                         {{ $notification->data['message'] ?? 'Tidak ada pesan.' }}
@@ -36,12 +36,13 @@
                         {{ \Carbon\Carbon::parse($notification->created_at)->toDayDateTimeString() }}
                     </p>
                     @if ($notification->is_read)
-                    <span class="text-sm text-green-500">Sudah Dibaca</span>
+                    <span class="text-sm text-green-500">Pesan Sudah Dibaca</span>
                     @else
-                    <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
+                    {{-- <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="text-sm text-blue-500 hover:underline">Tandai Telah Dibaca</button>
-                    </form>
+                    </form> --}}
+                    <span class="text-sm text-blue-500">Pesan Belum Dibaca</span>
                     @endif
                 </li>
                 @endforeach
@@ -81,10 +82,12 @@
         function showNotification(notificationId) {
             const notification = @json($notifications);
 
+            console.log(notification); // Tambahkan ini di atas
+
             const selected = notification.find(n => n.id === notificationId);
             if (selected) {
                 // Update judul, pesan, dan tanggal di live card
-                document.getElementById('live-title').textContent = selected.data.data.nama || 'Nama tidak tersedia';
+                document.getElementById('live-title').textContent = selected.data.pengajuan.nama || 'Nama tidak tersedia';
                 document.getElementById('live-message').textContent = selected.data.message || 'Tidak ada pesan.';
                 document.getElementById('live-date').textContent = new Date(selected.created_at).toLocaleString();
 

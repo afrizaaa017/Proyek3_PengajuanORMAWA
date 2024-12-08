@@ -13,6 +13,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\KetuaOrmawaController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\IsStaff;
 
 // ========================================================================================
@@ -94,7 +95,6 @@ Route::middleware(['auth', IsStaff::class])->group(function () {
     Route::get('/listtable', [FormController::class, 'listtable']);
     Route::post('/upload-sk', [BerkasController::class, 'uploadSK'])->name('upload-sk');
     Route::post('/delete-sk', [BerkasController::class, 'deleteSK'])->name('delete-sk');
-
 });
 
 
@@ -108,9 +108,9 @@ Route::get('/progressbar', function () {
 
 Route::get('send', [HomeController::class, "sendnotification"]);
 
-Route::get('/notifikasi', [NotifsController::class, 'index'])->name('notifikasi');
-Route::get('/notifications', [NotifsController::class, 'getNotifications'])->name('notifications');
-Route::post('/markAsRead/{id}', [NotifsController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::get('/notifikasi', [NotificationController::class, 'index'])->name('notifikasi');
+Route::get('/notifications', [NotificationController::class, 'getNotifications'])->name('notifications');
+Route::post('/markAsRead/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 // Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
 

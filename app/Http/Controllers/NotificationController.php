@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotificationController extends Controller
 {
@@ -13,5 +14,22 @@ class NotificationController extends Controller
 
         // // Kirim data ke view
         return view('notifikasi');
+    }
+
+    public function getNotifications()
+    {
+        $notifications = DB::table('notifications')->orderBy('created_at', 'desc')->get();
+        return response()->json($notifications);
+    }
+
+    public function markAsRead($id)
+    {
+        if ($id) {
+            // Update kolom read_at untuk notifikasi tertentu
+            DB::table('notifications')
+                ->where('id', $id)
+                ->update(['is_read' => true]);
+        }
+        return back();
     }
 }

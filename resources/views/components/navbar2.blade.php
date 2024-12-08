@@ -119,7 +119,7 @@
             </a>
         </li>
 
-        
+
         <!-- Logout Button -->
         <li class="mt-0.5 w-full">
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -247,7 +247,7 @@
                                     href="javascript:;">
                                     <div class="flex py-1">
                                         <div class="flex flex-col justify-center">
-                                            <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">{{ $notification->data['data']['nama'] ?? 'Nama tidak tersedia' }}</span></h6>
+                                            <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">{{ $notification->data['message'] ?? 'Pesan tidak tersedia' }}</span></h6>
                                             <p class="mb-0 text-xs leading-tight text-slate-400">
                                                 <i class="mr-1 fa fa-clock"></i>
                                                 {{-- {{ $notification->data['data']['created_at']->diffForHumans() }} --}}

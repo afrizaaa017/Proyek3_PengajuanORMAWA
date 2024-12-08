@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\PengajuanNotifikasi;
 
 class BerkasController extends Controller
 {
@@ -78,6 +79,8 @@ class BerkasController extends Controller
             $berkas->pengajuan_id = $pengajuan->id;
             $pengajuan->status = PengajuanStatus::SedangDiproses;
             $berkas->save();
+
+            $pengajuan->notify(new PengajuanNotifikasi($pengajuan->toArray()));
         });
 
         $request->session()->forget('pengajuan');
@@ -95,7 +98,6 @@ class BerkasController extends Controller
 
         $request->session()->forget('berkas');
         $pengajuans = Pengajuan::with('berkas')->where('user_id', Auth::id())->get();
- 
         return view('progrestabel', compact('pengajuans'));
     }
 
@@ -198,9 +200,9 @@ class BerkasController extends Controller
     public function uploadSK(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:pdf|max:2048', 
+            'file' => 'required|mimes:pdf|max:2048',
         ]);
-        
+
         $currentYear = date('Y');
         $folderPath = 'laraview/SK';
         $publicPath = public_path($folderPath);

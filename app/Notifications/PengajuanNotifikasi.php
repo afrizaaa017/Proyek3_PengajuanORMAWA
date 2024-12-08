@@ -11,17 +11,14 @@ use Illuminate\Notifications\Messages\DatabaseMessage;
 class PengajuanNotifikasi extends Notification
 {
     use Queueable;
-
-    private $pengajuanData;
-    // private $details;
+    public $pengajuan;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($pengajuanData)
+    public function __construct($pengajuan)
     {
-        $this->pengajuanData = $pengajuanData;
-        // $this->details = $details;
+        $this->pengajuan = $pengajuan;
     }
 
     /**
@@ -41,26 +38,24 @@ class PengajuanNotifikasi extends Notification
     {
         return (new MailMessage)
             ->subject('Pengajuan Baru Dikirim')
-            ->line('Pengajuan baru telah dikirim oleh: ' . $this->pengajuanData['nama'])
-            ->line('Periode: ' . $this->pengajuanData['periode'])
-            ->action('Lihat Pengajuan', url('/pengajuanberkas'))
+            ->line('Pengajuan baru telah dikirim oleh: ' . $this->pengajuan['nama'])
+            ->line('ORMAWA: ' . $this->pengajuan['ketua_ormawa'])
+            ->line('Periode: ' . $this->pengajuan['periode'])
+            // ->action('Lihat Pengajuan', url('/pengajuanberkas'))
             ->line('Terima kasih telah menggunakan sistem pengajuan kami!');
-        // ->greeting($this->details['greeting'])
-        // ->line($this->details['body'])
-        // ->action($this->details['actiontext'], $this->details['actionurl'])
-        // ->line($this->details['lastline']);
     }
 
-    public function toDatabase($notifiable)
-    {
-        return [
-            'nama' => $this->pengajuanData['nama'],
-            'periode' => $this->pengajuanData['periode'],
-            'message' => 'Pengajuan Anda telah dikirim',
-            'url' => url('/pengajuan/' . $this->pengajuanData['id']),
-            'status' => 'pengajuan telah dikirim', // atau status lainnya sesuai logika
-        ];
-    }
+    // public function toDatabase($notifiable)
+    // {
+    //     return [
+    //         'nama' => $this->pengajuan['nama'],
+    //         'ketua_ormaw' => $this->pengajuan['ketua_ormawa'],
+    //         'periode' => $this->pengajuan['periode'],
+    //         'message' => 'Pengajuan Anda telah dikirim',
+    //         // 'url' => url('/pengajuan/' . $this->pengajuan['id']),
+    //         'status' => 'pengajuan telah dikirim',
+    //     ];
+    // }
 
     /**
      * Get the array representation of the notification.
@@ -70,7 +65,8 @@ class PengajuanNotifikasi extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'pengajuan' => $this->pengajuan,
+            'message' => 'Pengajuan baru telah disimpan.'
         ];
     }
 }
