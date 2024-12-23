@@ -94,27 +94,27 @@
                                         &times;
                                     </button>
                                 </div>
-                                {{-- <form action="{{ route('update.access.time') }}" method="POST"> --}}
+                                <form action="{{ route('update.access.time') }}" method="POST">
                                     @csrf
                                     <!-- Hidden input to set the rejection status -->
                                     <input type="hidden" name="status" value="Ditolak">
                                     <div class="w-full px-4 py-3">
-                                        <label for="tanggal_deadline" class="form-label">Penutupan Pengajuan</label>
-                                        <input type="date"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                            id="tanggal_deadline" name="tanggal_deadline"
-                                            value="" required>
-                                        <label for="tanggal_dibuka" class="form-label">Buka Pengajuan</label>
-                                        <input type="date"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                            id="tanggal_dibuka" name="tanggal_dibuka"
-                                            value="" required>
+                                        <label for="submission_start_time" class="form-label">Buka Pengajuan</label>
+                                            <input type="date"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                                id="submission_start_time" name="submission_start_time"
+                                                value="" required>
+                                        <label for="submission_end_time" class="form-label">Penutupan Pengajuan</label>
+                                            <input type="date"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                                id="submission_end_time" name="submission_end_time"
+                                                value="" required>
                                     </div>
                                     <div class="flex justify-end px-4 py-3 border-t border-gray-200">
                                         <button type="button" @click="openModal = false" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
                                             Close
                                         </button>
-                                        <button type="submit" class="ml-2 px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
+                                        <button type="submit" class="ml-2 px-4 py-2 text-black bg-red-500 rounded-md hover:bg-red-600">
                                             Set Deadline
                                         </button>
                                     </div>
@@ -124,7 +124,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Foto Gedung Polban -->
             <div class="w-full rounded-lg shadow-lg overflow-hidden">
                 <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="gambar-gedung w-full h-80 object-cover">
