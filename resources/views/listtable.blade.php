@@ -142,7 +142,7 @@
                         html: `
                             <p>Terdapat pengajuan yang tidak memenuhi syarat untuk upload SK:</p>
                             <ul>
-                                <li><strong>Sedang Diproses:</strong> ${data.MenungguVerifikasi} pengajuan</li>
+                                <li><strong>Sedang Diproses:</strong> ${data.sedangDiproses} pengajuan</li>
                                 <li><strong>Ditolak:</strong> ${data.ditolak} pengajuan</li>
                             </ul>
                             <p>Pastikan semua pengajuan memiliki status <strong>"Diterima"</strong>.</p>

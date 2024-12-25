@@ -19,6 +19,7 @@ use App\Http\Middleware\IsStaff;
 
 use App\Http\Controllers\validatepengajuan;
 use App\Http\Controllers\Settingwaktudeadline;
+use App\Http\Controllers\DashboardMahasiswaController;
 
 // ========================================================================================
 // AUTHENTICATION ROUTES ==================================================================
@@ -62,7 +63,7 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
 });
 
 // KEMAHASISWAAN
-    Route::middleware(['auth', IsStaff::class])->group(function () {
+Route::middleware(['auth', IsStaff::class])->group(function () {
     Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
 
     Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
@@ -139,6 +140,7 @@ Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePen
 
 Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
 Route::get('/users', [FormController::class, 'user'])->name('users.index');
+Route::get('/dashboardmahasiswa', [DashboardMahasiswaController::class, 'index'])->name('dashboardmahasiswa');
 
 Route::get('/suratPernyataan', [PDFController::class, 'suratPernyataan'])->name('surat.pernyataan');
 Route::get('/suratPerjanjian', [PDFController::class, 'suratPerjanjian'])->name('surat.perjanjian');
