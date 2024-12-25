@@ -20,14 +20,14 @@
     <div class="relative shadow-md rounded-lg overflow-auto pb-10 p-5 border border-gray-200 bg-white">
         <div class="w-full">
             <div class="my-5 text-sm flex space-x-4 ">
-                <button 
+                <button
                     class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
-                    Rekapitulasi Statistik 
+                    Rekapitulasi Statistik
                 </button>
 
                 {{-- Untuk Upload SK --}}
                 {{-- <button
-                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"  
+                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"
                     class="uploadSuccess-btn w-1/2 h-14 px-3 py-1 bg-[#32BB35] text-white rounded-lg font-semibold shadow-md text-lg" >
                     SK Belum Diluncurkan
                 </button> --}}
@@ -81,7 +81,7 @@
                                     Perlu Revisi
                                 </span>
                             @elseif($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">    
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
                                     Menunggu Verifikasi Ulang
                                 </span>
                             @else
@@ -122,7 +122,7 @@
     });
 
     document.addEventListener('click', function (event) {
-            if (event.target.classList.contains('upload-btn')) 
+            if (event.target.classList.contains('upload-btn'))
         {
             event.preventDefault();
 
@@ -159,9 +159,9 @@
                     title: 'Upload SK',
                     html: `
                         <form id="file-upload-form">
-                            <input id="fileInput" type="file" name="file" accept="application/pdf" 
+                            <input id="fileInput" type="file" name="file" accept="application/pdf"
                                 class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
-                            
+
                             <div id="filePreview" style="margin-top: 15px; display: none;">
                                 <h5>Preview SK:</h5>
                                 <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
@@ -10,7 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\SKTerbitNotifikasi;
 use App\Notifications\PengajuanNotifikasi;
+use Illuminate\Support\Facades\Notification;
 
 class BerkasController extends Controller
 {
@@ -64,7 +67,7 @@ class BerkasController extends Controller
             // $berkas->sertifikat_pelatihan_emosional_spiritual = $request->file('sertifikat_pelatihan_emosional_spiritual')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf' : $berkas->sertifikat_pelatihan_emosional_spiritual = null;
             if ($request->hasFile('sertifikat_pelatihan_emosional_spiritual')) {
                 $berkas->sertifikat_pelatihan_emosional_spiritual = $request->file('sertifikat_pelatihan_emosional_spiritual')->move($publicPath, 'Pengaju_' . $berkas->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') ? 'Pengaju_' . $berkas->id . '_sertifikat_pelatihan_emosional_spiritual.pdf' : 'data gagal terupload';
-            }else {
+            } else {
                 $berkas->sertifikat_pelatihan_emosional_spiritual = 'pengaju tidak mengirimkan file ini';
             }
             $berkas->sertifikat_bahasa_asing = $request->file('sertifikat_bahasa_asing')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_bahasa_asing.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_bahasa_asing.pdf' : 'data gagal terupload';
@@ -76,7 +79,7 @@ class BerkasController extends Controller
             // $berkas->sertifikat_agent_of_change = $request->file('sertifikat_agent_of_change')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf' : 'data gagal terupload';
             if ($request->hasFile('sertifikat_agent_of_change')) {
                 $berkas->sertifikat_agent_of_change = $request->file('sertifikat_agent_of_change')->move($publicPath, 'Pengaju_' . $berkas->id . '_sertifikat_agent_of_change.pdf') ? 'Pengaju_' . $berkas->id . '_sertifikat_agent_of_change.pdf' : 'data gagal terupload';
-            }else {
+            } else {
                 $berkas->sertifikat_agent_of_change = 'pengaju tidak mengirimkan file ini';
             }
             $berkas->sertifikat_berorganisasi = $request->file('sertifikat_berorganisasi')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf' : 'data gagal terupload';
@@ -90,7 +93,16 @@ class BerkasController extends Controller
             $pengajuan->status = PengajuanStatus::MenungguVerifikasi;
             $berkas->save();
 
-            $pengajuan->notify(new PengajuanNotifikasi($pengajuan->toArray()));
+            //notifikasi mahasiswa
+            // $pengajuan->user->notify(new PengajuanNotifikasi($pengajuan->toArray()));
+            $user = User::find($pengajuan->user_id);
+            $user->notify(new PengajuanNotifikasi($pengajuan, 'baru', false));
+            // $pengajuan->user->notify(new PengajuanNotifikasi($pengajuan, 'baru', false));
+
+
+            // Notifikasi ke staff_polban
+            $staffs = User::where('role_id', 'staff_kemahasiswaan')->get();
+            Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'baru', true));
         });
 
         $request->session()->forget('pengajuan');
@@ -204,6 +216,13 @@ class BerkasController extends Controller
 
         $berkas->save();
 
+        $user = User::find($pengajuan->user_id);
+        $user->notify(new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', false));
+
+        // Notifikasi ke staff_polban
+        $staffs = User::where('role_id', 'staff_kemahasiswaan')->get();
+        Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', true));
+
         return redirect()->route('progrestabel')->with('success', 'Data updated successfully');
     }
 
@@ -219,6 +238,9 @@ class BerkasController extends Controller
         Storage::makeDirectory($folderPath);
 
         $filePath = $request->file('file')->move($publicPath,  $currentYear . '_SK.pdf') ? $currentYear . '_SK.pdf' : 'data gagal terupload';
+
+        $mahasiswas = User::where('role_id', 'mahasiswa')->get();
+        Notification::send($mahasiswas, new SKTerbitNotifikasi('sk_terbit'));
 
         return response()->json([
             'message' => 'File berhasil diunggah!',

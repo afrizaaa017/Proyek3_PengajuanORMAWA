@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
+use App\Models\KetuaOrmawa;
+
 
 class SubmissionController extends Controller
 {
@@ -17,21 +19,19 @@ class SubmissionController extends Controller
         // Ambil periode dari query string atau gunakan default periode
         $periode = $request->input('periode', $defaultPeriode);
 
+        $jumlahKetuaOrmawa = KetuaOrmawa::count();
+
         // Filter data berdasarkan periode
         $pengajuan = new Pengajuan();
         $sudahMengajukan = $pengajuan->where('periode', $periode)->count();
-        $belumMengajukan = 35 - $sudahMengajukan;
+        $belumMengajukan = $jumlahKetuaOrmawa - $sudahMengajukan;
         $profilAntrean = $pengajuan->where('periode', $periode)
-            ->whereIn('status', ['Sedang Diproses', 'Ditolak'])
-            ->orderBy('created_at', 'desc')
-            ->take(8)
-            ->whereIn('status', ['Menunggu Verifikasi', 'Perlu Revisi'])
+            ->whereIn('status', ['Menunggu Verifikasi', 'Perlu Revisi', 'Menunggu Verifikasi Ulang'])
             ->latest()
             ->get();
         $profilBerhasil = $pengajuan->where('periode', $periode)
             ->where('status', 'Diterima')
-            ->orderBy('created_at', 'desc')
-            ->take(8)
+            ->latest()
             ->get();
 
         // Ambil daftar periode unik untuk dropdown filter
