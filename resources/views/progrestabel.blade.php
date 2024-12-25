@@ -3,7 +3,7 @@
 @include('components.navbar2')
 
 @section('content')
-<div class="w-full px-4 py-6 mx-auto" id="content">
+<div class=" w-full px-4 py-6 mx-auto" id="content">
     <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white">
         <h2 class="text-xl font-bold text-[#295F98]">Progress Pengajuan</h2>
         <div class="overflow-x-auto mt-5">
@@ -32,9 +32,9 @@
                                 </td>
                                 <td class="px-4 py-3 text-[#295F98]">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
-                                        <p class="text-center text-xl font-extrabold">-</p>
+                                        <p class="text-center font-extrabold text-sm md:text-base">-</p>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
-                                        <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
+                                    <p class="text-sm md:text-base">{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">
@@ -47,7 +47,7 @@
                                         Revisi
                                     </button>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
-                                        <p class="text-center text-xl font-extrabold">-</p>
+                                        <p class="text-center font-extrabold text-sm md:text-base">-</p>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">

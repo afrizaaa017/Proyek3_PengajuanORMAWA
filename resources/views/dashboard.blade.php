@@ -10,27 +10,27 @@
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
         <!-- Grid dengan Kolom Khusus -->
-        <div class="custom-grid">
+        <div class="custom-grid flex flex-wrap md:flex-nowrap gap-4">
 
             <!-- Kotak Hijau -->
-            <div class="kotak-hijau relative flex flex-col justify-between h-48">
+            <div class="kotak-hijau relative flex flex-col justify-between h-48 flex-grow bg-green-500">
                 <h2 class="text-2xl font-bold text-white">Sudah <br> Mengajukan</h2>
                 <p class="text-7xl font-bold text-left">{{ $sudahMengajukan }}</p>
             </div>
-
+        
             <!-- Kotak Merah -->
-            <div class="kotak-merah relative flex flex-col justify-between h-48">
+            <div class="kotak-merah relative flex flex-col justify-between h-48 flex-grow bg-red-500">
                 <h2 class="text-2xl font-bold text-white">Belum <br> Mengajukan</h2>
                 <p class="text-7xl font-bold text-left">{{ $belumMengajukan }}</p>
             </div>
-
-            <!-- Kotak Oranye (Lebih Lebar) -->
-            <div class="kotak-oranye h-48">
-                <a href="{{ url('/listtable') }}" class="block text-2xl md:text-4xl font-bold text-left">
+        
+            <!-- Kotak Oranye -->
+            <div class="kotak-oranye h-48 w-full md:w-auto bg-orange-500 order-3 md">
+                <a href="{{ url('/listtable') }}" class="block text-2xl md:text-4xl font-bold text-left p-4 text-white">
                     Lihat Semua Pengajuan <br> ORMAWA
                 </a>
             </div>
-        </div>
+        </div>     
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 
@@ -72,7 +72,7 @@
 
                 <!-- Tombol di Bawah Sudah Berhasil -->
                 <div class="flex gap-4">
-                    <a href="{{ url('/atur-timeline') }}" class="block text-center bg-gradient-to-r from-[#2E7BCE] to-[#173E68] text-white text-lg font-bold py-3 rounded-lg hover:opacity-90 transition w-1/2">
+                    <a href="{{ url('/admin') }}" class="block text-center bg-gradient-to-r from-[#2E7BCE] to-[#173E68] text-white text-lg font-bold py-3 rounded-lg hover:opacity-90 transition w-1/2">
                         Atur Timeline
                     </a>
                     <div x-data="{ openModal: false }" class="w-1/2">

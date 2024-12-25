@@ -23,11 +23,13 @@ class SubmissionController extends Controller
         $belumMengajukan = 35 - $sudahMengajukan;
         $profilAntrean = $pengajuan->where('periode', $periode)
             ->whereIn('status', ['Sedang Diproses', 'Ditolak'])
-            ->latest()
+            ->orderBy('created_at', 'desc')
+            ->take(8)
             ->get();
         $profilBerhasil = $pengajuan->where('periode', $periode)
             ->where('status', 'Diterima')
-            ->latest()
+            ->orderBy('created_at', 'desc')
+            ->take(8)
             ->get();
 
         // Ambil daftar periode unik untuk dropdown filter

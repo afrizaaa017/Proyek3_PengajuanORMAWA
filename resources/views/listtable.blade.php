@@ -22,13 +22,15 @@
             <div class="my-5 text-sm flex space-x-4 ">
                 <button 
                     class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
-                    Luncurkan SK Tahun {{ date('Y') }} 
+                    Rekapitulasi Statistik 
                 </button>
-                <button
+
+                {{-- Untuk Upload SK --}}
+                {{-- <button
                     data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"  
                     class="uploadSuccess-btn w-1/2 h-14 px-3 py-1 bg-[#32BB35] text-white rounded-lg font-semibold shadow-md text-lg" >
                     SK Belum Diluncurkan
-                </button>
+                </button> --}}
             </div>
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>

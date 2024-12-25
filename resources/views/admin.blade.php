@@ -120,8 +120,8 @@
                             <label for="editTanggalAkhir" class="block text-sm font-medium">Tanggal Akhir</label>
                             <input type="date" id="editTanggalAkhir" name="tanggal_timeline_akhir" class="block w-full p-2 border rounded" required>
                         </div>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Timeline</button>
-                        <button type="button" onclick="hideEditForm()" class="ml-2 bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded">Update Timeline</button>
+                        <button type="button" onclick="hideEditForm()" class="ml-2 bg-gray-500 text-black px-4 py-2 rounded">Cancel</button>
                     </form>
                 </div>
 
