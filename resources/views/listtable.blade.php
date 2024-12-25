@@ -20,15 +20,17 @@
     <div class="relative shadow-md rounded-lg overflow-auto pb-10 p-5 border border-gray-200 bg-white">
         <div class="w-full">
             <div class="my-5 text-sm flex space-x-4 ">
-                <button 
-                    class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
-                    Luncurkan SK Tahun {{ date('Y') }} 
-                </button>
                 <button
-                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"  
+                    class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    Rekapitulasi Statistik
+                </button>
+
+                {{-- Untuk Upload SK --}}
+                {{-- <button
+                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"
                     class="uploadSuccess-btn w-1/2 h-14 px-3 py-1 bg-[#32BB35] text-white rounded-lg font-semibold shadow-md text-lg" >
                     SK Belum Diluncurkan
-                </button>
+                </button> --}}
             </div>
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>
@@ -79,7 +81,7 @@
                                     Perlu Revisi
                                 </span>
                             @elseif($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
-                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">    
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
                                     Menunggu Verifikasi Ulang
                                 </span>
                             @else
@@ -147,44 +149,46 @@
         });
 
     document.addEventListener('click', function (event) {
-            if (event.target.classList.contains('upload-btn')) 
+            if (event.target.classList.contains('upload-btn'))
         {
             event.preventDefault();
 
             // Validasi status pengajuan sebelum mengizinkan upload
             fetch('/validate-pengajuan-status', {
-                method: 'GET',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                }
-            })
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                })
             .then(response => response.json())
             .then(data => {
-                if (!data.success) {
-                    // Jika validasi gagal, tampilkan jumlah status
-                    Swal.fire({
-                        title: 'Tidak Dapat Upload SK',
-                        html: `
-                            <p>Terdapat pengajuan yang tidak memenuhi syarat untuk upload SK:</p>
-                            <ul>
-                                <li><strong>Sedang Diproses:</strong> ${data.sedangDiproses} pengajuan</li>
-                                <li><strong>Ditolak:</strong> ${data.ditolak} pengajuan</li>
-                            </ul>
-                            <p>Pastikan semua pengajuan memiliki status <strong>"Diterima"</strong>.</p>
-                        `,
-                        icon: 'warning'
-                    });
-                    return;
-                }
+            if (!data.success) {
+                // Jika validasi gagal, tampilkan jumlah status
+                Swal.fire({
+                    title: 'Tidak Dapat Upload SK',
+                    html: `
+                        <p>Terdapat pengajuan yang tidak memenuhi syarat untuk upload SK:</p>
+                        <ul>
+                            <li><strong>Menunggu Verifikasi:</strong> ${data['Menunggu Verifikasi']} pengajuan</li>
+                            <li><strong>Menunggu Verifikasi Ulang:</strong> ${data['Menunggu Verifikasi Ulang']} pengajuan</li>
+                            <li><strong>Perlu Revisi:</strong> ${data['Perlu Revisi']} pengajuan</li>
+                            <li><strong>Diterima:</strong> ${data['Diterima']} pengajuan</li>
+                        </ul>
+                        <p>Pastikan semua pengajuan memiliki status <strong>"Diterima"</strong>.</p>
+                    `,
+                    icon: 'warning'
+                });
+                return;
+            }
 
                 // Jika validasi sukses, munculkan dialog upload
                 Swal.fire({
                     title: 'Upload SK',
                     html: `
                         <form id="file-upload-form">
-                            <input id="fileInput" type="file" name="file" accept="application/pdf" 
+                            <input id="fileInput" type="file" name="file" accept="application/pdf"
                                 class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
-                            
+
                             <div id="filePreview" style="margin-top: 15px; display: none;">
                                 <h5>Preview SK:</h5>
                                 <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>

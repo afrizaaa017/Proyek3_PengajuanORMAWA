@@ -3,7 +3,7 @@
 @include('components.navbar2')
 
 @section('content')
-<div class="w-full px-4 py-6 mx-auto" id="content">
+<div class=" w-full px-4 py-6 mx-auto" id="content">
     <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white">
         <h2 class="text-xl font-bold text-[#295F98]">Progress Pengajuan</h2>
         <div class="overflow-x-auto mt-5">
@@ -39,13 +39,10 @@
                                             {{ $pengajuan->status }}
                                         </span>
                                     @endif
-                                    {{-- <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
-                                        {{ $pengajuan->status }}
-                                    </span> --}}
                                 </td>
                                 <td class="px-4 py-3 text-[#295F98]">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
-                                        <p class="text-center text-xl font-extrabold">-</p>
+                                        <p class="text-center font-extrabold text-sm md:text-base">-</p>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
                                         <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
                                     @endif
@@ -59,9 +56,7 @@
                                         data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
                                         Revisi
                                     </button>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
-                                        <p class="text-center text-xl font-extrabold">-</p>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
                                         <p class="text-center text-xl font-extrabold">-</p>
                                     @endif
                                 </td>
@@ -88,6 +83,15 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Tombol Print  -->
+                <div class="mt-4 flex space-x-4 justify-center">
+                    <a href="{{ route('surat.pernyataan') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                        Unduh Surat Pernyataan
+                    </a>
+                    <a href="{{ route('surat.perjanjian') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                        Unduh Surat Perjanjian
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -108,10 +112,10 @@
         <script>
             document.querySelectorAll('.btn-revisi-pengaju').forEach(button => {
                 button.addEventListener('click', function () {
-                    const pengajuanId = this.getAttribute('data-id'); 
-                    const alasanRevisi = this.getAttribute('data-alasan'); 
+                    const pengajuanId = this.getAttribute('data-id');
+                    const alasanRevisi = this.getAttribute('data-alasan');
                     const editUrl = this.getAttribute('data-edit-url');
-            
+
                     Swal.fire({
                         title: `Pesan Revisi Untuk Pengajuan Dengan Nama ${pengajuanId}`,
                         text: alasanRevisi ? `Pesan Revisi: ${alasanRevisi}` : 'Tidak ada revisi, hubungi pihak staff.',
@@ -136,8 +140,8 @@
 
             document.addEventListener('click', function (event) {
                 if (event.target.classList.contains('preview-btn')) {
-                    event.preventDefault(); 
-                    
+                    event.preventDefault();
+
                     const fileUrl = event.target.getAttribute('data-file');
                     Swal.fire({
                         title: 'Preview PDF',
@@ -155,8 +159,8 @@
             });
 
         </script>
-        
-    
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         </div>
         @endsection

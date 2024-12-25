@@ -42,12 +42,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="overflow-hidden">
-    <main class="flex items-center justify-center h-screen bg-gray-100">
-        <section class="relative flex flex-col lg:flex-row w-full max-w-4xl h-auto lg:h-[30rem] rounded-3xl overflow-hidden shadow-lg">
+<body class="overflow-hidden" >
+    <main class="flex items-center justify-center h-screen bg-gray-100 ">
+        <section class=" lg:absolute relative flex flex-col lg:flex-row w-full max-w-4xl h-auto lg:h-[30rem] rounded-3xl overflow-hidden shadow-lg ">
             <!-- First Column (App Name + Background Image + Overlay) -->
-            <div class="relative lg:w-1/2 w-full h-64 lg:h-full bg-cover bg-center flex items-start justify-center" style="background-image: url('{{ asset('assets/img/login/login-bg.png') }}');">
-                <div class="absolute inset-0 bg-black opacity-30"></div>
+            <div class=" relative lg:w-1/2 w-full h-64 lg:h-full bg-cover bg-center flex items-start justify-center" style="background-image: url('{{ asset('assets/img/login/login-bg.jpg') }}'); ">
+                <div class="absolute inset-0 bg-black opacity-30 "></div>
                 <div class="relative z-10 p-8">
                     <h1 class="text-3xl font-bold text-white">
                         Sistem Informasi Kemahasiswaan Polban
@@ -58,7 +58,7 @@
             <!-- Second Column (Login, Forgot Password, and Reset Password Forms) -->
             <div class="w-full lg:w-1/2 flex flex-col p-10 bg-white relative">
                 <!-- Login Form -->
-                <div id="loginForm" class="absolute inset-0 transition-transform duration-700 ease-in-out flex flex-col justify-between p-10 bg-white">
+                <div id="loginForm" class="sm:max-w-md md:max-w-xl lg:max-w-xl lg:absolute relative  inset-0 transition-transform duration-700 ease-in-out flex flex-col justify-between p-10 bg-white ">
                     <div class="title mb-6">
                         <h1 class="text-2xl font-bold">Login</h1>
                     </div>
@@ -90,7 +90,7 @@
                 </div>
     
                 <!-- Forgot Password Form -->
-                <div id="forgotPasswordForm" class="absolute inset-0 transform translate-x-full transition-transform duration-700 ease-in-out flex flex-col justify-between p-10 bg-white">
+                <div id="forgotPasswordForm" class="absolute inset-0 transform translate-x-full transition-transform duration-700 ease-in-out flex flex-col justify-between p-10 bg-white sm:flex-row">
                     <div class="title mb-6">
                         <h1 class="text-2xl font-bold">Forgot Password</h1>
                     </div>

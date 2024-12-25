@@ -10,7 +10,7 @@
             <div class="container my-4">
 
                 <!-- Stepper Container -->
-                <div class="flex items-start max-w-4xl mx-auto">
+                <div class="sm:max-0 sm:static flex items-start max-w-4xl mx-auto">
                     <!-- Step 1 (Completed or Active) -->
                     <div id="step1" class="w-full">
                         <div class="flex items-center w-full">
