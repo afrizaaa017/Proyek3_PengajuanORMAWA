@@ -370,3 +370,36 @@ section {
     background-color: #f44336 !important;  /* Warna latar belakang saat hover */
     transform: scale(1.05);  /* Efek memperbesar tombol sedikit saat hover */
 }
+
+.kop-surat .isi-kop {
+    text-align: center;
+    flex-grow: 1;
+}
+/* .kop-surat .isi-kop h1{
+    font-size: 20px !important;
+    text-align: center;
+    margin: 0;
+    font-weight: normal;
+} */
+.kop-surat .isi-kop h2{
+    font-size: 14px !important;
+    text-align: center;
+    margin: 5px 0;
+}
+.kop-surat .isi-kop h3{
+    font-size: 12px !important;
+    text-align: center;
+    margin: 5px 0;
+    font-weight: normal;
+}
+.kop-surat hr {
+    border: 0;
+    border-top: 2px solid black; /* Ketebalan garis */
+    margin-top: 10px;
+    width: 100%; /* Membuat garis memanjang ke seluruh lebar container */
+    position: absolute; /* Untuk memastikan hr tetap */
+    left: 0; /* Mulai dari ujung kiri container */
+    bottom: 0; /* Pastikan berada di bawah konten */
+}
+
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
@@ -10,7 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\SKTerbitNotifikasi;
 use App\Notifications\PengajuanNotifikasi;
+use Illuminate\Support\Facades\Notification;
 
 class BerkasController extends Controller
 {
@@ -80,7 +83,16 @@ class BerkasController extends Controller
             $pengajuan->status = PengajuanStatus::SedangDiproses;
             $berkas->save();
 
-            $pengajuan->notify(new PengajuanNotifikasi($pengajuan->toArray()));
+            //notifikasi mahasiswa
+            // $pengajuan->user->notify(new PengajuanNotifikasi($pengajuan->toArray()));
+            $user = User::find($pengajuan->user_id);
+            $user->notify(new PengajuanNotifikasi($pengajuan, 'baru', false));
+            // $pengajuan->user->notify(new PengajuanNotifikasi($pengajuan, 'baru', false));
+
+
+            // Notifikasi ke staff_polban
+            $staffs = User::where('role_id', 'staff_kemahasiswaan')->get();
+            Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'baru', true));
         });
 
         $request->session()->forget('pengajuan');
@@ -194,6 +206,13 @@ class BerkasController extends Controller
 
         $berkas->save();
 
+        $user = User::find($pengajuan->user_id);
+        $user->notify(new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', false));
+
+        // Notifikasi ke staff_polban
+        $staffs = User::where('role_id', 'staff_kemahasiswaan')->get();
+        Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', true));
+
         return redirect()->route('progrestabel')->with('success', 'Data updated successfully');
     }
 
@@ -209,6 +228,9 @@ class BerkasController extends Controller
         Storage::makeDirectory($folderPath);
 
         $filePath = $request->file('file')->move($publicPath,  $currentYear . '_SK.pdf') ? $currentYear . '_SK.pdf' : 'data gagal terupload';
+
+        $mahasiswas = User::where('role_id', 'mahasiswa')->get();
+        Notification::send($mahasiswas, new SKTerbitNotifikasi('sk_terbit'));
 
         return response()->json([
             'message' => 'File berhasil diunggah!',

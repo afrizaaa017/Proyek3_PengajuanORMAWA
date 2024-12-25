@@ -27,7 +27,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'test@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses',
+                'status' => 'Sedang Diproses',
             ],
             [
                 'nama' => "Tita Erlina",
@@ -70,7 +70,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'ali@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses'
+                'status' => 'Sedang Diproses'
             ],
             [
                 'nama' => "Melly Dwilliani",
@@ -112,7 +112,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'dedi@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses'
+                'status' => 'Sedang Diproses'
             ],
             [
                 'nama' => "Elisa Utami",
@@ -154,7 +154,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'gina@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses'
+                'status' => 'Sedang Diproses'
             ],
             [
                 'nama' => "Hana Sasa",

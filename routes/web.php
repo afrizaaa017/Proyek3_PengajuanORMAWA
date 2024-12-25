@@ -14,6 +14,7 @@ use App\Http\Controllers\Mahasiswacontroller;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\KetuaOrmawaController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PDFController;
 use App\Http\Middleware\IsStaff;
 
 // ========================================================================================
@@ -135,3 +136,9 @@ Route::get('/', function () {
 
 Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
 Route::get('/users', [FormController::class, 'user'])->name('users.index');
+
+Route::get('/suratPernyataan', [PDFController::class, 'suratPernyataan'])->name('surat.pernyataan');
+Route::get('/suratPerjanjian', [PDFController::class, 'suratPerjanjian'])->name('surat.perjanjian');
+// Route::get('/surat', function () {
+//     return view('pdf');
+// });

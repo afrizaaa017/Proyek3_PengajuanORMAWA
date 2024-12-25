@@ -242,21 +242,28 @@
 
 
                             @foreach ($notifications as $notification)
-                            <li class="relative mb-2">
-                                <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700"
-                                    href="javascript:;">
-                                    <div class="flex py-1">
-                                        <div class="flex flex-col justify-center">
-                                            <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">{{ $notification->data['message'] ?? 'Pesan tidak tersedia' }}</span></h6>
-                                            <p class="mb-0 text-xs leading-tight text-slate-400">
-                                                <i class="mr-1 fa fa-clock"></i>
-                                                {{-- {{ $notification->data['data']['created_at']->diffForHumans() }} --}}
-                                                {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+                                @php
+                                    $userRole = auth()->user()->role_id;
+                                    $isTarget = $notification->notifiable_id == auth()->user()->id && $notification->data['role_target'] == $userRole;
+                                @endphp
+
+                                @if ($isTarget)
+                                    <li class="relative mb-2">
+                                        <a class="ease-soft py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700"
+                                            href="javascript:;">
+                                            <div class="flex py-1">
+                                                <div class="flex flex-col justify-center">
+                                                    <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">{{ $notification->data['message'] ?? 'Pesan tidak tersedia' }}</span></h6>
+                                                    <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                        <i class="mr-1 fa fa-clock"></i>
+                                                        {{-- {{ $notification->data['data']['created_at']->diffForHumans() }} --}}
+                                                        {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endif
                             @endforeach
 
                             <li class="relative mb-2">

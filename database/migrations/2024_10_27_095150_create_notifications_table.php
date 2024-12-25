@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('type');
             $table->morphs('notifiable');
             $table->boolean('is_read')->default(false); // Status baca
-            $table->text('data');
+            $table->json('data'); // Storing notification data, including 'role_target'
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });

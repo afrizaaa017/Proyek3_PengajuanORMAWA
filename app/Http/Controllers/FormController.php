@@ -12,6 +12,7 @@ use App\Models\KetuaOrmawa;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\PengajuanNotifikasi;
 
 class FormController extends Controller
 {
@@ -35,13 +36,13 @@ class FormController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nim' => 'required|unique:pengajuans', 
+            'nim' => 'required|unique:pengajuans',
             'jurusan' => 'required',
             'prodi' => 'required',
             'ormawa' => 'required',
             'ketua_ormawa' => 'required',
-            'periode' => 'required', 
-            'telp' => 'required', 
+            'periode' => 'required',
+            'telp' => 'required',
             'email' => 'required',
         ]);
 
@@ -59,7 +60,7 @@ class FormController extends Controller
         ]);
         return redirect()->route('pengajuanberkas')->with('success', 'Data has been saved successfully.');
     }
-    
+
     public function detailPengajuan($id)
     {
         $pengajuans = Pengajuan::with('berkas')->find($id);
@@ -75,7 +76,7 @@ class FormController extends Controller
     {
         $userId = Auth::id();
         $exists = Pengajuan::where('user_id', $userId)->exists();
-    
+
         if ($exists) {
             return redirect()->route('progrestabel')->with('error', 'Anda sudah memiliki pengajuan.');
         }
@@ -84,12 +85,12 @@ class FormController extends Controller
             return redirect()->route('progrestabel')->with('success', 'Lengkapi berkas anda.');
         }
 
-        $ormawas = Ormawa::all(); 
-        $jurusans = Jurusan::all(); 
-        $prodis = Prodi::all(); 
-        $ketuaOrmawas = KetuaOrmawa::all(); 
-    
-        return view('form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas')); 
+        $ormawas = Ormawa::all();
+        $jurusans = Jurusan::all();
+        $prodis = Prodi::all();
+        $ketuaOrmawas = KetuaOrmawa::all();
+
+        return view('form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
     }
 
     public function updateStatus(Request $request, $id, $status)
@@ -104,28 +105,30 @@ class FormController extends Controller
                 'revisi' => 'required|string',
             ]);
             $pengajuan->keterangan = $request->input('revisi');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'Status tidak valid.');
         }
 
         $pengajuan->save();
 
+        $user = User::find($pengajuan->user_id);
+        $user->notify(new PengajuanNotifikasi($pengajuan, 'diterima', false));
+
         return redirect('/listtable')->with('success', 'Status pengajuan berhasil diperbarui.');
     }
-    
+
 
     public function edit($id)
     {
-        $ormawas = Ormawa::all(); 
-        $jurusans = Jurusan::all(); 
-        $prodis = Prodi::all(); 
+        $ormawas = Ormawa::all();
+        $jurusans = Jurusan::all();
+        $prodis = Prodi::all();
         $ketuaOrmawas = KetuaOrmawa::all();
         $pengajuan = Pengajuan::findOrFail($id);
 
-        return view('editPengajuan', compact('pengajuan','ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
+        return view('editPengajuan', compact('pengajuan', 'ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
     }
-    
+
     public function listtable(Request $request)
     {
         $selectedPeriode = $request->input('periode');
@@ -143,15 +146,15 @@ class FormController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nim' => 'required|unique:pengajuans,nim,' . $id, 
+            'nim' => 'required|unique:pengajuans,nim,' . $id,
             'jurusan' => 'required',
             'prodi' => 'required',
             'ormawa' => 'required',
             'ketua_ormawa' => 'required',
-            'periode' => 'required', 
-            'telp' => 'required', 
+            'periode' => 'required',
+            'telp' => 'required',
             'email' => 'required',
-        ],[
+        ], [
             'nim.unique' => 'NIM sudah digunakan. Silakan gunakan NIM lain.',
         ]);
 
@@ -167,6 +170,6 @@ class FormController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('berkas.edit',['id' => $id])->with('success', 'Data has been saved successfully.');
+        return redirect()->route('berkas.edit', ['id' => $id])->with('success', 'Data has been saved successfully.');
     }
 }
