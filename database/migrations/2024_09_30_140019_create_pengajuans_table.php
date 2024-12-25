@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('periode');
             $table->text('telp');
             $table->text('email');
-            $table->enum('status', ['Sedang Diproses', 'Diterima', 'Ditolak'])->default('Sedang Diproses');
+            $table->enum('status', ['Menunggu Verifikasi', 'Diterima', 'Perlu Revisi', 'Menunggu Verifikasi Ulang'])->default('Menunggu Verifikasi');
             $table->text('keterangan')->default('Kosong');
             $table->foreignId('user_id')
             ->nullable() // Penting agar kolom bisa diset null

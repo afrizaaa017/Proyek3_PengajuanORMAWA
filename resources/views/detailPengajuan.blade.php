@@ -4,6 +4,12 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-8">
+    @if ($pengajuans->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
+    <div class="bg-red-400 shadow-lg rounded-lg p-6 my-8">
+        <h3 class="text-2xl font-bold text-center text-black mb-5">Pesan Revisi Sebelumnya</h3>
+        <p>{{ $pengajuans->keterangan }}</p>
+    </div>
+    @endif
     <div class="bg-white shadow-lg rounded-lg p-6">
         <h3 class="text-2xl font-bold text-center text-[#344767]">DATA PENGAJUAN</h3>
         <div class="mt-6 border-t border-gray-200">
@@ -122,51 +128,73 @@
         <!-- Script SweetAlert untuk Revisi -->
         <script>
             document.getElementById('btnRevisi').addEventListener('click', function () {
-                Swal.fire({
-                    title: 'Revisi Pengajuan',
-                    input: 'textarea',
-                    inputLabel: 'Masukkan Revisi Pengajuan',
-                    inputPlaceholder: 'Tuliskan revisi di sini...',
-                    inputAttributes: {
-                        'aria-label': 'Tuliskan revisi di sini'
-                    },
-                    showCancelButton: true,
-                    confirmButtonText: 'Tolak dan Revisi',
-                    cancelButtonText: 'Batal',
-                    customClass: {
-                        confirmButton: 'swal-confirm-button',
-                        cancelButton: 'swal-cancel-button'
-                    },
-                    preConfirm: (revisi) => {
-                        if (!revisi) {
-                            Swal.showValidationMessage('Revisi tidak boleh kosong!');
-                        }
-                        return revisi;
+            Swal.fire({
+                title: 'Revisi Pengajuan',
+                html: `
+                    <div style="text-align: left">
+                        <label><input type="checkbox" value="Scan KTP tidak sesuai | "> Scan KTP</label><br>
+                        <label><input type="checkbox" value="Surat Sehat tidak sesuai | "> Surat Sehat</label><br>
+                        <label><input type="checkbox" value="Surat Rekomendasi Jurusan tidak sesuai | "> Surat Rekomendasi Jurusan</label><br>
+                        <label><input type="checkbox" value="Transkip Rekomendasi Jurusan tidak sesuai | "> Transkip Rekomendasi Jurusan</label><br>
+                        <label><input type="checkbox" value="Sertifikat LKMM tidak sesuai | "> Sertifikat LKMM</label><br>
+                        <label><input type="checkbox" value="Sertifikat Pelatihan Kepemimpinan tidak sesuai | "> Sertifikat Pelatihan Kepemimpinan</label><br>
+                        <label><input type="checkbox" value="Sertifikat Pelatihan Emotional Spiritual tidak sesuai | "> Sertifikat Pelatihan Emotional Spiritual</label><br>
+                        <label><input type="checkbox" value="Sertifikat Bahasa Asing tidak sesuai | "> Sertifikat Bahasa Asing</label><br>
+                        <label><input type="checkbox" value="Scan KTM tidak sesuai | "> Scan KTM</label><br>
+                        <label><input type="checkbox" value="Surat Keterangan Berkelakuan Baik tidak sesuai | "> Surat Keterangan Berkelakuan Baik</label><br>
+                        <label><input type="checkbox" value="Surat Pernyataan Mandiri tidak sesuai | "> Surat Pernyataan Mandiri</label><br>
+                        <label><input type="checkbox" value="Sertifikat PKKMB tidak sesuai | "> Sertifikat PKKMB</label><br>
+                        <label><input type="checkbox" value="Sertifikat Bela Negara tidak sesuai | "> Sertifikat Bela Negara</label><br>
+                        <label><input type="checkbox" value="Sertifikat Agent of Change tidak sesuai | "> Sertifikat Agent of Change</label><br>
+                        <label><input type="checkbox" value="Sertifikat Berorganisasi tidak sesuai | "> Sertifikat Berorganisasi</label><br>
+                        <label><input type="checkbox" value="Berita Acara Pemilihan tidak sesuai | "> Berita Acara Pemilihan</label><br>
+                        <textarea style="width: 80% , height:80%" id="customRevisi" class="swal2-textarea" placeholder="Tulis revisi tambahan (opsional)"></textarea>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Tolak dan Revisi',
+                cancelButtonText: 'Batal',
+                preConfirm: () => {
+                    // Ambil semua checkbox yang diceklis
+                    const checkedValues = Array.from(
+                        document.querySelectorAll('input[type="checkbox"]:checked')
+                    ).map(checkbox => checkbox.value);
+
+                    // Ambil teks tambahan dari textarea
+                    const customRevisi = document.getElementById('customRevisi').value;
+
+                    // Gabungkan revisi dari checkbox dan teks tambahan
+                    const revisiText = [...checkedValues, customRevisi.trim()].filter(Boolean).join('\n');
+
+                    if (!revisiText) {
+                        Swal.showValidationMessage('Anda harus memilih setidaknya satu revisi atau mengisi keterangan tambahan.');
                     }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Kirim revisi ke server
-                        fetch("{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Ditolak']) }}", {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                    'Accept': 'application/json'
-                            },
-                            body: JSON.stringify({ revisi: result.value })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                Swal.fire('Berhasil!', 'Revisi telah disimpan.', 'success').then(() => {
-                                    window.location.href = '/listtable'; // Ganti dengan URL yang sesuai
-                                });
-                            })
-                            .catch(error => {
-                                Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan revisi.', 'error');
+                    return revisiText;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Kirim revisi ke server
+                    fetch("{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Perlu Revisi']) }}", {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ revisi: result.value })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.fire('Berhasil!', 'Revisi telah disimpan.', 'success').then(() => {
+                                window.location.href = '/listtable'; // Ganti dengan URL yang sesuai
                             });
-                    }
-                });
+                        })
+                        .catch(error => {
+                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan revisi.', 'error');
+                        });
+                }
             });
+        });
         </script>
 
         <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Diterima']) }}" method="POST">

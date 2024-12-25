@@ -66,17 +66,21 @@
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td>
-                            @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
+                            @if($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
                                 <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
-                                    Diproses
+                                    Menunggu Verifikasi
                                 </span>
                             @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                                 <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
                                     Diterima
                                 </span>
-                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi)
                                 <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
-                                    Ditolak
+                                    Perlu Revisi
+                                </span>
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">    
+                                    Menunggu Verifikasi Ulang
                                 </span>
                             @else
                                 <span class="w-24 h-8 px-3 py-1 bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md">

@@ -4,9 +4,10 @@ namespace App\Enums;
 
 enum PengajuanStatus: string
 {
-    case SedangDiproses = 'Sedang Diproses';
+    case MenungguVerifikasi = 'Menunggu Verifikasi';
     case Diterima = 'Diterima';
-    case Ditolak = 'Ditolak';
+    case PerluRevisi = 'Perlu Revisi';
+    case MenungguVerifikasiUlang = 'Menunggu Verifikasi Ulang';
 }
 
 

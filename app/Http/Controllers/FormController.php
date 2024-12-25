@@ -99,7 +99,7 @@ class FormController extends Controller
 
         if ($status === 'Diterima') {
             $pengajuan->keterangan = 'Tidak ada revisi';
-        } else if ($status === 'Ditolak') {
+        } else if ($status === 'Perlu Revisi') {
             $request->validate([
                 'revisi' => 'required|string',
             ]);

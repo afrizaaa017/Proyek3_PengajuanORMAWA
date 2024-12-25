@@ -27,7 +27,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'test@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses',
+                'status' => 'Menunggu Verifikasi',
             ],
             [
                 'nama' => "Tita Erlina",
@@ -41,7 +41,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'test2@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'Ditolak',
+                'status' => 'Perlu Revisi',
             ],
             [
                 'nama' => "Rina Nana",
@@ -70,7 +70,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'ali@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses'
+                'status' => 'Menunggu Verifikasi'
             ],
             [
                 'nama' => "Melly Dwilliani",
@@ -84,7 +84,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'budi@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'Ditolak'
+                'status' => 'Perlu Revisi'
             ],
             [
                 'nama' => "Citra Asih",
@@ -112,7 +112,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'dedi@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses'
+                'status' => 'Menunggu Verifikasi'
             ],
             [
                 'nama' => "Elisa Utami",
@@ -126,7 +126,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'elisa@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'Ditolak'
+                'status' => 'Perlu Revisi'
             ],
             [
                 'nama' => "Isyana Putri",
@@ -154,7 +154,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'gina@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'sedang diproses'
+                'status' => 'Menunggu Verifikasi Ulang'
             ],
             [
                 'nama' => "Hana Sasa",
@@ -168,7 +168,7 @@ class PengajuanSeeder extends Seeder
                 'email' => 'hana@gmail.com',
                 'created_at' => $now,
                 'updated_at' => $now,
-                'status' => 'Ditolak'
+                'status' => 'Perlu Revisi'
             ]
         ]);
     }

@@ -29,6 +29,16 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'Joko',
+                'email' => 'joko@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'Staff',
                 'email' => 'staff@polban.ac.id',
                 'email_verified_at' => now(),

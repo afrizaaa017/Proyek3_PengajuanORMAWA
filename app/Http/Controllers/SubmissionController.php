@@ -22,7 +22,7 @@ class SubmissionController extends Controller
         $sudahMengajukan = $pengajuan->where('periode', $periode)->count();
         $belumMengajukan = 35 - $sudahMengajukan;
         $profilAntrean = $pengajuan->where('periode', $periode)
-            ->whereIn('status', ['Sedang Diproses', 'Ditolak'])
+            ->whereIn('status', ['Menunggu Verifikasi', 'Perlu Revisi'])
             ->latest()
             ->get();
         $profilBerhasil = $pengajuan->where('periode', $periode)

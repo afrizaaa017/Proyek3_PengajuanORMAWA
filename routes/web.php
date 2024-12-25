@@ -119,7 +119,7 @@ Route::get('/menu', function () {
 });
 
 Route::get('/', function () {
-    return view('login');
+    return view('pages.Auth.login');
 });
 
 //setting deadline
