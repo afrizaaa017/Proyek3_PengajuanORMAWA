@@ -12,12 +12,16 @@ class validatepengajuan extends Controller
     {
         $menungguVerifikasiCount = Pengajuan::where('status', PengajuanStatus::MenungguVerifikasi->value)->count();
         $perluRevisiCount = Pengajuan::where('status', PengajuanStatus::PerluRevisi->value)->count();
-    
-        if ($menungguVerifikasiCount > 0 || $perluRevisiCount > 0) {
+        $MenungguVerifikasiUlang = Pengajuan::where('status', PengajuanStatus::MenungguVerifikasiUlang->value)->count();
+        $Diterima = Pengajuan::where('status', PengajuanStatus::Diterima->value)->count();
+
+        if ($menungguVerifikasiCount > 0 || $perluRevisiCount > 0 || $MenungguVerifikasiUlang > 0) {
             return response()->json([
                 'success' => false,
                 'Menunggu Verifikasi' => $menungguVerifikasiCount,
-                'Perlu Revisi' => $perluRevisiCount
+                'Perlu Revisi' => $perluRevisiCount,
+                'Menunggu Verifikasi Ulang' => $MenungguVerifikasiUlang,
+                'Diterima' => $Diterima
             ]);
         }
     

@@ -10,7 +10,7 @@
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
         <!-- Grid dengan Kolom Khusus -->
-        <div class="custom-grid flex flex-wrap md:flex-nowrap gap-4">
+        <div class="custom-grid  gap-4">
 
             <!-- Kotak Hijau -->
             <div class="kotak-hijau relative flex flex-col justify-between h-48 flex-grow bg-green-500">

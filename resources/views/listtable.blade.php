@@ -128,29 +128,31 @@
 
             // Validasi status pengajuan sebelum mengizinkan upload
             fetch('/validate-pengajuan-status', {
-                method: 'GET',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                }
-            })
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                })
             .then(response => response.json())
             .then(data => {
-                if (!data.success) {
-                    // Jika validasi gagal, tampilkan jumlah status
-                    Swal.fire({
-                        title: 'Tidak Dapat Upload SK',
-                        html: `
-                            <p>Terdapat pengajuan yang tidak memenuhi syarat untuk upload SK:</p>
-                            <ul>
-                                <li><strong>Sedang Diproses:</strong> ${data.sedangDiproses} pengajuan</li>
-                                <li><strong>Ditolak:</strong> ${data.ditolak} pengajuan</li>
-                            </ul>
-                            <p>Pastikan semua pengajuan memiliki status <strong>"Diterima"</strong>.</p>
-                        `,
-                        icon: 'warning'
-                    });
-                    return;
-                }
+            if (!data.success) {
+                // Jika validasi gagal, tampilkan jumlah status
+                Swal.fire({
+                    title: 'Tidak Dapat Upload SK',
+                    html: `
+                        <p>Terdapat pengajuan yang tidak memenuhi syarat untuk upload SK:</p>
+                        <ul>
+                            <li><strong>Menunggu Verifikasi:</strong> ${data['Menunggu Verifikasi']} pengajuan</li>
+                            <li><strong>Menunggu Verifikasi Ulang:</strong> ${data['Menunggu Verifikasi Ulang']} pengajuan</li>
+                            <li><strong>Perlu Revisi:</strong> ${data['Perlu Revisi']} pengajuan</li>
+                            <li><strong>Diterima:</strong> ${data['Diterima']} pengajuan</li>
+                        </ul>
+                        <p>Pastikan semua pengajuan memiliki status <strong>"Diterima"</strong>.</p>
+                    `,
+                    icon: 'warning'
+                });
+                return;
+            }
 
                 // Jika validasi sukses, munculkan dialog upload
                 Swal.fire({
