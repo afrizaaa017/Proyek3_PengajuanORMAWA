@@ -18,6 +18,7 @@ use App\Http\Middleware\IsStaff;
 
 use App\Http\Controllers\validatepengajuan;
 use App\Http\Controllers\Settingwaktudeadline;
+use App\Http\Controllers\DashboardMahasiswaController;
 
 // ========================================================================================
 // AUTHENTICATION ROUTES ==================================================================
@@ -138,3 +139,4 @@ Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePen
 
 Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
 Route::get('/users', [FormController::class, 'user'])->name('users.index');
+Route::get('/dashboardmahasiswa', [DashboardMahasiswaController::class, 'index'])->name('dashboardmahasiswa');
