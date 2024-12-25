@@ -100,7 +100,7 @@ class FormController extends Controller
 
         if ($status === 'Diterima') {
             $pengajuan->keterangan = 'Tidak ada revisi';
-        } else if ($status === 'Ditolak') {
+        } else if ($status === 'Perlu Revisi') {
             $request->validate([
                 'revisi' => 'required|string',
             ]);
@@ -112,7 +112,7 @@ class FormController extends Controller
         $pengajuan->save();
 
         $user = User::find($pengajuan->user_id);
-        $user->notify(new PengajuanNotifikasi($pengajuan, 'diterima', false));
+        $user->notify(new PengajuanNotifikasi($pengajuan, 'revisi', false));
 
         return redirect('/listtable')->with('success', 'Status pengajuan berhasil diperbarui.');
     }

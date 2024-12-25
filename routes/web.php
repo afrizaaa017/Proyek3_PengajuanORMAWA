@@ -17,6 +17,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PDFController;
 use App\Http\Middleware\IsStaff;
 
+use App\Http\Controllers\validatepengajuan;
+use App\Http\Controllers\Settingwaktudeadline;
+
 // ========================================================================================
 // AUTHENTICATION ROUTES ==================================================================
 Route::controller(AuthController::class)->group(function () {
@@ -40,7 +43,7 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
 
     //Pengajuan Form
-    Route::get('/form', [FormController::class, 'index'])->name('form');
+    Route::get('/form', [FormController::class, 'index'])->name('form')->middleware('check.submission.access');;
     Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan'])->name('form.simpanPengajuan');
 
     //Mengambil Data Dropdown
@@ -59,7 +62,7 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
 });
 
 // KEMAHASISWAAN
-Route::middleware(['auth', IsStaff::class])->group(function () {
+    Route::middleware(['auth', IsStaff::class])->group(function () {
     Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
 
     Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
@@ -120,14 +123,14 @@ Route::get('/menu', function () {
 });
 
 Route::get('/', function () {
-    return view('login');
+    return view('pages.Auth.login');
 });
 
 //setting deadline
-// Route::middleware(['check.access'])->group(function () {
-//     Route::get('/form', [FormController::class, 'index'])->name('form.index');
-//     Route::post('/update-access-time', [updateAccesstime::class, 'updateAccessTime'])->name('update.access.time');
-// });
+Route::post('/dashboard', [Settingwaktudeadline::class, 'updateAccesTime'])->name('update.access.time');
+
+// Validasi pengajuan
+Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePengajuanStatus']);
 
 
 

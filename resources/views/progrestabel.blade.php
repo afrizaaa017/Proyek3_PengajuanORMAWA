@@ -3,7 +3,7 @@
 @include('components.navbar2')
 
 @section('content')
-<div class="w-full px-4 py-6 mx-auto" id="content">
+<div class=" w-full px-4 py-6 mx-auto" id="content">
     <div class="relative shadow-md rounded-lg overflow-hidden pb-10 p-5 border border-gray-200 bg-white">
         <h2 class="text-xl font-bold text-[#295F98]">Progress Pengajuan</h2>
         <div class="overflow-x-auto mt-5">
@@ -20,74 +20,84 @@
                     </tr>
                 </thead>
                         <tbody>
-                            @foreach ($pengajuans as $pengajuan)
-                            <tr class="border-b">
-                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
-                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at->format('Y-m-d') }}</td>
-                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
-                                <td class="px-4 py-3">
-                                    {{-- <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::Ditolak ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
-                                        {{ $pengajuan->status }}
-                                    </span> --}}
-                                    @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
-                                        <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
-                                            Diproses
-                                        </span>
-                                    @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
-                                        <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
-                                            Diterima
-                                        </span>
-                                    @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
-                                        <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
-                                            Ditolak
-                                        </span>
-                                    @else
-                                        <span class="w-24 h-8 px-3 py-1 bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md">
-                                            Tidak Diketahui
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-3 text-[#295F98]">
-                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
-                                        <p class="text-center text-xl font-extrabold">-</p>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
-                                        <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-3">
-                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
-                                    <button
-                                        class="btn-revisi-pengaju bg-gradient-to-r from-[#FF7F00] to-[#FF9A36] text-white py-1 px-3 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1
-"
-                                        data-id="{{ $pengajuan->nama }}"
-                                        data-alasan="{{ $pengajuan->keterangan }}"
-                                        data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
-                                        Revisi
-                                    </button>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
-                                        <p class="text-center text-xl font-extrabold">-</p>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-3">
-                                    @php
-                                        $filePath = public_path('laraview/SK/' . date('Y') . '_SK.pdf');
-                                    @endphp
-                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && file_exists($filePath))
-                                        <div class="mt-2 text-sm">
-                                            <button
-                                                data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"
-                                                class="preview-btn text-blue-600">
-                                                Download SK
-                                            </button>
-                                        </div>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && !file_exists($filePath))
-                                        <div class="mt-2 text-sm text-gray-500">
-                                            Tunggu Semua Pengajuan Diterima.
-                                        </div>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
+                        @foreach ($pengajuans as $pengajuan)
+                        <tr class="border-b">
+                            <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
+                            <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at->format('Y-m-d') }}</td>
+                            <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
+                            <td class="px-4 py-3">
+                                {{-- <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
+                                    {{ $pengajuan->status }}
+                                </span> --}}
+                                <span class="w-24 h-8 px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi ? 'bg-gradient-to-r from-[#E11818] to-[#FF7171]' : 'bg-gradient-to-r from-[#32BB35] to-[#8BE52E]' }} text-white rounded-lg font-semibold shadow-md">
+                                    {{ $pengajuan->status }}
+                                </span>
+                                {{-- @if($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
+                                    Menunggu Verifikasi
+                                </span>
+                                @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                    <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
+                                        Diterima
+                                    </span>
+                                @elseif($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi)
+                                    <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
+                                        Perlu Revisi
+                                    </span>
+                                @elseif($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
+                                    <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
+                                        Menunggu Verifikasi Ulang
+                                    </span>
+                                @else
+                                    <span class="w-24 h-8 px-3 py-1 bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md">
+                                        Tidak Diketahui
+                                    </span>
+                                @endif --}}
+                            </td>
+                            <td class="px-4 py-3 text-[#295F98]">
+                                @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
+                                    <p class="text-center font-extrabold text-sm md:text-base">-</p>
+                                @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                    <p class="text-sm md:text-base">{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
+                                @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
+                                    <p class="text-center text-xl font-extrabold">-</p>
+                                @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                    <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
+                                @endif
+                            </td>
+                            <td class="px-4 py-3">
+                                @if ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi)
+                                <button
+                                    class="btn-revisi-pengaju bg-gradient-to-r from-[#FF7F00] to-[#FF9A36] text-white px-3 py-1 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1"
+                                    data-id="{{ $pengajuan->nama }}"
+                                    data-alasan="{{ $pengajuan->keterangan }}"
+                                    data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
+                                    Revisi
+                                </button>
+                                @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                    <p class="text-center font-extrabold text-sm md:text-base">-</p>
+                                @endif
+                            </td>
+                            <td class="px-4 py-3">
+                                @php
+                                    $filePath = public_path('laraview/SK/' . date('Y') . '_SK.pdf');
+                                @endphp
+                                @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && file_exists($filePath))
+                                    <div class="mt-2 text-sm">
+                                        <button
+                                            data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"
+                                            class="preview-btn text-blue-600">
+                                            Download SK
+                                        </button>
+                                    </div>
+                                @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && !file_exists($filePath))
+                                    <div class="mt-2 text-sm text-gray-500">
+                                        Tunggu Semua Pengajuan Diterima.
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

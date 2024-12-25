@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import flowbite from 'flowbite/plugin'; // Use `import` instead of `require`
+
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -6,7 +8,7 @@ export default {
     "./resources/**/*.vue",
     "./node_modules/flowbite/**/*.js",
   ],
-  darkMode: 'class', // Menambahkan opsi dark mode
+  darkMode: 'class', // Enable dark mode
   theme: {
     extend: {
       colors: {
@@ -22,50 +24,51 @@ export default {
           "800": "#1e40af",
           "900": "#1e3a8a",
           "950": "#172554",
-          "1000":"#00008d",
-          "1100":"9999999",
-        }
+          "1000": "#00008d",
+          "1100": "#999999",
+        },
       },
       fontFamily: {
-        'body': [
-          'Inter', 
-          'ui-sans-serif', 
-          'system-ui', 
-          '-apple-system', 
-          'system-ui', 
-          'Segoe UI', 
-          'Roboto', 
-          'Helvetica Neue', 
-          'Arial', 
-          'Noto Sans', 
-          'sans-serif', 
-          'Apple Color Emoji', 
-          'Segoe UI Emoji', 
-          'Segoe UI Symbol', 
+        body: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'system-ui',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'Noto Sans',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
           'Noto Color Emoji',
-          'Gilroy Light'
+          'Gilroy Light',
         ],
-        'sans': [
-          'Inter', 
-          'ui-sans-serif', 
-          'system-ui', 
-          '-apple-system', 
-          'system-ui', 
-          'Segoe UI', 
-          'Roboto', 
-          'Helvetica Neue', 
-          'Arial', 
-          'Noto Sans', 
-          'sans-serif', 
-          'Apple Color Emoji', 
-          'Segoe UI Emoji', 
-          'Segoe UI Symbol', 
-          'Noto Color Emoji'
-        ]
-      }
-    }
+        sans: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'system-ui',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'Noto Sans',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
+          'Noto Color Emoji',
+        ],
+      },
+    },
   },
   plugins: [
-    require('flowbite/plugin') // Menambahkan plugin Flowbite
+    flowbite, // Import and use Flowbite plugin
   ],
-}
+};
+

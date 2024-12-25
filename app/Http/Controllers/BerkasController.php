@@ -35,14 +35,14 @@ class BerkasController extends Controller
             'transkip_rekomendasi_jurusan' => 'required|mimes:pdf|max:2048',
             'sertifikat_lkmm' => 'required|mimes:pdf|max:2048',
             'sertifikat_pelatihan_kepemimpinan' => 'required|mimes:pdf|max:2048',
-            'sertifikat_pelatihan_emosional_spiritual' => 'required|mimes:pdf|max:2048',
+            'sertifikat_pelatihan_emosional_spiritual' => 'nullable|file|mimes:pdf|max:2048',
             'sertifikat_bahasa_asing' => 'required|mimes:pdf|max:2048',
             'scan_ktm' => 'required|mimes:pdf|max:2048',
             'surat_keterangan_berkelakuan_baik' => 'required|mimes:pdf|max:2048',
             'surat_penyataan_mandiri' => 'required|mimes:pdf|max:2048',
             'sertifikat_pkkmb' => 'required|mimes:pdf|max:2048',
             'sertifikat_bela_negara' => 'required|mimes:pdf|max:2048',
-            'sertifikat_agent_of_change' => 'required|mimes:pdf|max:2048',
+            'sertifikat_agent_of_change' => 'nullable|file|mimes:pdf|max:2048',
             'sertifikat_berorganisasi' => 'required|mimes:pdf|max:2048',
             'berita_acara_pemilihan' => 'required|mimes:pdf|max:2048',
         ]);
@@ -64,14 +64,24 @@ class BerkasController extends Controller
             $berkas->transkip_rekomendasi_jurusan = $request->file('transkip_rekomendasi_jurusan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf') ? 'Pengaju_' . $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf' : 'data gagal terupload';
             $berkas->sertifikat_lkmm = $request->file('sertifikat_lkmm')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_lkmm.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_lkmm.pdf' : 'data gagal terupload';
             $berkas->sertifikat_pelatihan_kepemimpinan = $request->file('sertifikat_pelatihan_kepemimpinan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf' : 'data gagal terupload';
-            $berkas->sertifikat_pelatihan_emosional_spiritual = $request->file('sertifikat_pelatihan_emosional_spiritual')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf' : 'data gagal terupload';
+            // $berkas->sertifikat_pelatihan_emosional_spiritual = $request->file('sertifikat_pelatihan_emosional_spiritual')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf' : $berkas->sertifikat_pelatihan_emosional_spiritual = null;
+            if ($request->hasFile('sertifikat_pelatihan_emosional_spiritual')) {
+                $berkas->sertifikat_pelatihan_emosional_spiritual = $request->file('sertifikat_pelatihan_emosional_spiritual')->move($publicPath, 'Pengaju_' . $berkas->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') ? 'Pengaju_' . $berkas->id . '_sertifikat_pelatihan_emosional_spiritual.pdf' : 'data gagal terupload';
+            } else {
+                $berkas->sertifikat_pelatihan_emosional_spiritual = 'pengaju tidak mengirimkan file ini';
+            }
             $berkas->sertifikat_bahasa_asing = $request->file('sertifikat_bahasa_asing')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_bahasa_asing.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_bahasa_asing.pdf' : 'data gagal terupload';
             $berkas->scan_ktm = $request->file('scan_ktm')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_scan_ktm.pdf') ? 'Pengaju_' . $pengajuan->id . '_scan_ktm.pdf' : 'data gagal terupload';
             $berkas->surat_keterangan_berkelakuan_baik = $request->file('surat_keterangan_berkelakuan_baik')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf' : 'data gagal terupload';
             $berkas->surat_penyataan_mandiri = $request->file('surat_penyataan_mandiri')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_penyataan_mandiri.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_penyataan_mandiri.pdf' : 'data gagal terupload';
             $berkas->sertifikat_pkkmb = $request->file('sertifikat_pkkmb')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_pkkmb.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_pkkmb.pdf' : 'data gagal terupload';
             $berkas->sertifikat_bela_negara = $request->file('sertifikat_bela_negara')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_bela_negara.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_bela_negara.pdf' : 'data gagal terupload';
-            $berkas->sertifikat_agent_of_change = $request->file('sertifikat_agent_of_change')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf' : 'data gagal terupload';
+            // $berkas->sertifikat_agent_of_change = $request->file('sertifikat_agent_of_change')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf' : 'data gagal terupload';
+            if ($request->hasFile('sertifikat_agent_of_change')) {
+                $berkas->sertifikat_agent_of_change = $request->file('sertifikat_agent_of_change')->move($publicPath, 'Pengaju_' . $berkas->id . '_sertifikat_agent_of_change.pdf') ? 'Pengaju_' . $berkas->id . '_sertifikat_agent_of_change.pdf' : 'data gagal terupload';
+            } else {
+                $berkas->sertifikat_agent_of_change = 'pengaju tidak mengirimkan file ini';
+            }
             $berkas->sertifikat_berorganisasi = $request->file('sertifikat_berorganisasi')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf' : 'data gagal terupload';
             $berkas->berita_acara_pemilihan = $request->file('berita_acara_pemilihan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf') ? 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf' : 'data gagal terupload';
 
@@ -80,7 +90,7 @@ class BerkasController extends Controller
             ]);
 
             $berkas->pengajuan_id = $pengajuan->id;
-            $pengajuan->status = PengajuanStatus::SedangDiproses;
+            $pengajuan->status = PengajuanStatus::MenungguVerifikasi;
             $berkas->save();
 
             //notifikasi mahasiswa
@@ -144,7 +154,7 @@ class BerkasController extends Controller
         $revisiPengajuan = session('revisiPengajuan');
 
         $pengajuan = Pengajuan::findOrFail($id);
-        $pengajuan->status = PengajuanStatus::SedangDiproses;
+        $pengajuan->status = PengajuanStatus::MenungguVerifikasiUlang;
         $pengajuan->update($revisiPengajuan);
 
         $berkas = $pengajuan->berkas;

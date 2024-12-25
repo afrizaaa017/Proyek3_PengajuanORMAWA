@@ -20,15 +20,17 @@
     <div class="relative shadow-md rounded-lg overflow-auto pb-10 p-5 border border-gray-200 bg-white">
         <div class="w-full">
             <div class="my-5 text-sm flex space-x-4 ">
-                <button 
-                    class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
-                    Luncurkan SK Tahun {{ date('Y') }} 
-                </button>
                 <button
-                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"  
+                    class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    Rekapitulasi Statistik
+                </button>
+
+                {{-- Untuk Upload SK --}}
+                {{-- <button
+                    data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}"
                     class="uploadSuccess-btn w-1/2 h-14 px-3 py-1 bg-[#32BB35] text-white rounded-lg font-semibold shadow-md text-lg" >
                     SK Belum Diluncurkan
-                </button>
+                </button> --}}
             </div>
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-[#295F98]">Tabel Pengajuan</h2>
@@ -66,17 +68,21 @@
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td>
-                            @if($pengajuan->status === \App\Enums\PengajuanStatus::SedangDiproses)
+                            @if($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
                                 <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
-                                    Diproses
+                                    Menunggu Verifikasi
                                 </span>
                             @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                                 <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
                                     Diterima
                                 </span>
-                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi)
                                 <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
-                                    Ditolak
+                                    Perlu Revisi
+                                </span>
+                            @elseif($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
+                                <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
+                                    Menunggu Verifikasi Ulang
                                 </span>
                             @else
                                 <span class="w-24 h-8 px-3 py-1 bg-gray-300 text-gray-800 rounded-lg font-semibold shadow-md">
@@ -116,79 +122,99 @@
     });
 
     document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('upload-btn')) {
+            if (event.target.classList.contains('upload-btn'))
+        {
             event.preventDefault();
 
-            Swal.fire({
-                title: 'Upload SK',
-                html: `
-                    <form id="file-upload-form">
-                        <input id="fileInput" type="file" name="file" accept="application/pdf" 
-                            class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
-                        
-                        <div id="filePreview" style="margin-top: 15px; display: none;">
-                            <h5>Preview SK:</h5>
-                            <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>
-                        </div>
-                    </form>
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'Upload',
-                width: '50%',
-                animation: false,
-                preConfirm: () => {
-                    const fileInput = document.getElementById('fileInput');
-                    if (!fileInput.files.length) {
-                        Swal.showValidationMessage('Harap pilih file terlebih dahulu!');
-                        return false;
-                    }
-                    return fileInput.files[0]; 
+            // Validasi status pengajuan sebelum mengizinkan upload
+            fetch('/validate-pengajuan-status', {
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const file = result.value;
-
-                    const formData = new FormData();
-                    formData.append('file', file);
-
-                    fetch('/upload-sk', {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                        },
-                        body: formData
-                    })
-                    .then(response => {
-                        if (!response.ok) throw new Error('Gagal mengunggah file.');
-                        return response.json();
-                    })
-                    .then(data => {
-                        Swal.fire('Sukses!', 'File berhasil diunggah dan disimpan di server!', 'success');
-
-                        sessionStorage.setItem('uploadedYears', data.year);
-                        const buttonSecond = document.querySelector('.uploadSuccess-btn');
-                        if (buttonSecond) {
-                            buttonSecond.textContent = `SK Tahun ${data.year} Telah Diluncurkan. Klik Untuk Info Lebih Lanjut`;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        Swal.fire('Error!', 'Gagal mengunggah file.', 'error');
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    // Jika validasi gagal, tampilkan jumlah status
+                    Swal.fire({
+                        title: 'Tidak Dapat Upload SK',
+                        html: `
+                            <p>Terdapat pengajuan yang tidak memenuhi syarat untuk upload SK:</p>
+                            <ul>
+                                <li><strong>Sedang Diproses:</strong> ${data.MenungguVerifikasi} pengajuan</li>
+                                <li><strong>Ditolak:</strong> ${data.ditolak} pengajuan</li>
+                            </ul>
+                            <p>Pastikan semua pengajuan memiliki status <strong>"Diterima"</strong>.</p>
+                        `,
+                        icon: 'warning'
                     });
+                    return;
                 }
-            });
 
-            // Menampilkan preview file
-            document.getElementById('fileInput').addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file && file.type === 'application/pdf') {
-                    const previewFrame = document.getElementById('previewFrame');
-                    previewFrame.src = URL.createObjectURL(file); 
-                    document.getElementById('filePreview').style.display = 'block';
-                } else {
-                    Swal.fire('Error!', 'Hanya file PDF yang diperbolehkan!', 'error');
-                    e.target.value = ''; 
-                }
+                // Jika validasi sukses, munculkan dialog upload
+                Swal.fire({
+                    title: 'Upload SK',
+                    html: `
+                        <form id="file-upload-form">
+                            <input id="fileInput" type="file" name="file" accept="application/pdf"
+                                class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
+
+                            <div id="filePreview" style="margin-top: 15px; display: none;">
+                                <h5>Preview SK:</h5>
+                                <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>
+                            </div>
+                        </form>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'Upload',
+                    width: '50%',
+                    animation: false,
+                    preConfirm: () => {
+                        const fileInput = document.getElementById('fileInput');
+                        if (!fileInput.files.length) {
+                            Swal.showValidationMessage('Harap pilih file terlebih dahulu!');
+                            return false;
+                        }
+                        return fileInput.files[0];
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const file = result.value;
+
+                        const formData = new FormData();
+                        formData.append('file', file);
+
+                        fetch('/upload-sk', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            },
+                            body: formData
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Gagal mengunggah file.');
+                            return response.json();
+                        })
+                        .then(data => {
+                            Swal.fire('Sukses!', 'File berhasil diunggah dan disimpan di server!', 'success');
+
+                            sessionStorage.setItem('uploadedYears', data.year);
+                            const buttonSecond = document.querySelector('.uploadSuccess-btn');
+                            if (buttonSecond) {
+                                buttonSecond.textContent = `SK Tahun ${data.year} Telah Diluncurkan. Klik Untuk Info Lebih Lanjut`;
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire('Error!', 'Gagal mengunggah file.', 'error');
+                        });
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire('Error!', 'Gagal memvalidasi status pengajuan.', 'error');
             });
         }
     });
