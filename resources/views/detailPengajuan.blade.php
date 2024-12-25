@@ -132,6 +132,7 @@
                 title: 'Revisi Pengajuan',
                 html: `
                     <div style="text-align: left">
+                       <p style="color: red; font-size: 0.65em;">*Checklist bagian yang tidak sesuai, serta tambahan keterangan jika dibutuhkan</p>
                         <label><input type="checkbox" value="Scan KTP tidak sesuai | "> Scan KTP</label><br>
                         <label><input type="checkbox" value="Surat Sehat tidak sesuai | "> Surat Sehat</label><br>
                         <label><input type="checkbox" value="Surat Rekomendasi Jurusan tidak sesuai | "> Surat Rekomendasi Jurusan</label><br>
@@ -148,7 +149,7 @@
                         <label><input type="checkbox" value="Sertifikat Agent of Change tidak sesuai | "> Sertifikat Agent of Change</label><br>
                         <label><input type="checkbox" value="Sertifikat Berorganisasi tidak sesuai | "> Sertifikat Berorganisasi</label><br>
                         <label><input type="checkbox" value="Berita Acara Pemilihan tidak sesuai | "> Berita Acara Pemilihan</label><br>
-                        <textarea style="width: 80% , height:80%" id="customRevisi" class="swal2-textarea" placeholder="Tulis revisi tambahan (opsional)"></textarea>
+                        <textarea style="width: 80%; height: 100px;" id="customRevisi" class="swal2-textarea" placeholder="Tulis revisi tambahan (opsional)"></textarea>
                     </div>
                 `,
                 showCancelButton: true,
@@ -185,9 +186,7 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            Swal.fire('Berhasil!', 'Revisi telah disimpan.', 'success').then(() => {
                                 window.location.href = '/listtable'; // Ganti dengan URL yang sesuai
-                            });
                         })
                         .catch(error => {
                             Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan revisi.', 'error');

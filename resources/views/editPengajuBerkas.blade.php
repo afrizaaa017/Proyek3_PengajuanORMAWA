@@ -1,42 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('components.main')
+@include('layouts.head')
+@include('components.navbar2')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengajuan Ketua Ormawa</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-</head>
+@section('content')
+    <div class="w-full px-4 py-6 mx-auto" id="content">
 
-<style>
-    input[type="file"]::-webkit-file-upload-button {
-        background-color: #FF9A36; 
-        color: white; 
-        border: none; 
-        border-radius: 0.375rem; 
-        padding: 0.5rem 1rem; 
-        cursor: pointer; 
-        font-family: 'Gilroy Light', sans-serif; 
-    }
-</style>
-<body class="bg-white flex">
-
-    @include('components.navbar')
-    @include('components.sidebar')
-
-    <!-- Sidebar (Kosong) -->
-    <div class="w-1/4 p-4 h-screen">
-        <!-- Konten Sidebar (kosong) -->
-    </div>
-
-    <!-- Konten Utama -->
-    <div class="flex-1 p-5 flex flex-col">
-        <!-- Navbar (Kosong) -->
-        <div class="p-4 mb-4">
-            <!-- Konten Navbar (kosong) -->
+        <div class="bg-red-400 shadow-lg rounded-lg p-6 my-8">
+            <h3 class="text-2xl font-bold text-center text-black mb-5">Pesan Revisi</h3>
+            <p>{{ $pengajuans->keterangan }}</p>
         </div>
+        
+        <!-- Stepper Container -->
+        <div class="flex items-start max-w-4xl mx-auto">
+            <!-- Step 1 (Completed or Active) -->
+            <div id="step1" class="w-full">
+                <div class="flex items-center w-full">
+                    <div id="circle1" class="w-6 h-6 shrink-0 p-1 flex items-center justify-center rounded-full bg-gray-300">
+                        <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <div id="progressStep1" class="w-56 h-1 mx-2 rounded-lg bg-gray-300"></div>
+                </div>
+                <div class="mt-1">
+                    <h6 class="text-sm font-bold text-gray-500" id="textStep1">Pengisian Form</h6>
+                    <p class="text-xs text-gradient-orange" id="status1">Completed</p>
+                </div>
+            </div>
+
+            <!-- Step 2 (Completed or Active) -->
+            <div id="step2" class="w-full">
+                <div class="flex items-center w-full">
+                    <div id="circle2" class="w-6 h-6 shrink-0 p-1 flex items-center justify-center rounded-full bg-gray-300">
+                        <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <div class="w-56 h-1 mx-2 rounded-lg bg-gray-300" id="line2"></div>
+                </div>
+                <div class="mt-1">
+                    <h6 class="text-sm font-bold text-gray-500" id="textStep2">Pengajuan Berkas</h6>
+                    <p class="text-xs text-gray-500" id="status2">Pending</p>
+                </div>
+            </div>
+
+            <!-- Step 3 (Pending) -->
+            <div id="step3" class="w-full">
+                <div class="flex items-center">
+                    <div id="circle3" class="w-6 h-6 shrink-0 p-1 flex items-center justify-center rounded-full bg-gray-300">
+                            <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <span class="text-xs text-white font-bold" id="line3"></span>
+                </div>
+                <div class="mt-1">
+                    <h6 class="text-sm font-bold text-gray-500" id="textStep3">Verifikasi Berkas</h6>
+                    <p class="text-xs text-gray-500" id="status3">Pending</p>
+                </div>
+            </div>
+        </div>
+        <!-- End of Stepper Container -->
 
         <!-- Konten Upload Berkas -->
         <form action="{{ route('berkas.update', ['id' => $pengajuans->id]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
@@ -51,7 +69,7 @@
                     <!-- Tempat upload file 1 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="scan_ktp">Scan KTP</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktp" type="file" name="scan_ktp">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktp" type="file" name="scan_ktp">
                         <!-- Tampilkan file yang sudah diupload -->
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_scan_ktp.pdf')
                             <div class="mt-2 text-sm">
@@ -66,7 +84,7 @@
                     <!-- Tempat upload file 2 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_sehat">Surat Sehat</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="surat_sehat" type="file" name="surat_sehat">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_sehat" type="file" name="surat_sehat">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_surat_sehat.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -80,7 +98,7 @@
                     <!-- Tempat upload file 3 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_rekomendasi_jurusan">Surat Rekomendasi Jurusan</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="surat_rekomendasi_jurusan" type="file" name="surat_rekomendasi_jurusan">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_rekomendasi_jurusan" type="file" name="surat_rekomendasi_jurusan">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_surat_rekomendasi_jurusan.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -94,7 +112,7 @@
                     <!-- Tempat upload file 4 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="transkip_rekomendasi_jurusan">Transkip Akademik Semester Terakhir</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="transkip_rekomendasi_jurusan" type="file" name="transkip_rekomendasi_jurusan">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="transkip_rekomendasi_jurusan" type="file" name="transkip_rekomendasi_jurusan">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_transkip_rekomendasi_jurusan.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -108,7 +126,7 @@
                     <!-- Tempat upload file 5 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_lkmm">Sertifikat LKMM</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_lkmm" type="file" name="sertifikat_lkmm">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_lkmm" type="file" name="sertifikat_lkmm">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_lkmm.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -122,7 +140,7 @@
                     <!-- Tempat upload file 6 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_pelatihan_kepemimpinan">Sertifikat Pelatihan Kepemimpinan</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_kepemimpinan" type="file" name="sertifikat_pelatihan_kepemimpinan">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_kepemimpinan" type="file" name="sertifikat_pelatihan_kepemimpinan">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_pelatihan_kepemimpinan.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -136,7 +154,7 @@
                     <!-- Tempat upload file 7 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_pelatihan_emosional_spiritual">Sertifikat Pelatihan Emosional Spiritual bagi Mahasiswa</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_emosional_spiritual" type="file" name="sertifikat_pelatihan_emosional_spiritual">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_emosional_spiritual" type="file" name="sertifikat_pelatihan_emosional_spiritual">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_pelatihan_emosional_spiritual.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -150,7 +168,7 @@
                     <!-- Tempat upload file 8 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_bahasa_asing">Sertifikat Bahasa Asing</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bahasa_asing" type="file" name="sertifikat_bahasa_asing">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bahasa_asing" type="file" name="sertifikat_bahasa_asing">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_bahasa_asing.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -168,7 +186,7 @@
                     <!-- Tempat upload file 9 -->
                      <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="scan_ktm">Scan KTM</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktm" type="file" name="scan_ktm">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktm" type="file" name="scan_ktm">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_scan_ktm.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -182,7 +200,7 @@
                     <!-- Tempat upload file 10 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_keterangan_berkelakuan_baik">Surat Keterangan Berkelakuan Baik</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="surat_keterangan_berkelakuan_baik" type="file" name="surat_keterangan_berkelakuan_baik">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_keterangan_berkelakuan_baik" type="file" name="surat_keterangan_berkelakuan_baik">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_surat_keterangan_berkelakuan_baik.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -196,7 +214,7 @@
                     <!-- Tempat upload file 11 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_penyataan_mandiri">Surat Pernyataan Mandiri</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="surat_penyataan_mandiri" type="file" name="surat_penyataan_mandiri">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_penyataan_mandiri" type="file" name="surat_penyataan_mandiri">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_surat_penyataan_mandiri.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -210,7 +228,7 @@
                     <!-- Tempat upload file 12 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_pkkmb">Sertifikat PKKMB</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pkkmb" type="file" name="sertifikat_pkkmb">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pkkmb" type="file" name="sertifikat_pkkmb">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_pkkmb.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -224,7 +242,7 @@
                     <!-- Tempat upload file 13 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_bela_negara">Sertifikat Bela Negara</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bela_negara" type="file" name="sertifikat_bela_negara">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bela_negara" type="file" name="sertifikat_bela_negara">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_bela_negara.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -238,7 +256,7 @@
                     <!-- Tempat upload file 14 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_agent_of_change">Sertifikat Agent of Change</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_agent_of_change" type="file" name="sertifikat_agent_of_change">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_agent_of_change" type="file" name="sertifikat_agent_of_change">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_agent_of_change.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -252,7 +270,7 @@
                     <!-- Tempat upload file 15 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_berorganisasi">Sertifikat Berorganisasi (Minimal sebagai koordinator)</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_berorganisasi" type="file" name="sertifikat_berorganisasi">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_berorganisasi" type="file" name="sertifikat_berorganisasi">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_sertifikat_berorganisasi.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -266,7 +284,7 @@
                     <!-- Tempat upload file 16 -->
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="berita_acara_pemilihan">Berita Acara Pemilihan</label>
-                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1" id="berita_acara_pemilihan" type="file" name="berita_acara_pemilihan">
+                        <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="berita_acara_pemilihan" type="file" name="berita_acara_pemilihan">
                         @if('laraview/' . $pengajuans->id . '/' . 'Pengaju_'. $pengajuans->id . '_berita_acara_pemilihan.pdf')
                             <div class="mt-2 text-sm">
                                 <button 
@@ -287,9 +305,29 @@
         <!-- Tombol Previous dan Next -->
         <div class="flex justify-between mt-4">
             <button type="button" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1"><a href="{{ route('pengajuan.edit', ['id' => $pengajuans->id]) }}" >Previous</a></button>
-            <button type="submit" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">Send</button>
+            <button type="button" id="submitBtn" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">Send</button>
         </div>
     </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function(event) {
+            Swal.fire({
+                title: 'Yakin data sudah benar?',
+                text: "Pastikan semua data telah diisi dengan benar sebelum mengirimkan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Kirim!',
+                cancelButtonText: 'Cek Lagi',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit form jika user yakin
+                    document.getElementById('applicationForm').submit();
+                }
+            });
+        });
+    </script>
 
     <script>
         document.querySelectorAll('.preview-btn').forEach(button => {
@@ -315,11 +353,59 @@
                 });
             }
         });
-
     </script>
 
-    
-</body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const status = @json(session('status', 'pengajuan'));
+
+            // Debug: Cek nilai status
+            console.log("Status:", status);
+
+            function updateProgressBar(step) {
+                // Reset semua ke status awal
+                const steps = ["circle1", "circle2", "circle3"];
+                const lines = ["progressStep1", "line3"];
+                const statuses = ["status1", "status2", "status3"];
+                const texts = ["textStep1", "textStep2", "textStep3"]
+                steps.forEach(id => document.getElementById(id).classList.replace("bg-gradient-orange", "bg-gray-300"));
+                lines.forEach(id => document.getElementById(id)?.classList.replace("bg-gradient-orange", "bg-gray-300"));
+                statuses.forEach(id => document.getElementById(id).classList.replace("text-gradient-orange", "text-gray-500"));
+                texts.forEach(id => document.getElementById(id).classList.replace("text-gradient-orange", "text-gray-500"));
+
+                // document.getElementById("status1").textContent = "Pending";
+                // document.getElementById("status2").textContent = "Pending";
+                // document.getElementById("status3").textContent = "Pending";
+
+                // Update status sesuai step
+                if (step === 'pengisian') {
+                    document.getElementById("circle1").classList.replace("bg-gray-300", "bg-gradient-orange");
+                    document.getElementById("status1").textContent = "Completed";
+                    document.getElementById("status1").classList.add("text-gradient-orange");
+                    document.getElementById("textStep1").classList.add("text-gradient-orange");
+                }
+                if (step === 'pengajuan' || step === 'verifikasi') {
+                    document.getElementById("circle1").classList.replace("bg-gray-300", "bg-gradient-orange");
+                    document.getElementById("circle2").classList.replace("bg-gray-300", "bg-gradient-orange");
+                    document.getElementById("status2").textContent = "Completed";
+                    document.getElementById("status2").classList.add("text-gradient-orange");
+                    document.getElementById("status1").classList.add("text-gradient-orange");
+                    document.getElementById("textStep1").classList.add("text-gradient-orange");
+                    document.getElementById("textStep2").classList.add("text-gradient-orange");
+                    document.getElementById("progressStep1").classList.replace("bg-gray-300", "line-gradient-blue");
+                }
+                if (step === 'verifikasi') {
+                    document.getElementById("circle3").classList.replace("bg-gray-300", "bg-gradient-orange");
+                    document.getElementById("status3").textContent = "Completed";
+                    document.getElementById("status3").classList.add("text-gradient-orange");
+                    document.getElementById("line3").classList.replace("bg-gray-300", "line-gradient-blue");
+                }
+            }
+
+            updateProgressBar(status);
+        });
+    </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</html>
+@endsection

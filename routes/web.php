@@ -95,7 +95,7 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timeline.edit');
     Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timeline.update');
 
-    Route::get('/listtable', [FormController::class, 'listtable']);
+    Route::get('/listtable', [FormController::class, 'listtable'])->name('listtable');
     Route::post('/upload-sk', [BerkasController::class, 'uploadSK'])->name('upload-sk');
     Route::post('/delete-sk', [BerkasController::class, 'deleteSK'])->name('delete-sk');
 });

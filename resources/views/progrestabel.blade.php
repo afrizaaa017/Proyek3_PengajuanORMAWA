@@ -26,14 +26,27 @@
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at->format('Y-m-d') }}</td>
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
                                 <td class="px-4 py-3">
-                                    <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
+                                        <span class="px-3 py-1 bg-[#A3B3D3] text-white rounded-lg font-semibold">
+                                            {{ $pengajuan->status }}
+                                        </span>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi )
+                                        <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">
+                                            {{ $pengajuan->status }}
+                                        </span>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
+                                        <span class="px-3 py-1 bg-[#4CAF50] text-white rounded-lg font-semibold">
+                                            {{ $pengajuan->status }}
+                                        </span>
+                                    @endif
+                                    {{-- <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
                                         {{ $pengajuan->status }}
-                                    </span>
+                                    </span> --}}
                                 </td>
                                 <td class="px-4 py-3 text-[#295F98]">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
                                         <p class="text-center text-xl font-extrabold">-</p>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
                                         <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
                                     @endif
                                 </td>
@@ -47,6 +60,8 @@
                                         Revisi
                                     </button>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
+                                        <p class="text-center text-xl font-extrabold">-</p>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
                                         <p class="text-center text-xl font-extrabold">-</p>
                                     @endif
                                 </td>
@@ -75,6 +90,21 @@
                 </div>
             </div>
         </div>
+
+        @if (session('success'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pengajuan Berhasil!',
+                        text: '{{ session('success') }}',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#3085d6',
+                    });
+                });
+            </script>
+        @endif
+
         <script>
             document.querySelectorAll('.btn-revisi-pengaju').forEach(button => {
                 button.addEventListener('click', function () {
@@ -84,9 +114,11 @@
             
                     Swal.fire({
                         title: `Pesan Revisi Untuk Pengajuan Dengan Nama ${pengajuanId}`,
-                        text: alasanRevisi ? `Revisi: ${alasanRevisi}` : 'Tidak ada revisi, hubungi pihak staff.',
+                        text: alasanRevisi ? `Pesan Revisi: ${alasanRevisi}` : 'Tidak ada revisi, hubungi pihak staff.',
                         icon: 'info',
                         showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
                         confirmButtonText: 'Tutup',
                         cancelButtonText: 'Lakukan Revisi',
                         reverseButtons: true

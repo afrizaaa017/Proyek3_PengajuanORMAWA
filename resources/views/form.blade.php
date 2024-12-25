@@ -163,7 +163,7 @@
                                 <button type="submit" class="btn btn-gradient-blue">Next</button>
                             </div> --}}
                             <div class="flex justify-content-end mt-4">
-                                <button type="submit" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">Next</button>
+                                <button type="button" id="submitBtn" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">Next</button>
                             </div>
                         </form>
                     </div>
@@ -175,6 +175,38 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function(event) {
+            // Ambil elemen form
+            const form = document.getElementById('applicationForm');
+    
+            // Periksa validasi form
+            if (!form.checkValidity()) {
+                // Jika form tidak valid, tampilkan pesan validasi default browser
+                form.reportValidity();
+            } else {
+                // Jika form valid, tampilkan SweetAlert
+                Swal.fire({
+                    title: 'Yakin data sudah benar?',
+                    text: "Pastikan semua data telah diisi dengan benar sebelum mengirimkan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Kirim!',
+                    cancelButtonText: 'Cek Lagi',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form jika user yakin
+                        form.submit();
+                    }
+                });
+            }
+        });
+    </script>
+    
     <script>
         $(document).ready(function () {
             $('#jurusan').on('change', function () {

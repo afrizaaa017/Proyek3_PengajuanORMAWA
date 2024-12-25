@@ -99,19 +99,23 @@ class FormController extends Controller
 
         if ($status === 'Diterima') {
             $pengajuan->keterangan = 'Tidak ada revisi';
+            
+            $pengajuan->save();
+            return redirect()->route('listtable')->with('successDiterima', "Status pengajuan dengan No Pengajuan {$pengajuan->id} berhasil diperbarui.");
         } else if ($status === 'Perlu Revisi') {
             $request->validate([
                 'revisi' => 'required|string',
             ]);
             $pengajuan->keterangan = $request->input('revisi');
+            
+            $pengajuan->save();
+            return redirect()->route('listtable')->with('successRevisi', "Status pengajuan dengan No Pengajuan {$pengajuan->id} berhasil diperbarui.");
         }
         else{
             return redirect()->back()->with('error', 'Status tidak valid.');
         }
 
-        $pengajuan->save();
-
-        return redirect('/listtable')->with('success', 'Status pengajuan berhasil diperbarui.');
+        
     }
     
 
