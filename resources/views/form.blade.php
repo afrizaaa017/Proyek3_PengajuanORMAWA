@@ -66,13 +66,13 @@
                                 <!-- Nama -->
                                 <div class="col-12" >
                                     <label for="nama" class="block mb-2 text-sm font-medium text-blue-800">Nama</label>
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required="" value="{{ old('nama', session('pengajuan')['nama'] ?? '') }}">
+                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" value="{{ old('nama', session('pengajuan')['nama'] ?? '') }}" required>
                                 </div>
 
                             <!-- NIM -->
                             <div class="col-12" >
                                 <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
-                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required="" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}">
+                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}" required>
                                 @if ($errors->has('nim'))
                                     <div class="text-red-500">
                                         {{ $errors->first('nim') }}
@@ -82,7 +82,7 @@
                             <!-- Jurusan -->
                             <div class="col-xl-12" >
                                 <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Jurusan:</label>
-                                <select id="jurusan" name="jurusan" class="form-select">
+                                <select id="jurusan" name="jurusan" class="form-select" required>
                                     <option value="">--Pilih Jurusan--</option>
                                     @foreach($jurusans as $jurusan)
                                         <option value="{{ $jurusan->nama_jurusan }}"
@@ -95,7 +95,7 @@
                             <!-- Prodi -->
                             <div class="col-xl-12">
                                 <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Prodi:</label>
-                                <select id="prodi" name="prodi" class="form-select">
+                                <select id="prodi" name="prodi" class="form-select" required>
                                     <option value="">--Pilih Prodi--</option>
                                     @foreach($prodis as $prodi)
                                         <option value="{{ $prodi->nama_prodi }}"
@@ -109,7 +109,7 @@
                             <!-- Periode -->
                             <div class="col-xl-12">
                                 <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
-                                <select name="periode" id="periode" class="form-select">
+                                <select name="periode" id="periode" class="form-select" required>
                                     <option value="" disabled selected>Pilih Periode</option>
                                     {{-- <option value="2020-2021" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2020-2021' ? 'selected' : '' }}>2020-2021</option>
                                     <option value="2021-2022" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2021-2022' ? 'selected' : '' }}>2021-2022</option> --}}
@@ -119,7 +119,7 @@
 
                             <div class="col-xl-12">
                                 <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
-                                <select id="ormawa" name="ormawa" class="form-select">
+                                <select id="ormawa" name="ormawa" class="form-select" required>
                                     <option value="">--Pilih Ormawa--</option>
                                     @foreach($ormawas as $ormawa)
                                         <option value="{{ $ormawa->nama_ormawa }}"
@@ -134,7 +134,7 @@
                             <div class="col-xl-12">
                                 <div class="col-xl-12">
                                     <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
-                                    <select id="ketua_ormawa" name="ketua_ormawa" class="form-select"> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
+                                    <select id="ketua_ormawa" name="ketua_ormawa" class="form-select" required> <!-- Ganti 'prodi' menjadi 'ketua_ormawa' -->
                                         <option value="">--Pilih Ketua Ormawa--</option>
                                         @foreach($ketuaOrmawas as $kt)
                                             <option value="{{ $kt->nama_ketua }}"
@@ -149,13 +149,13 @@
                                 <!-- No. Telepon -->
                                 <div class="col-sm-6">
                                     <label for="telp" class="block mb-2 text-sm font-medium text-blue-800">No.Telepon</label>
-                                    <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required="" value="{{ old('telp', session('pengajuan')['telp'] ?? '') }}">
+                                    <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" value="{{ old('telp', session('pengajuan')['telp'] ?? '') }}" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="col-sm-6">
                                     <label for="email" class="block mb-2 text-sm font-medium text-blue-800">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required="" value="{{ old('email', session('pengajuan')['email'] ?? '') }}">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" value="{{ old('email', session('pengajuan')['email'] ?? '') }}" required>
                                 </div>
                             </div>
 

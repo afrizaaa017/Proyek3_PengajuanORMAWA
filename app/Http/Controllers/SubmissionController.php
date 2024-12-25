@@ -25,6 +25,8 @@ class SubmissionController extends Controller
             ->whereIn('status', ['Sedang Diproses', 'Ditolak'])
             ->orderBy('created_at', 'desc')
             ->take(8)
+            ->whereIn('status', ['Menunggu Verifikasi', 'Perlu Revisi'])
+            ->latest()
             ->get();
         $profilBerhasil = $pengajuan->where('periode', $periode)
             ->where('status', 'Diterima')

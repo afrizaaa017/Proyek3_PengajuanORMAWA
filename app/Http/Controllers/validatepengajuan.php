@@ -10,14 +10,14 @@ class validatepengajuan extends Controller
 {
     public function validatePengajuanStatus(): JsonResponse
     {
-        $sedangDiprosesCount = Pengajuan::where('status', PengajuanStatus::SedangDiproses->value)->count();
-        $ditolakCount = Pengajuan::where('status', PengajuanStatus::Ditolak->value)->count();
+        $menungguVerifikasiCount = Pengajuan::where('status', PengajuanStatus::MenungguVerifikasi->value)->count();
+        $perluRevisiCount = Pengajuan::where('status', PengajuanStatus::PerluRevisi->value)->count();
     
-        if ($sedangDiprosesCount > 0 || $ditolakCount > 0) {
+        if ($menungguVerifikasiCount > 0 || $perluRevisiCount > 0) {
             return response()->json([
                 'success' => false,
-                'sedangDiproses' => $sedangDiprosesCount,
-                'ditolak' => $ditolakCount
+                'Menunggu Verifikasi' => $menungguVerifikasiCount,
+                'Perlu Revisi' => $perluRevisiCount
             ]);
         }
     

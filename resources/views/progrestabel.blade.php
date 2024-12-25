@@ -26,7 +26,7 @@
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at->format('Y-m-d') }}</td>
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
                                 <td class="px-4 py-3">
-                                    <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::Ditolak ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
+                                    <span class="px-3 py-1 {{ $pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi ? 'bg-[#FF5C5C]' : 'bg-[#4CAF50]' }} text-white rounded-lg font-semibold">
                                         {{ $pengajuan->status }}
                                     </span>
                                 </td>
@@ -35,10 +35,14 @@
                                         <p class="text-center font-extrabold text-sm md:text-base">-</p>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                                     <p class="text-sm md:text-base">{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi)
+                                        <p class="text-center text-xl font-extrabold">-</p>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                        <p>{{ $pengajuan->updated_at->format('Y-m-d') }}</p>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">
-                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Ditolak)
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi)
                                     <button 
                                         class="btn-revisi-pengaju px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold" 
                                         data-id="{{ $pengajuan->nama }}" 
