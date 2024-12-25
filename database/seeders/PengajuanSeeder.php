@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Pengajuan;
+use App\Enums\PengajuanStatus;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
