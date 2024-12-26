@@ -27,6 +27,31 @@
         </div>
 
         <!-- disini buat timeline alqan -->
+         <!-- Area Kosong untuk Timeline -->
+        <div class="mx-auto my-auto py-5">
+            <div class="flex justify-center">
+                <ol class="items-center sm:flex">
+                    @foreach ($timelines as $timeline)
+                        <li class="relative mb-6 pr-3 pl-3" style="margin-center: 20px;">
+                            <div class="flex justify-center">
+                                <div class="z-10 flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full ring-0 ring-white shrink-0">
+                                    <svg class="w-5.5 h-5.5 text-blue-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <h2 class="text-lg font-semibold text-gray-900">{{ $timeline->judul_timeline }}</h2>
+                                <time class="block mb-2 text-sm font-normal leading-none text-gray-400">
+                                    {{ $timeline->tanggal_timeline_awal }} - {{ $timeline->tanggal_timeline_akhir }}
+                                </time>
+                            </div>
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
+        </div>
+        
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Persyaratan Data Pengajuan</h3>
             <iframe class="mx-auto" src="{{ asset('laraview/Persyaratan/persyaratan_2024.pdf' ) }}" width="50%" height="600px"></iframe>
