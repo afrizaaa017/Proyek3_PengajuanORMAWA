@@ -124,14 +124,20 @@ class BerkasController extends Controller
         return view('progrestabel', compact('pengajuans'));
     }
 
-    public function edit($id)
+    public function edit($nim, $id)
     {
         $revisiPengajuan = session('revisiPengajuan');
-        $pengajuans = Pengajuan::with('berkas')->find($id);
-        return view('editPengajuBerkas', ['pengajuans' => $pengajuans, 'revisiPengajuan' => $revisiPengajuan]);
+        // $pengajuans = Pengajuan::with('berkas')->find($id)->where('nim', $nim);
+        $pengajuan = Pengajuan::with('berkas')
+        ->where('id', $id)
+        ->where('nim', $nim)
+        ->firstOrFail();
+        // dd($pengajuan);
+
+        return view('editPengajuBerkas', ['nim' => $nim, 'pengajuan' => $pengajuan, 'revisiPengajuan' => $revisiPengajuan]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim, $id)
     {
         $request->validate([
             'scan_ktp' => 'nullable|file|mimes:pdf|max:2048',

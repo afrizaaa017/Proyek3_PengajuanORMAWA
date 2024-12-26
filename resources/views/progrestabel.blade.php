@@ -54,7 +54,7 @@
                                         class="btn-revisi-pengaju px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold" 
                                         data-id="{{ $pengajuan->nama }}" 
                                         data-alasan="{{ $pengajuan->keterangan }}"
-                                        data-edit-url="{{ route('pengajuan.edit', ['id' => $pengajuan->id]) }}">
+                                        data-edit-url="{{ route('pengajuan.edit', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
                                         Revisi
                                     </button>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )

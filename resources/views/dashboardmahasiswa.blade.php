@@ -8,7 +8,7 @@
         <div class="flex space-x-6 mb-6">
             <!-- Kotak biru dengan gradasi (ormawa yang belum disetujui) -->
             <div class="sm:max-w-md w-1/3 bg-gradient-to-r from-blue-500 to-blue-700 text-white py-6 px-4 rounded-lg shadow-lg flex flex-col h-48">
-                <h2 class="text-2xl font-bold text-white mb-3 ml-4 mt-1/3">Pengajuan Belum Diterima</h2>
+                <h2 class="text-2xl font-bold text-white mb-3 ml-4 mt-1/3">Pengajuan Yang Belum Diterima</h2>
                 <h2 class="text-7xl font-bold text-white mb-3 ml-4 mt-1/3">{{ $jumlahBelumDisetujui }}</h2>
                 <!-- Button untuk membuka modal -->
                 <button onclick="openPopup()" 
@@ -65,7 +65,27 @@
         </div>
     </div>
 
-    <!-- Modal Popup -->
+    <script>
+        function openPopup() {
+            let ormawaList = '<ul style="list-style-type: none; padding-left: 0; text-align: left;">';
+            let index = 1;  
+            @foreach($allOrmawaBelumDisetujui as $ormawa)
+                ormawaList += '<li style="margin-left: 20px;">' + index + '. {{ $ormawa->nama_ketua ?? $ormawa->ketua_ormawa }}</li>';
+                index++;  
+            @endforeach
+            ormawaList += '</ul>';
+
+            Swal.fire({
+                title: 'Berikut merupakan Ormawa yang pengajuannya belum diterima.',
+                html: ormawaList || 'Tidak ada Ormawa yang perlu disetujui.',
+                icon: 'warning',
+                confirmButtonText: 'Tutup'
+            });
+        }
+    </script>
+
+    
+    {{-- <!-- Modal Popup -->
     <div id="popup" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white p-8 rounded-lg shadow-lg w-1/2 max-h-[80vh] overflow-y-auto">
             <h3 class="text-xl font-bold mb-4">Pengajuan Belum Disetujui</h3>
@@ -89,5 +109,8 @@
         function closePopup() {
             document.getElementById('popup').classList.add('hidden');
         }
-    </script>
+    </script> --}}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endsection

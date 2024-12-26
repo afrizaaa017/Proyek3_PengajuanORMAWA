@@ -65,7 +65,7 @@
                             <div class="row g-4">
                                 <!-- Nama -->
                                 <div class="col-12" >
-                                    <label for="nama" class="block mb-2 text-sm font-medium text-blue-800">Nama</label>
+                                    <label for="nama" class="block mb-2 text-sm font-medium text-blue-800">Nama Lengkap</label>
                                     <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" value="{{ old('nama', session('pengajuan')['nama'] ?? '') }}" required>
                                 </div>
 

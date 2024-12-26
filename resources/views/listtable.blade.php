@@ -21,7 +21,7 @@
         <div class="w-full">
             <div class="my-5 text-sm flex space-x-4 ">
                 <button
-                    class="upload-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    class="upload-btn w-full h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
                     Rekapitulasi Statistik
                 </button>
 
@@ -49,9 +49,10 @@
             <table class="w-full text-xs text-center text-gray-700">
                 <thead class="text-xs uppercase border-b-2 border-gray-200">
                     <tr>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">NO</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">No <div>Pengajuan</div></th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nama</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">ORMAWA</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nim</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Ormawa</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Periode</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
@@ -63,8 +64,13 @@
                     @foreach ($pengajuans as $pengajuan)
                     <tr class="border-b text-center">
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
-                        <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nama }}</td>
-                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ketua_ormawa }}</td>
+                        <td class="px-4 py-3 text-left text-[#295F98]">
+                            {!! wordwrap($pengajuan->nama, 20, '<br>', true) !!}
+                        </td>
+                        <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nim }}</td>
+                        <td class="px-4 py-3 text-left text-[#295F98]">
+                            {!! wordwrap($pengajuan->ketua_ormawa, 20, '<br>', true) !!}
+                        </td>
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td>
@@ -109,6 +115,33 @@
         </div>
     </div>
 </div>
+
+    @if (session('successDiterima'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Verifikasi Diterima Berhasil!',
+                    text: '{{ session('successDiterima') }}',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                });
+            });
+        </script>
+    @elseif (session('successRevisi'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Verifikasi Revisi Berhasil!',
+                    text: '{{ session('successRevisi') }}',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                });
+            });
+        </script>
+    @endif
+        
 <script>
     document.getElementById('periode').addEventListener('change', function () {
         const selectedPeriode = this.value;

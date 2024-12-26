@@ -58,10 +58,10 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::post('/pengajuanberkas', [BerkasController::class, 'store'])->name('file.upload');
 
     //Revisi
-    Route::get('pengajuan/{id}/edit', [FormController::class, 'edit'])->name('pengajuan.edit');
-    Route::put('/pengajuan/{id}', [FormController::class, 'update'])->name('pengajuan.update');
-    Route::get('pengajuan/{id}/berkas/edit', [BerkasController::class, 'edit'])->name('berkas.edit');
-    Route::put('pengajuan/{id}/berkas', [BerkasController::class, 'update'])->name('berkas.update');
+    Route::get('/pengajuan/{nim}/edit/{id}', [FormController::class, 'edit'])->name('pengajuan.edit');
+    Route::put('/pengajuan/{nim}/submit/{id}', [FormController::class, 'update'])->name('pengajuan.update');
+    Route::get('/pengajuan/{nim}/berkas/edit/{id}', [BerkasController::class, 'edit'])->name('berkas.edit');
+    Route::put('/pengajuan/{nim}/berkas/submmit/{id}', [BerkasController::class, 'update'])->name('berkas.update');
 });
 
 // KEMAHASISWAAN

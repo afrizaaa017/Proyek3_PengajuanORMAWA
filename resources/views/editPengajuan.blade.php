@@ -63,7 +63,7 @@
             <section class="bg-blue dark:bg-gray-900">
                 <div class="py-8 px-4 mx-auto">
                     <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">Revisi Pengajuan</h3>
-                    <form action="{{ route('pengajuan.update', ['id' => $pengajuan->id]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
+                    <form action="{{ route('pengajuan.update', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
                         @csrf
                         @method('PUT') <!-- Method spoofing for PUT -->
                         

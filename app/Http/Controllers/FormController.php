@@ -120,13 +120,14 @@ class FormController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($nim, $id)
     {
         $ormawas = Ormawa::all();
         $jurusans = Jurusan::all();
         $prodis = Prodi::all();
         $ketuaOrmawas = KetuaOrmawa::all();
-        $pengajuan = Pengajuan::findOrFail($id);
+        // $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan = Pengajuan::where('id', $id)->where('nim', $nim)->firstOrFail();
 
         return view('editPengajuan', compact('pengajuan', 'ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
     }
@@ -144,7 +145,7 @@ class FormController extends Controller
         return view('listtable', compact('pengajuans', 'periodes', 'selectedPeriode'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim, $id)
     {
         $request->validate([
             'nama' => 'required',
@@ -172,6 +173,6 @@ class FormController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('berkas.edit', ['id' => $id])->with('success', 'Data has been saved successfully.');
+        return redirect()->route('berkas.edit', ['nim' => $nim, 'id' => $id])->with('success', 'Data has been saved successfully.');
     }
 }

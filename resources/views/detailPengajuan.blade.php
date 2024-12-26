@@ -15,8 +15,16 @@
         <div class="mt-6 border-t border-gray-200">
             <dl class="divide-y divide-gray-200 text-center">
                 <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                    <dt class="text-sm font-medium text-[#344767]">NO PENGAJUAN</dt>
+                        <dd class="mt-1 text-sm text-[#295F98] sm:col-span-2 sm:mt-0">{{ $pengajuans->id }}</dd>
+                </div>
+                <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
                     <dt class="text-sm font-medium text-[#344767]">NAMA</dt>
                         <dd class="mt-1 text-sm text-[#295F98] sm:col-span-2 sm:mt-0">{{ $pengajuans->nama }}</dd>
+                </div>
+                <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                    <dt class="text-sm font-medium text-[#344767]">NIM</dt>
+                        <dd class="mt-1 text-sm text-[#295F98] sm:col-span-2 sm:mt-0">{{ $pengajuans->nim }}</dd>
                 </div>
                 <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
                     <dt class="text-sm font-medium text-[#344767]">JURUSAN</dt>
@@ -27,11 +35,11 @@
                         <dd class="mt-1 text-sm text-[#295F98] sm:col-span-2 sm:mt-0">{{ $pengajuans->prodi }}</dd>
                 </div>
                 <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-                    <dt class="text-sm font-medium text-[#344767]">ORMAWA</dt>
+                    <dt class="text-sm font-medium text-[#344767]">JENIS ORMAWA</dt>
                         <dd class="mt-1 text-sm text-[#295F98] sm:col-span-2 sm:mt-0">{{ $pengajuans->ormawa }}</dd>
                 </div>
                 <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-                    <dt class="text-sm font-medium text-[#344767]">KETUA</dt>
+                    <dt class="text-sm font-medium text-[#344767]">ORMAWA</dt>
                         <dd class="mt-1 text-sm text-[#295F98] sm:col-span-2 sm:mt-0">{{ $pengajuans->ketua_ormawa }}</dd>
                 </div>
                 <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
