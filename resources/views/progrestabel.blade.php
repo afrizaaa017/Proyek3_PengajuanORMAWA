@@ -10,21 +10,22 @@
             <table class="w-full text-xs text-left text-gray-700">
                 <thead class="text-xs uppercase border-b-2 border-gray-200">
                     <tr>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Nomor Pengajuan</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">No</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Organisasi Mahasiswa</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Nama Pengaju</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Waktu Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Keterangan Verifikasi</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Surat SK</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Surat Pernyataan</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Surat Perjanjian</th>
                     </tr>
                 </thead>
                         <tbody>
                             @foreach ($pengajuans as $pengajuan)
                             <tr class="border-b">
-                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">1</td>
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->created_at->format('Y-m-d') }}</td>
-                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->jurusan }}</td>
+                                <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->nama }}</td>
                                 <td class="px-4 py-3">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
                                         <span class="px-3 py-1 bg-[#A3B3D3] text-white rounded-lg font-semibold">
@@ -61,20 +62,35 @@
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">
-                                    @php
+                                    {{-- @php
                                         $filePath = public_path('laraview/SK/' . date('Y') . '_SK.pdf');
-                                    @endphp
-                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && file_exists($filePath))
+                                    @endphp --}}
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                                         <div class="mt-2 text-sm">
-                                            <button 
-                                                data-file="{{ asset('laraview/SK/' . date('Y') . '_SK.pdf') }}" 
-                                                class="preview-btn text-blue-600">
-                                                Download SK
+                                            <button>
+                                                <a href="{{ route('surat.pernyataan') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                                                    Unduh Surat Pernyataan
+                                                </a>
                                             </button>
                                         </div>
-                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && !file_exists($filePath))
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
                                         <div class="mt-2 text-sm text-gray-500">
-                                            Tunggu Semua Pengajuan Diterima. 
+                                            Selesaikan Pengajuan Dahulu. 
+                                        </div>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                                        <div class="mt-2 text-sm">
+                                            <button>
+                                                <a href="{{ route('surat.perjanjian') }}" class="inline-block px-4 py-2 text-sm text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                                                    Unduh Surat Perjanjian
+                                                </a>
+                                            </button>
+                                        </div>
+                                    @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
+                                        <div class="mt-2 text-sm text-gray-500">
+                                            Selesaikan Pengajuan Dahulu. 
                                         </div>
                                     @endif
                                 </td>
@@ -84,14 +100,14 @@
                     </table>
                 </div>
                 <!-- Tombol Print  -->
-                <div class="mt-4 flex space-x-4 justify-center">
+                {{-- <div class="mt-4 flex space-x-4 justify-center">
                     <a href="{{ route('surat.pernyataan') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                         Unduh Surat Pernyataan
                     </a>
                     <a href="{{ route('surat.perjanjian') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                         Unduh Surat Perjanjian
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
 
