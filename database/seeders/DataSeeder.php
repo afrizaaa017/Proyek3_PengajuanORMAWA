@@ -39,7 +39,7 @@ class DataSeeder extends Seeder
         $ormawaData = [
             ['id_ormawa' => 1, 'nama_ormawa' => 'UKM',],
             ['id_ormawa' => 2, 'nama_ormawa' => 'BEM&MPM'],
-            ['id_ormawa' => 3, 'nama_ormawa' => 'Himpunan'],
+            ['id_ormawa' => 3, 'nama_ormawa' => 'HMJ'],
         ];
 
         // Menggunakan Eloquent untuk menyimpan data
@@ -48,3 +48,4 @@ class DataSeeder extends Seeder
         }
     }
 }
+	

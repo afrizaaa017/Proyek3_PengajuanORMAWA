@@ -49,7 +49,7 @@
             <table class="w-full text-xs text-center text-gray-700">
                 <thead class="text-xs uppercase border-b-2 border-gray-200">
                     <tr>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">No Pengajuan</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">NO</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap text-left">Nama</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">ORMAWA</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Periode</th>
@@ -64,7 +64,7 @@
                     <tr class="border-b text-center">
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->id }}</td>
                         <td class="px-4 py-3 text-left text-[#295F98]">{{ $pengajuan->nama }}</td>
-                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ormawa }}</td>
+                        <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->ketua_ormawa }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->periode }}</td>
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('j F Y') }}</td>
                         <td>
@@ -109,44 +109,17 @@
         </div>
     </div>
 </div>
-
-    @if (session('successDiterima'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Verifikasi Diterima Berhasil!',
-                    text: '{{ session('successDiterima') }}',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#3085d6',
-                });
-            });
-        </script>
-    @elseif (session('successRevisi'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Verifikasi Revisi Berhasil!',
-                    text: '{{ session('successRevisi') }}',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#3085d6',
-                });
-            });
-        </script>
-    @endif
-
-    <script>
-        document.getElementById('periode').addEventListener('change', function () {
-            const selectedPeriode = this.value;
-            const url = new URL(window.location.href);
-            if (selectedPeriode) {
-                url.searchParams.set('periode', selectedPeriode);
-            } else {
-                url.searchParams.delete('periode');
-            }
-            window.location.href = url.toString();
-        });
+<script>
+    document.getElementById('periode').addEventListener('change', function () {
+        const selectedPeriode = this.value;
+        const url = new URL(window.location.href);
+        if (selectedPeriode) {
+            url.searchParams.set('periode', selectedPeriode);
+        } else {
+            url.searchParams.delete('periode');
+        }
+        window.location.href = url.toString();
+    });
 
     document.addEventListener('click', function (event) {
             if (event.target.classList.contains('upload-btn'))
@@ -289,6 +262,7 @@
             });
         }
     });
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
