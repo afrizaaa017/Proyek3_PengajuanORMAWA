@@ -100,7 +100,7 @@
     <div class="kop-surat">
         <div class="logo">
             {{-- <img src="{{ $image }}" alt="Logo" style="width: 80px; height: auto; margin-top: -10px; margin-right: 20px; /* Jarak dengan isi kop */"> --}}
-            <img src="assets/img/logo-polban-80.png" alt="Logo">
+            <img src="assets/img/polban2.png" alt="Logo">
         </div>
         <div class="isi-kop">
             <h1>KEMENTERIAN PENDIDIKAN TINGGI, SAINS, DAN TEKNOLOGI</h1>
@@ -123,7 +123,7 @@
             </p>
         </div>
 
-        <table>
+        {{-- <table>
             <tr>
                 <td style="width: 15%;">Nama 1</td>
                 <td style="width: 5%;">:</td>
@@ -140,17 +140,38 @@
                 <td>:</td>
                 <td></td>
             </tr>
+        </table> --}}
+
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 0px; margin-top:0;">
+            @foreach ($pengajuans as $pengajuan)
+                <tr>
+                    <td style="width: 20%;">Nama Ormawa</td>
+                    <td style="width: 3%;">:</td>
+                    <td style="width: 77%;">{{ $pengajuan->ormawa }} / {{ $pengajuan->ketua_ormawa }}</td>
+                    {{-- <td style="width: 77%;"> {{ $pengajuan->ketua_ormawa }}</td> --}}
+                </tr>
+                <tr>
+                    <td>Nama Ketua Ormawa</td>
+                    <td>:</td>
+                    <td>{{ $pengajuan->nama }}</td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>Nama Pembina Ormawa</td>
+                <td>:</td>
+                <td></td>
+            </tr>
         </table>
 
         <p>
             Selanjutnya disebut pihak pertama
         </p>
 
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 0px; margin-top:0;">
             <tr>
-                <td style="width: 15%;">Nama</td>
-                <td style="width: 5%;">:</td>
-                <td style="width: 80%;">Dr. Tomy Andrianto, S.S.T., MM. Par</td>
+                <td style="width: 20%;">Nama</td>
+                <td style="width: 3%;">:</td>
+                <td style="width: 77%;"></td>
             </tr>
             <tr>
                 <td>Jabatan</td>
@@ -172,57 +193,62 @@
         </p>
 
         <div class="sasaran">
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 0px;">
                 <tr>
                     <th style="border: 1px solid black; width: 30%;">Sasaran</th>
                     <th style="border: 1px solid black; width: 50%;">Indikator Kinerja</th>
                     <th style="border: 1px solid black; width: 20%;">Isian</th>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;" rowspan="9">Meningkatnya Kualitas Mahasiswa</td>
-                    <td style="border: 1px solid black;">Jumlah mahasiswa mengikuti Program Kreativitas Mahasiswa (PKM)</td>
-                    <td style="border: 1px solid black; text-align: center;">4</td>
+                    <td style="border: 1px solid black; padding-left: 10px;" rowspan="10">Meningkatnya Kualitas Mahasiswa</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah mahasiswa mengikuti Program Kreativitas Mahasiswa (PKM)</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah mahasiswa mengikuti program kewirausahaan (PMW, KBMK)</td>
-                    <td style="border: 1px solid black; text-align: center;">4</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah mahasiswa mengikuti program kewirausahaan (PMW, KBMK)</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah mahasiswa mengikuti ajang prestasi (MaPres, Kompetisi, Lomba, Porseni, Sertifikasi) min. Level provinsi</td>
-                    <td style="border: 1px solid black; text-align: center;">4</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah mahasiswa mengikuti ajang prestasi (MaPres, Kompetisi, Lomba, Porseni, Sertifikasi) min. Level nasional</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah mahasiswa mengikuti program pengabdian (Bina Desa, PengMasy, Bakti Sosial, KKN, Polban Mengajar)</td>
-                    <td style="border: 1px solid black; text-align: center;">4</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah mahasiswa mengikuti program pengabdian (POMN, Bina Desa, PengMasy, Bakti Sosial, KKN, Polban Mengajar)</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah mahasiswa mengikuti kegiatan pendidikan karakter min. skala provinsi yang melibatkan pihak luar (rapat, workshop, pelatihan, LKMM, LKO)</td>
-                    <td style="border: 1px solid black; text-align: center;">15</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah mahasiswa mengikuti kegiatan pendidikan karakter min. skala nasional yang melibatkan pihak luar (rapat, workshop, pelatihan, LKMM, LKO)</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah kegiatan kompetisi yang diikuti min. berskala provinsi</td>
-                    <td style="border: 1px solid black; text-align: center;">3</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah kegiatan kompetisi yang diikuti min. berskala nasional</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah kegiatan kompetisi yang diadakan min. berskala kotamadya dengan level SLTA/ perguruan tinggi</td>
-                    <td style="border: 1px solid black; text-align: center;">1</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah kegiatan kompetisi yang diadakan min. berskala kotamadya dengan level SLTA/ perguruan tinggi</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah anggota</td>
-                    <td style="border: 1px solid black; text-align: center;">43</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah anggota</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Jumlah program kerja yang diajukan<br>Jumlah pergerakan yang diajukan</td>
-                    <td style="border: 1px solid black; text-align: center;">10<br>38</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah program kerja yang diajukan</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;" rowspan="2">Meningkatnya Kinerja dan Akuntabilitas Keuangan Negara</td>
-                    <td style="border: 1px solid black;">Durasi maksimal penyerahan SPJ/LPJ Monev Awal</td>
-                    <td style="border: 1px solid black; text-align:center;">1 Bulan</td>
+                    <td style="border: 1px solid black; padding-left: 10px;">Jumlah pergerakan yang diajukan</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid black;">Presentasi jumlah SPJ dan LPJ yang diserahkan Monev Akhir</td>
-                    <td style="border: 1px solid black; text-align:center;">100%</td>
+                    <td style="border: 1px solid black; padding-left: 10px; padding-left: 10px;" rowspan="2">Meningkatnya Kinerja dan Akuntabilitas Keuangan Negara</td>
+                    {{-- <td style="border: 1px solid black; padding-left: 10px;">Durasi maksimal penyerahan SPJ/LPJ Monev Awal</td> --}}
+                    <td style="border: 1px solid black; padding-left: 10px;">Durasi maksimal penyerahan SPJ/LPJ</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding-left: 10px;">Presentasi jumlah SPJ dan LPJ yang diserahkan Monev Akhir</td>
+                    <td style="border: 1px solid black; text-align:center;"></td>
                 </tr>
             </table>
         </div>
@@ -230,7 +256,8 @@
         <div class="pengesahan">
             <table style="width: 100%; border-collapse: collapse; margin-top: 30px;">
                 <tr>
-                    <td>Bandung, 1 Maret 2024</td>
+                    {{-- <td>Bandung, 1 Maret 2024</td> --}}
+                    <td>Bandung, </td>
                 </tr>
                 <tr>
                     <td>
@@ -242,22 +269,34 @@
                 </tr>
                 <tr>
                     <td>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 75px"></div>
+                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 100px"></div>
                     </td>
                     <td>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 75px"></div>
+                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 100px"></div>
                     </td>
                     <td>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 75px"></div>
+                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 100px"></div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3">
+                    {{-- <td colspan="3"> --}}
+                    <td>
                         <p>
-                            Dr. Tomy Andrianto, S.S.T., MM. Par<br>
-                            WaDIr III Bidang Kemahasiswaan
+                            WaDir III Bidang Kemahasiswaan
                         </p>
                     </td>
+                    @foreach ($pengajuans as $pengajuan)
+                    <td>
+                        <p>
+                            Pembina {{ $pengajuan->ketua_ormawa }}
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Ketua {{ $pengajuan->ketua_ormawa }}
+                        </p>
+                    </td>
+                    @endforeach
                 </tr>
             </table>
 

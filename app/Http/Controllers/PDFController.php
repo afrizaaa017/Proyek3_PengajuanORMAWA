@@ -35,11 +35,11 @@ class PDFController extends Controller
             'sertifikat_pkkmb' => 'Sertifikat PKKMB',
             'sertifikat_lkmm' => 'Sertifikat LKMM',
             'sertifikat_bela_negara' => 'Sertifikat Bela Negara',
-            'sertifikat_bahasa_asing' => 'Sertifikat Bahasa Asing',
+            'sertifikat_bahasa_asing' => 'Sertifikat EPT',
             'sertifikat_pelatihan_kepemimpinan' => 'Sertifikat Pelatihan Kepemimpinan',
             'sertifikat_pelatihan_emosional_spiritual' => 'Sertifikat Pelatihan Emosional Spiritual',
             'sertifikat_agent_of_change' => 'Sertifikat Agent of Change',
-            'sertifikat_berorganisasi' => 'Sertifikat Berorganisasi',
+            'sertifikat_berorganisasi' => 'Sertifikat Berorganisasi (memiliki pengalaman berorganisasi minimal sebagai koordinator dalam panitia kemahasiswaan/program kerja).',
             'berita_acara_pemilihan' => 'Berita Acara Pemilihan',
         ];
 
@@ -52,11 +52,21 @@ class PDFController extends Controller
         return $pdf->download($fileName); // Tampilkan PDF di browser
     }
 
-    public function suratPerjanjian()
+    public function suratPerjanjian(Request $request)
     {
+        $userId = Auth::id();
+        $exists = Pengajuan::where('user_id', $userId)->exists();
+
+        if (!session()->has('berkas') && !$exists) {
+            return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
+        }
+
+        $request->session()->forget('berkas');
+        $pengajuans = Pengajuan::with('berkas')->where('user_id', Auth::id())->get();
+
         $fileName = 'Surat_Perjanjian_Ketua_Ormawa_' . date('Y-m-d') . '.pdf';
 
-        $pdf = Pdf::loadview('suratPerjanjian');
+        $pdf = Pdf::loadview('suratPerjanjian', compact('pengajuans'));
         // return view('suratPerjanjian'); // Tampilkan PDF di browser
         // return $pdf->stream();
         return $pdf->download($fileName); // Tampilkan PDF di browser

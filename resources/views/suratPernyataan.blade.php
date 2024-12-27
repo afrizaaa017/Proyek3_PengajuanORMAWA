@@ -89,7 +89,7 @@
         }
 
         p, td{
-            font-size: 13px;
+            font-size: 12.5px;
         }
     </style>
 
@@ -100,7 +100,7 @@
         {{-- <img src="{{ $image }}" alt="Logo" style="width: 80px; height: auto; margin-top: -10px; margin-right: 20px; /* Jarak dengan isi kop */"> --}}
         <div class="logo">
             {{-- <img src="{{ $image }}" alt="Logo"> --}}
-            <img src="assets/img/logo-polban-80.png" alt="Logo">
+            <img src="assets/img/polban2.png" alt="Logo">
         </div>
         <div class="isi-kop">
             {{-- <h1 style="font-size: 20px !important; text-align: center; margin: 0; font-weight: normal;">KEMENTERIAN PENDIDIKAN TINGGI, SAINS,<br> DAN TEKNOLOGI</h1> --}}
@@ -155,13 +155,13 @@
                     <td>{{ $pengajuan->periode }}</td>
                 </tr>
                 <tr>
-                    <td>Kode</td>
+                    <td>No. Pengajuan</td>
                     <td>:</td>
                     <td>{{ $pengajuan->id }}</td>
                 </tr>
             </table>
-            <p>
-                Dengan ini menyatakan dengan sebenar benarnya dan tanpa paksanaan dari manapun untuk bersedia menjadi ketua organisasi {{ $pengajuan->ketua_ormawa }}
+            <p style="text-align: justify">
+                Dengan ini menyatakan dengan sebenar benarnya dan tanpa paksanaan dari manapun untuk bersedia menjadi ketua organisasi {{ $pengajuan->ketua_ormawa }}.
             </p>
             @endforeach
         </div>
@@ -181,7 +181,7 @@
                 <tbody>
                     @foreach ($berkas as $no => $ket)
                     <tr>
-                        <td style="border: 1px solid black; text-align:center;">{{ $loop->iteration }}</td>
+                        <td style="border: 1px solid black; text-align:center; padding: 0 10px 0 10px">{{ $loop->iteration }}</td>
                         <td style="border: 1px solid black; padding-left: 20px">{{ $ket }}</td>
                         @foreach ($pengajuans as $pengajuan)
                         <td style="border: 1px solid black; text-align: center">
@@ -199,8 +199,8 @@
         </div>
 
         <div class="penutup">
-            <p>
-                Surat pernyataan ini saya buat dalam keadaan sadar demi kemajuan Polban. Apabila dikemudian hari ternyata tidak sesuai dengan persyaratan diatas, maka saya bersedia untuk berhenti sebagai ketua ormawa dan di proses sesuai aturan dan hukum yang berlaku.<br>
+            <p style="text-align: justify">
+                Surat pernyataan ini saya buat dalam keadaan sadar demi kemajuan Polban dan saya tidak pernah terkena surat peringatan SP baik dalam bidang akademik dan kemahasiswaan. Apabila dikemudian hari ternyata tidak sesuai dengan persyaratan diatas, maka saya bersedia untuk berhenti sebagai ketua ormawa dan di proses sesuai aturan dan hukum yang berlaku.<br>
                 Demikian surat pernyataan ini dibuat agar dipergunakan sebagaimana perlunya.
             </p>
         </div>
@@ -234,7 +234,12 @@
             </table>
 
             <p style="font-size: 12px">
-                Keterangan: harus tanda tangan basah (bukan digital/scan) kecuali diijinkan karena alasan peraturan kesehatan.
+
+                {{-- Keterangan: yang menyatakan harus tanda tangan basah diatas materai, besertakan cap jurusan<br>
+                (bukan digital/scan) kecuali diijinkan karena alasan peraturan kesehatan. --}}
+
+                Keterangan: keduanya harus tanda tangan basah (bukan digital/scan), kecuali diizinkan karena alasan kesehatan.<br>
+                Untuk bagian yang menyatakan, tanda tangan di atas materai; untuk ketua jurusan, tanda tangan disertai cap basah jurusan.
             </p>
         </div>
 
