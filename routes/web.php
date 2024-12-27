@@ -41,6 +41,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     // Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
     Route::get('/dashboardmahasiswa', [DashboardMahasiswaController::class, 'index'])->name('mahasiswa.index');
+    Route::post('/dashboardmahasiswa', [BerkasController::class, 'store'])->name('file.upload');
 
     // Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
     Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
@@ -145,6 +146,18 @@ Route::get('/users', [FormController::class, 'user'])->name('users.index');
 
 Route::get('/suratPernyataan', [PDFController::class, 'suratPernyataan'])->name('surat.pernyataan');
 Route::get('/suratPerjanjian', [PDFController::class, 'suratPerjanjian'])->name('surat.perjanjian');
+
+
+Route::get('/error/404', function () {
+    return view('errors.404');
+})->name('error.404');
+
+Route::get('/error/500', function () {
+    return view('errors.500');
+})->name('error.500');
+
+
+
 // Route::get('/surat', function () {
 //     return view('pdf');
 // });
