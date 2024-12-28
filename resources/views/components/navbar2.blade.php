@@ -22,8 +22,8 @@
 <aside
     class="max-w-62.5 h-screen ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent">
     <div class="h-19.5">
-        {{-- <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
-            sidenav-close></i> --}}
+        <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
+            sidenav-close></i>
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" >
             <img src="{{asset('/assets/img/polban2.png')}}"
                 class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
@@ -190,7 +190,7 @@
 
                     <!-- notifications -->
 
-                    <li class="relative flex items-center pr-2">
+                    <li class="relative flex items-center px-4 pr-2">
                         <p class="hidden transform-dropdown-show"></p>
                         <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500"
                             dropdown-trigger aria-expanded="false">
