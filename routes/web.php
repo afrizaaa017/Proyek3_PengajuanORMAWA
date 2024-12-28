@@ -62,6 +62,11 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::put('/pengajuan/{nim}/submit/{id}', [FormController::class, 'update'])->name('pengajuan.update');
     Route::get('/pengajuan/{nim}/berkas/edit/{id}', [BerkasController::class, 'edit'])->name('berkas.edit');
     Route::put('/pengajuan/{nim}/berkas/submmit/{id}', [BerkasController::class, 'update'])->name('berkas.update');
+
+    //Surat
+
+    Route::get('/upload/surat/{nim}/{id}', [BerkasController::class, 'indexUpdateSurat'])->name('surat.upload');
+    Route::put('/submit/surat/{nim}/{id}', [BerkasController::class, 'updateSurat'])->name('surat.update');
 });
 
 // KEMAHASISWAAN
@@ -84,7 +89,8 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     // Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
     Route::get('/detail-pengajuan/{id}', [FormController::class, 'detailPengajuan'])->name('pengajuan.detail');
     Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
-
+    
+    Route::get('/detail-surat/{id}', [FormController::class, 'detailSurat'])->name('surat.detail');
     // //Revisi
     // Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
     // Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');

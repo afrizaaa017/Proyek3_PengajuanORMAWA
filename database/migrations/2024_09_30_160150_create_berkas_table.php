@@ -33,6 +33,9 @@ return new class extends Migration
             $table->string('sertifikat_agent_of_change');
             $table->string('sertifikat_berorganisasi');
             $table->string('berita_acara_pemilihan');
+            $table->string('surat_pernyataan');
+            $table->string('surat_perjanjian');
+            $table->string('surat_mou');
             $table->timestamps();
         });
     }

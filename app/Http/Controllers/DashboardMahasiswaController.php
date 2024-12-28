@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Pengajuan;
 use App\Models\KetuaOrmawa;
+use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Timeline;  // Import model Timeline
 
 class DashboardMahasiswaController extends Controller
@@ -45,8 +46,15 @@ class DashboardMahasiswaController extends Controller
         // Gabungkan data Ormawa yang belum mengajukan dan pengajuan yang belum disetujui
         $allOrmawaBelumDisetujui = $ormawaBelumMengajukan->merge($pengajuanBelumDisetujui);
 
+        $userId = Auth::id();
+        $exists = Pengajuan::where('user_id', $userId)->exists();
+        $pengajuan = Pengajuan::where('user_id', $userId)->select('id', 'nim', 'status')->first();
+        // dd($existss);
+
         // Kirim data ke view
         return view('dashboardmahasiswa', [
+            'exists' => $exists,
+            'pengajuan' => $pengajuan,
             'jumlahBelumDisetujui' =>  $totalOrmawa - Pengajuan::where('status', PengajuanStatus::Diterima->value)->count(),
             'allOrmawaBelumDisetujui' => $allOrmawaBelumDisetujui,  // Data Ormawa yang belum disetujui atau belum mengajukan
             'timelines' => $timelines,

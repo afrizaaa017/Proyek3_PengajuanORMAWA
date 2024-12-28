@@ -27,7 +27,10 @@ class Berkas extends Model
         'sertifikat_bela_negara',
         'sertifikat_agent_of_change',
         'sertifikat_berorganisasi',
-        'berita_acara_pemilihan'
+        'berita_acara_pemilihan',
+        'surat_pernyataan',
+        'surat_perjanjian',
+        'surat_mou',
     ];
 
     public function pengajuan(): BelongsTo

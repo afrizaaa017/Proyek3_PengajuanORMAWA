@@ -57,7 +57,8 @@
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Tanggal Pengajuan</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Status Verifikasi</th>
                         <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Waktu Verifikasi</th>
-                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Aksi</th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Verifikasi <div>Pengajuan</div></th>
+                        <th scope="col" class="px-4 py-3 text-[#295F98] whitespace-nowrap">Surat</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,6 +103,15 @@
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
+                        @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                        <td class="px-4 py-3">
+                            <a href="{{ route('surat.detail', ['id' => $pengajuan->id]) }}" class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+                        @else
+                            <td><p>Pengajuan Belum <div>Selesai</div></p></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
@@ -253,6 +263,7 @@
             });
         }
     });
+    
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('uploadSuccess-btn')) {
             event.preventDefault();

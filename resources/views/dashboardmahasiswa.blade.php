@@ -3,6 +3,8 @@
 @include('components.navbar2')
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="w-full px-4 py-6 mx-auto" id="content">
         <!-- Kotak informasi ormawa belum disetujui dan pengajuan -->
         <div class="flex space-x-6 mb-6">
@@ -63,6 +65,23 @@
                 Lakukan Pengajuan
             </a>
         </div>
+        @if ($exists && $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+        <div class="flex my-auto mx-auto py-2">
+            <button 
+                class="btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18"
+                data-edit-url="{{ route('surat.upload', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
+                Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
+            </button>
+        </div>
+        @else
+        <div class="flex my-auto mx-auto py-2">
+            <button 
+                class="alert-btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18">
+                Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
+            </button>
+        </div>
+        @endif
+      
     </div>
 
     <script>
@@ -84,6 +103,140 @@
         }
     </script>
 
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Upload Surat Berhasil!',
+                    text: '{{ session('success') }}',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                });
+            });
+        </script>
+    @endif
+
+    <script>
+        document.querySelectorAll('.btn-upload-surat').forEach(button => {
+            button.addEventListener('click', function () {
+                const editUrl = this.getAttribute('data-edit-url');
+
+                Swal.fire({
+                    title: `Sudah Mengunduh Surat Yang Ada Pada Progres Tabel?`,
+                    text: `Jika Sudah, Lakukan Upload Surat`,
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Tutup',
+                    cancelButtonText: 'Upload Surat',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = editUrl;
+                    }
+                });
+            });
+        });
+    </script> 
+    
+    <script>
+        document.querySelectorAll('.alert-btn-upload-surat').forEach(button => {
+            button.addEventListener('click', function () {
+                Swal.fire({
+                    title: `Selesaikan Proses Pengajuan Terlebih Dahulu !`,
+                    text: `Anda Bisa Kembali Lagi Setelahnya.`,
+                    icon: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = editUrl;
+                    }
+                });
+            });
+        });
+    </script> 
+    
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('upload-btn')) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Upload SK',
+                html: `
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div>
+                            <div class="mb-4">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="surat_pernyataan">Surat Pernyataan Pengajuan</label>
+                                <input id="surat_pernyataan" class="block w-full text-sm bg-white border rounded p-2" type="file" name="surat_pernyataan" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="surat_perjanjian">Surat Perjanjian</label>
+                                <input id="surat_perjanjian" class="block w-full text-sm bg-white border rounded p-2" type="file" name="surat_perjanjian" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="surat_mou">Surat MOU</label>
+                                <input id="surat_mou" class="block w-full text-sm bg-white border rounded p-2" type="file" name="surat_mou" required>
+                            </div>
+                        </div>
+                    </form>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Upload',
+                preConfirm: () => {
+                    const form = document.getElementById('uploadForm');
+                    if (!form) {
+                        Swal.showValidationMessage('Form tidak ditemukan.');
+                        return false;
+                    }
+
+                    const formData = new FormData(form);
+                    formData.append('_method', 'PUT'); // Method spoofing
+
+                    if (
+                        !formData.get('surat_pernyataan')?.name ||
+                        !formData.get('surat_perjanjian')?.name ||
+                        !formData.get('surat_mou')?.name
+                    ) {
+                        Swal.showValidationMessage('Harap unggah semua file yang diminta!');
+                        return false;
+                    }
+
+                    return formData;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const formData = result.value;
+                    
+                    const uploadUrl = "{{ $uploadUrl }}"; // URL yang sudah di-generate dari Blade
+                        fetch(uploadUrl, {
+                        method: 'PUT',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        },
+                        body: formData
+                    })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Gagal mengunggah file.');
+                            return response.json();
+                        })
+                        .then(data => {
+                            Swal.fire('Berhasil!', 'File berhasil diunggah.', 'success');
+                        })
+                        .catch(error => {
+                            Swal.fire('Error!', `Gagal mengunggah file: ${error.message}`, 'error');
+                        });
+                }
+            });
+        }
+    });
+});
+    </script> --}}
     
     {{-- <!-- Modal Popup -->
     <div id="popup" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">

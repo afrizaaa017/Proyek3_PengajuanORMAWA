@@ -71,6 +71,17 @@ class FormController extends Controller
 
         return view('detailPengajuan', compact('pengajuans'));
     }
+    
+    public function detailSurat($id)
+    {
+        $pengajuans = Pengajuan::with('berkas')->find($id);
+
+        if (!$pengajuans) {
+            return redirect()->back()->with('error', 'Data pengajuan tidak ditemukan.');
+        }
+
+        return view('detailUploadSurat', compact('pengajuans'));
+    }
 
     public function index()
     {

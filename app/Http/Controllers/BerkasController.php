@@ -45,6 +45,9 @@ class BerkasController extends Controller
             'sertifikat_agent_of_change' => 'nullable|file|mimes:pdf|max:2048',
             'sertifikat_berorganisasi' => 'required|mimes:pdf|max:2048',
             'berita_acara_pemilihan' => 'required|mimes:pdf|max:2048',
+            'surat_pernyataan' => 'nullable|file|mimes:pdf|max:2048',
+            'surat_perjanjian' => 'nullable|file|mimes:pdf|max:2048',
+            'surat_mou' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
         $pengajuanData = session('pengajuan');
@@ -84,6 +87,21 @@ class BerkasController extends Controller
             }
             $berkas->sertifikat_berorganisasi = $request->file('sertifikat_berorganisasi')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf') ? 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf' : 'data gagal terupload';
             $berkas->berita_acara_pemilihan = $request->file('berita_acara_pemilihan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf') ? 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf' : 'data gagal terupload';
+            if ($request->hasFile('surat_pernyataan')) {
+                $berkas->surat_pernyataan = $request->file('surat_pernyataan')->move($publicPath, 'Pengaju_' . $berkas->id . '_surat_pernyataan.pdf') ? 'Pengaju_' . $berkas->id . '_surat_pernyataan.pdf' : 'data gagal terupload';
+            } else {
+                $berkas->surat_pernyataan = 'pengaju belum mengirimkan file ini';
+            }
+            if ($request->hasFile('surat_perjanjian')) {
+                $berkas->surat_perjanjian = $request->file('surat_perjanjian')->move($publicPath, 'Pengaju_' . $berkas->id . '_surat_perjanjian.pdf') ? 'Pengaju_' . $berkas->id . '_surat_perjanjian.pdf' : 'data gagal terupload';
+            } else {
+                $berkas->surat_perjanjian = 'pengaju belum mengirimkan file ini';
+            }
+            if ($request->hasFile('surat_mou')) {
+                $berkas->surat_mou = $request->file('surat_mou')->move($publicPath, 'Pengaju_' . $berkas->id . '_surat_mou.pdf') ? 'Pengaju_' . $berkas->id . '_surat_mou.pdf' : 'data gagal terupload';
+            } else {
+                $berkas->surat_mou = 'pengaju belum mengirimkan file ini';
+            }
 
             $request->session()->put('berkas', [
                 'scan_ktp' => Auth::id()
@@ -156,6 +174,9 @@ class BerkasController extends Controller
             'sertifikat_agent_of_change' => 'nullable|file|mimes:pdf|max:2048',
             'sertifikat_berorganisasi' => 'nullable|file|mimes:pdf|max:2048',
             'berita_acara_pemilihan' => 'nullable|file|mimes:pdf|max:2048',
+            'surat_pernyataan' => 'nullable|file|mimes:pdf|max:2048',
+            'surat_perjanjian' => 'nullable|file|mimes:pdf|max:2048',
+            'surat_mou' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
         $revisiPengajuan = session('revisiPengajuan');
@@ -220,6 +241,15 @@ class BerkasController extends Controller
         if ($request->hasFile('berita_acara_pemilihan')) {
             $berkas->berita_acara_pemilihan = $request->file('berita_acara_pemilihan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf') ? 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf' : 'data gagal terupload';
         }
+        if ($request->hasFile('surat_pernyataan')) {
+            $berkas->surat_pernyataan = $request->file('surat_pernyataan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_pernyataan.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_pernyataan.pdf' : 'data gagal terupload';
+        }
+        if ($request->hasFile('surat_perjanjian')) {
+            $berkas->surat_perjanjian = $request->file('surat_perjanjian')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_perjanjian.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_perjanjian.pdf' : 'data gagal terupload';
+        }
+        if ($request->hasFile('surat_mou')) {
+            $berkas->surat_mou = $request->file('surat_mou')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_mou.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_mou.pdf' : 'data gagal terupload';
+        }
 
         $berkas->save();
 
@@ -231,6 +261,47 @@ class BerkasController extends Controller
         Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', true));
 
         return redirect()->route('progrestabel')->with('success', 'Data updated successfully');
+    }
+
+    public function indexUpdateSurat($nim, $id)
+    {
+        $pengajuan = Pengajuan::where('id', $id)->where('nim', $nim)->firstOrFail();
+
+        return view('uploadSurat', ['pengajuan' => $pengajuan]);
+    }
+
+    public function updateSurat(Request $request, $nim, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+
+        $berkas = $pengajuan->berkas;
+
+
+        $folderPath = 'laraview/' . $pengajuan->id;
+
+        $publicPath = public_path($folderPath);
+
+        Storage::makeDirectory($folderPath);
+        if ($request->hasFile('surat_pernyataan')) {
+            $berkas->surat_pernyataan = $request->file('surat_pernyataan')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_pernyataan.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_pernyataan.pdf' : 'data gagal terupload';
+        }
+        if ($request->hasFile('surat_perjanjian')) {
+            $berkas->surat_perjanjian = $request->file('surat_perjanjian')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_perjanjian.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_perjanjian.pdf' : 'data gagal terupload';
+        }
+        if ($request->hasFile('surat_mou')) {
+            $berkas->surat_mou = $request->file('surat_mou')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_surat_mou.pdf') ? 'Pengaju_' . $pengajuan->id . '_surat_mou.pdf' : 'data gagal terupload';
+        }
+
+        $berkas->save();
+
+        // $user = User::find($pengajuan->user_id);
+        // $user->notify(new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', false));
+
+        // // Notifikasi ke staff_polban
+        // $staffs = User::where('role_id', 'staff_kemahasiswaan')->get();
+        // Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', true));
+
+        return redirect()->route('mahasiswa.index')->with('success', 'Proses Upload Persuratan Berhasil !');
     }
 
     public function uploadSK(Request $request)
