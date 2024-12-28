@@ -370,3 +370,15 @@ section {
     background-color: #f44336 !important;  /* Warna latar belakang saat hover */
     transform: scale(1.05);  /* Efek memperbesar tombol sedikit saat hover */
 }
+
+/* <style> */
+    /* Responsif di perangkat kecil */
+    @media screen and (max-width: 768px) {
+        /* Adjust padding-bottom for mobile screens if needed */
+        .pdf-container {
+            padding-bottom: 160%; /* Slightly taller on mobile for better readability */
+        }
+
+        
+    }
+/* </style> */

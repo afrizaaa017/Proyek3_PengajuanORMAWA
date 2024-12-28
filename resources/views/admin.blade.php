@@ -71,7 +71,7 @@
             <section class="flex-1 bg-white p-4">
                 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                     <h2 class="mb-4 text-xl font-bold text-gray-900">Buat Timeline</h2>
-                    <form method="POST" action="{{ route('timeline.store') }}">
+                    -------------
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             @csrf
                             <div class="sm:col-span-2">
