@@ -18,13 +18,13 @@
             <form action="{{ route('ketuaOrmawa.store') }}" method="POST" class="flex flex-col items-center">
                 @csrf
                 <div class="mb-4 w-full max-w-lg">
-                    <label for="nama_ketua" class="block font-bold text-[#295F98] mb-2">Nama Ketua</label>
+                    <label for="nama_ketua" class="block font-bold text-[#295F98] mb-2">Nama Ormawa</label>
                     <input type="text" name="nama_ketua" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                 </div>
 
                 <div class="mb-4 w-full max-w-lg">
-                    <label for="ormawa_id" class="block font-bold text-[#295F98] mb-2">Pilih Ormawa</label>
+                    <label for="ormawa_id" class="block font-bold text-[#295F98] mb-2">Pilih Jenis Ormawa</label>
                     <select name="ormawa_id" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                         @foreach($ormawas as $ormawa)
@@ -40,14 +40,14 @@
         <!-- Tabel Daftar Ketua Ormawa -->
         <div class="relative shadow-md rounded-lg overflow-hidden p-5 border border-gray-200 bg-white w-full">
 
-            <h2 class="text-xl font-bold pb-2">Data Ormawa</h2>
+            <h2 class="text-xl font-bold pb-2">Data Ormawa ({{ $ketuaOrmawas->count()}} Data)</h2>
 
             <div class="w-full overflow-x-auto">
                 <table class="w-full text-left table-auto">
                     <thead>
                         <tr class="text-[#344767]">
-                            <th class="px-4 py-2 border-b">Nama Ketua</th>
                             <th class="px-4 py-2 border-b">Ormawa</th>
+                            <th class="px-4 py-2 border-b">Jenis Ormawa</th>
                             <th class="px-4 py-2 border-b">Aksi</th>
                         </tr>
                     </thead>
