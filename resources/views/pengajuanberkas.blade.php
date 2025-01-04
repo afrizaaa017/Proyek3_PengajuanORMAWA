@@ -51,10 +51,17 @@
         </div>
         <!-- End of Stepper Container -->
 
+        
+
         <!-- Konten Upload Berkas -->
         <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data" id="applicationForm">
             @csrf
             <div class="container mx-auto mt-10 flex-1">
+                <div class="block mb-7 text-sm font-extrabold ">
+                    <p class="text-red-600 font-bold text-lg">*Pastikan Berkas Yang Diupload Berbentuk PDF.</p>
+                    <p class="text-red-600 font-bold text-lg">*Pastikan Ukuran Berkas Kurangdari 2MB.</p>
+                </div>
+
                 <div class="grid grid-cols-2 gap-8">
 
                 <!-- Kolom Pertama (8 tempat upload file) -->
@@ -63,41 +70,65 @@
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="scan_ktp">Scan KTP</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktp" type="file" name="scan_ktp" name="scan_ktp" required>
+                            @error('scan_ktp')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 2 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_sehat">Surat Sehat</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_sehat" type="file" name="surat_sehat" required>
+                            @error('surat_sehat')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 3 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_rekomendasi_jurusan">Surat Rekomendasi Jurusan</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_rekomendasi_jurusan" type="file" name="surat_rekomendasi_jurusan" required>
+                            @error('surat_rekomendasi_jurusan')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 4 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="transkip_rekomendasi_jurusan">Transkip Akademik Semester Terakhir</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="transkip_rekomendasi_jurusan" type="file" name="transkip_rekomendasi_jurusan" required>
+                            @error('transkip_rekomendasi_jurusan')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 5 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_lkmm">Sertifikat LKMM</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_lkmm" type="file" name="sertifikat_lkmm" required>
+                            @error('sertifikat_lkmm')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 6 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_pelatihan_kepemimpinan">Sertifikat Pelatihan Kepemimpinan</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_kepemimpinan" type="file" name="sertifikat_pelatihan_kepemimpinan" required>
+                            @error('sertifikat_pelatihan_kepemimpinan')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 7 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_pelatihan_emosional_spiritual">Sertifikat Pelatihan Emosional Spiritual bagi Mahasiswa</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_emosional_spiritual" type="file" name="sertifikat_pelatihan_emosional_spiritual" >
+                            @error('sertifikat_pelatihan_emosional_spiritual')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 8 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_bahasa_asing">Sertifikat Bahasa Asing</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bahasa_asing" type="file" name="sertifikat_bahasa_asing" required>
+                            @error('sertifikat_bahasa_asing')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -107,45 +138,66 @@
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="scan_ktm">Scan KTM</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktm" type="file" name="scan_ktm" required>
+                            @error('scan_ktm')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 10 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_keterangan_berkelakuan_baik">Surat Keterangan Berkelakuan Baik</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_keterangan_berkelakuan_baik" type="file" name="surat_keterangan_berkelakuan_baik" required>
+                            @error('surat_keterangan_berkelakuan_baik')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 11 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_penyataan_mandiri">Surat Pernyataan Mandiri</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_penyataan_mandiri" type="file" name="surat_penyataan_mandiri" required>
+                            @error('surat_penyataan_mandiri')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 12 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_pkkmb">Sertifikat PKKMB</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pkkmb" type="file" name="sertifikat_pkkmb" required>
+                            @error('sertifikat_pkkmb')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 13 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_bela_negara">Sertifikat Bela Negara</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bela_negara" type="file" name="sertifikat_bela_negara" required>
+                            @error('sertifikat_bela_negara')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 14 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_agent_of_change">Sertifikat Agent of Change</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_agent_of_change" type="file" name="sertifikat_agent_of_change" >
+                            @error('sertifikat_agent_of_change')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 15 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_berorganisasi">Sertifikat Berorganisasi (Minimal sebagai koordinator)</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_berorganisasi" type="file" name="sertifikat_berorganisasi" required>
+                            @error('sertifikat_berorganisasi')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
                         <!-- Tempat upload file 16 -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="berita_acara_pemilihan">Berita Acara Pemilihan</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="berita_acara_pemilihan" type="file" name="berita_acara_pemilihan" required>
+                            @error('berita_acara_pemilihan')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
                         </div>
-                        @error('pdf')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
                 </div>
             </div>

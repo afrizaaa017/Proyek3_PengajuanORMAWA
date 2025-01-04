@@ -2,48 +2,77 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\User;
 use App\Models\Prodi;
 use App\Models\Ormawa;
 use App\Models\Jurusan;
 use App\Models\Pengajuan;
 use App\Models\KetuaOrmawa;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Notifications\PengajuanNotifikasi;
 
 class FormController extends Controller
 {
-    // public function user()
-    // {
-    //     $users = User::all(); // Ambil semua user
-    //     return view('tesDeleteUser', compact('users'));
-    // }
+    public function kelolaUser()
+    {
+        $user = User::all(); // Ambil semua user
+        return view('TambahUser', compact('user'));
+    }
 
-    // public function deleteUser($id)
-    // {
-    //     $user = User::findOrFail($id);
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|regex:/^[a-zA-Z0-9._%+-]+@polban\.ac\.id$/|unique:users,email',
+            'password' => 'required|min:6',
+            'role_id' => 'required'
+        ],[
+            'email.regex' => 'Email harus menggunakan domain @polban.ac.id',
+            'password.min' => 'Password harus memiliki minimal 6 karakter.',
+        ]);
 
-    //     // Hapus user tanpa menghapus pengajuan
-    //     $user->delete();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => now(),
+            'password' => Hash::make($request->password),
+            'remember_token' => Str::random(10), 
+            'role_id' => $request->role_id,
+        ]);
 
-    //     return redirect()->back()->with('message', 'Akun user berhasil dihapus, pengajuan tetap tersimpan.');
-    // }
+        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        // Hapus user tanpa menghapus pengajuan
+        $user->delete();
+
+        return redirect()->back()->with('message', 'Akun user berhasil dihapus, pengajuan tetap tersimpan.');
+    }
 
     public function simpanPengajuan(Request $request)
     {
         $request->validate([
             'nama' => 'required',
-            'nim' => 'required|unique:pengajuans',
+            'nim' => 'required|numeric|unique:pengajuans',
             'jurusan' => 'required',
             'prodi' => 'required',
             'ormawa' => 'required',
             'ketua_ormawa' => 'required',
             'periode' => 'required',
-            'telp' => 'required',
+            'telp' => 'required|numeric',
             'email' => 'required',
+        ], [
+            'nim.numeric' => 'NIM harus berupa angka.',
+            'nim.unique' => 'NIM sudah terdaftar, masukan NIM anda.',
+            'telp.numeric' => 'Nomor telepon harus berupa angka.',
         ]);
 
         $request->session()->put('pengajuan', [
