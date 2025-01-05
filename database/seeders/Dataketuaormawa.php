@@ -38,7 +38,7 @@ class Dataketuaormawa extends Seeder
             ['nama_ketua' => 'UKM UKBM', 'ormawa_id' => 1],
             ['nama_ketua' => 'UKM Fellas', 'ormawa_id' => 1],
             ['nama_ketua' => 'UKM Flag Football', 'ormawa_id' => 1],
-            ['nama_ketua' => 'UKM Catur', 'ormawa_id' => 1],            
+            ['nama_ketua' => 'UKM Tenis Meja', 'ormawa_id' => 1],
             ['nama_ketua' => 'BEM', 'ormawa_id' => 2],
             ['nama_ketua' => 'MPM', 'ormawa_id' => 2],
             ['nama_ketua' => 'HMJ Administrasi Niaga', 'ormawa_id' => 3],

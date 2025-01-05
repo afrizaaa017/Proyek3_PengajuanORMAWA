@@ -51,15 +51,40 @@ class DashboardMahasiswaController extends Controller
         $pengajuan = Pengajuan::where('user_id', $userId)->select('id', 'nim', 'status')->first();
         // dd($existss);
 
+        $statusKecuali = [
+            PengajuanStatus::MenungguVerifikasi,
+            PengajuanStatus::PerluRevisi,
+            PengajuanStatus::MenungguVerifikasiUlang,
+        ];
 
-        // data yang belum melakukan pengajuan
-        $ketuaOrmawas = KetuaOrmawa::with('pengajuans')
-                        ->get()
-                        ->filter(function ($ketuaOrmawa) {
-                            return $ketuaOrmawa->pengajuans->isEmpty();
-                        });
+        // Mengambil semua data ormawa
+        $ketuaOrmawas = KetuaOrmawa::with('pengajuans')->get();
 
-        $totalBelumMengajukan = $ketuaOrmawas->count();
+        // Memfilter ormawa yang belum mengajukan sama sekali atau pengajuannya berstatus selain Diterima
+        $filteredOrmawas = $ketuaOrmawas->filter(function ($ketuaOrmawa) use ($statusKecuali) {
+            // Memeriksa apakah ada pengajuan yang diterima
+            $pengajuanTelahDiterima = $ketuaOrmawa->pengajuans->contains(function ($pengajuan) {
+                return $pengajuan->status === PengajuanStatus::Diterima;
+            });
+            // Jika ada pengajuan yang diterima, ormawa tersebut tidak termasuk dalam hasil
+            if ($pengajuanTelahDiterima) {
+                return false;
+            }
+            // Jika ormawa tidak memiliki pengajuan sama sekali, maka termasuk dalam hasil
+            if ($ketuaOrmawa->pengajuans->isEmpty()) {
+                return true;
+            }
+
+            // Memfilter pengajuans berdasarkan status yang tidak termasuk Diterima
+            $filteredPengajuans = $ketuaOrmawa->pengajuans->filter(function ($pengajuan) use ($statusKecuali) {
+                return in_array($pengajuan->status, $statusKecuali);
+            });
+
+            // Jika semua pengajuans berstatus selain Diterima, maka termasuk dalam hasil
+            return $filteredPengajuans->count() > 0;
+        });
+
+        $totalBelumMengajukan = $filteredOrmawas->count();
 
         // Kirim data ke view
         return view('dashboardmahasiswa', [
@@ -68,7 +93,7 @@ class DashboardMahasiswaController extends Controller
             // 'jumlahBelumDisetujui' =>  $totalOrmawa - Pengajuan::where('status', PengajuanStatus::Diterima->value)->count(),
             // 'allOrmawaBelumDisetujui' => $allOrmawaBelumDisetujui,  // Data Ormawa yang belum disetujui atau belum mengajukan
             'totalOrmawaBelumMengajukan' => $totalBelumMengajukan,
-            'allOrmawaBelumDisetujui' => $ketuaOrmawas,
+            'allOrmawaBelumDisetujui' => $filteredOrmawas,
             'timelines' => $timelines,
         ]);
     }

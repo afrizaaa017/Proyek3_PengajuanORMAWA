@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             // Ambil 5 notifikasi terbaru untuk semua pengguna
             $notifications = DB::table('notifications')
                 ->orderBy('created_at', 'desc')
-                ->take(5) // Ambil 5 notifikasi terbaru
+                // ->take(5) // Ambil 5 notifikasi terbaru
                 ->get()
                 ->map(function ($notification) {
                     $notification->data = json_decode($notification->data, true); // Decode JSON data

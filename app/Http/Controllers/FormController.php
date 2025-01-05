@@ -40,7 +40,7 @@ class FormController extends Controller
             'email' => $request->email,
             'email_verified_at' => now(),
             'password' => Hash::make($request->password),
-            'remember_token' => Str::random(10), 
+            'remember_token' => Str::random(10),
             'role_id' => $request->role_id,
         ]);
 
@@ -100,7 +100,7 @@ class FormController extends Controller
 
         return view('detailPengajuan', compact('pengajuans'));
     }
-    
+
     public function detailSurat($id)
     {
         $pengajuans = Pengajuan::with('berkas')->find($id);
@@ -140,7 +140,7 @@ class FormController extends Controller
 
         if ($status === 'Diterima') {
             $pengajuan->keterangan = 'Tidak ada revisi';
-            
+
             $pengajuan->save();
             return redirect()->route('listtable')->with('successDiterima', "Status pengajuan dengan No Pengajuan {$pengajuan->id} berhasil diperbarui.");
         } else if ($status === 'Perlu Revisi') {
@@ -149,9 +149,9 @@ class FormController extends Controller
             ]);
             $pengajuan->keterangan = $request->input('revisi');
 
+            $pengajuan->save();
             $user = User::find($pengajuan->user_id);
             $user->notify(new PengajuanNotifikasi($pengajuan, 'revisi', false));
-            $pengajuan->save();
             return redirect()->route('listtable')->with('successRevisi', "Status pengajuan dengan No Pengajuan {$pengajuan->id} berhasil diperbarui.");
         }
         else{

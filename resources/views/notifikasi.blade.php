@@ -4,16 +4,16 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <style>
-        /* Tambahkan kelas untuk notifikasi yang dipilih */
-        .selected-notification {
-            background-color: #e5e7eb !important; /* Ubah warna latar belakang menjadi abu-abu */
-        }
-    </style>
 </head>
 
 @extends('components.main')
-@include('components.navbar2')
+
+    @if (Auth::user() && Auth::user()->role_id === 'staff_kemahasiswaan')
+        @include('components.navbar2staff')
+    @elseif (Auth::user() && Auth::user()->role_id === 'mahasiswa')
+        @include('components.navbar2')
+    @endif
+{{-- @include('components.navbar2') --}}
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -39,8 +39,7 @@
                             {{ Str::limit($notification->data['message'] ?? 'Tidak ada pesan.', 100) }}
                         </p>
                         <p class="text-xs text-gray-400 mt-2">
-                            {{ \Carbon\Carbon::parse($notification->created_at)->toDayDateTimeString() }}
-                        </p>
+                            {{ \Carbon\Carbon::parse($notification->created_at)->locale('id-ID')->isoFormat('dddd, MMMM Do YYYY, h:mm') }}                        </p>
                         <div class="mt-2">
                             @if ($notification->is_read)
                                 <span class="text-sm px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">✓ Sudah Dibaca</span>

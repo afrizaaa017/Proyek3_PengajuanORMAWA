@@ -11,7 +11,7 @@
 
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -89,7 +89,7 @@
         }
 
         p, td{
-            font-size: 12.5px;
+            font-size: 12px;
         }
     </style>
 
@@ -135,19 +135,14 @@
                     <td>{{ $pengajuan->nim }}</td>
                 </tr>
                 <tr>
-                    <td> Jurusan</td>
-                    <td>:</td>
-                    <td>{{ $pengajuan->jurusan }}</td>
-                </tr>
-                <tr>
                     <td>Prodi/Jurusan</td>
                     <td>:</td>
-                    <td>{{ $pengajuan->prodi }}/{{ $pengajuan->jurusan }}</td>
+                    <td>{{ $pengajuan->prodi }} / {{ $pengajuan->jurusan }}</td>
                 </tr>
                 <tr>
                     <td>Organisasi</td>
                     <td>:</td>
-                    <td>{{ $pengajuan->ormawa }}</td>
+                    <td>{{ $pengajuan->ormawa }} / {{ $pengajuan->ketua_ormawa }}</td>
                 </tr>
                 <tr>
                     <td>Periode/Tahun</td>

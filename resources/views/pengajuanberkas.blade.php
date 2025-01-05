@@ -59,7 +59,7 @@
 
                 <div class="block mb-7 text-sm font-extrabold ">
                     <p class="text-red-600 font-bold text-lg">*Pastikan Berkas Yang Diupload Berbentuk PDF.</p>
-                    <p class="text-red-600 font-bold text-lg">*Pastikan Ukuran Berkas Kurangdari 2MB.</p>
+                    <p class="text-red-600 font-bold text-lg">*Pastikan Ukuran Berkas Kurang dari 2MB.</p>
                 </div>
 
                 {{-- <div class="grid grid-cols-2 gap-8"> --}}
@@ -223,7 +223,7 @@
                 // Jika form valid, tampilkan SweetAlert
                 Swal.fire({
                     title: 'Yakin data sudah benar?',
-                    text: "Pastikan semua data telah diisi dengan benar sebelum mengirimkan!",
+                    text: "Pastikan semua data telah terisi dengan benar sebelum mengirimkan! Perhatikan ukuran maksimal setiap filenya",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

@@ -9,32 +9,32 @@
         <form action="{{ route('surat.update', ['id' => $pengajuan->id, 'nim' => $pengajuan->nim]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
             @csrf
             @method('PUT') <!-- Method spoofing for PUT -->
-            
+
             <div class="container mx-auto mt-10 flex-1">
                 <h2 class="text-3xl font-bold text-blue-800 dark:text-white text-center">Upload Surat</h2>
                 <p class="mb-14 font-bold text-blue-800 dark:text-white text-center">Upload Surat dapat dilakukan satu persatu.</p>
-                <div class="grid grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="mb-4">
                         @if ($pengajuan->berkas && $pengajuan->berkas->surat_pernyataan === 'pengaju belum mengirimkan file ini')
-                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Penyataan Pengajuan <label class="text-sm text-red-600">*Anda Belum Upload Surat Ini !</label></label>
+                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Penyataan Pengajuan<label class="block text-sm text-red-600">*Anda Belum Upload Surat Ini !</label></label>
                         @else
-                        <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Penyataan Pengajuan <label class="text-sm text-green-400">*Anda Sudah Upload Surat Ini !</label></label>
+                        <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Penyataan Pengajuan<label class="block text-sm text-green-400">*Anda Sudah Upload Surat Ini !</label></label>
                         @endif
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_pernyataan" type="file" name="surat_pernyataan" required>
                     </div>
                     <div class="mb-4">
                         @if ($pengajuan->berkas && $pengajuan->berkas->surat_perjanjian === 'pengaju belum mengirimkan file ini')
-                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Perjanjian <label class="text-sm text-red-600">*Anda Belum Upload Surat Ini !</label></label>
+                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Perjanjian<label class="block text-sm text-red-600">*Anda Belum Upload Surat Ini !</label></label>
                         @else
-                        <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Perjanjian <label class="text-sm text-green-400">*Anda Sudah Upload Surat Ini !</label></label>
+                        <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat Perjanjian<label class="block text-sm text-green-400">*Anda Sudah Upload Surat Ini !</label></label>
                         @endif
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_perjanjian" type="file" name="surat_perjanjian" required>
                     </div>
                     <div class="mb-4">
                         @if ($pengajuan->berkas && $pengajuan->berkas->surat_mou === 'pengaju belum mengirimkan file ini')
-                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat MOU <label class="text-sm text-red-600">*Anda Belum Upload Surat Ini !</label></label>
+                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat MOU<label class="block text-sm text-red-600">*Anda Belum Upload Surat Ini !</label></label>
                         @else
-                        <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat MOU <label class="text-sm text-green-400">*Anda Sudah Upload Surat Ini !</label></label>
+                        <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="surat_perjanjian">Surat MOU<label class="block text-sm text-green-400">*Anda Sudah Upload Surat Ini !</label></label>
                         @endif
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_mou" type="file" name="surat_mou" required>
                             @php
@@ -42,9 +42,9 @@
                             @endphp
                         @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && file_exists($filePath))
                             <div class="mt-2 text-sm">
-                                <label class="text-sm text-red-600">*Khusus untuk surat MOU bisa diunduh disini, </label> 
-                                <button 
-                                    data-file="{{ asset('laraview/Template_Surat_MOU/' . date('Y') . '_TemplateSuratMOU.pdf') }}" 
+                                <label class="text-sm text-red-600">*Khusus untuk surat MOU bisa diunduh disini, </label>
+                                <button
+                                    data-file="{{ asset('laraview/Template_Surat_MOU/' . date('Y') . '_TemplateSuratMOU.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Download Surat MOU
                                 </button>
@@ -96,12 +96,12 @@
             });
         });
     </script>
-    
+
     <script>
         document.addEventListener('click', function (event) {
             if (event.target.classList.contains('preview-btn')) {
-                event.preventDefault(); 
-                
+                event.preventDefault();
+
                 const fileUrl = event.target.getAttribute('data-file');
                 Swal.fire({
                     title: 'Surat MOU',
