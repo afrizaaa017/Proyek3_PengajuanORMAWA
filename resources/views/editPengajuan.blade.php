@@ -5,14 +5,14 @@
 
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
-    <section class="bg-blue dark:bg-gray-900">
+    <section class="bg-blue">
         <div class="container my-4">
-                        
+
             <div class="bg-red-400 shadow-lg rounded-lg p-6 my-8">
                 <h3 class="text-2xl font-bold text-center text-black mb-5">Pesan Revisi</h3>
                 <p>{{ $pengajuan->keterangan }}</p>
             </div>
-            
+
             <!-- Stepper Container -->
             <div class="flex items-start max-w-4xl mx-auto mt-5">
                 <!-- Step 1 (Completed or Active) -->
@@ -28,7 +28,7 @@
                         <p class="text-xs text-gradient-orange" id="status1">Completed</p>
                     </div>
                 </div>
-                
+
                 <!-- Step 2 (Completed or Active) -->
                 <div id="step2" class="w-full">
                     <div class="flex items-center w-full">
@@ -42,7 +42,7 @@
                         <p class="text-xs text-gray-500" id="status2">Pending</p>
                     </div>
                 </div>
-            
+
                 <!-- Step 3 (Pending) -->
                 <div id="step3" class="w-full">
                     <div class="flex items-center">
@@ -58,26 +58,26 @@
                 </div>
             </div>
             <!-- End of Stepper Container -->
-            
 
-            <section class="bg-blue dark:bg-gray-900">
+
+            <section class="bg-blue">
                 <div class="py-8 px-4 mx-auto">
-                    <h3 class="mb-4 text-xl font-bold text-blue-800 dark:text-white text-center">Revisi Pengajuan</h3>
+                    <h3 class="mb-4 text-xl font-bold text-blue-800 text-center">Revisi Pengajuan</h3>
                     <form action="{{ route('pengajuan.update', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
                         @csrf
                         @method('PUT') <!-- Method spoofing for PUT -->
-                        
+
                         <!-- Mengatur Grid Layout 2 kolom -->
                         <div class="row g-4">
                             <!-- Nama -->
                             <div class="col-12">
-                                <label for="nama" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Nama</label>
+                                <label for="nama" class="block mb-2 text-sm font-medium text-blue-800">Nama</label>
                                 <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Lengkap" required value="{{ $pengajuan->nama }}" required>
                             </div>
-            
+
                             <!-- NIM -->
                             <div class="col-12">
-                                <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
+                                <label for="nim" class="block mb-2 text-sm font-medium text-blue-800">NIM</label>
                                 <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" required value="{{ $pengajuan->nim }}" required>
                                 @if ($errors->has('nim'))
                                     <div class="text-red-500">
@@ -85,38 +85,38 @@
                                     </div>
                                 @endif
                             </div>
-            
+
                             <!-- Jurusan -->
                             <div class="col-xl-12">
-                                <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Jurusan:</label>
+                                <label for="jurusan" class="block mb-2 text-sm font-medium text-blue-800">Pilih Jurusan:</label>
                                 <select id="jurusan" name="jurusan" class="form-select" required>
                                     <option value="">--Pilih Jurusan--</option>
                                     @foreach($jurusans as $jurusan)
-                                        <option value="{{ $jurusan->nama_jurusan }}" 
+                                        <option value="{{ $jurusan->nama_jurusan }}"
                                                 {{ $pengajuan->jurusan == $jurusan->nama_jurusan ? 'selected' : '' }}
                                                 data-id="{{ $jurusan->id_jurusan }}">{{ $jurusan->nama_jurusan }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-            
+
                             <!-- Prodi -->
                             <div class="col-xl-12">
-                                <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih Prodi:</label>
+                                <label for="prodi" class="block mb-2 text-sm font-medium text-blue-800">Pilih Prodi:</label>
                                 <select id="prodi" name="prodi" class="form-select" required>
                                     <option value="">--Pilih Prodi--</option>
                                     @foreach($prodis as $prodi)
-                                        <option value="{{ $prodi->nama_prodi }}" 
+                                        <option value="{{ $prodi->nama_prodi }}"
                                                 {{ $pengajuan->prodi == $prodi->nama_prodi ? 'selected' : '' }}
                                                 data-id="{{ $prodi->id_prodi }}">{{ $prodi->nama_prodi }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-            
+
                             <!-- Periode -->
                             <div class="col-xl-12">
-                                <label for="periode" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Periode</label>
+                                <label for="periode" class="block mb-2 text-sm font-medium text-blue-800">Periode</label>
                                 <select name="periode" id="periode" class="form-select" required>
                                     <option value="" disabled selected>Pilih Periode</option>
                                     <option value="2024-2025" {{ $pengajuan->periode == '2024-2025' ? 'selected' : '' }}>2024-2025</option>
@@ -129,55 +129,55 @@
                                     <option value="2022" {{ $pengajuan->periode == '2022' ? 'selected' : '' }}>2022-2023</option> --}}
                                 </select>
                             </div>
-            
+
                             <div class="col-xl-12">
-                                <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Ormawa</label>
+                                <label for="ormawa" class="block mb-2 text-sm font-medium text-blue-800">Ormawa</label>
                                 <select id="ormawa" name="ormawa" class="form-select" required>
                                     <option value="">--Pilih Ormawa--</option>
                                     @foreach($ormawas as $ormawa)
-                                        <option value="{{ $ormawa->nama_ormawa }}" 
+                                        <option value="{{ $ormawa->nama_ormawa }}"
                                                 {{ $pengajuan->ormawa == $ormawa->nama_ormawa ? 'selected' : '' }}
                                                 data-id="{{ $ormawa->id_ormawa }}">{{ $ormawa->nama_ormawa }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-            
+
                             <!-- Ketua Ormawa -->
                             <div class="col-xl-12">
-                                <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Pilih ketua ormawa:</label>
+                                <label for="ketua_ormawa" class="block mb-2 text-sm font-medium text-blue-800">Pilih ketua ormawa:</label>
                                 <select id="ketua_ormawa" name="ketua_ormawa" class="form-select" required>
                                     <option value="">--Pilih Ketua Ormawa--</option>
                                     @foreach($ketuaOrmawas as $kt)
-                                        <option value="{{ $kt->nama_ketua }}" 
+                                        <option value="{{ $kt->nama_ketua }}"
                                                 {{ $pengajuan->ketua_ormawa == $kt->nama_ketua ? 'selected' : '' }}
                                                 data-id="{{ $kt->id_ketua_ormawa }}">{{ $kt->nama_ketua }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-            
+
                             <!-- No. Telepon -->
                             <div class="col-sm-6">
-                                <label for="telp" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">No. Telepon</label>
+                                <label for="telp" class="block mb-2 text-sm font-medium text-blue-800">No. Telepon</label>
                                 <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" required value="{{ $pengajuan->telp }}" required>
                             </div>
-            
+
                             <!-- Email -->
                             <div class="col-sm-6">
-                                <label for="email" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">Email</label>
+                                <label for="email" class="block mb-2 text-sm font-medium text-blue-800">Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Email Anda" required value="{{ $pengajuan->email }}" required>
                             </div>
                         </div>
-            
+
                         <div class="d-flex justify-content-end mt-4">
                             <button type="button" id="submitBtn" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">Update</button>
                         </div>
                     </form>
                 </div>
             </section>
-            
-            
+
+
         </div>
     </section>
 
@@ -189,7 +189,7 @@
         document.getElementById('submitBtn').addEventListener('click', function(event) {
             // Ambil elemen form
             const form = document.getElementById('applicationForm');
-    
+
             // Periksa validasi form
             if (!form.checkValidity()) {
                 // Jika form tidak valid, tampilkan pesan validasi default browser
@@ -275,13 +275,13 @@
 
             function checkStep1Completion() {
                 let isCompleted = true;
-                
+
                 formFields.forEach(field => {
                     if (field.type !== "submit" && field.value.trim() === "") {
                         isCompleted = false;
                     }
                 });
-                
+
                 if (isCompleted) {
                     // Update Step 1 as completed
                     step1Circle.classList.replace("bg-gray-300", "bg-gradient-orange");

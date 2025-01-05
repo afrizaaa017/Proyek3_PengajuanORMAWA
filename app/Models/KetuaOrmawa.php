@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class KetuaOrmawa extends Model 
+class KetuaOrmawa extends Model
 {
     use HasFactory;
 
@@ -17,5 +17,10 @@ class KetuaOrmawa extends Model
     public function ormawa(): BelongsTo
     {
         return $this->belongsTo(Ormawa::class, 'ormawa_id', 'id_ormawa');
+    }
+
+    public function pengajuans()
+    {
+        return $this->hasMany(Pengajuan::class, 'ketua_ormawa', 'nama_ketua');
     }
 }

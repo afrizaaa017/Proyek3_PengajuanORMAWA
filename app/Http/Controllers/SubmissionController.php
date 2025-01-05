@@ -19,12 +19,21 @@ class SubmissionController extends Controller
         // Ambil periode dari query string atau gunakan default periode
         $periode = $request->input('periode', $defaultPeriode);
 
-        $jumlahKetuaOrmawa = KetuaOrmawa::count();
+        // $jumlahKetuaOrmawa = KetuaOrmawa::count();
 
         // Filter data berdasarkan periode
         $pengajuan = new Pengajuan();
         $sudahMengajukan = $pengajuan->where('periode', $periode)->count();
-        $belumMengajukan = $jumlahKetuaOrmawa - $sudahMengajukan;
+        // $belumMengajukan = $jumlahKetuaOrmawa - $sudahMengajukan;
+
+        $ketuaOrmawas = KetuaOrmawa::with('pengajuans')
+                        ->get()
+                        ->filter(function ($ketuaOrmawa) {
+                            return $ketuaOrmawa->pengajuans->isEmpty();
+                        });
+
+        $belumMengajukan = $ketuaOrmawas->count();
+
         $profilAntrean = $pengajuan->where('periode', $periode)
             ->whereIn('status', ['Menunggu Verifikasi', 'Perlu Revisi', 'Menunggu Verifikasi Ulang'])
             ->latest()

@@ -7,29 +7,30 @@
 
     <div class="w-full px-4 py-6 mx-auto" id="content">
         <!-- Kotak informasi ormawa belum disetujui dan pengajuan -->
-        <div class="flex space-x-6 mb-6">
+        {{-- <div class="flex flex-col sm:flex-row sm:space-x-6 mb-6"> --}}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <!-- Kotak biru dengan gradasi (ormawa yang belum disetujui) -->
-            <div class="sm:max-w-md w-1/3 bg-gradient-to-r from-blue-500 to-blue-700 text-white py-6 px-4 rounded-lg shadow-lg flex flex-col h-48">
-                <h2 class="text-2xl font-bold text-white mb-3 ml-4 mt-1/3">Pengajuan Yang Belum Diterima</h2>
-                <h2 class="text-7xl font-bold text-white mb-3 ml-4 mt-1/3">{{ $jumlahBelumDisetujui }}</h2>
+            <div class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-6 px-4 rounded-lg shadow-lg flex flex-col h-48">
+                <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 ml-4 mt-1/3">Pengajuan Yang Belum Diterima</h2>
+                <h2 class="text-5xl sm:text-7xl font-bold text-white mb-3 ml-4 mt-1/3">{{ $totalOrmawaBelumMengajukan }}</h2>
                 <!-- Button untuk membuka modal -->
-                <button onclick="openPopup()" 
+                <button onclick="openPopup()"
                     class="mt-4 bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold shadow-lg border border-blue-700 hover:bg-blue-700 hover:text-white transition duration-300">
                     Lihat Detail
                 </button>
             </div>
 
             <!-- Kotak oranye (judul sistem informasi) dengan gambar latar -->
-            <div class="w-2/3 relative bg-orange-500 rounded-lg shadow-lg overflow-hidden h-48">
+            <div class="md:col-span-2 relative bg-orange-500 rounded-lg shadow-lg overflow-hidden h-48">
                 <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="absolute inset-0 w-full h-full object-cover opacity-50">
                 <div class="relative z-10 p-4 flex items-center justify-center h-full">
-                    <h2 class="text-5xl font-bold text-white text-center">Pengajuan Ketua ORMAWA</h2>
+                    <h2 class="text-3xl sm:text-5xl font-bold text-white text-center">Pengajuan Ketua ORMAWA</h2>
                 </div>
             </div>
         </div>
 
         <!-- disini buat timeline alqan -->
-         <!-- Area Kosong untuk Timeline -->
+        <!-- Area Kosong untuk Timeline -->
         <div class="mx-auto my-auto py-5">
             <div class="flex justify-center">
                 <ol class="items-center sm:flex">
@@ -53,7 +54,7 @@
                 </ol>
             </div>
         </div>
-        
+
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Persyaratan Data Pengajuan</h3>
             <iframe class="mx-auto" src="{{ asset('laraview/Persyaratan/persyaratan_2024.pdf' ) }}" width="50%" height="600px"></iframe>
@@ -67,7 +68,7 @@
         </div>
         @if ($exists && $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
         <div class="flex my-auto mx-auto py-2">
-            <button 
+            <button
                 class="btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18"
                 data-edit-url="{{ route('surat.upload', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
                 Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
@@ -75,22 +76,22 @@
         </div>
         @else
         <div class="flex my-auto mx-auto py-2">
-            <button 
+            <button
                 class="alert-btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18">
                 Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
             </button>
         </div>
         @endif
-      
+
     </div>
 
-    <script>
+    {{-- <script>
         function openPopup() {
             let ormawaList = '<ul style="list-style-type: none; padding-left: 0; text-align: left;">';
-            let index = 1;  
+            let index = 1;
             @foreach($allOrmawaBelumDisetujui as $ormawa)
                 ormawaList += '<li style="margin-left: 20px;">' + index + '. {{ $ormawa->nama_ketua ?? $ormawa->ketua_ormawa }}</li>';
-                index++;  
+                index++;
             @endforeach
             ormawaList += '</ul>';
 
@@ -101,7 +102,30 @@
                 confirmButtonText: 'Tutup'
             });
         }
+    </script> --}}
+
+    <script>
+        function openPopup() {
+            let ormawaList = '<ul style="list-style-type: none; padding-left: 0; text-align: left;">';
+            let index = 1;
+
+            @foreach($allOrmawaBelumDisetujui as $ormawa)
+                ormawaList += '<li>' + index + '. {{ $ormawa->nama_ketua ?? $ormawa->ketua_ormawa }}</li>';
+                index++;
+            @endforeach
+
+            ormawaList += '</ul>';
+
+            Swal.fire({
+                title: 'Berikut merupakan Ormawa yang belum melakukan pengajuan.',
+                html: ormawaList || '<p>Tidak ada Ormawa yang belum melakukan pengajuan.</p>',
+                icon: 'info',
+                confirmButtonText: 'Tutup'
+            });
+        }
     </script>
+
+
 
     @if (session('success'))
         <script>
@@ -139,8 +163,8 @@
                 });
             });
         });
-    </script> 
-    
+    </script>
+
     <script>
         document.querySelectorAll('.alert-btn-upload-surat').forEach(button => {
             button.addEventListener('click', function () {
@@ -159,8 +183,8 @@
                 });
             });
         });
-    </script> 
-    
+    </script>
+
     {{-- <script>
         document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {
@@ -212,7 +236,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     const formData = result.value;
-                    
+
                     const uploadUrl = "{{ $uploadUrl }}"; // URL yang sudah di-generate dari Blade
                         fetch(uploadUrl, {
                         method: 'PUT',
@@ -237,7 +261,7 @@
     });
 });
     </script> --}}
-    
+
     {{-- <!-- Modal Popup -->
     <div id="popup" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white p-8 rounded-lg shadow-lg w-1/2 max-h-[80vh] overflow-y-auto">

@@ -18,10 +18,10 @@ class DashboardMahasiswaController extends Controller
         $timelines = Timeline::all();
 
         // Hitung total jumlah ORMAWA
-        $totalOrmawa = KetuaOrmawa::count();
+        // $totalOrmawa = KetuaOrmawa::count();
 
         // Hitung jumlah Ormawa yang sudah mengajukan pengajuan
-        $jumlahDiterima = Pengajuan::where('status', PengajuanStatus::Diterima->value)->count();
+        // $jumlahDiterima = Pengajuan::where('status', PengajuanStatus::Diterima->value)->count();
 
         // Hitung jumlah Ormawa yang pengajuannya belum disetujui
         // $jumlahBelumDisetujui = Pengajuan::whereIn('status', [
@@ -31,32 +31,44 @@ class DashboardMahasiswaController extends Controller
         // ])->count();
 
         // Ambil data Ormawa yang belum mengajukan pengajuan
-        $ormawaBelumMengajukan = DB::table('ketua_ormawa')
-            ->leftJoin('pengajuans', 'ketua_ormawa.nama_ketua', '=', 'pengajuans.ketua_ormawa')
-            ->whereNull('pengajuans.id') // Hanya ambil Ormawa yang belum ada pengajuannya
-            ->get();
+        // $ormawaBelumMengajukan = DB::table('ketua_ormawa')
+        //     ->leftJoin('pengajuans', 'ketua_ormawa.nama_ketua', '=', 'pengajuans.ketua_ormawa')
+        //     ->whereNull('pengajuans.id') // Hanya ambil Ormawa yang belum ada pengajuannya
+        //     ->get();
 
         // Ambil data pengajuan yang belum disetujui
-        $pengajuanBelumDisetujui = Pengajuan::whereIn('status', [
-            PengajuanStatus::MenungguVerifikasi->value,
-            PengajuanStatus::PerluRevisi->value,
-            PengajuanStatus::MenungguVerifikasiUlang->value,
-        ])->get();
+        // $pengajuanBelumDisetujui = Pengajuan::whereIn('status', [
+        //     PengajuanStatus::MenungguVerifikasi->value,
+        //     PengajuanStatus::PerluRevisi->value,
+        //     PengajuanStatus::MenungguVerifikasiUlang->value,
+        // ])->get();
 
         // Gabungkan data Ormawa yang belum mengajukan dan pengajuan yang belum disetujui
-        $allOrmawaBelumDisetujui = $ormawaBelumMengajukan->merge($pengajuanBelumDisetujui);
+        // $allOrmawaBelumDisetujui = $ormawaBelumMengajukan->merge($pengajuanBelumDisetujui);
 
         $userId = Auth::id();
         $exists = Pengajuan::where('user_id', $userId)->exists();
         $pengajuan = Pengajuan::where('user_id', $userId)->select('id', 'nim', 'status')->first();
         // dd($existss);
 
+
+        // data yang belum melakukan pengajuan
+        $ketuaOrmawas = KetuaOrmawa::with('pengajuans')
+                        ->get()
+                        ->filter(function ($ketuaOrmawa) {
+                            return $ketuaOrmawa->pengajuans->isEmpty();
+                        });
+
+        $totalBelumMengajukan = $ketuaOrmawas->count();
+
         // Kirim data ke view
         return view('dashboardmahasiswa', [
             'exists' => $exists,
             'pengajuan' => $pengajuan,
-            'jumlahBelumDisetujui' =>  $totalOrmawa - Pengajuan::where('status', PengajuanStatus::Diterima->value)->count(),
-            'allOrmawaBelumDisetujui' => $allOrmawaBelumDisetujui,  // Data Ormawa yang belum disetujui atau belum mengajukan
+            // 'jumlahBelumDisetujui' =>  $totalOrmawa - Pengajuan::where('status', PengajuanStatus::Diterima->value)->count(),
+            // 'allOrmawaBelumDisetujui' => $allOrmawaBelumDisetujui,  // Data Ormawa yang belum disetujui atau belum mengajukan
+            'totalOrmawaBelumMengajukan' => $totalBelumMengajukan,
+            'allOrmawaBelumDisetujui' => $ketuaOrmawas,
             'timelines' => $timelines,
         ]);
     }

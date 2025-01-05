@@ -51,18 +51,19 @@
         </div>
         <!-- End of Stepper Container -->
 
-        
-
         <!-- Konten Upload Berkas -->
         <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data" id="applicationForm">
             @csrf
-            <div class="container mx-auto mt-10 flex-1">
+            {{-- <div class="container mx-auto mt-10 flex-1"> --}}
+            <div class="container mx-auto mt-10">
+
                 <div class="block mb-7 text-sm font-extrabold ">
                     <p class="text-red-600 font-bold text-lg">*Pastikan Berkas Yang Diupload Berbentuk PDF.</p>
                     <p class="text-red-600 font-bold text-lg">*Pastikan Ukuran Berkas Kurangdari 2MB.</p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8">
+                {{-- <div class="grid grid-cols-2 gap-8"> --}}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
                 <!-- Kolom Pertama (8 tempat upload file) -->
                 <div>
@@ -213,7 +214,7 @@
         document.getElementById('submitBtn').addEventListener('click', function(event) {
             // Ambil elemen form
             const form = document.getElementById('applicationForm');
-    
+
             // Periksa validasi form
             if (!form.checkValidity()) {
                 // Jika form tidak valid, tampilkan pesan validasi default browser

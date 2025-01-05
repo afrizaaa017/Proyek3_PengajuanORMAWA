@@ -9,7 +9,7 @@
             <h3 class="text-2xl font-bold text-center text-black mb-5">Pesan Revisi</h3>
             <p>{{ $pengajuan->keterangan }}</p>
         </div>
-        
+
         <!-- Stepper Container -->
         <div class="flex items-start max-w-4xl mx-auto">
             <!-- Step 1 (Completed or Active) -->
@@ -60,9 +60,11 @@
         <form action="{{ route('berkas.update', ['id' => $pengajuan->id, 'nim' => $pengajuan->nim]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
             @csrf
             @method('PUT') <!-- Method spoofing for PUT -->
-            
-            <div class="container mx-auto mt-10 flex-1">
-                <div class="grid grid-cols-2 gap-8">
+
+            {{-- <div class="container mx-auto mt-10 flex-1"> --}}
+            <div class="container mx-auto mt-10">
+                {{-- <div class="grid grid-cols-2 gap-8"> --}}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
                 <!-- Kolom Pertama (8 tempat upload file) -->
                 <div>
@@ -73,8 +75,8 @@
                         <!-- Tampilkan file yang sudah diupload -->
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktp.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktp.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktp.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Scan KTP sebelumnya
                                 </button>
@@ -87,8 +89,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_sehat" type="file" name="surat_sehat">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_sehat.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_sehat.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_sehat.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Surat Sehat sebelumnya
                                 </button>
@@ -101,8 +103,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_rekomendasi_jurusan" type="file" name="surat_rekomendasi_jurusan">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_rekomendasi_jurusan.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_rekomendasi_jurusan.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_rekomendasi_jurusan.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Surat Rekomendasi Jurusan sebelumnya
                                 </button>
@@ -115,8 +117,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="transkip_rekomendasi_jurusan" type="file" name="transkip_rekomendasi_jurusan">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Transkip Akademik Semester Terakhir sebelumnya
                                 </button>
@@ -129,8 +131,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_lkmm" type="file" name="sertifikat_lkmm">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_lkmm.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_lkmm.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_lkmm.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat LKMM sebelumnya
                                 </button>
@@ -143,8 +145,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_kepemimpinan" type="file" name="sertifikat_pelatihan_kepemimpinan">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat Pelatihan Kepemimpinan sebelumnya
                                 </button>
@@ -157,8 +159,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_emosional_spiritual" type="file" name="sertifikat_pelatihan_emosional_spiritual">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat Pelatihan Emosional Spiritual sebelumnya
                                 </button>
@@ -171,14 +173,14 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bahasa_asing" type="file" name="sertifikat_bahasa_asing">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bahasa_asing.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bahasa_asing.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bahasa_asing.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat Bahasa Asing sebelumnya
                                 </button>
                             </div>
                         @endif
-                    </div> 
+                    </div>
                 </div>
 
                 <!-- Kolom Kedua (8 tempat upload file) -->
@@ -189,8 +191,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktm" type="file" name="scan_ktm">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktm.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktm.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktm.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Scan KTM sebelumnya
                                 </button>
@@ -203,8 +205,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_keterangan_berkelakuan_baik" type="file" name="surat_keterangan_berkelakuan_baik">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Surat Keterangan Berkelakuan Baik sebelumnya
                                 </button>
@@ -217,8 +219,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_penyataan_mandiri" type="file" name="surat_penyataan_mandiri">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_penyataan_mandiri.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_penyataan_mandiri.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_penyataan_mandiri.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Surat Pernyataan Mandiri sebelumnya
                                 </button>
@@ -231,8 +233,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pkkmb" type="file" name="sertifikat_pkkmb">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pkkmb.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pkkmb.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pkkmb.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat PKKMB sebelumnya
                                 </button>
@@ -245,8 +247,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bela_negara" type="file" name="sertifikat_bela_negara">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bela_negara.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bela_negara.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bela_negara.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat Bela Negara sebelumnya
                                 </button>
@@ -259,8 +261,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_agent_of_change" type="file" name="sertifikat_agent_of_change">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_agent_of_change.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_agent_of_change.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_agent_of_change.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat Agent of Change sebelumnya
                                 </button>
@@ -273,8 +275,8 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_berorganisasi" type="file" name="sertifikat_berorganisasi">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_berorganisasi.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_berorganisasi.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_berorganisasi.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Sertifikat Berorganisasi sebelumnya
                                 </button>
@@ -287,14 +289,14 @@
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="berita_acara_pemilihan" type="file" name="berita_acara_pemilihan">
                         @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_berita_acara_pemilihan.pdf')
                             <div class="mt-2 text-sm">
-                                <button 
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_berita_acara_pemilihan.pdf') }}" 
+                                <button
+                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_berita_acara_pemilihan.pdf') }}"
                                     class="preview-btn text-blue-600">
                                     Lihat file Berita Acara Pemilihan sebelumnya
                                 </button>
                             </div>
                         @endif
-                    </div> 
+                    </div>
                     @error('pdf')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -336,8 +338,8 @@
 
         document.addEventListener('click', function (event) {
             if (event.target.classList.contains('preview-btn')) {
-                event.preventDefault(); 
-                
+                event.preventDefault();
+
                 const fileUrl = event.target.getAttribute('data-file');
                 Swal.fire({
                     title: 'Preview PDF',

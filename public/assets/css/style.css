@@ -371,6 +371,10 @@ section {
     transform: scale(1.05);  /* Efek memperbesar tombol sedikit saat hover */
 }
 
+.selected-notification {
+    background-color: #e5e7eb !important; /* Ubah warna latar belakang menjadi abu-abu */
+}
+
 /* <style> */
     /* Responsif di perangkat kecil */
     @media screen and (max-width: 768px) {
@@ -379,6 +383,50 @@ section {
             padding-bottom: 160%; /* Slightly taller on mobile for better readability */
         }
 
-        
+        #content {
+            padding: 2rem 1rem;
+        }
+
+        .flex.items-start {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        #progressStep1,
+        #line2 {
+            width: 100%;
+            height: 0.5rem; /* Reduce height for better visual on mobile */
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #circle1, #circle2, #circle3 {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .col-xl-12, .col-12, .col-sm-6 {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            width: 100% !important; /* Menyesuaikan lebar dropdown di layar kecil */
+            left: 0;
+        }
+        .form-select {
+            width: 100%; /* Menyesuaikan ukuran select box agar penuh pada layar kecil */
+        }
+
+
     }
 /* </style> */
+
+@media (min-width: 768px) {
+    .dropdown-menu {
+        min-width: 200px; /* Mengatur lebar minimal dropdown di layar besar */
+    }
+}
