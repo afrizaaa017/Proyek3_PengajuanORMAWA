@@ -49,50 +49,406 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'tes',
-                'email' => 'tes@polban.ac.id',
+                'name' => 'Majelis Perwakilan Mahasiswa (MPM)',
+                'email' => 'MPM@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('123456'), // default password
-                'role_id' => 'dummy',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'syahla',
-                'email' => 'lala@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456'), // default password
+                'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Alqan1',
-                'email' => 'Alqan1@polban.ac.id',
+                'name' => 'Badan Eksekutif Mahasiswa (BEM)',
+                'email' => 'BEM@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('123456'), // default password
+                'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Alqan2',
-                'email' => 'Alqan2@polban.ac.id',
+                'name' => 'HMJ Teknik Sipil',
+                'email' => 'HMJTS@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('123456'), // default password
+                'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Alqan1',
-                'email' => 'Alqan3@polban.ac.id',
+                'name' => 'HMJ Teknik Mesin',
+                'email' => 'HMJTM@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('123456'), // default password
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'HMJ Teknik Elektro',
+                'email' => 'HMJTE@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Step1
+            [
+                'name' => 'Majelis Perwakilan Mahasiswa (MPM)',
+                'email' => 'MPM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Badan Eksekutif Mahasiswa (BEM)',
+                'email' => 'BEM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknik Sipil',
+                'email' => 'HMJTS@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknik Mesin',
+                'email' => 'HMJTM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknik Elektro',
+                'email' => 'HMJTE@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Step 2
+            [
+                'name' => 'Teknik Kimia',
+                'email' => 'HMJTK@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknik Refrigerasi dan Tata Udara',
+                'email' => 'HMJTRA@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknik Komputer dan Informatika',
+                'email' => 'HMJTKI@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknik Konversi Energi',
+                'email' => 'HMJTKE@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Akuntansi',
+                'email' => 'HMJTA@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Administrasi Niaga',
+                'email' => 'HMJBI@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bahasa Inggris',
+                'email' => 'BEM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // UKM
+            [
+                'name' => 'Robotika	',
+                'email' => 'UKM-ROBOTIKA@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Otomotif',
+                'email' => 'UKM-OTOMOTIF@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Kewirausahaan',
+                'email' => 'UKM-WIRUS@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Step3
+            [
+                'name' => 'ELTRAS',
+                'email' => 'UKM-ELTRAS@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Assalam',
+                'email' => 'UKM-ASSALAM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'HMJ Teknik Sipil',
+                'email' => 'HMJTS@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'PMK',
+                'email' => 'UKM-PMK@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'KMK',
+                'email' => 'UKM-KMK@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Kabayan',
+                'email' => 'UKM-KABAYAN@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'PSM',
+                'email' => 'UKM-PSM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Musik dan Teater',
+                'email' => 'UKM-MUSKING@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'UKBM',
+                'email' => 'UKM-UKBM@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'UBSU',
+                'email' => 'UKM-UBSU@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+// da
+            [
+                'name' => 'USF',
+                'email' => 'UKM-USF@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bola Basket',
+                'email' => 'UKM-BASKET@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bola Voli',
+                'email' => 'UKM-VOLLY@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bulutangkis',
+                'email' => 'UKM-BULUTANGKIS@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Catur',
+                'email' => 'UKM-CATUR@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bela Diri',
+                'email' => 'UKM-BELADIRI@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'PPRPG-SAGA',
+                'email' => 'UKM-SAGA@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'KSR',
+                'email' => 'UKM-KSR@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Pramuka',
+                'email' => 'UKM-PRAMUKA@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Fellas',
+                'email' => 'UKM-FELLAS@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
