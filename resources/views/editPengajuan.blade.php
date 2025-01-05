@@ -120,6 +120,10 @@
                                 <select name="periode" id="periode" class="form-select" required>
                                     <option value="" disabled selected>Pilih Periode</option>
                                     <option value="2024-2025" {{ $pengajuan->periode == '2024-2025' ? 'selected' : '' }}>2024-2025</option>
+                                    <option value="2025-2026" {{ $pengajuan->periode == '2025-2026' ? 'selected' : '' }}>2025-2026</option>
+                                    <option value="2026-2027" {{ $pengajuan->periode == '2026-2027' ? 'selected' : '' }}>2026-2027</option>
+                                    <option value="2027-2028" {{ $pengajuan->periode == '2027-2028' ? 'selected' : '' }}>2027-2028</option>
+                                    <option value="2028-2029" {{ $pengajuan->periode == '2028-2029' ? 'selected' : '' }}>2028-2029</option>
                                     {{-- <option value="2020" {{ $pengajuan->periode == '2020' ? 'selected' : '' }}>2020-2021</option>
                                     <option value="2021" {{ $pengajuan->periode == '2021' ? 'selected' : '' }}>2021-2022</option>
                                     <option value="2022" {{ $pengajuan->periode == '2022' ? 'selected' : '' }}>2022-2023</option> --}}

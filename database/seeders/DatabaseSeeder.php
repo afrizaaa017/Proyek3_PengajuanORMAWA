@@ -68,6 +68,36 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Alqan1',
+                'email' => 'Alqan1@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Alqan2',
+                'email' => 'Alqan2@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Alqan1',
+                'email' => 'Alqan3@polban.ac.id',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456'), // default password
+                'role_id' => 'mahasiswa',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
 
         $this->call(PengajuanSeeder::class);
