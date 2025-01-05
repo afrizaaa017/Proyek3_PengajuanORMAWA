@@ -19,9 +19,9 @@
 <div class="w-full px-4 py-6 mx-auto" id="content">
     <h1 class="text-2xl font-bold mb-4 text-black-600">Notifikasi</h1>
 
-    <div class="flex h-screen">
+    <div class="flex flex-col lg:flex-row h-screen">
         <!-- Sidebar Notifikasi -->
-        <div class="w-1/3 p-6 overflow-y-auto">
+        <div class="lg:w-1/3 p-6 overflow-y-auto">
             <ul class="list-none space-y-4">
                 @foreach ($notifications as $notification)
                     @php
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Live View Card -->
-        <div id="live-card" class="w-2/3 p-6">
+        <div id="live-card" class="lg:w-2/3 p-6">
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <!-- Placeholder -->
                 <div id="notification-placeholder" class="text-center text-gray-500">

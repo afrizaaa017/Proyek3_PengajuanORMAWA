@@ -28,15 +28,24 @@
                                 <td class="px-4 py-3 text-[#295F98]">{{ $pengajuan->nama }}</td>
                                 <td class="px-4 py-3">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
-                                        <span class="px-3 py-1 bg-[#A3B3D3] text-white rounded-lg font-semibold">
+                                        {{-- <span class="px-3 py-1 bg-[#A3B3D3] text-white rounded-lg font-semibold">
+                                            {{ $pengajuan->status }}
+                                        </span> --}}
+                                        <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#6C7F9E] to-[#A3B3D3] text-white rounded-lg font-semibold shadow-md">
                                             {{ $pengajuan->status }}
                                         </span>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi )
-                                        <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">
+                                        {{-- <span class="px-3 py-1 bg-[#FF5C5C] text-white rounded-lg font-semibold">
+                                            {{ $pengajuan->status }}
+                                        </span> --}}
+                                        <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white rounded-lg font-semibold shadow-md">
                                             {{ $pengajuan->status }}
                                         </span>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
-                                        <span class="px-3 py-1 bg-[#4CAF50] text-white rounded-lg font-semibold">
+                                        {{-- <span class="px-3 py-1 bg-[#4CAF50] text-white rounded-lg font-semibold">
+                                            {{ $pengajuan->status }}
+                                        </span> --}}
+                                        <span class="w-24 h-8 px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">
                                             {{ $pengajuan->status }}
                                         </span>
                                     @endif
@@ -50,9 +59,9 @@
                                 </td>
                                 <td class="px-4 py-3">
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi)
-                                    <button 
-                                        class="btn-revisi-pengaju px-3 py-1 bg-[#FFC107] text-white rounded-lg font-semibold" 
-                                        data-id="{{ $pengajuan->nama }}" 
+                                    <button
+                                        class="btn-revisi-pengaju bg-gradient-to-r from-[#FF7F00] to-[#FF9A36] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1"
+                                        data-id="{{ $pengajuan->nama }}"
                                         data-alasan="{{ $pengajuan->keterangan }}"
                                         data-edit-url="{{ route('pengajuan.edit', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
                                         Revisi
@@ -75,7 +84,7 @@
                                         </div>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
                                         <div class="mt-2 text-sm text-gray-500">
-                                            Selesaikan Pengajuan Dahulu. 
+                                            Selesaikan Pengajuan Dahulu.
                                         </div>
                                     @endif
                                 </td>
@@ -90,7 +99,7 @@
                                         </div>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::PerluRevisi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang)
                                         <div class="mt-2 text-sm text-gray-500">
-                                            Selesaikan Pengajuan Dahulu. 
+                                            Selesaikan Pengajuan Dahulu.
                                         </div>
                                     @endif
                                 </td>

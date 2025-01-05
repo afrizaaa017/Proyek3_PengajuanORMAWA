@@ -41,4 +41,9 @@ class Pengajuan extends Model
     {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    public function ketuaOrmawa()
+    {
+        return $this->belongsTo(KetuaOrmawa::class, 'ketua_ormawa', 'nama_ketua');
+    }
 }

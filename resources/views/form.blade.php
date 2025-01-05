@@ -8,7 +8,6 @@
 
         <section class="bg-blue">
             <div class="container my-4">
-
                 <!-- Stepper Container -->
                 <div class="sm:max-0 sm:static flex items-start max-w-4xl mx-auto">
                     <!-- Step 1 (Completed or Active) -->
@@ -182,7 +181,7 @@
         document.getElementById('submitBtn').addEventListener('click', function(event) {
             // Ambil elemen form
             const form = document.getElementById('applicationForm');
-    
+
             // Periksa validasi form
             if (!form.checkValidity()) {
                 // Jika form tidak valid, tampilkan pesan validasi default browser
@@ -207,7 +206,7 @@
             }
         });
     </script>
-    
+
     <script>
         $(document).ready(function () {
             $('#jurusan').on('change', function () {
