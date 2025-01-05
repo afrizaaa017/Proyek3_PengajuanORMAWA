@@ -4,13 +4,6 @@
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">
-
-    <div class="w-full">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold mb-4">Daftar Jurusan dan Prodi</h2>
-        </div>
-    </div>
-
     <div class="relative shadow-md rounded-lg overflow-hidden mb-5 p-5 border border-gray-200 bg-white">
         <h2 class="text-xl font-bold pb-2">Tambah Jurusan</h2>
         <form action="{{ route('jurusan.store') }}" method="POST" class="flex flex-col items-center">

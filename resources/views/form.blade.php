@@ -73,11 +73,9 @@
                             <div class="col-12" >
                                 <label for="nim" class="block mb-2 text-sm font-medium text-blue-800 dark:text-white">NIM</label>
                                 <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM Lengkap" value="{{ old('nim', session('pengajuan')['nim'] ?? '') }}" required>
-                                @if ($errors->has('nim'))
-                                    <div class="text-red-500">
-                                        {{ $errors->first('nim') }}
-                                    </div>
-                                @endif
+                                @error('nim')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror
                             </div>
                             <!-- Jurusan -->
                             <div class="col-xl-12" >
@@ -154,6 +152,9 @@
                                 <div class="col-sm-6">
                                     <label for="telp" class="block mb-2 text-sm font-medium text-blue-800">No.Telepon</label>
                                     <input type="text" name="telp" id="telp" class="form-control" placeholder="Nomor Telepon Anda" value="{{ old('telp', session('pengajuan')['telp'] ?? '') }}" required>
+                                    @error('telp')
+                                        <div class="text-red-600">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Email -->

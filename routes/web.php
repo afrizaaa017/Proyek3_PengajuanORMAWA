@@ -41,13 +41,13 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     // Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
     Route::get('/dashboardmahasiswa', [DashboardMahasiswaController::class, 'index'])->name('mahasiswa.index');
-    Route::post('/dashboardmahasiswa', [BerkasController::class, 'store'])->name('file.upload');
+    // Route::post('/dashboardmahasiswa', [BerkasController::class, 'store'])->name('file.upload');
 
     // Route::get('/pengajuan/create', [FormController::class, 'index'])->name('pengajuan.create');
     Route::get('/progrestabel', [BerkasController::class, 'progrestabel'])->name('progrestabel');
 
     //Pengajuan Form
-    Route::get('/form', [FormController::class, 'index'])->name('form')->middleware('check.submission.access');;
+    Route::get('/form', [FormController::class, 'index'])->name('form')->middleware('check.submission.access');
     Route::post('/simpanPengajuan', [FormController::class, 'simpanPengajuan'])->name('form.simpanPengajuan');
 
     //Mengambil Data Dropdown
@@ -71,6 +71,10 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
 });
 
 // KEMAHASISWAAN
+    Route::get('/kelolaUser', [FormController::class, 'kelolaUser'])->name('users.index');
+    Route::post('/tambahUser', [formController::class, 'storeUser'])->name('users.store');
+    Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
+
     Route::middleware(['auth', IsStaff::class])->group(function () {
     Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
 
@@ -147,8 +151,7 @@ Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePen
 
 
 
-Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
-Route::get('/users', [FormController::class, 'user'])->name('users.index');
+
 
 Route::get('/suratPernyataan', [PDFController::class, 'suratPernyataan'])->name('surat.pernyataan');
 Route::get('/suratPerjanjian', [PDFController::class, 'suratPerjanjian'])->name('surat.perjanjian');
