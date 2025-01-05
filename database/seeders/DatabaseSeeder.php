@@ -48,56 +48,6 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'name' => 'Majelis Perwakilan Mahasiswa (MPM)',
-                'email' => 'MPM@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
-                'role_id' => 'mahasiswa',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Badan Eksekutif Mahasiswa (BEM)',
-                'email' => 'BEM@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
-                'role_id' => 'mahasiswa',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'HMJ Teknik Sipil',
-                'email' => 'HMJTS@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
-                'role_id' => 'mahasiswa',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'HMJ Teknik Mesin',
-                'email' => 'HMJTM@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
-                'role_id' => 'mahasiswa',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'HMJ Teknik Elektro',
-                'email' => 'HMJTE@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
-                'role_id' => 'mahasiswa',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
             // Step1
             [
                 'name' => 'Majelis Perwakilan Mahasiswa (MPM)',
@@ -202,7 +152,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Administrasi Niaga',
-                'email' => 'HMJBI@polban.ac.id',
+                'email' => 'HMJAN@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -212,7 +162,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Bahasa Inggris',
-                'email' => 'BEM@polban.ac.id',
+                'email' => 'HMJBI@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -266,16 +216,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Assalam',
                 'email' => 'UKM-ASSALAM@polban.ac.id',
-                'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
-                'role_id' => 'mahasiswa',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'HMJ Teknik Sipil',
-                'email' => 'HMJTS@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
