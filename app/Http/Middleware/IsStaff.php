@@ -19,7 +19,6 @@ class IsStaff
         if (Auth::check() && Auth::user()->role_id == 'staff_kemahasiswaan') {
             return $next($request);
         }
-        abort(403, 'Anda tidak memiliki izin untuk mengakses halaman ini.');
         return redirect()->route('login')->withErrors(['error' => 'Hanya staff yang diizinkan mengakses halaman ini.']);
     }
 }
