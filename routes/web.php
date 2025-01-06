@@ -16,6 +16,8 @@ use App\Http\Controllers\KetuaOrmawaController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PDFController;
 use App\Http\Middleware\IsStaff;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\SafePDFController;
 
 use App\Http\Controllers\validatepengajuan;
 use App\Http\Controllers\Settingwaktudeadline;
@@ -92,6 +94,10 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
 
     //Detail Pengajuan
     // Route::get('/detailPengajuan', [FormController::class, 'detailPengajuan']);
+    Route::middleware(['auth', 'role:staff_kemahasiswaan'])->group(function () {
+        Route::get('/detail-pengajuan/{id}', [FormController::class, 'detailPengajuan'])->name('pengajuan.detail');
+    });
+    
     Route::get('/detail-pengajuan/{id}', [FormController::class, 'detailPengajuan'])->name('pengajuan.detail');
     Route::patch('/pengajuan/{id}/status/{status}', [FormController::class, 'updateStatus'])->name('pengajuan.updateStatus');
     
@@ -100,6 +106,32 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     // Route::post('/detailPengajuan', [FormController::class, 'store'])->name('revisi.store');
     // Route::get('/detailPengajuan/{id}/edit', [FormController::class, 'edit'])->name('revisi.edit');
     // Route::put('/detailPengajuan/{id}', [FormController::class, 'update'])->name('revisi.update');
+
+    //  PDF Safe
+    Route::middleware(['auth', IsStaff::class])->group(function () {
+        Route::get('/storage/laraview/{id}/{filename}', [FileController::class, 'serveFile'])->name('serve.file');
+    });
+    Route::middleware(['auth',IsStaff::class])->get('private/laraview/{id}/{filename}',
+     [SafePDFController::class, 'showPDF'])->name('berkas.show');
+
+     Route::get('private/laraview/{id}/{filename}', [SafePDFController::class, 'showPDF'])
+    ->middleware(['auth', IsStaff::class])
+    ->name('berkas.show');
+
+    Route::middleware(['auth', IsStaff::class])->group(function () {
+        Route::get('/pdf/{id}/{filename}', [SafePDFController::class, 'showPDF'])->name('pdf.show');
+    });
+
+    // Route::get('/preview-pdf/{id}/{filename}', [SafePDFController::class, 'showPDF'])
+    // ->middleware('auth')
+    // ->name('preview.pdf');
+
+
+
+    //  Route::middleware(['auth', 'is.staff'])->get('/berkas/{id}/{filename}',
+    //   [SafePDFController::class, 'showPDF'])->name('berkas.show');
+
+    
 
     //Timelinee
     Route::get('/admin', [TimelineController::class, 'index'])->name('admin.index');

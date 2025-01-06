@@ -62,7 +62,7 @@
         <h2 class="text-2xl font-bold text-center text-[#344767]">BERKAS - BERKAS</h2>
         <div class="mb-10 mt-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">Scan KTP (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktp.pdf') }}" width="50%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ route('pdf.show', ['id' => $pengajuans->id, 'filename' => 'Pengaju_' . $pengajuans->id . '_scan_ktp.pdf']) }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Sehat (Maks 2MB)</h3>

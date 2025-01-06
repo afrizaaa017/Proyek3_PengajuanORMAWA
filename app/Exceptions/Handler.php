@@ -59,6 +59,10 @@ class Handler extends Exception
             return redirect()->route('error.500');  // Ganti dengan route untuk halaman 500
         }
 
+        if ($exception instanceof \RuntimeException) {
+            return redirect()->route('error.500');  // Ganti dengan route untuk halaman 500
+        }
+
         // Jika exception lainnya, panggil parent render
         // return parent::render($request, $exception);
     }
