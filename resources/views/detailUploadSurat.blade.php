@@ -63,12 +63,16 @@
             <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_perjanjian.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat MOU</h3>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat MoU</h3>
             <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_mou.pdf') }}" width="50%" height="600px"></iframe>
+        </div>
+        <div class="mb-10">
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat KAK</h3>
+            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_kak.pdf') }}" width="50%" height="600px"></iframe>
         </div>
     </div>
     @else
-        <h3 class="text-2xl my-5 font-bold text-center text-[#344767]">PENGAJU BELUM MENGUPLOAD SURAT - SURAT</h3>
+        <h3 class="text-2xl my-5 font-bold text-center text-[#344767]">PENGAJU BELUM MENGUPLOAD SEMUA SURAT - SURAT YANG DIHARUSKAN</h3>
     @endif
 
 

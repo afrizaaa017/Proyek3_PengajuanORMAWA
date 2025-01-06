@@ -93,7 +93,7 @@
                         </div>
                         <!-- Tempat upload file 4 -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="transkip_rekomendasi_jurusan">Transkip Akademik Semester Terakhir (Maks 2MB)</label>
+                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="transkip_rekomendasi_jurusan">Transkip Akademik Semester Terakhir (IPK) [Maks 2MB]</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="transkip_rekomendasi_jurusan" type="file" name="transkip_rekomendasi_jurusan" required>
                             @error('transkip_rekomendasi_jurusan')
                                 <div class="text-red-600">{{ $message }}</div>
@@ -125,7 +125,7 @@
                         </div>
                         <!-- Tempat upload file 8 -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_bahasa_asing">Sertifikat Bahasa Asing (Maks 2MB)</label>
+                            <label class="block mb-2 text-sm font-extrabold text-[#295F98]" for="sertifikat_bahasa_asing">Sertifikat Bahasa Asing (EPT) [Maks 2MB]</label>
                             <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bahasa_asing" type="file" name="sertifikat_bahasa_asing" required>
                             @error('sertifikat_bahasa_asing')
                                 <div class="text-red-600">{{ $message }}</div>

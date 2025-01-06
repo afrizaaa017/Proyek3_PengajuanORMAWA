@@ -31,6 +31,7 @@ class Berkas extends Model
         'surat_pernyataan',
         'surat_perjanjian',
         'surat_mou',
+        'surat_kak'
     ];
 
     public function pengajuan(): BelongsTo

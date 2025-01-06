@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('surat_pernyataan');
             $table->string('surat_perjanjian');
             $table->string('surat_mou');
+            $table->string('surat_kak');
             $table->timestamps();
         });
     }
