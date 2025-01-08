@@ -22,9 +22,13 @@
 
             <!-- Kotak oranye (judul sistem informasi) dengan gambar latar -->
             <div class="md:col-span-2 relative bg-orange-500 rounded-lg shadow-lg overflow-hidden h-48">
-                <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="absolute inset-0 w-full h-full object-cover opacity-50">
+                <img src="{{ asset('assets/img/polban.jpg') }}"
+                 alt="Gedung Polban" 
+                 class="absolute inset-0 w-full h-full object-cover opacity-50">
                 <div class="relative z-10 p-4 flex items-center justify-center h-full">
-                    <h2 class="text-3xl sm:text-5xl font-bold text-white text-center">Pengajuan Ketua ORMAWA</h2>
+                    <h2 class="text-3xl sm:text-5xl font-bold text-white text-center">
+                        Pengajuan Ketua ORMAWA
+                    </h2>
                 </div>
             </div>
         </div>
@@ -263,7 +267,7 @@
     </script> --}}
 
     {{-- <!-- Modal Popup -->
-    <div id="popup" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div id="popup" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 ">
         <div class="bg-white p-8 rounded-lg shadow-lg w-1/2 max-h-[80vh] overflow-y-auto">
             <h3 class="text-xl font-bold mb-4">Pengajuan Belum Disetujui</h3>
             <ul>
