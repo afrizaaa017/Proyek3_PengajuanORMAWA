@@ -11,11 +11,11 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <!-- Kotak biru dengan gradasi (ormawa yang belum disetujui) -->
             <div class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-6 px-4 rounded-lg shadow-lg flex flex-col h-48">
-                <h2 class="text-xl sm:text-2xl font-bold text-white mb-3 ml-4 mt-1/3">Pengajuan Yang Belum Diterima</h2>
-                <h2 class="text-5xl sm:text-7xl font-bold text-white mb-3 ml-4 mt-1/3">{{ $totalOrmawaBelumMengajukan }}</h2>
+                <h2 class="text-sm sm:text-2xl font-bold text-white mb-3 ml-4 mt-1/3">Pengajuan Yang Belum Diterima</h2>
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-3 ml-4 mt-1/3">{{ $totalOrmawaBelumMengajukan }}</h2>
                 <!-- Button untuk membuka modal -->
                 <button onclick="openPopup()"
-                    class="mt-4 bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold shadow-lg border border-blue-700 hover:bg-blue-700 hover:text-white transition duration-300">
+                    class="mt-4 bg-white text-blue-700 px-4 py-1.5 rounded-lg font-semibold shadow-lg border border-blue-700 hover:bg-blue-700 hover:text-white transition duration-300">
                     Lihat Detail
                 </button>
             </div>
@@ -24,7 +24,7 @@
             <div class="md:col-span-2 relative bg-orange-500 rounded-lg shadow-lg overflow-hidden h-48">
                 <img src="{{ asset('assets/img/polban.jpg') }}" alt="Gedung Polban" class="absolute inset-0 w-full h-full object-cover opacity-50">
                 <div class="relative z-10 p-4 flex items-center justify-center h-full">
-                    <h2 class="text-3xl sm:text-5xl font-bold text-white text-center">Pengajuan Ketua ORMAWA</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white text-center">Pengajuan Ketua ORMAWA</h2>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="mt-3 text-center">
-                                <h2 class="text-lg font-semibold text-gray-900">{{ $timeline->judul_timeline }}</h2>
+                                <h2 class="text-base font-semibold text-gray-900">{{ $timeline->judul_timeline }}</h2>
                                 <time class="block mb-2 text-sm font-normal leading-none text-gray-400">
                                     {{ $timeline->tanggal_timeline_awal }} - {{ $timeline->tanggal_timeline_akhir }}
                                 </time>
@@ -121,7 +121,7 @@
             ormawaList += '</ul>';
 
             Swal.fire({
-                title: 'Berikut merupakan ORMAWA yang pengajuannya belum diterima.',
+                title: 'Berikut merupakan Ormawa yang belum melakukan pengajuan.',
                 html: ormawaList || '<p>Tidak ada Ormawa yang belum melakukan pengajuan.</p>',
                 icon: 'info',
                 confirmButtonText: 'Tutup'

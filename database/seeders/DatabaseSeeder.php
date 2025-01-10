@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Staff',
-                'email' => 'staff@polban.ac.id',
+                'name' => 'Hesty',
+                'email' => 'kemahasiswaan@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456'), // default password
                 'role_id' => 'staff_kemahasiswaan',
@@ -50,8 +50,8 @@ class DatabaseSeeder extends Seeder
             ],
             // Step1
             [
-                'name' => 'Majelis Perwakilan Mahasiswa (MPM)',
-                'email' => 'MPM@polban.ac.id',
+                'name' => 'MPM Polban',
+                'email' => 'mpm@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -60,8 +60,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Badan Eksekutif Mahasiswa (BEM)',
-                'email' => 'BEM@polban.ac.id',
+                'name' => 'BEM Polban',
+                'email' => 'bem@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Teknik Sipil',
-                'email' => 'HMJTS@polban.ac.id',
+                'email' => 'hmjts@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Teknik Mesin',
-                'email' => 'HMJTM@polban.ac.id',
+                'email' => 'hmjtm@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Teknik Elektro',
-                'email' => 'HMJTE@polban.ac.id',
+                'email' => 'hmjte@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             // Step 2
             [
                 'name' => 'Teknik Kimia',
-                'email' => 'HMJTK@polban.ac.id',
+                'email' => 'hmjtk@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Teknik Refrigerasi dan Tata Udara',
-                'email' => 'HMJTRA@polban.ac.id',
+                'email' => 'hmjtra@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Teknik Komputer dan Informatika',
-                'email' => 'HMJTKI@polban.ac.id',
+                'email' => 'hmjtki@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Teknik Konversi Energi',
-                'email' => 'HMJTKE@polban.ac.id',
+                'email' => 'hmjtke@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Akuntansi',
-                'email' => 'HMJTA@polban.ac.id',
+                'email' => 'hmjta@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -152,7 +152,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Administrasi Niaga',
-                'email' => 'HMJAN@polban.ac.id',
+                'email' => 'hmjan@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Bahasa Inggris',
-                'email' => 'HMJBI@polban.ac.id',
+                'email' => 'hmjbi@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -174,7 +174,7 @@ class DatabaseSeeder extends Seeder
             // UKM
             [
                 'name' => 'Robotika	',
-                'email' => 'UKM-ROBOTIKA@polban.ac.id',
+                'email' => 'ukm-robotika@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -184,7 +184,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Otomotif',
-                'email' => 'UKM-OTOMOTIF@polban.ac.id',
+                'email' => 'ukm-otomotif@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -194,7 +194,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Kewirausahaan',
-                'email' => 'UKM-WIRUS@polban.ac.id',
+                'email' => 'ukm-wirus@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -205,7 +205,7 @@ class DatabaseSeeder extends Seeder
             // Step3
             [
                 'name' => 'ELTRAS',
-                'email' => 'UKM-ELTRAS@polban.ac.id',
+                'email' => 'ukm-eltras@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -215,7 +215,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Assalam',
-                'email' => 'UKM-ASSALAM@polban.ac.id',
+                'email' => 'ukm-assalam@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -225,7 +225,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'PMK',
-                'email' => 'UKM-PMK@polban.ac.id',
+                'email' => 'ukm-pmk@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'KMK',
-                'email' => 'UKM-KMK@polban.ac.id',
+                'email' => 'ukm-kmk@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -245,7 +245,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Kabayan',
-                'email' => 'UKM-KABAYAN@polban.ac.id',
+                'email' => 'ukm-kabayan@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -255,7 +255,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'PSM',
-                'email' => 'UKM-PSM@polban.ac.id',
+                'email' => 'ukm-psm@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -265,7 +265,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Musik dan Teater',
-                'email' => 'UKM-MUSKING@polban.ac.id',
+                'email' => 'ukm-musking@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -275,7 +275,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'UKBM',
-                'email' => 'UKM-UKBM@polban.ac.id',
+                'email' => 'ukm-ukbm@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -285,7 +285,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'UBSU',
-                'email' => 'UKM-UBSU@polban.ac.id',
+                'email' => 'ukm-ubsu@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -296,7 +296,7 @@ class DatabaseSeeder extends Seeder
 // da
             [
                 'name' => 'USF',
-                'email' => 'UKM-USF@polban.ac.id',
+                'email' => 'ukm-usf@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -306,7 +306,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Bola Basket',
-                'email' => 'UKM-BASKET@polban.ac.id',
+                'email' => 'ukm-basket@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -316,7 +316,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Bola Voli',
-                'email' => 'UKM-VOLLY@polban.ac.id',
+                'email' => 'ukm-volly@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -326,7 +326,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Bulutangkis',
-                'email' => 'UKM-BULUTANGKIS@polban.ac.id',
+                'email' => 'ukm-bulutangkis@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -336,7 +336,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Catur',
-                'email' => 'UKM-CATUR@polban.ac.id',
+                'email' => 'ukm-catur@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -346,7 +346,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Bela Diri',
-                'email' => 'UKM-BELADIRI@polban.ac.id',
+                'email' => 'ukm-beladiri@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -356,7 +356,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'PPRPG-SAGA',
-                'email' => 'UKM-SAGA@polban.ac.id',
+                'email' => 'ukm-saga@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -366,7 +366,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'KSR',
-                'email' => 'UKM-KSR@polban.ac.id',
+                'email' => 'ukm-ksr@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -376,7 +376,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Pramuka',
-                'email' => 'UKM-PRAMUKA@polban.ac.id',
+                'email' => 'ukm-pramuka@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
@@ -386,7 +386,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Fellas',
-                'email' => 'UKM-FELLAS@polban.ac.id',
+                'email' => 'ukm-fellas@polban.ac.id',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Polban12345'), // default password
                 'role_id' => 'mahasiswa',
