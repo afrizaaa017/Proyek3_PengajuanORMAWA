@@ -25,9 +25,9 @@
         <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
             sidenav-close></i>
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" >
-            <img src="{{asset('/assets/img/polban2.png')}}"
-                class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
-            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">PENGAJUAN POLBAN</span>
+            <img src="{{asset('/assets/img/kemahasiswaan.png')}}"
+                class="inline  w-full transition-all duration-200 ease-nav-brand max-h-28" alt="main_logo" />
+            {{-- <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">PENGAJUAN POLBAN</span> --}}
         </a>
     </div>
 
@@ -35,7 +35,7 @@
        <div class="items-center
         block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
     <ul class="flex flex-col pl-0 mb-0">
-        <li class="mt-0.5 w-full">
+        <li class="mt-0.5 w-full pt-10">
 
             <a id="dashboard-link" class="sidebar-link py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition duration-300 hover:border hover:bg-white hover:shadow-xl"
 

@@ -21,14 +21,19 @@
         <div class="w-full">
             <div class="my-5 text-sm flex space-x-4 ">
                 <button
-                    class="rekapilutasi-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    class="rekapilutasi-btn w-1/3 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
                     Rekapitulasi Statistik
                 </button>
 
                 {{-- Untuk Upload SK --}}
                 <button 
-                    class="uploadMOU-btn w-1/2 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    class="uploadMOU-btn w-1/3 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
                     Upload Surat MOU {{ date('Y') }} 
+                </button>
+                
+                <button 
+                    class="uploadPersyaratan-btn w-1/3 h-14 px-3 py-1 bg-[#E11818] text-white rounded-lg font-semibold shadow-md text-lg" >
+                    Upload Persyaratan Pengajuan {{ date('Y') }} 
                 </button>
             </div>
             <div class="flex justify-between items-center mb-4">
@@ -336,14 +341,14 @@ document.addEventListener('click', function (event) {
         event.preventDefault();
 
         Swal.fire({
-            title: 'Upload SK',
+            title: 'Upload Template MoU',
             html: `
                 <form id="file-upload-form">
                     <input id="fileInput" type="file" name="file" accept="application/pdf" 
                         class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
                     
                     <div id="filePreview" style="margin-top: 15px; display: none;">
-                        <h5>Preview SK:</h5>
+                        <h5>Preview Surat MoU:</h5>
                         <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>
                     </div>
                 </form>
@@ -389,6 +394,68 @@ document.addEventListener('click', function (event) {
         });
     }
 });
+
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('uploadPersyaratan-btn')) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Upload Surat Persyaratan Pengajuan',
+            html: `
+                <form id="file-upload-form">
+                    <input id="fileInputPersyaratan" type="file" name="file" accept="application/pdf" 
+                        class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light text-[#FF9A36] transition duration-200 ease-in-out hover:-translate-y-1">
+                    
+                    <div id="filePreviewPersyaratan" style="margin-top: 15px; display: none;">
+                        <h5>Preview Surat Persyaratan:</h5>
+                        <iframe id="previewFrame" src="" width="100%" height="300px"></iframe>
+                    </div>
+                </form>
+            `,
+            showCancelButton: true,
+            confirmButtonText: 'Upload',
+            width: '50%',
+            animation: false,
+            preConfirm: () => {
+                const fileInput = document.getElementById('fileInputPersyaratan');
+                if (!fileInput.files.length) {
+                    Swal.showValidationMessage('Harap pilih file terlebih dahulu!');
+                    return false;
+                }
+                return fileInput.files[0]; 
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const file = result.value;
+
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/upload-persyaratanPengajuan', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.message); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    Swal.fire('Sukses!', 'File berhasil diunggah dan disimpan di server!', 'success');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire('Error!', error.message || 'Gagal mengunggah file.', 'error');
+                });
+            }
+        });
+    }
+});
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

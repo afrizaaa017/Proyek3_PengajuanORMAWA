@@ -54,7 +54,7 @@
                                 <label class="text-sm text-red-600">*Khusus untuk surat MOU bisa diunduh disini, </label>
                                 <button
                                     data-file="{{ route('file.show', ['id' => 'Template_Surat_MOU', 'filename' => date('Y') . '_TemplateSuratMOU.pdf']) }}"
-                                    class="preview-btn text-blue-600">
+                                    class="preview-btn text-blue-600 underline underline-offset-4">
                                     Download Surat MOU
                                 </button>
                             </div>

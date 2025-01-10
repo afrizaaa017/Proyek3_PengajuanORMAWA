@@ -121,7 +121,7 @@
             ormawaList += '</ul>';
 
             Swal.fire({
-                title: 'Berikut merupakan Ormawa yang belum melakukan pengajuan.',
+                title: 'Berikut merupakan ORMAWA yang pengajuannya belum diterima.',
                 html: ormawaList || '<p>Tidak ada Ormawa yang belum melakukan pengajuan.</p>',
                 icon: 'info',
                 confirmButtonText: 'Tutup'

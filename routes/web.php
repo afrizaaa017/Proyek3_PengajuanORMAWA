@@ -117,6 +117,7 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
 
     Route::get('/listtable', [FormController::class, 'listtable'])->name('listtable');
     Route::post('/upload-mou', [BerkasController::class, 'uploadMOU'])->name('upload-mou');
+    Route::post('/upload-persyaratanPengajuan', [BerkasController::class, 'uploadPersyaratanPengajuan'])->name('upload-persyaratanPengajuan');
     // Route::post('/delete-sk', [BerkasController::class, 'deleteSK'])->name('delete-sk');
 });
 

@@ -86,7 +86,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                     data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_scan_ktp.pdf']) }}"
-                                    class="preview-btn text-blue-600 text-sm ">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4 ">
                                     Lihat file Scan KTP sebelumnya
                                 </button>
                             </div>
@@ -104,7 +104,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                     data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_sehat.pdf']) }}"
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Surat Sehat sebelumnya
                                 </button>
                             </div>
@@ -121,7 +121,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                     data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_rekomendasi_jurusan.pdf']) }}"    
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Surat Rekomendasi Jurusan sebelumnya
                                 </button>
                             </div>
@@ -138,7 +138,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                     data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf']) }}"    
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Transkip Akademik Semester Terakhir sebelumnya
                                 </button>
                             </div>
@@ -155,7 +155,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                     data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_lkmm.pdf']) }}"  
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat LKMM sebelumnya
                                 </button>
                             </div>
@@ -172,7 +172,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat Pelatihan Kepemimpinan sebelumnya
                                 </button>
                             </div>
@@ -189,7 +189,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat Pelatihan Emosional Spiritual sebelumnya
                                 </button>
                             </div>
@@ -206,7 +206,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_bahasa_asing.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat Bahasa Asing sebelumnya
                                 </button>
                             </div>
@@ -228,7 +228,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_scan_ktm.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Scan KTM sebelumnya
                                 </button>
                             </div>
@@ -245,7 +245,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Surat Keterangan Berkelakuan Baik sebelumnya
                                 </button>
                             </div>
@@ -262,7 +262,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_penyataan_mandiri.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Surat Pernyataan Mandiri sebelumnya
                                 </button>
                             </div>
@@ -280,7 +280,7 @@
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_pkkmb.pdf']) }}"      
                                 data-file="{{ asset('storage/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '.pdf') }}"
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat PKKMB sebelumnya
                                 </button>
                             </div>
@@ -297,7 +297,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_bela_negara.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat Bela Negara sebelumnya
                                 </button>
                             </div>
@@ -314,7 +314,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat Agent of Change sebelumnya
                                 </button>
                             </div>
@@ -331,7 +331,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Sertifikat Berorganisasi sebelumnya
                                 </button>
                             </div>
@@ -348,7 +348,7 @@
                             <div class="mt-2 text-sm">
                                 <button
                                 data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf']) }}"      
-                                    class="preview-btn text-blue-600 text-sm">
+                                    class="preview-btn text-blue-600 text-sm underline underline-offset-4">
                                     Lihat file Berita Acara Pemilihan sebelumnya
                                 </button>
                             </div>

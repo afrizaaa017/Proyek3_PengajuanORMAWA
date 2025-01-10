@@ -441,6 +441,29 @@ class BerkasController extends Controller
             'year' => $currentYear,
         ]);
     }
+    
+    public function uploadPersyaratanPengajuan(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        $currentYear = date('Y');
+        $folderPath = 'PDF/Persyaratan';
+        $publicPath = storage_path("app/$folderPath");
+
+        // Pastikan direktori ada
+        Storage::disk('local')->makeDirectory($folderPath);
+
+        // Simpan file
+        $filePath = $request->file('file')->move($publicPath, $currentYear . '_PersyaratanPengajuan.pdf');
+
+        return response()->json([
+            'message' => 'File berhasil diunggah!',
+            'path' => $filePath,
+            'year' => $currentYear,
+        ]);
+    }
 
     // public function deleteSK(Request $request)
     // {
