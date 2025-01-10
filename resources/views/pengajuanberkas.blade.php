@@ -58,8 +58,8 @@
             <div class="container mx-auto mt-10">
 
                 <div class="block mb-7 text-sm font-extrabold ">
-                    <p class="text-red-600 font-bold text-lg">*Pastikan Berkas Yang Diupload Berbentuk PDF.</p>
-                    <p class="text-red-600 font-bold text-lg">*Pastikan Ukuran Berkas Kurang dari 2MB.</p>
+                    <p class="text-red-600 text-lg">*Pastikan Berkas Yang Diupload Berbentuk PDF.</p>
+                    <p class="text-red-600 text-lg">*Pastikan Ukuran Berkas Kurang dari 2MB.</p>
                 </div>
 
                 {{-- <div class="grid grid-cols-2 gap-8"> --}}

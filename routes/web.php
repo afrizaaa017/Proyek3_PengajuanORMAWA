@@ -1,29 +1,34 @@
 <?php
 
+use App\Http\Middleware\IsStaff;
 use App\Http\Middleware\IsMahasiswa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\NotifsController;
 use App\Http\Controllers\updateAccesstime;
+use App\Http\Controllers\validatepengajuan;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\Mahasiswacontroller;
+use App\Http\Controllers\Settingwaktudeadline;
+
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\KetuaOrmawaController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\PDFController;
-use App\Http\Middleware\IsStaff;
-
-use App\Http\Controllers\validatepengajuan;
-use App\Http\Controllers\Settingwaktudeadline;
 use App\Http\Controllers\DashboardMahasiswaController;
+
+Route::get('/file/{id}/{filename}', [FileController::class, 'show'])->name('file.show');
+
 
 // ========================================================================================
 // AUTHENTICATION ROUTES ==================================================================
 Route::controller(AuthController::class)->group(function () {
+    Route::get('/', 'index');
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'login')->name('login.submit');
 
@@ -136,9 +141,7 @@ Route::get('/menu', function () {
     return view('menu');
 });
 
-Route::get('/', function () {
-    return view('pages.Auth.login');
-});
+
 
 //setting deadline
 Route::post('/dashboard', [Settingwaktudeadline::class, 'updateAccesTime'])->name('update.access.time');

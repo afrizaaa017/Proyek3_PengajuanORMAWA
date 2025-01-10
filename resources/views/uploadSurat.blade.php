@@ -46,13 +46,14 @@
                         @endif
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_mou" type="file" name="surat_mou" required>
                             @php
-                                $filePath = public_path('laraview/Template_Surat_MOU/' . date('Y') . '_TemplateSuratMOU.pdf');
+                                $filePath = storage_path('app/PDF/Template_Surat_MOU/' . date('Y') . '_TemplateSuratMOU.pdf')
+                            
                             @endphp
                         @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima && file_exists($filePath))
                             <div class="mt-2 text-sm">
                                 <label class="text-sm text-red-600">*Khusus untuk surat MOU bisa diunduh disini, </label>
                                 <button
-                                    data-file="{{ asset('laraview/Template_Surat_MOU/' . date('Y') . '_TemplateSuratMOU.pdf') }}"
+                                    data-file="{{ route('file.show', ['id' => 'Template_Surat_MOU', 'filename' => date('Y') . '_TemplateSuratMOU.pdf']) }}"
                                     class="preview-btn text-blue-600">
                                     Download Surat MOU
                                 </button>
@@ -129,8 +130,8 @@
                 Swal.fire({
                     title: 'Surat MOU',
                     html: `
-                        <div style="height: 600px; overflow: auto;">
-                            <iframe src="${fileUrl}" width="100%" height="600px"></iframe>
+                        <div style="height: 500px; overflow: auto;">
+                            <iframe src="${fileUrl}" width="100%" height="500px"></iframe>
                         </div>
                     `,
                     showCancelButton: false,

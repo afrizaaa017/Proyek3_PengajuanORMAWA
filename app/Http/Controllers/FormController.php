@@ -98,7 +98,25 @@ class FormController extends Controller
             return redirect()->back()->with('error', 'Data pengajuan tidak ditemukan.');
         }
 
-        return view('detailPengajuan', compact('pengajuans'));
+        $files = [
+            '1. Scan KTP' => $pengajuans->berkas->scan_ktp,
+            '2. Surat Sehat' => $pengajuans->berkas->surat_sehat,
+            '3. Surat Rekomendasi Jurusan' => $pengajuans->berkas->surat_rekomendasi_jurusan,
+            '4. Transkrip Rekomendasi Jurusan' => $pengajuans->berkas->transkip_rekomendasi_jurusan,
+            '5. Sertifikat LKMM' => $pengajuans->berkas->sertifikat_lkmm,
+            '6. Sertifikat Pelatihan Kepemimpinan' => $pengajuans->berkas->sertifikat_pelatihan_kepemimpinan,
+            '7. Sertifikat Pelatihan Emosional' => $pengajuans->berkas->sertifikat_pelatihan_emosional_spiritual,
+            '8. Sertifikat Bahasa Asing' => $pengajuans->berkas->sertifikat_bahasa_asing,
+            '9. Scan KTM' => $pengajuans->berkas->scan_ktm,
+            '10. Surat Keterangan Berkelakuan Baik' => $pengajuans->berkas->surat_keterangan_berkelakuan_baik,
+            '11. Surat Pernyataan Mandiri' => $pengajuans->berkas->surat_penyataan_mandiri,
+            '12. Sertifikat PKKMB' => $pengajuans->berkas->sertifikat_pkkmb,
+            '13. Sertifikat Bela Negara' => $pengajuans->berkas->sertifikat_bela_negara,
+            '14. Sertifikat Agent of Change' => $pengajuans->berkas->sertifikat_agent_of_change,
+            '15. Sertifikat Berorganisasi' => $pengajuans->berkas->sertifikat_berorganisasi,
+            '16. Berita Acara Pemilihan' => $pengajuans->berkas->berita_acara_pemilihan,
+        ];
+        return view('detailPengajuan', compact('pengajuans','files'));
     }
 
     public function detailSurat($id)
@@ -109,7 +127,14 @@ class FormController extends Controller
             return redirect()->back()->with('error', 'Data pengajuan tidak ditemukan.');
         }
 
-        return view('detailUploadSurat', compact('pengajuans'));
+        $files = [
+            '1. Surat Pernyataan' => $pengajuans->berkas->surat_pernyataan,
+            '2. Surat Perjanjian' => $pengajuans->berkas->surat_perjanjian,
+            '3. Surat MoU' => $pengajuans->berkas->surat_mou,
+            '4. Surat KAK' => $pengajuans->berkas->surat_kak,
+        ];
+
+        return view('detailUploadSurat', compact('pengajuans','files'));
     }
 
     public function index()

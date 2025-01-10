@@ -31,7 +31,7 @@
 
         <!-- disini buat timeline alqan -->
         <!-- Area Kosong untuk Timeline -->
-        <div class="mx-auto my-auto py-5">
+        <div class="mx-auto my-auto pt-16">
             <div class="flex justify-center">
                 <ol class="items-center sm:flex">
                     @foreach ($timelines as $timeline)
@@ -55,33 +55,37 @@
             </div>
         </div>
 
-        <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Persyaratan Data Pengajuan</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/Persyaratan/persyaratan_2024.pdf' ) }}" width="50%" height="600px"></iframe>
+        <div class="flex items-center justify-center min-h-screen ">
+            <div class="mb-10 w-1/2 border-black border-solid border-2">
+                <h3 class="text-center text-2xl font-bold text-[#344767] py-2">Persyaratan Data Pengajuan</h3>
+                @if(file_exists(storage_path('app/PDF/Persyaratan/' . date('Y') . '_PersyaratanPengajuan.pdf')))
+                    <iframe class="mx-auto w-full p-5" src="{{ route('file.show', ['id' => 'Persyaratan', 'filename' => date('Y') . '_PersyaratanPengajuan.pdf']) }}" width="50%" height="600px"></iframe>
+                @else
+                    <p class="text-red-500 text-center text-xl">*Persyaratan tidak tersedia, hubungi pihak kemahasiswaan!!</p>
+                @endif
+            </div>
         </div>
 
         <!-- Tombol Lakukan Pengajuan -->
-        <div class="flex my-auto mx-auto py-5">
+        <div class="flex my-auto mx-auto ">
             <a href="{{ route('form') }}" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center py-3 rounded-lg block h-18">
-                Lakukan Pengajuan
+                1. Lakukan Pengajuan
             </a>
         </div>
-        @if ($exists && $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
-        <div class="flex my-auto mx-auto py-2">
-            <button
-                class="btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18"
-                data-edit-url="{{ route('surat.upload', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
-                Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
-            </button>
+        <div class="flex my-auto mx-auto py-5 w-full">
+            @if ($exists && $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
+                <button
+                    class="btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18"
+                    data-edit-url="{{ route('surat.upload', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
+                    2. Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
+                </button>
+            @else
+                <button
+                    class="alert-btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18">
+                    2. Upload Surat Pernyataan, Surat Perjanjian, Surat MoU, dan Surat KAK
+                </button>
+            @endif
         </div>
-        @else
-        <div class="flex my-auto mx-auto py-2">
-            <button
-                class="alert-btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18">
-                Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
-            </button>
-        </div>
-        @endif
 
     </div>
 

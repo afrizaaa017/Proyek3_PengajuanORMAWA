@@ -130,7 +130,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Verifikasi Diterima Berhasil!',
+                    title: 'Verifikasi Diterima !!',
                     text: '{{ session('successDiterima') }}',
                     confirmButtonText: 'OK',
                     confirmButtonColor: '#3085d6',
@@ -142,7 +142,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Verifikasi Revisi Berhasil!',
+                    title: 'Verifikasi Revisi !!',
                     text: '{{ session('successRevisi') }}',
                     confirmButtonText: 'OK',
                     confirmButtonColor: '#3085d6',

@@ -53,24 +53,34 @@
     </div>
     @if ($pengajuans->berkas && $pengajuans->berkas->surat_pernyataan && $pengajuans->berkas->surat_perjanjian && $pengajuans->berkas->surat_mou !== 'pengaju belum mengirimkan file ini')
     <div class="bg-white shadow-lg rounded-lg p-6 my-8">
+        <h2 class="text-2xl font-bold text-center text-[#344767] pb-6">BERKAS - BERKAS PENGAJU</h2>
+        @foreach ($files as $title => $filename)
+            @if ($filename)
+                <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">{{ $title }}</h3>
+                <iframe class="mx-auto pb-10" src="{{ route('file.show', ['id' => $pengajuans->id, 'filename' => $filename]) }}" 
+                        width="50%" height="600"></iframe>
+            @endif
+        @endforeach
+    </div>
+    {{-- <div class="bg-white shadow-lg rounded-lg p-6 my-8">
         <h2 class="text-2xl font-bold text-center text-[#344767]">SURAT - SURAT</h2>
         <div class="mb-10 mt-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">Surat Pernyataan</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_pernyataan.pdf') }}" width="50%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_pernyataan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Perjanjian</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_perjanjian.pdf') }}" width="50%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_perjanjian.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat MoU</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_mou.pdf') }}" width="50%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_mou.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
             <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat KAK</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_kak.pdf') }}" width="50%" height="600px"></iframe>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_kak.pdf') }}" width="50%" height="600px"></iframe>
         </div>
-    </div>
+    </div> --}}
     @else
         <h3 class="text-2xl my-5 font-bold text-center text-[#344767]">PENGAJU BELUM MENGUPLOAD SEMUA SURAT - SURAT YANG DIHARUSKAN</h3>
     @endif

@@ -59,73 +59,84 @@
     </div>
 
     <div class="bg-white shadow-lg rounded-lg p-6 my-8">
+        <h2 class="text-2xl font-bold text-center text-[#344767] pb-6">BERKAS - BERKAS PENGAJU</h2>
+        @foreach ($files as $title => $filename)
+            @if ($filename)
+                <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">{{ $title }}</h3>
+                <iframe class="mx-auto pb-10" src="{{ route('file.show', ['id' => $pengajuans->id, 'filename' => $filename]) }}" 
+                        width="50%" height="600"></iframe>
+            @endif
+        @endforeach
+    </div>
+
+    {{-- <div class="bg-white shadow-lg rounded-lg p-6 my-8">
         <h2 class="text-2xl font-bold text-center text-[#344767]">BERKAS - BERKAS</h2>
         <div class="mb-10 mt-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">Scan KTP (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktp.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2 ">Scan KTP</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktp.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Sehat (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_sehat.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Sehat</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_sehat.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Rekomendasi Jurusan (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_rekomendasi_jurusan.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Rekomendasi Jurusan</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_rekomendasi_jurusan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Transkrip Rekomendasi Jurusan (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_transkip_rekomendasi_jurusan.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Transkrip Rekomendasi Jurusan</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_transkip_rekomendasi_jurusan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat LKMM (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_lkmm.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat LKMM</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_lkmm.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Pelatihan Kepemimpinan (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pelatihan_kepemimpinan.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Pelatihan Kepemimpinan</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pelatihan_kepemimpinan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Pelatihan Emosional (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Pelatihan Emosional</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Bahasa Asing (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_bahasa_asing.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Bahasa Asing</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_bahasa_asing.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Scan KTM (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktm.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Scan KTM</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_scan_ktm.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Keterangan Berkelakuan Baik (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_keterangan_berkelakuan_baik.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Keterangan Berkelakuan Baik</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_keterangan_berkelakuan_baik.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Pernyataan Mandiri (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_penyataan_mandiri.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Surat Pernyataan Mandiri</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_surat_penyataan_mandiri.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat PKKMB (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pkkmb.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat PKKMB</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_pkkmb.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Bela Negara (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_bela_negara.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Bela Negara</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_bela_negara.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Agent of Change (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_agent_of_change.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Agent of Change</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_agent_of_change.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Berorganisasi (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_berorganisasi.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Sertifikat Berorganisasi</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_sertifikat_berorganisasi.pdf') }}" width="50%" height="600px"></iframe>
         </div>
         <div class="mb-10">
-            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Berita Acara Pemilihan (Maks 2MB)</h3>
-            <iframe class="mx-auto" src="{{ asset('laraview/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_berita_acara_pemilihan.pdf') }}" width="50%" height="600px"></iframe>
+            <h3 class="text-center text-xl font-bold text-[#344767] py-2">Berita Acara Pemilihan</h3>
+            <iframe class="mx-auto" src="{{ asset('storage/PDF/' . $pengajuans->id . '/' .'Pengaju_' . $pengajuans->id . '_berita_acara_pemilihan.pdf') }}" width="50%" height="600px"></iframe>
         </div>
 
-    </div>
+    </div> --}}
 
     <div class="flex justify-between items-center mt-4">
         <!-- Tombol Revisi -->
@@ -141,25 +152,26 @@
                 html: `
                     <div style="text-align: left">
                        <p style="color: red; font-size: 0.65em;">*Checklist bagian yang tidak sesuai, serta tambahan keterangan jika dibutuhkan</p>
-                        <label><input type="checkbox" value="Scan KTP tidak sesuai | "> Scan KTP</label><br>
-                        <label><input type="checkbox" value="Surat Sehat tidak sesuai | "> Surat Sehat</label><br>
-                        <label><input type="checkbox" value="Surat Rekomendasi Jurusan tidak sesuai | "> Surat Rekomendasi Jurusan</label><br>
-                        <label><input type="checkbox" value="Transkip Rekomendasi Jurusan tidak sesuai | "> Transkip Rekomendasi Jurusan</label><br>
-                        <label><input type="checkbox" value="Sertifikat LKMM tidak sesuai | "> Sertifikat LKMM</label><br>
-                        <label><input type="checkbox" value="Sertifikat Pelatihan Kepemimpinan tidak sesuai | "> Sertifikat Pelatihan Kepemimpinan</label><br>
-                        <label><input type="checkbox" value="Sertifikat Pelatihan Emotional Spiritual tidak sesuai | "> Sertifikat Pelatihan Emotional Spiritual</label><br>
-                        <label><input type="checkbox" value="Sertifikat Bahasa Asing tidak sesuai | "> Sertifikat Bahasa Asing</label><br>
-                        <label><input type="checkbox" value="Scan KTM tidak sesuai | "> Scan KTM</label><br>
-                        <label><input type="checkbox" value="Surat Keterangan Berkelakuan Baik tidak sesuai | "> Surat Keterangan Berkelakuan Baik</label><br>
-                        <label><input type="checkbox" value="Surat Pernyataan Mandiri tidak sesuai | "> Surat Pernyataan Mandiri</label><br>
-                        <label><input type="checkbox" value="Sertifikat PKKMB tidak sesuai | "> Sertifikat PKKMB</label><br>
-                        <label><input type="checkbox" value="Sertifikat Bela Negara tidak sesuai | "> Sertifikat Bela Negara</label><br>
-                        <label><input type="checkbox" value="Sertifikat Agent of Change tidak sesuai | "> Sertifikat Agent of Change</label><br>
-                        <label><input type="checkbox" value="Sertifikat Berorganisasi tidak sesuai | "> Sertifikat Berorganisasi</label><br>
-                        <label><input type="checkbox" value="Berita Acara Pemilihan tidak sesuai | "> Berita Acara Pemilihan</label><br>
+                        <label><input type="checkbox" value="Scan KTP tidak sesuai | "> 1. Scan KTP</label><br>
+                        <label><input type="checkbox" value="Surat Sehat tidak sesuai | "> 2. Surat Sehat</label><br>
+                        <label><input type="checkbox" value="Surat Rekomendasi Jurusan tidak sesuai | "> 3.  Surat Rekomendasi Jurusan</label><br>
+                        <label><input type="checkbox" value="Transkip Rekomendasi Jurusan(IPK) tidak sesuai | "> 4. Transkip Rekomendasi Jurusan (IPK)</label><br>
+                        <label><input type="checkbox" value="Sertifikat LKMM tidak sesuai | "> 5. Sertifikat LKMM</label><br>
+                        <label><input type="checkbox" value="Sertifikat Pelatihan Kepemimpinan tidak sesuai | "> 6. Sertifikat Pelatihan Kepemimpinan</label><br>
+                        <label><input type="checkbox" value="Sertifikat Pelatihan Emotional Spiritual tidak sesuai | "> 7. Sertifikat Pelatihan Emotional Spiritual</label><br>
+                        <label><input type="checkbox" value="Sertifikat Bahasa Asing(EPT) tidak sesuai | "> 8. Sertifikat Bahasa Asing (EPT)</label><br>
+                        <label><input type="checkbox" value="Scan KTM tidak sesuai | "> 9. Scan KTM</label><br>
+                        <label><input type="checkbox" value="Surat Keterangan Berkelakuan Baik tidak sesuai | "> 10. Surat Keterangan Berkelakuan Baik</label><br>
+                        <label><input type="checkbox" value="Surat Pernyataan Mandiri tidak sesuai | "> 11. Surat Pernyataan Mandiri</label><br>
+                        <label><input type="checkbox" value="Sertifikat PKKMB tidak sesuai | "> 12. Sertifikat PKKMB</label><br>
+                        <label><input type="checkbox" value="Sertifikat Bela Negara tidak sesuai | "> 13. Sertifikat Bela Negara</label><br>
+                        <label><input type="checkbox" value="Sertifikat Agent of Change tidak sesuai | "> 14. Sertifikat Agent of Change</label><br>
+                        <label><input type="checkbox" value="Sertifikat Berorganisasi tidak sesuai | "> 15. Sertifikat Berorganisasi</label><br>
+                        <label><input type="checkbox" value="Berita Acara Pemilihan tidak sesuai | "> 16. Berita Acara Pemilihan</label><br>
                         <textarea style="width: 80%; height: 100px;" id="customRevisi" class="swal2-textarea" placeholder="Tulis revisi tambahan (opsional)"></textarea>
                     </div>
                 `,
+                cancelButtonColor: '#d33',
                 showCancelButton: true,
                 confirmButtonText: 'Tolak dan Revisi',
                 cancelButtonText: 'Batal',

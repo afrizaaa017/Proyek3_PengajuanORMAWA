@@ -98,9 +98,9 @@ class BerkasController extends Controller
             $pengajuan = Pengajuan::create($pengajuanData);
 
             $berkas = new Berkas();
-            $folderPath = 'laraview/' . $pengajuan->id;
+            $folderPath = 'app/PDF/' . $pengajuan->id;
 
-            $publicPath = public_path($folderPath);
+            $publicPath = storage_path($folderPath);
 
             Storage::makeDirectory($folderPath);
             $berkas->scan_ktp = $request->file('scan_ktp')->move($publicPath, 'Pengaju_' . $pengajuan->id . '_scan_ktp.pdf') ? 'Pengaju_' . $pengajuan->id . '_scan_ktp.pdf' : 'data gagal terupload';
@@ -277,9 +277,9 @@ class BerkasController extends Controller
         $berkas = $pengajuan->berkas;
 
 
-        $folderPath = 'laraview/' . $pengajuan->id;
+        $folderPath = 'app/PDF/' . $pengajuan->id;
 
-        $publicPath = public_path($folderPath);
+        $publicPath = storage_path($folderPath);
 
         Storage::makeDirectory($folderPath);
         if ($request->hasFile('scan_ktp')) {
@@ -389,9 +389,9 @@ class BerkasController extends Controller
         $berkas = $pengajuan->berkas;
 
 
-        $folderPath = 'laraview/' . $pengajuan->id;
+        $folderPath = 'app/PDF/' . $pengajuan->id;
 
-        $publicPath = public_path($folderPath);
+        $publicPath = storage_path($folderPath);
 
         Storage::makeDirectory($folderPath);
         if ($request->hasFile('surat_pernyataan')) {
@@ -426,8 +426,8 @@ class BerkasController extends Controller
         ]);
 
         $currentYear = date('Y');
-        $folderPath = 'laraview/Template_Surat_MOU';
-        $publicPath = public_path($folderPath);
+        $folderPath = 'app/PDF/Template_Surat_MOU';
+        $publicPath = storage_path($folderPath);
         Storage::makeDirectory($folderPath);
 
         $filePath = $request->file('file')->move($publicPath,  $currentYear . '_TemplateSuratMOU.pdf') ? $currentYear . '_TemplateSuratMOU.pdf' : 'data gagal terupload';

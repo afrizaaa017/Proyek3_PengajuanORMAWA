@@ -82,11 +82,11 @@
                         
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktp" type="file" name="scan_ktp">
                         <!-- Tampilkan file yang sudah diupload -->
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktp.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktp.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktp.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                    data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_scan_ktp.pdf']) }}"
+                                    class="preview-btn text-blue-600 text-sm ">
                                     Lihat file Scan KTP sebelumnya
                                 </button>
                             </div>
@@ -100,11 +100,11 @@
                             @enderror
                         </label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_sehat" type="file" name="surat_sehat">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_sehat.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_sehat.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_sehat.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                    data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_sehat.pdf']) }}"
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Surat Sehat sebelumnya
                                 </button>
                             </div>
@@ -117,11 +117,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_rekomendasi_jurusan" type="file" name="surat_rekomendasi_jurusan">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_rekomendasi_jurusan.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_rekomendasi_jurusan.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_rekomendasi_jurusan.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                    data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_rekomendasi_jurusan.pdf']) }}"    
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Surat Rekomendasi Jurusan sebelumnya
                                 </button>
                             </div>
@@ -134,11 +134,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="transkip_rekomendasi_jurusan" type="file" name="transkip_rekomendasi_jurusan">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                    data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_transkip_rekomendasi_jurusan.pdf']) }}"    
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Transkip Akademik Semester Terakhir sebelumnya
                                 </button>
                             </div>
@@ -151,11 +151,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_lkmm" type="file" name="sertifikat_lkmm">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_lkmm.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_lkmm.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_lkmm.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                    data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_lkmm.pdf']) }}"  
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat LKMM sebelumnya
                                 </button>
                             </div>
@@ -168,11 +168,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_kepemimpinan" type="file" name="sertifikat_pelatihan_kepemimpinan">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_kepemimpinan.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat Pelatihan Kepemimpinan sebelumnya
                                 </button>
                             </div>
@@ -185,11 +185,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pelatihan_emosional_spiritual" type="file" name="sertifikat_pelatihan_emosional_spiritual">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_pelatihan_emosional_spiritual.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat Pelatihan Emosional Spiritual sebelumnya
                                 </button>
                             </div>
@@ -202,11 +202,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bahasa_asing" type="file" name="sertifikat_bahasa_asing">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bahasa_asing.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bahasa_asing.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bahasa_asing.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_bahasa_asing.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat Bahasa Asing sebelumnya
                                 </button>
                             </div>
@@ -224,11 +224,11 @@
                             @enderror
                         </label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="scan_ktm" type="file" name="scan_ktm">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktm.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktm.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_scan_ktm.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_scan_ktm.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Scan KTM sebelumnya
                                 </button>
                             </div>
@@ -241,11 +241,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_keterangan_berkelakuan_baik" type="file" name="surat_keterangan_berkelakuan_baik">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_keterangan_berkelakuan_baik.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Surat Keterangan Berkelakuan Baik sebelumnya
                                 </button>
                             </div>
@@ -258,11 +258,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="surat_penyataan_mandiri" type="file" name="surat_penyataan_mandiri">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_penyataan_mandiri.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_penyataan_mandiri.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_surat_penyataan_mandiri.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_surat_penyataan_mandiri.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Surat Pernyataan Mandiri sebelumnya
                                 </button>
                             </div>
@@ -275,11 +275,12 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_pkkmb" type="file" name="sertifikat_pkkmb">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pkkmb.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pkkmb.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_pkkmb.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_pkkmb.pdf']) }}"      
+                                data-file="{{ asset('storage/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '.pdf') }}"
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat PKKMB sebelumnya
                                 </button>
                             </div>
@@ -292,11 +293,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_bela_negara" type="file" name="sertifikat_bela_negara">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bela_negara.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bela_negara.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_bela_negara.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_bela_negara.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat Bela Negara sebelumnya
                                 </button>
                             </div>
@@ -309,11 +310,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_agent_of_change" type="file" name="sertifikat_agent_of_change">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_agent_of_change.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_agent_of_change.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_agent_of_change.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_agent_of_change.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat Agent of Change sebelumnya
                                 </button>
                             </div>
@@ -326,11 +327,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="sertifikat_berorganisasi" type="file" name="sertifikat_berorganisasi">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_berorganisasi.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_berorganisasi.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_sertifikat_berorganisasi.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_sertifikat_berorganisasi.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Sertifikat Berorganisasi sebelumnya
                                 </button>
                             </div>
@@ -343,11 +344,11 @@
                             <label class="text-red-600">{{ $message }}</label>
                         @enderror</label>
                         <input class="block w-full text-sm text-gray-900 cursor-pointer bg-white border-2 border-dashed border-[#FF9A36] rounded-md p-2 font-light transition duration-200 ease-in-out hover:-translate-y-1" id="berita_acara_pemilihan" type="file" name="berita_acara_pemilihan">
-                        @if('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_berita_acara_pemilihan.pdf')
+                        @if(file_exists(storage_path('app/PDF/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_berita_acara_pemilihan.pdf')))
                             <div class="mt-2 text-sm">
                                 <button
-                                    data-file="{{ asset('laraview/' . $pengajuan->id . '/' . 'Pengaju_'. $pengajuan->id . '_berita_acara_pemilihan.pdf') }}"
-                                    class="preview-btn text-blue-600">
+                                data-file="{{ route('file.show', ['id' => $pengajuan->id, 'filename' => 'Pengaju_' . $pengajuan->id . '_berita_acara_pemilihan.pdf']) }}"      
+                                    class="preview-btn text-blue-600 text-sm">
                                     Lihat file Berita Acara Pemilihan sebelumnya
                                 </button>
                             </div>
@@ -406,6 +407,8 @@
                     `,
                     showCancelButton: true,
                     showConfirmButton: false,
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Kembali',
                     width: '60%',
                     animation: false
                 });
