@@ -22,7 +22,7 @@ use App\Http\Controllers\KetuaOrmawaController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\DashboardMahasiswaController;
 
-Route::get('/file/{id}/{filename}', [FileController::class, 'show'])->name('file.show');
+Route::get('/file/{id}/{filename}', [FileController::class, 'show'])->name('file.show')->middleware(['auth']);
 
 
 // ========================================================================================
@@ -81,7 +81,7 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::delete('/users/{id}', [FormController::class, 'deleteUser'])->name('users.delete');
 
     Route::middleware(['auth', IsStaff::class])->group(function () {
-    Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [SubmissionController::class, 'index'])->name('dashboard')->middleware('auth');
 
     Route::get('/TambahOrmawa', [KetuaOrmawaController::class, 'index'])->name('ketuaOrmawa.index');
     Route::post('/TambahOrmawa', [KetuaOrmawaController::class, 'store'])->name('ketuaOrmawa.store');
@@ -124,31 +124,31 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
 
 Route::get('/index', function () {
     return view('layouts.index');
-});
+})->middleware('auth');
 
 Route::get('/progressbar', function () {
     return view('progressbar');
-});
+})->middleware('auth');
 
-Route::get('send', [HomeController::class, "sendnotification"]);
+Route::get('send', [HomeController::class, "sendnotification"])->middleware('auth');
 
-Route::get('/notifikasi', [NotificationController::class, 'index'])->name('notifikasi');
-Route::get('/notifications', [NotificationController::class, 'getNotifications'])->name('notifications');
-Route::post('/markAsRead/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::get('/notifikasi', [NotificationController::class, 'index'])->name('notifikasi')->middleware('auth');
+Route::get('/notifications', [NotificationController::class, 'getNotifications'])->name('notifications')->middleware('auth');
+Route::post('/markAsRead/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead')->middleware('auth');
 
 // Route::get('/semua-pengajuan', [SubmissionController::class, 'semuaPengajuan']);
 
 Route::get('/menu', function () {
     return view('menu');
-});
+})->middleware('auth');
 
 
 
 //setting deadline
-Route::post('/dashboard', [Settingwaktudeadline::class, 'updateAccesTime'])->name('update.access.time');
+Route::post('/dashboard', [Settingwaktudeadline::class, 'updateAccesTime'])->name('update.access.time')->middleware('auth');
 
 // Validasi pengajuan
-Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePengajuanStatus']);
+Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePengajuanStatus'])->middleware('auth');
 
 
 
@@ -157,17 +157,17 @@ Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePen
 
 
 
-Route::get('/suratPernyataan', [PDFController::class, 'suratPernyataan'])->name('surat.pernyataan');
-Route::get('/suratPerjanjian', [PDFController::class, 'suratPerjanjian'])->name('surat.perjanjian');
+Route::get('/suratPernyataan', [PDFController::class, 'suratPernyataan'])->name('surat.pernyataan')->middleware('auth');
+Route::get('/suratPerjanjian', [PDFController::class, 'suratPerjanjian'])->name('surat.perjanjian')->middleware('auth');
 
 
 Route::get('/error/404', function () {
     return view('errors.404');
-})->name('error.404');
+})->name('error.404')->middleware('auth');
 
 Route::get('/error/500', function () {
     return view('errors.500');
-})->name('error.500');
+})->name('error.500')->middleware('auth');
 
 
 

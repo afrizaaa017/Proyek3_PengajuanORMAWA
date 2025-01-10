@@ -35,9 +35,19 @@ class FileController extends Controller
         //cek akses berdasarkan role dan sesi
         if ($user->role_id != 'staff_kemahasiswaan') {
             // Jika bukan staff, periksa apakah user memiliki hak untuk melihat file
-            $uploadedBy = $this->getFileUploader($id, $filename);
-            if ($user->id !== $uploadedBy) {
-                abort(404, 'File not found');
+            $allowedFiles = [
+                "2025_PersyaratanPengajuan.pdf",
+                "2025_TemplateSuratMOU.pdf"
+            ];
+    
+            // Periksa apakah file yang diakses termasuk dalam daftar file yang diizinkan
+            if (!in_array($filename, $allowedFiles)) {
+                // Jika file tidak diizinkan, periksa apakah user adalah pengunggah file tersebut
+                $uploadedBy = $this->getFileUploader($id, $filename);
+    
+                if ($user->id !== $uploadedBy) {
+                    abort(403, 'Access denied');
+                }
             }
         }
 
