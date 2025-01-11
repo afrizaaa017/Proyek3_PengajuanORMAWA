@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
 
-class validatepengajuan extends Controller
+class ValidatePengajuan extends Controller
 {
     public function validatePengajuanStatus(): JsonResponse
     {

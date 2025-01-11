@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Timeline;  // Import model Timeline
 use Illuminate\Http\Request;
 
-class mahasiswacontroller extends Controller
+class MahasiswaController extends Controller
 {
     /**
      * Menampilkan daftar timeline.

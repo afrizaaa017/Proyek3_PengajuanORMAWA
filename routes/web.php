@@ -11,11 +11,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\NotifsController;
-use App\Http\Controllers\updateAccesstime;
-use App\Http\Controllers\validatepengajuan;
+use App\Http\Controllers\UpdateAccesstime;
+use App\Http\Controllers\ValidatePengajuan;
 use App\Http\Controllers\TimelineController;
-use App\Http\Controllers\Mahasiswacontroller;
-use App\Http\Controllers\Settingwaktudeadline;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\SettingWaktuDeadlineController;
 
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\KetuaOrmawaController;
@@ -44,7 +44,7 @@ Route::controller(AuthController::class)->group(function () {
 
 // MAHASISWA
 Route::middleware(['auth', IsMahasiswa::class])->group(function () {
-    // Route::get('/dashboardmahasiswa', [Mahasiswacontroller::class, 'index'])->name('mahasiswa.index');
+    // Route::get('/dashboardmahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
     Route::get('/dashboardmahasiswa', [DashboardMahasiswaController::class, 'index'])->name('mahasiswa.index');
     // Route::post('/dashboardmahasiswa', [BerkasController::class, 'store'])->name('file.upload');
 
@@ -145,10 +145,10 @@ Route::get('/menu', function () {
 
 
 //setting deadline
-Route::post('/dashboard', [Settingwaktudeadline::class, 'updateAccesTime'])->name('update.access.time')->middleware('auth');
+Route::post('/dashboard', [SettingWaktuDeadlineController::class, 'updateAccesTime'])->name('update.access.time')->middleware('auth');
 
 // Validasi pengajuan
-Route::get('/validate-pengajuan-status', [validatepengajuan::class, 'validatePengajuanStatus'])->middleware('auth');
+Route::get('/validate-pengajuan-status', [ValidatePengajuan::class, 'validatePengajuanStatus'])->middleware('auth');
 
 
 

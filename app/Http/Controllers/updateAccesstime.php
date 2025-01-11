@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setting;
-class updateAccesstime extends Controller
+class UpdateAccesstime extends Controller
 {
     public function updateAccessTime(Request $request)
 {

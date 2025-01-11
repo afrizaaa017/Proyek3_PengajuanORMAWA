@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
 
-class timelinecontroller extends Controller
+class TimelineController extends Controller
 {
     /**
      * Display a listing of the resource.
