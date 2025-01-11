@@ -1,5 +1,3 @@
-surat perjanjian
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
