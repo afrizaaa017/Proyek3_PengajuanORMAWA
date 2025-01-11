@@ -39,7 +39,8 @@
                             {{ Str::limit($notification->data['message'] ?? 'Tidak ada pesan.', 100) }}
                         </p>
                         <p class="text-xs text-gray-400 mt-2">
-                            {{ \Carbon\Carbon::parse($notification->created_at)->locale('id-ID')->isoFormat('dddd, MMMM Do YYYY, h:mm') }}                        </p>
+                            {{ \Carbon\Carbon::parse($notification->created_at)->timezone('Asia/Jakarta')->locale('id-ID')->isoFormat('dddd, D MMMM YYYY, HH:mm') }}
+                        </p>
                         <div class="mt-2">
                             @if ($notification->is_read)
                                 <span class="text-sm px-3 py-1 bg-gradient-to-r from-[#32BB35] to-[#8BE52E] text-white rounded-lg font-semibold shadow-md">✓ Sudah Dibaca</span>
@@ -86,7 +87,7 @@
         // Update content
         document.getElementById('live-title').textContent = notification.data.nama || 'Nama tidak tersedia';
         document.getElementById('live-message').textContent = notification.data.message || 'Tidak ada pesan.';
-        document.getElementById('live-date').textContent = new Date(notification.created_at).toLocaleString();
+        // document.getElementById('live-date').textContent = new Date(notification.created_at).toLocaleString();
 
         const readStatus = notification.is_read;
         const liveReadStatus = document.getElementById('live-read-status');
@@ -111,8 +112,8 @@
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
+            // hour: '2-digit',
+            // minute: '2-digit'
         });
 
         // Tambahkan logika untuk mengatur warna abu-abu
