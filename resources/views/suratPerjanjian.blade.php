@@ -1,3 +1,5 @@
+surat perjanjian
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +13,7 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Times New Roman';
             margin: 0;
             padding: 0;
         }
@@ -35,18 +37,21 @@
             margin-left: 50px;
         }
         .kop-surat .isi-kop h1{
-            font-size: 16px !important;
+            /* font-size: 16px !important; */
+            font-size: 16pt !important;
             text-align: center;
             margin: 0;
             font-weight: normal;
         }
         .kop-surat .isi-kop h2{
-            font-size: 14px !important;
+            /* font-size: 14px !important; */
+            font-size: 14pt !important;
             text-align: center;
             margin: 5px 0;
         }
         .kop-surat .isi-kop h3{
-            font-size: 12px !important;
+            /* font-size: 12px !important; */
+            font-size: 11pt !important;
             text-align: center;
             margin: 5px 0;
             font-weight: normal;
@@ -65,7 +70,8 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            font-size: 12px;
+            /* font-size: 12px; */
+            font-size: 9pt;
         }
 
         table th {
@@ -87,10 +93,21 @@
             .kop-surat {
                 margin-bottom: 30px;
             }
+
+            .kop-surat .isi-kop h1, .kop-surat .isi-kop h2, .kop-surat .isi-kop h3 {
+                margin: 0;
+            }
+        }
+
+        .isi-surat {
+            font-family: Arial, sans-serif;
+            /* font-size: 9pt; */
         }
 
         p, td{
-            font-size: 11.5px;
+            font-family: Arial, sans-serif;
+            /* font-size: 11.5px; */
+            font-size: 9pt;
         }
     </style>
 
@@ -103,7 +120,8 @@
             <img src="assets/img/polban2.png" alt="Logo">
         </div>
         <div class="isi-kop">
-            <h1>KEMENTERIAN PENDIDIKAN TINGGI, SAINS, DAN TEKNOLOGI</h1>
+            {{-- <h1>KEMENTERIAN PENDIDIKAN TINGGI, SAINS, DAN TEKNOLOGI</h1> --}}
+            <h1>KEMENTERIAN PENDIDIKAN TINGGI, SAINS,<br>DAN TEKNOLOGI</h1>
             <h2>POLITEKNIK NEGERI BANDUNG</h2>
             <h3>
                 Jalan Gegerkalong Hilir, Desa Ciwaruga, Kecamatan Parongpong,<br>
@@ -116,9 +134,9 @@
 
     <div class="isi-surat">
         <div class="pembukaan">
-            <h4 style="text-align: center">PERJANJIAN KINERJA ORMAWA</h4>
+            <h4 style="text-align: center; margin: 9px">PERJANJIAN KINERJA ORMAWA</h4>
 
-            <p>
+            <p style="margin-top: 0 !important">
                 Dalam rangka mewujudkan manajemen pemerintahan yang efektif, transparan dan akuntabel serta berorientasi pada hasil, yang bertanda tangan di bawah ini:
             </p>
         </div>
@@ -254,55 +272,41 @@
         </div>
 
         <div class="pengesahan">
-            <table style="width: 100%; border-collapse: collapse; margin-top: 30px;">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
                 <tr>
-                    {{-- <td>Bandung, 1 Maret 2024</td> --}}
                     <td>Bandung, </td>
                 </tr>
                 <tr>
-                    <td>
-                        Pihak Kedua,
-                    </td>
-                    <td style="width: 50%; padding: 10px; text-align: center;" colspan="2">
-                        Pihak Pertama,
-                    </td>
+                    <td>Pihak Kedua,</td>
+                    <td style="width: 50%; padding: 0 10px 0 10px; text-align: center;" colspan="2">Pihak Pertama,</td>
                 </tr>
                 <tr>
                     <td>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 100px"></div>
+                        <div style="border-top: 1px solid black; width: 200px; margin-top: 70px;"></div>
                     </td>
                     <td>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 100px"></div>
+                        <div style="border-top: 1px solid black; width: 200px; margin-top: 70px;"></div>
                     </td>
                     <td>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 100px"></div>
+                        @foreach ($pengajuans as $pengajuan)
+                            <p style="margin: 50px 0 5px 0"> {{ $pengajuan->nama }} </p>
+                        @endforeach
+                        <div style="border-top: 1px solid black; width: 200px;"></div>
                     </td>
                 </tr>
                 <tr>
-                    {{-- <td colspan="3"> --}}
-                    <td>
-                        <p>
-                            WaDir III Bidang Kemahasiswaan
-                        </p>
-                    </td>
+                    <td>WaDir III Bidang Kemahasiswaan</td>
                     @foreach ($pengajuans as $pengajuan)
-                    <td>
-                        <p>
-                            Pembina {{ $pengajuan->ketua_ormawa }}
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            Ketua {{ $pengajuan->ketua_ormawa }}
-                        </p>
-                    </td>
+                    <td>Pembina {{ $pengajuan->ketua_ormawa }}</td>
+                    <td>Ketua {{ $pengajuan->ketua_ormawa }}</td>
                     @endforeach
                 </tr>
             </table>
 
-            {{-- <p style="font-size: 12px">
-                Keterangan: harus tanda tangan basah (bukan digital/scan) kecuali diijinkan karena alasan peraturan kesehatan.
-            </p> --}}
+            <p style="font-size: 8pt; margin-top: 7px;">
+                Keterangan: keduanya harus tanda tangan basah (bukan digital/scan), kecuali diizinkan karena alasan kesehatan.<br>
+                Untuk bagian pihak pertama, tanda tangan di atas materai; untuk pihak kedua, harus tanda tangan basah
+            </p>
         </div>
     </div>
 

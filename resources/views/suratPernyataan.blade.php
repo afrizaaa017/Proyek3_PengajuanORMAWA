@@ -1,3 +1,5 @@
+surat pernyataan
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +18,7 @@
             padding: 0;
         }
         .kop-surat {
+            font-family: 'Times New Roman';
             display: flex;
             align-items: flex-start; /* Pastikan elemen sejajar dari atas */
             margin-bottom: 20px;
@@ -35,18 +38,21 @@
             margin-left: 50px;
         }
         .kop-surat .isi-kop h1{
-            font-size: 16px !important;
+            /* font-size: 16px !important; */
+            font-size: 16pt !important;
             text-align: center;
             margin: 0;
             font-weight: normal;
         }
         .kop-surat .isi-kop h2{
-            font-size: 14px !important;
+            /* font-size: 14px !important; */
+            font-size: 14pt !important;
             text-align: center;
             margin: 5px 0;
         }
         .kop-surat .isi-kop h3{
-            font-size: 12px !important;
+            /* font-size: 12px !important; */
+            font-size: 11pt !important;
             text-align: center;
             margin: 5px 0;
             font-weight: normal;
@@ -65,7 +71,8 @@
             width: 100%;
             border-collapse: collapse;
             /* margin-top: 20px; */
-            font-size: 14px;
+            /* font-size: 14px; */
+            font-size: 9pt;
         }
 
         table th {
@@ -75,6 +82,10 @@
         .validasi-status {
             text-align: center;
             width: 150px; /* Sesuaikan lebar kolom status */
+        }
+
+        .isi-surat{
+            font-family: Arial, sans-serif;
         }
         /* Menyesuaikan layout dengan ukuran kertas */
         @media print {
@@ -89,7 +100,8 @@
         }
 
         p, td{
-            font-size: 12px;
+            /* font-size: 12px; */
+            font-size: 9pt;
         }
     </style>
 
@@ -104,7 +116,7 @@
         </div>
         <div class="isi-kop">
             {{-- <h1 style="font-size: 20px !important; text-align: center; margin: 0; font-weight: normal;">KEMENTERIAN PENDIDIKAN TINGGI, SAINS,<br> DAN TEKNOLOGI</h1> --}}
-            <h1>KEMENTERIAN PENDIDIKAN TINGGI, SAINS, DAN TEKNOLOGI</h1>
+            <h1>KEMENTERIAN PENDIDIKAN TINGGI, SAINS,<br>DAN TEKNOLOGI</h1>
             <h2>POLITEKNIK NEGERI BANDUNG</h2>
             <h3>
                 Jalan Gegerkalong Hilir, Desa Ciwaruga, Kecamatan Parongpong,<br>
@@ -117,10 +129,10 @@
 
     <div class="isi-surat">
         <div class="pembukaan">
-            <h4 style="text-align: center">SURAT PERNYATAAN CALON KETUA ORGANISASI MAHASISWA</h4>
+            <h4 style="text-align: center; margin: 9px">SURAT PERNYATAAN CALON KETUA ORGANISASI MAHASISWA</h4>
 
             @foreach ($pengajuans as $pengajuan)
-            <p class="sm-10">
+            <p class="sm-10" style="margin-top: 0 !important">
                 Saya yang bertanda tangan di bawah ini:
             </p>
             <table>
@@ -201,34 +213,46 @@
         </div>
 
         <div class="pengesahan">
-            <table style="width: 100%; border: none;">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom:0, padding-bottom: 0">
                 <tr>
-                    <td style="text-align: left;">
-                        <p style="margin-top: 5px; padding-bottom: 75px;">
+                    <td>
+                        <p>
                             Mengetahui,<br>
                             Ketua Jurusan,
                         </p>
-                        <div style="border-top: 1px solid black; width: 200px; left: 0;"></div>
+                    </td>
+                    <td>
+                        <p style="margin-left: 300px">
+                            Bandung,<br>
+                            Yang menyatakan,
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="border-top: 1px solid black; width: 200px; left: 0; margin-top: 75px"></div>
+                    </td>
+                    <td>
+                        @foreach ($pengajuans as $pengajuan) <p style="margin: 55px 0 5 300px"> {{ $pengajuan->nama }} </p> @endforeach
+                        <div style="border-top: 1px solid black; width: 200px; margin-left: 300px; right: 0;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <p>
                             NIP.
                         </p>
                     </td>
-                    <td style="text-align: left; margin-left: 50px">
-                        <p style="margin-top: 5px; padding-bottom: 75px; margin-left: 300px">
-                            Bandung,<br>
-                            Yang menyatakan,
-                        </p>
-                        <div style="border-top: 1px solid black; width: 200px; margin-left: 300px; right: 0;"></div>
+                    <td>
                         @foreach ($pengajuans as $pengajuan)
                         <p style="margin-left: 300px">
-                            NIM : {{ $pengajuan->nim }}
+                            NIM. {{ $pengajuan->nim }}
                         </p>
                         @endforeach
                     </td>
-                </tr>
             </table>
 
-            <p style="font-size: 12px">
+            <p style="font-size: 8pt">
 
                 {{-- Keterangan: yang menyatakan harus tanda tangan basah diatas materai, besertakan cap jurusan<br>
                 (bukan digital/scan) kecuali diijinkan karena alasan peraturan kesehatan. --}}
