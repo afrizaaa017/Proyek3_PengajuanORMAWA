@@ -39,7 +39,7 @@
 
             <a id="dashboard-link" class="sidebar-link py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 rounded-lg transition duration-300 hover:border hover:bg-white hover:shadow-xl"
 
-            href="/dashboard">
+            href="{{ route('mahasiswa.index') }}">
                 <div class="icon shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                     <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <title>shop</title>
@@ -268,7 +268,7 @@
 
                             <li class="relative mb-2">
                                 <hr class="h-px mt-0 mb-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent">
-                                <a class="ease-soft py-1 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="/notifikasi">
+                                <a class="ease-soft py-1 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700"  href="{{ route('notifikasi') }}">
                                     <div class="flex justify-center items-center py-1">
                                     <div class="flex flex-col justify-center">
                                       <h6 class="mb-1 text-sm font-normal leading-normal text-center">See All</h6>
