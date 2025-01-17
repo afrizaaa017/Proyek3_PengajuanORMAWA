@@ -148,7 +148,7 @@ Route::get('/menu', function () {
 Route::post('/dashboard', [SettingWaktuDeadlineController::class, 'updateAccesTime'])->name('update.access.time')->middleware('auth');
 
 // Validasi pengajuan
-Route::get('/validate-pengajuan-status', [ValidatePengajuan::class, 'validatePengajuanStatus'])->middleware('auth');
+Route::get('/validate-pengajuan-status', [ValidatePengajuan::class, 'validatePengajuanStatus'])->name('validate-pengajuanStatus')->middleware('auth');
 
 
 

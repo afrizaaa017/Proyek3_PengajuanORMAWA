@@ -157,6 +157,8 @@
     @endif
         
 <script>
+    const validatePengajuanUrl = "{{ route('validate-pengajuanStatus') }}";
+
     document.getElementById('periode').addEventListener('change', function () {
         const selectedPeriode = this.value;
         const url = new URL(window.location.href);
@@ -174,7 +176,7 @@
             event.preventDefault();
 
             // Validasi status pengajuan sebelum mengizinkan upload
-            fetch('/validate-pengajuan-status', {
+            fetch(validatePengajuanUrl, {
                     method: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
@@ -336,6 +338,8 @@
 </script> --}}
 
 <script>
+const uploadMoUUrl = "{{ route('upload-mou') }}";
+
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('uploadMOU-btn')) {
         event.preventDefault();
@@ -372,7 +376,7 @@ document.addEventListener('click', function (event) {
                 const formData = new FormData();
                 formData.append('file', file);
 
-                fetch('/upload-mou', {
+                fetch(uploadMoUUrl, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
@@ -395,6 +399,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
+const uploadPersyaratanPengajuanUrl = "{{ route('upload-persyaratanPengajuan') }}";
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('uploadPersyaratan-btn')) {
         event.preventDefault();
@@ -431,7 +436,7 @@ document.addEventListener('click', function (event) {
                 const formData = new FormData();
                 formData.append('file', file);
 
-                fetch('/upload-persyaratanPengajuan', {
+                fetch(uploadPersyaratanPengajuanUrl, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
