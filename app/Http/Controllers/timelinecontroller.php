@@ -13,7 +13,7 @@ class TimelineController extends Controller
     public function index()
     {
         $timelines = Timeline::all();
-        return view('admin', compact('timelines'));
+        return view('Pages.Kemahasiswaan.timeline', compact('timelines'));
     }
     
     

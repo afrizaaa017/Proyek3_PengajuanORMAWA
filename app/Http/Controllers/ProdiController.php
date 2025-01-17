@@ -18,7 +18,7 @@ class ProdiController extends Controller
     {
         $prodis = Prodi::with('jurusan')->get();
         $jurusans = Jurusan::all(); // Ambil data ormawa untuk dropdown
-        return view('TambahJurusan', compact('prodis','jurusans'));
+        return view('Pages.Kemahasiswaan.kelola_jurusan', compact('prodis','jurusans'));
     }
 
     // Menyimpan data ketua ormawa baru

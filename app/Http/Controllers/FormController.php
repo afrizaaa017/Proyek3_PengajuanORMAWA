@@ -116,7 +116,7 @@ class FormController extends Controller
             '15. Sertifikat Berorganisasi' => $pengajuans->berkas->sertifikat_berorganisasi,
             '16. Berita Acara Pemilihan' => $pengajuans->berkas->berita_acara_pemilihan,
         ];
-        return view('detailPengajuan', compact('pengajuans','files'));
+        return view('Pages.Kemahasiswaan.detail_pengajuan', compact('pengajuans','files'));
     }
 
     public function detailSurat($id)
@@ -134,7 +134,7 @@ class FormController extends Controller
             '4. Surat KAK' => $pengajuans->berkas->surat_kak,
         ];
 
-        return view('detailUploadSurat', compact('pengajuans','files'));
+        return view('Pages.Kemahasiswaan.detail_surat_pendukung', compact('pengajuans','files'));
     }
 
     public function index()
@@ -155,7 +155,7 @@ class FormController extends Controller
         $prodis = Prodi::all();
         $ketuaOrmawas = KetuaOrmawa::all();
 
-        return view('form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
+        return view('Pages.Mahasiswa.pengajuan_form', compact('ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
     }
 
     public function updateStatus(Request $request, $id, $status)
@@ -194,7 +194,7 @@ class FormController extends Controller
         // $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan = Pengajuan::where('id', $id)->where('nim', $nim)->firstOrFail();
 
-        return view('editPengajuan', compact('pengajuan', 'ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
+        return view('Pages.Mahasiswa.revisi_pengajuan_form', compact('pengajuan', 'ormawas', 'jurusans', 'prodis', 'ketuaOrmawas'));
     }
 
     public function listtable(Request $request)
@@ -207,7 +207,7 @@ class FormController extends Controller
             return $query->where('periode', $selectedPeriode);
         })->get();
 
-        return view('listtable', compact('pengajuans', 'periodes', 'selectedPeriode'));
+        return view('Pages.Kemahasiswaan.list_tabel', compact('pengajuans', 'periodes', 'selectedPeriode'));
     }
 
     public function update(Request $request, $nim, $id)

@@ -23,7 +23,7 @@ class BerkasController extends Controller
             return redirect()->route('form')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
         }
         $pengajuanData = session('pengajuan');
-        return view('pengajuanberkas', ['pengajuanData' => $pengajuanData]);
+        return view('Pages.Mahasiswa.pengajuan_berkas', ['pengajuanData' => $pengajuanData]);
     }
 
     public function store(Request $request)
@@ -186,7 +186,7 @@ class BerkasController extends Controller
 
         $request->session()->forget('berkas');
         $pengajuans = Pengajuan::with('berkas')->where('user_id', Auth::id())->get();
-        return view('progrestabel', compact('pengajuans'));
+        return view('Pages.Mahasiswa.progress_tabel', compact('pengajuans'));
     }
 
     public function edit($nim, $id)
@@ -199,7 +199,7 @@ class BerkasController extends Controller
         ->firstOrFail();
         // dd($pengajuan);
 
-        return view('editPengajuBerkas', ['nim' => $nim, 'pengajuan' => $pengajuan, 'revisiPengajuan' => $revisiPengajuan]);
+        return view('Pages.Mahasiswa.revisi_pengajuan_berkas', ['nim' => $nim, 'pengajuan' => $pengajuan, 'revisiPengajuan' => $revisiPengajuan]);
     }
 
     public function update(Request $request, $nim, $id)
@@ -363,7 +363,7 @@ class BerkasController extends Controller
         ->where('nim', $nim) // Filter berdasarkan NIM
         ->firstOrFail(); // Ambil data atau gagal jika tidak ditemukan
 
-        return view('uploadSurat', ['pengajuan' => $pengajuan]);
+        return view('Pages.Mahasiswa.upload_surat_pendukung', ['pengajuan' => $pengajuan]);
     }
 
     public function updateSurat(Request $request, $nim, $id)

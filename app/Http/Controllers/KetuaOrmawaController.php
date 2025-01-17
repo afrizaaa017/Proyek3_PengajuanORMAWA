@@ -17,7 +17,7 @@ class KetuaOrmawaController extends Controller
     {
         $ketuaOrmawas = KetuaOrmawa::with('ormawa')->get();
         $ormawas = Ormawa::all(); // Ambil data ormawa untuk dropdown
-        return view('TambahKetuaOrmawa', compact('ketuaOrmawas','ormawas'));
+        return view('Pages.Kemahasiswaan.kelola_ketua_ormawa', compact('ketuaOrmawas','ormawas'));
     }
 
     // Menyimpan data ketua ormawa baru

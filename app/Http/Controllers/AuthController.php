@@ -27,7 +27,7 @@ class AuthController extends Controller
             }
         }
 
-        return view('pages.Auth.login');
+        return view('Pages.Auth.login');
     }
 
     /**

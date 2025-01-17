@@ -47,6 +47,6 @@ class SubmissionController extends Controller
         $periodes = $pengajuan->select('periode')->distinct()->pluck('periode');
 
         // Kirim data ke view menggunakan fungsi compact
-        return view('dashboard', compact('sudahMengajukan', 'belumMengajukan', 'profilAntrean', 'profilBerhasil', 'periode', 'periodes'));
+        return view('Pages.Kemahasiswaan.dashboard_kemahasiswaan', compact('sudahMengajukan', 'belumMengajukan', 'profilAntrean', 'profilBerhasil', 'periode', 'periodes'));
     }
 }

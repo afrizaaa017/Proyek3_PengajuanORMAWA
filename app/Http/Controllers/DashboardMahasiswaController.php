@@ -87,7 +87,7 @@ class DashboardMahasiswaController extends Controller
         $totalBelumMengajukan = $filteredOrmawas->count();
 
         // Kirim data ke view
-        return view('dashboardmahasiswa', [
+        return view('Pages.Mahasiswa.dashboard_mahasiswa', [
             'exists' => $exists,
             'pengajuan' => $pengajuan,
             // 'jumlahBelumDisetujui' =>  $totalOrmawa - Pengajuan::where('status', PengajuanStatus::Diterima->value)->count(),

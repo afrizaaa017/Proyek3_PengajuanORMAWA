@@ -8,7 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 
-class PDFController extends Controller
+class PdfController extends Controller
 {
     public function suratPernyataan(Request $request)
     {
@@ -46,7 +46,7 @@ class PDFController extends Controller
         // Nama file dinamis dengan tanggal
         $fileName = 'Surat_Pernyataan_Ketua_Ormawa_' . date('Y-m-d') . '.pdf';
 
-        $pdf = Pdf::loadview('suratPernyataan', compact('pengajuans', 'berkas'));
+        $pdf = Pdf::loadview('Pages.Mahasiswa.surat_pernyataan', compact('pengajuans', 'berkas'));
         // return view('suratPernyataan', compact('pengajuans', 'berkas')); // Tampilkan PDF di browser
         // return $pdf->stream(); // Tampilkan PDF di browser
         return $pdf->download($fileName); // Tampilkan PDF di browser
@@ -66,7 +66,7 @@ class PDFController extends Controller
 
         $fileName = 'Surat_Perjanjian_Ketua_Ormawa_' . date('Y-m-d') . '.pdf';
 
-        $pdf = Pdf::loadview('suratPerjanjian', compact('pengajuans'));
+        $pdf = Pdf::loadview('Pages.Mahasiswa.surat_perjanjian', compact('pengajuans'));
         // return view('suratPerjanjian'); // Tampilkan PDF di browser
         // return $pdf->stream();
         return $pdf->download($fileName); // Tampilkan PDF di browser
