@@ -123,7 +123,7 @@
         </div>
         <!-- Tombol Back to Dashboard -->
         <div class="mt-4">
-            <a href="/dashboard" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+            <a href="{{route('dashboard')}}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                 <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
             </a>
         </div>

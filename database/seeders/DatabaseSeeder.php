@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'MPM Polban',
                 'email' => 'mpm@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('mpmpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'BEM Polban',
                 'email' => 'bem@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('bempolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Sipil',
                 'email' => 'hmjts@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtspolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Mesin',
                 'email' => 'hmjtm@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtmpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Elektro',
                 'email' => 'hmjte@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtepolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Kimia',
                 'email' => 'hmjtk@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtkpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Refrigerasi dan Tata Udara',
                 'email' => 'hmjtra@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtrapolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -124,7 +124,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Komputer dan Informatika',
                 'email' => 'hmjtki@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtkipolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -134,7 +134,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Teknik Konversi Energi',
                 'email' => 'hmjtke@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtkepolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -144,7 +144,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Akuntansi',
                 'email' => 'hmjta@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjtapolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -154,7 +154,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Administrasi Niaga',
                 'email' => 'hmjan@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make(value: 'hmjanpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Bahasa Inggris',
                 'email' => 'hmjbi@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('hmjbipolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -176,7 +176,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Robotika	',
                 'email' => 'ukm-robotika@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('robotikapolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -186,7 +186,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Otomotif',
                 'email' => 'ukm-otomotif@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('otomotifpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -196,7 +196,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Kewirausahaan',
                 'email' => 'ukm-wirus@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('wiruspolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'ELTRAS',
                 'email' => 'ukm-eltras@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('eltraspolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -217,7 +217,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Assalam',
                 'email' => 'ukm-assalam@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('assalampolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -227,7 +227,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'PMK',
                 'email' => 'ukm-pmk@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('pmkpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -237,7 +237,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'KMK',
                 'email' => 'ukm-kmk@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('kmkpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -247,7 +247,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Kabayan',
                 'email' => 'ukm-kabayan@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('kabayanpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -257,7 +257,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'PSM',
                 'email' => 'ukm-psm@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('psm@polban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -267,7 +267,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Musik dan Teater',
                 'email' => 'ukm-musking@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('muskingpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -277,7 +277,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'UKBM',
                 'email' => 'ukm-ukbm@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('ukbmpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -287,7 +287,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'UBSU',
                 'email' => 'ukm-ubsu@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('ubsupolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -298,7 +298,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'USF',
                 'email' => 'ukm-usf@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('usfpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -308,7 +308,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Bola Basket',
                 'email' => 'ukm-basket@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('basketpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -318,7 +318,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Bola Voli',
                 'email' => 'ukm-volly@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('vollypolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -328,7 +328,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Bulutangkis',
                 'email' => 'ukm-bulutangkis@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('bulutangkispolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -338,7 +338,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Catur',
                 'email' => 'ukm-catur@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('caturpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -348,7 +348,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Bela Diri',
                 'email' => 'ukm-beladiri@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('beladiripolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -358,7 +358,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'PPRPG-SAGA',
                 'email' => 'ukm-saga@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('sagapolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -368,7 +368,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'KSR',
                 'email' => 'ukm-ksr@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('ksrpolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -378,7 +378,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Pramuka',
                 'email' => 'ukm-pramuka@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('pramukapolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
@@ -388,7 +388,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Fellas',
                 'email' => 'ukm-fellas@polban.ac.id',
                 'email_verified_at' => now(),
-                'password' => Hash::make('Polban12345'), // default password
+                'password' => Hash::make('fellaspolban12345'), // default password
                 'role_id' => 'mahasiswa',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
