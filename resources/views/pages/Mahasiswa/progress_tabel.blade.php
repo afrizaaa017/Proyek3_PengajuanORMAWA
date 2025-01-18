@@ -1,6 +1,6 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_mahasiswa')
 
 @section('content')
 <div class=" w-full px-4 py-6 mx-auto" id="content">
@@ -63,7 +63,7 @@
                                         class="btn-revisi-pengaju bg-gradient-to-r from-[#FF7F00] to-[#FF9A36] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1"
                                         data-id="{{ $pengajuan->nama }}"
                                         data-alasan="{{ $pengajuan->keterangan }}"
-                                        data-edit-url="{{ route('pengajuan.edit', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
+                                        data-edit-url="{{ route('pengajuan.biodata.edit', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
                                         Revisi
                                     </button>
                                     @elseif ($pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasi || $pengajuan->status === \App\Enums\PengajuanStatus::MenungguVerifikasiUlang || $pengajuan->status === \App\Enums\PengajuanStatus::Diterima )
@@ -77,7 +77,7 @@
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                                         <div class="mt-2 text-sm">
                                             <button>
-                                                <a href="{{ route('surat.pernyataan') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                                                <a href="{{ route('surat.pernyataan.create') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                                                     Unduh Surat Pernyataan
                                                 </a>
                                             </button>
@@ -92,7 +92,7 @@
                                     @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                                         <div class="mt-2 text-sm">
                                             <button>
-                                                <a href="{{ route('surat.perjanjian') }}" class="inline-block px-4 py-2 text-sm text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                                                <a href="{{ route('surat.perjanjian.create') }}" class="inline-block px-4 py-2 text-sm text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                                                     Unduh Surat Perjanjian
                                                 </a>
                                             </button>
@@ -110,10 +110,10 @@
                 </div>
                 <!-- Tombol Print  -->
                 {{-- <div class="mt-4 flex space-x-4 justify-center">
-                    <a href="{{ route('surat.pernyataan') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                    <a href="{{ route('surat.pernyataan.create') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                         Unduh Surat Pernyataan
                     </a>
-                    <a href="{{ route('surat.perjanjian') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+                    <a href="{{ route('surat.perjanjian.create') }}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                         Unduh Surat Perjanjian
                     </a>
                 </div> --}}

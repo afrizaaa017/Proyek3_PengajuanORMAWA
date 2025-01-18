@@ -9,24 +9,24 @@ use Illuminate\Http\Request;
 use App\Enums\PengajuanStatus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\SKTerbitNotifikasi;
 use App\Notifications\PengajuanNotifikasi;
 use Illuminate\Support\Facades\Notification;
 
 class BerkasController extends Controller
 {
-    public function index()
+    //Menampilkan form untuk menambah data berkas pengajuan baru
+    public function createBerkas()
     {
         if (!session()->has('pengajuan')) {
-            return redirect()->route('form')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
+            return redirect()->route('pengajuan.biodata.create')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
         }
         $pengajuanData = session('pengajuan');
         return view('Pages.Mahasiswa.pengajuan_berkas', ['pengajuanData' => $pengajuanData]);
     }
 
-    public function store(Request $request)
+    //Menyimpan data biodata dan data berkas pengajuan baru ke database
+    public function storeBerkas(Request $request)
     {
         $request->validate([
             'scan_ktp' => 'required|mimes:pdf|max:2048',
@@ -171,38 +171,25 @@ class BerkasController extends Controller
         });
 
         $request->session()->forget('pengajuan');
-        return redirect()->route('progrestabel')->with('success', 'Pengajuan berhasil disimpan.');
-        // return redirect('/progrestabel')->with('success', 'Proses Pengajuan Telah Berhasil !');
+        return redirect()->route('progress.tabel.show')->with('success', 'Pengajuan berhasil disimpan.');
     }
 
-    public function progrestabel(Request $request)
-    {
-        $userId = Auth::id();
-        $exists = Pengajuan::where('user_id', $userId)->exists();
-
-        if (!session()->has('berkas') && !$exists) {
-            return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
-        }
-
-        $request->session()->forget('berkas');
-        $pengajuans = Pengajuan::with('berkas')->where('user_id', Auth::id())->get();
-        return view('Pages.Mahasiswa.progress_tabel', compact('pengajuans'));
-    }
-
-    public function edit($nim, $id)
+    //Menampilkan form untuk mengedit data berkas pengajuan tertentu
+    public function editBerkas($nim, $id)
     {
         $revisiPengajuan = session('revisiPengajuan');
         // $pengajuans = Pengajuan::with('berkas')->find($id)->where('nim', $nim);
         $pengajuan = Pengajuan::with('berkas')
-        ->where('id', $id)
-        ->where('nim', $nim)
-        ->firstOrFail();
+            ->where('id', $id)
+            ->where('nim', $nim)
+            ->firstOrFail();
         // dd($pengajuan);
 
         return view('Pages.Mahasiswa.revisi_pengajuan_berkas', ['nim' => $nim, 'pengajuan' => $pengajuan, 'revisiPengajuan' => $revisiPengajuan]);
     }
 
-    public function update(Request $request, $nim, $id)
+    //Memperbarui data biodata dan data berkas pengajuan tertentu di database
+    public function updateBerkas(Request $request, $nim, $id)
     {
         $request->validate([
             'scan_ktp' => 'nullable|file|mimes:pdf|max:2048',
@@ -352,20 +339,22 @@ class BerkasController extends Controller
         $staffs = User::where('role_id', 'staff_kemahasiswaan')->get();
         Notification::send($staffs, new PengajuanNotifikasi($pengajuan, 'revisi_dikirim', true));
 
-        return redirect()->route('progrestabel')->with('success', 'Data updated successfully');
+        return redirect()->route('progress.tabel.show')->with('success', 'Data updated successfully');
     }
 
-    public function indexUpdateSurat($nim, $id)
+    //Menampilkan form untuk mengirim surat pendukung
+    public function createSurat($nim, $id)
     {
         $pengajuan = Pengajuan::with('berkas')
-        ->where('user_id', Auth::id()) // Filter pengguna yang sedang login
-        ->where('id', $id) // Filter berdasarkan ID pengajuan
-        ->where('nim', $nim) // Filter berdasarkan NIM
-        ->firstOrFail(); // Ambil data atau gagal jika tidak ditemukan
+            ->where('user_id', Auth::id())
+            ->where('id', $id)
+            ->where('nim', $nim)
+            ->firstOrFail();
 
         return view('Pages.Mahasiswa.upload_surat_pendukung', ['pengajuan' => $pengajuan]);
     }
 
+    //Memperbarui data surat pendukung pengajuan tertentu di database
     public function updateSurat(Request $request, $nim, $id)
     {
         $request->validate([
@@ -419,7 +408,8 @@ class BerkasController extends Controller
         return redirect()->route('mahasiswa.index')->with('success', 'Proses Upload Persuratan Berhasil !');
     }
 
-    public function uploadMOU(Request $request)
+    //Menyimpan template surat mou ke storage
+    public function storeMou(Request $request)
     {
         $request->validate([
             'file' => 'required|mimes:pdf|max:2048',
@@ -441,8 +431,9 @@ class BerkasController extends Controller
             'year' => $currentYear,
         ]);
     }
-    
-    public function uploadPersyaratanPengajuan(Request $request)
+
+    //Menyimpan surat persyaratan pengajuan ke storage
+    public function storePersyaratan(Request $request)
     {
         $request->validate([
             'file' => 'required|mimes:pdf|max:2048',

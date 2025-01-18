@@ -1,11 +1,11 @@
-@extends('components.main')
-@include('layouts.head')
+@extends('Components.main')
+@include('Layouts.head')
 <style>
     [x-cloak] {
         display: none !important;
     }
 </style>
-@include('components.navbar2staff')
+@include('Components.navbar_kemahasiswaan')
 
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -26,7 +26,7 @@
         
             <!-- Kotak Oranye -->
             <div class="kotak-oranye h-48 w-full md:w-auto bg-orange-500 order-3 md">
-                <a href="{{ url('/listtable') }}" class="block text-2xl md:text-4xl font-bold text-left p-4 text-white">
+                <a href="{{ route('list.pengajuan.index') }}" class="block text-2xl md:text-4xl font-bold text-left p-4 text-white">
                     Lihat Semua Pengajuan <br> ORMAWA
                 </a>
             </div>
@@ -72,7 +72,7 @@
 
                 <!-- Tombol di Bawah Sudah Berhasil -->
                 <div class="flex gap-4">
-                    <a href="{{ url('/admin') }}" class="block text-center bg-gradient-to-r from-[#2E7BCE] to-[#173E68] text-white text-lg font-bold py-3 rounded-lg hover:opacity-90 transition w-1/2">
+                    <a href="{{ route('admin.index') }}" class="block text-center bg-gradient-to-r from-[#2E7BCE] to-[#173E68] text-white text-lg font-bold py-3 rounded-lg hover:opacity-90 transition w-1/2">
                         Atur Timeline
                     </a>
                     <div x-data="{ openModal: false }" class="w-1/2">

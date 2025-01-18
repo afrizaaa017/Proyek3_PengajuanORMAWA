@@ -1,6 +1,6 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_mahasiswa')
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -68,7 +68,7 @@
 
         <!-- Tombol Lakukan Pengajuan -->
         <div class="flex my-auto mx-auto ">
-            <a href="{{ route('form') }}" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center py-3 rounded-lg block h-18">
+            <a href="{{ route('pengajuan.biodata.create') }}" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center py-3 rounded-lg block h-18">
                 1. Lakukan Pengajuan
             </a>
         </div>
@@ -76,7 +76,7 @@
             @if ($exists && $pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                 <button
                     class="btn-upload-surat w-full bg-[#FFC107] hover:bg-[#5d4f25] text-white font-semibold text-center py-3 rounded-lg block h-18"
-                    data-edit-url="{{ route('surat.upload', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
+                    data-edit-url="{{ route('surat.pendukung.create', ['nim' => $pengajuan->nim, 'id' => $pengajuan->id]) }}">
                     2. Upload Surat Pernyataan, Surat Perjanjian, dan Surat MOU
                 </button>
             @else

@@ -2,7 +2,7 @@
 <html lang="id">
 
 <head>
-    @include('layouts.head')
+    @include('Layouts.head')
     <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -10,9 +10,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2staff')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_kemahasiswaan')
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -103,13 +103,13 @@
                         </td>
                         <td class="px-4 py-3 text-[#295F98]">{{ \Carbon\Carbon::parse($pengajuan->updated_at)->translatedFormat('j F Y') }}</td>
                         <td class="px-4 py-3">
-                            <a href="{{ route('pengajuan.detail', ['id' => $pengajuan->id]) }}" class="text-blue-500 hover:text-blue-700">
+                            <a href="{{ route('pengajuan.detail.show', ['id' => $pengajuan->id]) }}" class="text-blue-500 hover:text-blue-700">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
                         @if ($pengajuan->status === \App\Enums\PengajuanStatus::Diterima)
                         <td class="px-4 py-3">
-                            <a href="{{ route('surat.detail', ['id' => $pengajuan->id]) }}" class="text-blue-500 hover:text-blue-700">
+                            <a href="{{ route('surat.detail.show', ['id' => $pengajuan->id]) }}" class="text-blue-500 hover:text-blue-700">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
@@ -123,7 +123,7 @@
         </div>
         <!-- Tombol Back to Dashboard -->
         <div class="mt-4">
-            <a href="{{route('dashboard')}}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
+            <a href="{{route('kemahasiswaan.index')}}" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#295F98] rounded-lg shadow-md hover:bg-[#183d64]">
                 <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
             </a>
         </div>
@@ -338,7 +338,7 @@
 </script> --}}
 
 <script>
-const uploadMoUUrl = "{{ route('upload-mou') }}";
+const uploadMoUUrl = "{{ route('template.mou.store') }}";
 
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('uploadMOU-btn')) {
@@ -399,7 +399,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-const uploadPersyaratanPengajuanUrl = "{{ route('upload-persyaratanPengajuan') }}";
+const uploadPersyaratanPengajuanUrl = "{{ route('surat.persyaratan.pengajuan.store') }}";
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('uploadPersyaratan-btn')) {
         event.preventDefault();

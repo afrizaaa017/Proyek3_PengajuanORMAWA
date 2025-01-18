@@ -8,21 +8,23 @@ use Illuminate\Http\Request;
 
 class ProdiController extends Controller
 {
+    //Mengambil data prodi dari database
     public function getProdi($jurusan_id)
     {
-        $prodis = Prodi::where('jurusan_id', $jurusan_id)->get(); 
+        $prodis = Prodi::where('jurusan_id', $jurusan_id)->get();
         return response()->json($prodis);
     }
 
-    public function index()
+    //Menampilkan daftar semua prodi dan jurusan
+    public function indexProdiJurusan()
     {
         $prodis = Prodi::with('jurusan')->get();
-        $jurusans = Jurusan::all(); // Ambil data ormawa untuk dropdown
-        return view('Pages.Kemahasiswaan.kelola_jurusan', compact('prodis','jurusans'));
+        $jurusans = Jurusan::all();
+        return view('Pages.Kemahasiswaan.kelola_jurusan', compact('prodis', 'jurusans'));
     }
 
-    // Menyimpan data ketua ormawa baru
-    public function store(Request $request)
+    // Menyimpan data prodi baru ke database
+    public function storeProdi(Request $request)
     {
         $request->validate([
             'nama_prodi' => 'required|string|unique:prodis|max:255',
@@ -37,34 +39,12 @@ class ProdiController extends Controller
         return redirect()->route('prodi.index')->with('success', 'Prodi berhasil ditambahkan');
     }
 
-    public function destroy($id)
+    //Menghapus data prodi tertentu dari database
+    public function destroyProdi($id)
     {
         $prodis = Prodi::findOrFail($id);
         $prodis->delete();
 
         return redirect()->route('prodi.index')->with('success', 'Ketua Ormawa berhasil dihapus');
     }
-
-    public function storeJurusan(Request $request)
-    {
-        // dd($request->all());
-        $request->validate([
-            'nama_jurusan' => 'required|string|unique:jurusans|max:255',
-        ]);
-
-        Jurusan::create([
-            'nama_jurusan' => $request->nama_jurusan,
-        ]);
-
-        return redirect()->route('prodi.index')->with('success', 'Prodi berhasil ditambahkan');
-    }
-
-    public function destroyJurusan($id)
-    {
-        $jurusans = Jurusan::findOrFail($id);
-        $jurusans->delete();
-
-        return redirect()->route('prodi.index')->with('success', 'Ketua Ormawa berhasil dihapus');
-    }
-
 }

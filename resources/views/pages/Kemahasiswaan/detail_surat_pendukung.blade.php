@@ -1,6 +1,6 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2staff')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_kemahasiswaan')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-8">
@@ -88,7 +88,7 @@
 
     <div class="flex justify-between items-center mt-4">
         <button class="bg-gradient-to-r from-[#FF7F00] to-[#FF9A36] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">
-            <a href="/listtable" >Kembali</a>
+            <a href="{{ route('list.pengajuan.index') }}" >Kembali</a>
         </button>
     </div>
 </div>

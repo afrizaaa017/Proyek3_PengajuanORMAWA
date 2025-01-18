@@ -25,7 +25,7 @@ class SettingWaktuDeadlineController extends Controller
     );
 
     // Redirect ke dashboard dengan pesan sukses
-    return redirect()->route('dashboard')->with('success', 'Waktu akses berhasil diperbarui.');
+    return redirect()->route('kemahasiswaan.index')->with('success', 'Waktu akses berhasil diperbarui.');
 }
 
 }

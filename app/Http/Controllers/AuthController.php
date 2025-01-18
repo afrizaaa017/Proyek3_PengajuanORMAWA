@@ -21,7 +21,7 @@ class AuthController extends Controller
             if ($user->role_id == 'mahasiswa') {
                 return redirect()->route('mahasiswa.index');
             } elseif ($user->role_id == 'staff_kemahasiswaan') {
-                return redirect()->route('dashboard');
+                return redirect()->route('kemahasiswaan.index');
             } else {
                 return redirect()->route('login')->withErrors(['error' => 'Role tidak terdaftar.']);
             }
@@ -65,7 +65,7 @@ class AuthController extends Controller
             if ($user->role_id == 'mahasiswa') {
                 return redirect()->route('mahasiswa.index');  // Halaman untuk mahasiswa
             } elseif ($user->role_id == 'staff_kemahasiswaan') {
-                return redirect()->route('dashboard');  // Halaman untuk staff
+                return redirect()->route('kemahasiswaan.index');  // Halaman untuk staff
             }
 
             // Default redirect jika role tidak ditemukan

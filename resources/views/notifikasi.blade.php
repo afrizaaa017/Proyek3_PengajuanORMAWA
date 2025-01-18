@@ -1,4 +1,4 @@
-@include('layouts.head')
+@include('Layouts.head')
 <head>
     <title>Pengajuan Ketua ORMAWA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
-@extends('components.main')
+@extends('Components.main')
 
     @if (Auth::user() && Auth::user()->role_id === 'staff_kemahasiswaan')
-        @include('components.navbar2staff')
+        @include('Components.navbar_kemahasiswaan')
     @elseif (Auth::user() && Auth::user()->role_id === 'mahasiswa')
-        @include('components.navbar2')
+        @include('Components.navbar_mahasiswa')
     @endif
-{{-- @include('components.navbar2') --}}
+{{-- @include('Components.navbar_mahasiswa') --}}
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto" id="content">

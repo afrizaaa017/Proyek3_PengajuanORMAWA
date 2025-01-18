@@ -1,6 +1,6 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_mahasiswa')
 
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -52,7 +52,7 @@
         <!-- End of Stepper Container -->
 
         <!-- Konten Upload Berkas -->
-        <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data" id="applicationForm">
+        <form action="{{ route('pengajuan.berkas.store') }}" method="POST" enctype="multipart/form-data" id="applicationForm">
             @csrf
             {{-- <div class="container mx-auto mt-10 flex-1"> --}}
             <div class="container mx-auto mt-10">
@@ -205,7 +205,7 @@
 
         <!-- Tombol Previous dan Next -->
         <div class="flex justify-between mt-4">
-            <button type="button" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1"><a href="{{route('form')}}" >Previous</a></button>
+            <button type="button" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1"><a href="{{route('pengajuan.biodata.create')}}" >Previous</a></button>
             <button type="button" id="submitBtn" class="bg-gradient-to-r from-[#00008B] to-[#3B3BBD] text-white py-2 px-4 rounded-lg shadow-lg font-extrabold transition duration-200 ease-in-out hover:-translate-y-1">Send</button>
         </div>
     </div>

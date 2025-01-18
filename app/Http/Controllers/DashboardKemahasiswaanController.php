@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengajuan;
-use Illuminate\Http\Request;
 use App\Models\KetuaOrmawa;
+use Illuminate\Http\Request;
 
-
-class SubmissionController extends Controller
+class DashboardKemahasiswaanController extends Controller
 {
     public function index(Request $request)
     {

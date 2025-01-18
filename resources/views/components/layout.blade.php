@@ -49,8 +49,8 @@
 </head>
 
 <body>
-    <x-navbar></x-navbar>
-    <x-sidebar></x-sidebar>
+    {{-- <x-navbar></x-navbar>
+    <x-sidebar></x-sidebar> --}}
 
     <main>
         <div>

@@ -1,7 +1,7 @@
-@extends('components.main')
-@include('layouts.head')
+@extends('Components.main')
+@include('Layouts.head')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-@include('components.navbar2')
+@include('Components.navbar_mahasiswa')
 
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
@@ -58,7 +58,7 @@
                 <section class="bg-blue">
                     <div class="py-8 px-4 mx-auto">
                         <h3 class="mb-4 text-xl font-bold text-blue-800 text-center">  </h2>
-                        <form action="{{ route('form.simpanPengajuan') }}" method="post" enctype="multipart/form-data" id="applicationForm">
+                        <form action="{{ route('pengajuan.biodata.store') }}" method="post" enctype="multipart/form-data" id="applicationForm">
                             @csrf
                             <!-- Mengatur Grid Layout 2 kolom -->
                             <div class="row g-4">
@@ -111,10 +111,10 @@
                                     {{-- <option value="2020-2021" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2020-2021' ? 'selected' : '' }}>2020-2021</option>
                                     <option value="2021-2022" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2021-2022' ? 'selected' : '' }}>2021-2022</option> --}}
                                     <option value="2024-2025" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2024-2025' ? 'selected' : '' }}>2024-2025</option>
-                                    <option value="2025-2026" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2025-2026' ? 'selected' : '' }}>2025-2026</option>
+                                    {{-- <option value="2025-2026" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2025-2026' ? 'selected' : '' }}>2025-2026</option>
                                     <option value="2026-2027" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2026-2027' ? 'selected' : '' }}>2026-2027</option>
                                     <option value="2027-2028" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2027-2028' ? 'selected' : '' }}>2027-2028</option>
-                                    <option value="2028-2029" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2028-2029' ? 'selected' : '' }}>2028-2029</option>
+                                    <option value="2028-2029" {{ old('periode', session('pengajuan')['periode'] ?? '') == '2028-2029' ? 'selected' : '' }}>2028-2029</option> --}}
                                 </select>
                             </div>
 

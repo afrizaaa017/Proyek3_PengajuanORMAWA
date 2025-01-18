@@ -18,7 +18,7 @@ class CheckSubmissionAccess
 
             if ($now->lt($timeDeadline->submission_start_time) || $now->gt($timeDeadline->submission_end_time)) {
                 // Jika di luar waktu akses, redirect ke halaman lain atau tampilkan pesan error
-                return redirect()->route('dashboard')->with('error', 'Halaman pengajuan tidak dapat diakses saat ini.');
+                return redirect()->route('kemahasiswaan.index')->with('error', 'Halaman pengajuan tidak dapat diakses saat ini.');
             }
         }
 

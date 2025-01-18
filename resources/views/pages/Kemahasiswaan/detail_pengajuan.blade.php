@@ -1,6 +1,6 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2staff')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_kemahasiswaan')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-8">
@@ -195,7 +195,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Kirim revisi ke server
-                    fetch("{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Perlu Revisi']) }}", {
+                    fetch("{{ route('pengajuan.status.update', ['id' => $pengajuans->id, 'status' => 'Perlu Revisi']) }}", {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',
@@ -206,7 +206,7 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                                window.location.href = '/listtable'; // Ganti dengan URL yang sesuai
+                                window.location.href = "{{ route('list.pengajuan.index') }}";
                         })
                         .catch(error => {
                             Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan revisi.', 'error');
@@ -216,7 +216,7 @@
         });
         </script>
 
-        <form action="{{ route('pengajuan.updateStatus', ['id' => $pengajuans->id, 'status' => 'Diterima']) }}" method="POST">
+        <form action="{{ route('pengajuan.status.update', ['id' => $pengajuans->id, 'status' => 'Diterima']) }}" method="POST">
             @csrf
             <input type="hidden" name="_method" value="PATCH">
             {{-- <button type="submit" class="btn btn-success text-white py-2 px-4 rounded" id="btnTerima" style="position: relative; z-index: 1;">

@@ -1,12 +1,12 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_mahasiswa')
 
 @section('content')
     <div class="w-full px-4 py-6 mx-auto" id="content">
 
         <!-- Konten Upload Berkas -->
-        <form action="{{ route('surat.update', ['id' => $pengajuan->id, 'nim' => $pengajuan->nim]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
+        <form action="{{ route('surat.pendukung.update', ['id' => $pengajuan->id, 'nim' => $pengajuan->nim]) }}" method="POST" enctype="multipart/form-data" id="applicationForm">
             @csrf
             @method('PUT') <!-- Method spoofing for PUT -->
 

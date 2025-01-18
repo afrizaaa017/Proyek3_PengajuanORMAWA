@@ -1,6 +1,6 @@
-@extends('components.main')
-@include('layouts.head')
-@include('components.navbar2staff')
+@extends('Components.main')
+@include('Layouts.head')
+@include('Components.navbar_kemahasiswaan')
 
 @section('content')
 <div class="w-full px-4 py-6 mx-auto min-h-screen" id="content">
@@ -71,7 +71,7 @@
                             <td class="px-4 py-2 border-b">{{ $user->role_id }}</td>
                             <td class="px-4 py-2 border-b">{{ $user->password }}</td>
                             <td class="px-4 py-2 border-b">
-                                <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="px-5 py-1 bg-gradient-to-r from-[#E11818] to-[#FF7171] text-white font-bold">Hapus</button>

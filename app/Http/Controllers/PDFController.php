@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
-
 class PdfController extends Controller
 {
-    public function suratPernyataan(Request $request)
+    public function createSuratPernyataan(Request $request)
     {
         // $pengajuans = Pengajuan::all();
 
@@ -18,7 +17,7 @@ class PdfController extends Controller
         $exists = Pengajuan::where('user_id', $userId)->exists();
 
         if (!session()->has('berkas') && !$exists) {
-            return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
+            return redirect()->route('pengajuan.berkas.create')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
         }
 
         $request->session()->forget('berkas');
@@ -52,13 +51,13 @@ class PdfController extends Controller
         return $pdf->download($fileName); // Tampilkan PDF di browser
     }
 
-    public function suratPerjanjian(Request $request)
+    public function createSuratPerjanjian(Request $request)
     {
         $userId = Auth::id();
         $exists = Pengajuan::where('user_id', $userId)->exists();
 
         if (!session()->has('berkas') && !$exists) {
-            return redirect()->route('pengajuanberkas')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
+            return redirect()->route('pengajuan.berkas.create')->with('error', 'Harap lengkapi data biodata terlebih dahulu.');
         }
 
         $request->session()->forget('berkas');
@@ -73,3 +72,4 @@ class PdfController extends Controller
 
     }
 }
+
