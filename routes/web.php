@@ -81,8 +81,8 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::get('/dashboard-mahasiswa', [DashboardMahasiswaController::class, 'index'])->name('mahasiswa.index');
 
     //Pengajuan Form
-    Route::get('/pengajuan-form', [BiodataController::class, 'createForm'])->name('pengajuan.biodata.create')->middleware('check.submission.access');
-    Route::post('/pengajuan-form-post', [BiodataController::class, 'storeForm'])->name('pengajuan.biodata.store');
+    Route::get('/pengajuan-biodata', [BiodataController::class, 'createBiodata'])->name('pengajuan.biodata.create')->middleware('check.submission.access');
+    Route::post('/pengajuan-biodata-post', [BiodataController::class, 'storeBiodata'])->name('pengajuan.biodata.store');
 
     //Pengajuan Berkas
     Route::get('/pengajuan-berkas', [BerkasController::class, 'createBerkas'])->name('pengajuan.berkas.create');
@@ -96,12 +96,12 @@ Route::middleware(['auth', IsMahasiswa::class])->group(function () {
     Route::get('/getKetuaOrmawa/{ormawa_id}', [KetuaOrmawaController::class, 'getKetuaOrmawa']);
 
     //Revisi Pengajuan Biodata
-    Route::get('/pengajuan/{nim}/edit/{id}', [BiodataController::class, 'editForm'])->name('pengajuan.biodata.edit');
-    Route::put('/pengajuan/{nim}/submit/{id}', [BiodataController::class, 'updateForm'])->name('pengajuan.biodata.update');
+    Route::get('/pengajuan/{nim}/edit-biodata/{id}', [BiodataController::class, 'editBiodata'])->name('pengajuan.biodata.edit');
+    Route::put('/pengajuan/{nim}/submit-biodata/{id}', [BiodataController::class, 'updateBiodata'])->name('pengajuan.biodata.update');
 
     //Revisi Pengajuan Berkas
-    Route::get('/pengajuan/{nim}/berkas/edit/{id}', [BerkasController::class, 'editBerkas'])->name('pengajuan.berkas.edit');
-    Route::put('/pengajuan/{nim}/berkas/submmit/{id}', [BerkasController::class, 'updateBerkas'])->name('pengajuan.berkas.update');
+    Route::get('/pengajuan/{nim}/edit-berkas/edit/{id}', [BerkasController::class, 'editBerkas'])->name('pengajuan.berkas.edit');
+    Route::put('/pengajuan/{nim}/submmit-berkas/{id}', [BerkasController::class, 'updateBerkas'])->name('pengajuan.berkas.update');
 
     //Upload Surat
     Route::get('/upload/surat/{nim}/{id}', [BerkasController::class, 'createSurat'])->name('surat.pendukung.create');

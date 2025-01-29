@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    /**
-     * Show the login form.
-     */
+    //Menampilkan login form
     public function index()
     {
         if (Auth::check()) {
@@ -30,9 +28,7 @@ class AuthController extends Controller
         return view('Pages.Auth.login');
     }
 
-    /**
-     * Handle login request.
-     */
+    //Handle login request
     public function login(Request $request)
     {
         $request->validate([
@@ -75,9 +71,7 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Email or password is incorrect.'])->onlyInput('email');
     }
 
-    /**
-     * Handle forgot password form submission.
-     */
+    //Handle lupa password
     public function forgotPassword(Request $request)
     {
         $request->validate([
@@ -99,9 +93,7 @@ class AuthController extends Controller
         return response()->json(['message' => 'Verified!'], 200);
     }
 
-    /**
-     * Handle reset password submission.
-     */
+    //Handle reset password
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -121,9 +113,7 @@ class AuthController extends Controller
         return response()->json(['message' => 'Password updated successfully!'], 200);
     }
 
-    /**
-     * Logout the user.
-     */
+    //Logout 
     public function logout(Request $request)
     {
         Auth::logout();

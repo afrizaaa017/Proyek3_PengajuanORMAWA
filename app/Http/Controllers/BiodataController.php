@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\StoreBiodataRequest;
 use App\Models\Prodi;
 use App\Models\Ormawa;
 use App\Models\Jurusan;
@@ -10,12 +10,11 @@ use App\Models\Pengajuan;
 use App\Models\KetuaOrmawa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Notifications\PengajuanNotifikasi;
 
 class BiodataController extends Controller
 {
     //Menampilkan form untuk menambah data biodata pengajuan baru
-    public function createForm()
+    public function createBiodata()
     {
         $userId = Auth::id();
         $exists = Pengajuan::where('user_id', $userId)->exists();
@@ -37,24 +36,8 @@ class BiodataController extends Controller
     }
 
     //Menyimpan data biodata pengajuan baru ke session
-    public function storeForm(Request $request)
+    public function storeBiodata(StoreBiodataRequest $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'nim' => 'required|numeric|unique:pengajuans',
-            'jurusan' => 'required',
-            'prodi' => 'required',
-            'ormawa' => 'required',
-            'ketua_ormawa' => 'required',
-            'periode' => 'required',
-            'telp' => 'required|numeric',
-            'email' => 'required',
-        ], [
-            'nim.numeric' => 'NIM harus berupa angka.',
-            'nim.unique' => 'NIM sudah terdaftar, masukan NIM anda.',
-            'telp.numeric' => 'Nomor telepon harus berupa angka.',
-        ]);
-
         $request->session()->put('pengajuan', [
             'nama' => $request->nama,
             'nim' => $request->nim,
@@ -71,7 +54,7 @@ class BiodataController extends Controller
     }
 
     //Menampilkan form untuk mengedit data biodata pengajuan tertentu
-    public function editForm($nim, $id)
+    public function editBiodata($nim, $id)
     {
         $ormawas = Ormawa::all();
         $jurusans = Jurusan::all();
@@ -83,22 +66,8 @@ class BiodataController extends Controller
     }
 
     //Memperbarui data biodata pengajuan tertentu di database
-    public function updateForm(Request $request, $nim, $id)
+    public function updateBiodata(StoreBiodataRequest $request, $nim, $id)
     {
-        $request->validate([
-            'nama' => 'required',
-            'nim' => 'required|unique:pengajuans,nim,' . $id,
-            'jurusan' => 'required',
-            'prodi' => 'required',
-            'ormawa' => 'required',
-            'ketua_ormawa' => 'required',
-            'periode' => 'required',
-            'telp' => 'required',
-            'email' => 'required',
-        ], [
-            'nim.unique' => 'NIM sudah digunakan. Silakan gunakan NIM lain.',
-        ]);
-
         $request->session()->put('revisiPengajuan', [
             'nama' => $request->input('nama'),
             'nim' => $request->input('nim'),
